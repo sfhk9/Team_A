@@ -1,0 +1,196 @@
+public class jinujoa {
+
+여기대충 스캐너 임포트됨
+	public static void 함수A ( int a )
+	{	
+	}
+
+	public static void main(String[] args)
+	{
+
+		Scanner scn = new Scanner(System.in)  //스캐너 임포트, 인스턴트생성
+
+		System.out.println("순서 입력 : ");
+		int 유저 입력 순서 = nextInt();   //순서대입
+		int 소수 카운터 = 0;
+		
+
+		while ( true )
+		{
+		
+		}
+		
+		소수개수 누적하는놈 += 1씩 증가하는놈
+		if ( 소수 개수누적하는놈 == 사용자입력 값)
+		{
+		1씩증가하는놈 출력
+	
+		}
+		
+		
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		int num_div = 0;         //(나누어져 2가나온수의 '횟수')가 
+		int num_div_cnt = 0;   //(나누어져 2가나온수의 '횟수')가 
+
+		while ( num_cnt != num_div ) //(입력한수)가 (나누어져 2가나온수의 '횟수')가 같을때까지 반복
+			for ( int i = 2; i < 300
+			if ( )
+			{
+			}
+			else
+			{
+			}
+			num_div += 1;
+			//아래에서 2가나온 카운트세기
+
+
+
+		while ( true )
+		{
+			for ( int i = 1; i < a; i++)
+				while ( num_div == 2; ) //
+					if ( a / i == 0 )
+					{
+					break;
+					}
+					else
+					{
+					num_div += 1;
+					}
+		} 
+
+		a / 1 = a && a / a =0
+
+
+
+
+
+		
+
+
+		
+		for ( int i = 0; i < num_cnt; ) //연산 횟수
+
+
+
+		int cnt = //매개변수 연산이 카운트 되어야할횟수 (브레이크 조건)
+		int num_cnt = 0; //실제 카운트 횟수 cnt 같아야 브레이크
+		int y = 2; //나눗셈 준비물
+		//x는 소수
+
+		for ( int x = 2; x < y; x++)  
+		{
+			for ( int y = 2; x < y; x++)  
+			while ( cnt != num_cnt )
+				if ( y % x == 0)           // 변수 x 나누기 y 무한 루프 0 될시 카운트
+				{  
+				num_cnt ++
+				continue;
+				}
+				else
+				{
+				y++
+				}
+			}
+
+
+			
+		y++
+		}
+
+		while ( true )
+		{
+			for ( int x = 2; x <= y; x++)
+				x % y == 0
+				y++
+		}
+
+
+
+
+
+		
+		//num_div
+		//num_cnt == num_div
+		// 나눠진 횟수 카운트
+		// 어떠한수........어떠한수.....현재 개객기
+		// 어떠한수를 1부터 본인까지 나눴을때 카운트가2
+		// 연산해서 나온 순서 = 소수 순서
+
+
+소수x
+x는 무한히 증가
+x/y  y가 x와 같거나 클떄까지 무한히 증가
+x / y 연산 나머지가 0인 횟수가 2면 소수
+
+
+x++
+		for ( int y = 2; y >= x; y++)  
+			while ( cnt != num_cnt )
+				if ( x % y == 0)           
+				{  
+				num_cnt ++
+				continue;
+				}
+				else
+				{
+					
+				}
+			}
+
+
+
+int y = 2;
+
+for ( int x= 2; x < y; x++)  
+{
+
+}
+			
+
+
+
+
+
+
+
+
+
+
+
+	}
+}
