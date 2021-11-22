@@ -43,10 +43,10 @@ CREATE TABLE FAQ
 	-- 취소/반품
 	-- 회원정보
 	-- 기타
-	category varchar2(20) DEFAULT '' check(category in ('a','b','c','d','e','f','g')),
+	category varchar2(5) check(category in ('SVC','ORD','GDS','DLV','CNL','MEM','ETC')),
 	rdate timestamp NOT NULL,
 	udate timestamp NOT NULL,
-	hits number NOT NULL default 0,
+	hits number DEFAULT 0 NOT NULL,
 	filename varchar2(50) UNIQUE,
 	PRIMARY KEY (f_unq)
 );
@@ -65,10 +65,10 @@ CREATE TABLE FAQ_user
 	-- 취소/반품
 	-- 회원정보
 	-- 기타
-	category varchar2(20) NOT NULL check(category in ('a','b','c','d','e','f','g')),
+	category varchar2(5) NOT NULL check(category in ('SVC','ORD','GDS','DLV','CNL','MEM','ETC')),
 	rdate timestamp NOT NULL,
 	udate timestamp NOT NULL,
-	hits number NOT NULL default 0,
+	hits number default 0 NOT NULL,
 	gid number NOT NULL,
 	gthread varchar2(2) NOT NULL,
 	PRIMARY KEY (fu_unq)
@@ -78,24 +78,24 @@ CREATE TABLE FAQ_user
 CREATE TABLE goodsinfo
 (
 	g_unq number NOT NULL,
-	-- 0 : 옷
-	-- 1 : 신발
-	category number NOT NULL check (category in (0,1)),
-	-- 0 : 스포츠
-	-- 1 : 레저
-	-- 2 : 일상
-	ctg_type varchar2(50) NOT NULL,
+	-- 1 : 옷
+	-- 2 : 신발
+	category varchar2(5) NOT NULL check (category in ('CLS','SHO')),
+	-- 1 : 스포츠
+	-- 2 : 레저
+	-- 3 : 일상
+	ctg_type varchar2(5) NOT NULL check (ctg_type in ('SPT','LES','LIF')),
 	-- N : 무관
 	-- M : 남성용
 	-- F : 여성용
-	ctg_gender varchar2(3) NOT NULL check(ctg_gender in(0,1,2)),
+	ctg_gender varchar2(3) NOT NULL check(ctg_gender in('N','M','F')),
 	csize number NOT NULL,
 	color varchar2(10) NOT NULL,
 	-- 썸네일
 	thumbnail varchar2(100) NOT NULL UNIQUE,
 	-- 상품 설명용 이미지
 	img_goods varchar2(300) NOT NULL UNIQUE,
-	hits number NOT NULL default '0',
+	hits number default '0' NOT NULL,
 	PRIMARY KEY (g_unq)
 );
 
@@ -108,10 +108,10 @@ CREATE TABLE notice
 	content varchar2(4000) NOT NULL,
 	rdate timestamp NOT NULL,
 	udate timestamp NOT NULL,
-	hits number NOT NULL default 0,
+	hits number default 0 NOT NULL,
 	-- 0 : 공지
 	-- 1 : 이벤트
-	category varchar2(3) check(category in ('a','b','c')),
+	category varchar2(5) check(category in ('NTC','EVT')),
 	-- 공지사항용 파일 이름
 	filename varchar2(50) UNIQUE,
 	PRIMARY KEY (n_unq)
@@ -167,7 +167,7 @@ CREATE TABLE QNA
 	content varchar2(4000) NOT NULL,
 	rdate timestamp NOT NULL,
 	udate timestamp NOT NULL,
-	hits number NOT NULL default 0,
+	hits number default 0 NOT NULL,
 	gid number NOT NULL,
 	gthread varchar2(2) NOT NULL,
 	PRIMARY KEY (q_unq)
@@ -183,7 +183,7 @@ CREATE TABLE review
 	content varchar2(4000) NOT NULL,
 	rdate timestamp NOT NULL,
 	udate timestamp NOT NULL,
-	hits number NOT NULL default 0,
+	hits number default 0 NOT NULL,
 	img varchar2(100) UNIQUE,
 	PRIMARY KEY (r_unq)
 );
@@ -267,6 +267,9 @@ ALTER TABLE review
 	ADD FOREIGN KEY (userid)
 	REFERENCES userinfo (userid)
 ;
+
+
+
 
 
 
