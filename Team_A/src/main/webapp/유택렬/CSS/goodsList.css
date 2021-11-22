@@ -1,0 +1,106 @@
+
+.goodsList{
+    position:absolute;
+    margin-top:30px;    
+    
+}
+
+.item {
+    width:225px;
+    height:300px;
+    float:left;
+    border:1px solid #ccc;
+
+    margin-bottom:20px;
+}
+
+.item_img {
+    width:224px;
+    height:210px;
+}
+
+.item_container{
+    width:130px;
+    height:80px;
+    float:left;
+}
+
+.item_name{
+    width:130px;
+    height:50px;
+    font-size:14px;
+}
+
+.item_price{
+    width:90px;
+    height:80px;
+    float:left;
+    text-align:right;
+}
+
+.price_cancel{
+    width:90px;
+    height:30px;
+    
+    text-decoration:line-through;
+    color:rgb(138, 138, 138);
+    font-size:13px;
+    line-height:3.0;
+}
+
+.price_sale{
+    width:90px;
+    height:50px;
+
+    font-size:18px;
+    font-weight:bold;
+    line-height:3.0;
+}
+
+.item_color{
+    border-radius:100%;
+    width:20px;
+    height:20px; 
+    float:left;
+    margin-left:5px;
+}
+
+.filter_wrap {
+    position:sticky;
+    top:40px;
+    z-index:2;
+
+    width:700px;
+    text-align:right;
+    font-size:13px;
+    line-height:2.1;
+}
+
+.filter_list{
+    width:700px;
+    height:200px;
+    background-color:white;
+    border:1px solid black;
+    margin-top:-30px;
+}
+
+.right_list {
+    position:sticky;
+    top:200px;
+    width:100px;
+    height:300px;
+    border:1px solid black;
+    text-align:center;
+    margin-left:27px;
+    z-index:1;
+}
+
+.right_item {
+    width:70px;
+    height: 90px;
+    border:1px solid black;
+
+    margin: 0px auto;
+    margin-top:15px;
+
+}
