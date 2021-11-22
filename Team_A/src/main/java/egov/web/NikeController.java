@@ -10,6 +10,6 @@ import egov.service.NikeService;
 @Controller
 public class NikeController {
 
-	@Resource(name = "nikeervice")
+	@Resource(name = "nikeService")
 	NikeService nikeService;
 }
