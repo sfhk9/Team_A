@@ -56,7 +56,7 @@ caption{
 <body>
 <table align="center" style="width:400px;"> 
 	<caption ><a href="#">
-			  <img src="../img/simbol.jpg" class="simbol">
+			  <img src="./simbol.jpg" class="simbol">
 		      </a>
 		      <br>로그인 화면
 	</caption>

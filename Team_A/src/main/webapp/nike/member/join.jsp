@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    
+    <link rel="stylesheet" href="../css/main.css"> 
     <title>회원가입</title>
 </head>
 
@@ -46,7 +46,7 @@ body,html{
 }
 section{
     width:1000px;
-    height:450px;  
+    height:550px;  
 
 }
 article{
@@ -113,6 +113,7 @@ footer{
     width:1000px;
     text-align:center;
     padding-top:30px;
+  
 }
 .mem_btn1{
     width:120px;
@@ -154,7 +155,7 @@ footer{
     border:1px solid #ddd;
 }
 .wrap{
-	margin-left:10%;
+	margin-left:-9%;
 }
 </style>
 
@@ -216,13 +217,12 @@ footer{
                 <button type="submit" class="mem_btn1"onclick="fn_submit();return false;">회원가입</button>
                 <button type="reset" class="mem_btn2">취소</button>
             </div>
-       </form>
-        
+             <%@ include file="../include/footer.jsp" %>
+       </form>       
         </article>
-
     </section>
     <footer>
-      <%@ include file="../include/footer.jsp" %>
+     
     </footer>
     </div>
 </body>

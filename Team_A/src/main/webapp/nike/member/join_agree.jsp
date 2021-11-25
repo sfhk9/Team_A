@@ -6,7 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.css">
     <title>약관동의</title>
     
 	<style>
@@ -17,6 +18,7 @@
         }
 
         #title {
+        	margin-top:18px;
             margin-bottom: 15px;
             font-size: 1.3em;
             font-weight: bold;
@@ -84,7 +86,7 @@
         
         }
         .wrap{
-		margin-left:10%;
+		margin-left:-9%;
 		}
 		.joinbody{
 		width:1000px;
@@ -98,7 +100,9 @@
 	<header>
         <%@ include file="../include/topmenu.jsp" %>
     </header>
+    <br>
     <div class=joinbody>
+    <br>
     <div id="title">회원가입약관</div>
     <p>회원가입약관 및 개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.</p>
     <div>

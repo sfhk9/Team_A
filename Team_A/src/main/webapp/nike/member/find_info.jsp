@@ -105,7 +105,7 @@
             left: 0;
             width: 23px;
             height: 22px;
-            background: url(../img/sound.gif);
+            background: url(./sound.gif);
         }
 
         #captcha_reload {
@@ -129,7 +129,7 @@
             left: 0;
             width: 23px;
             height: 22px;
-            background: url(../img/reload.gif);
+            background: url(./reload.gif);
         }
 
         #captcha_key {
