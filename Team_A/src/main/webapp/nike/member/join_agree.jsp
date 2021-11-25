@@ -96,7 +96,7 @@
 <body>
 	<div class="wrap">
 	<header>
-        <%@ include file="../include/top.jsp" %>
+        <%@ include file="../include/topmenu.jsp" %>
     </header>
     <div class=joinbody>
     <div id="title">회원가입약관</div>

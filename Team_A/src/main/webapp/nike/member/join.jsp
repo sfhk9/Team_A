@@ -161,7 +161,7 @@ footer{
 <body>
     <div class="wrap">
     <header>
-    	<%@ include file="../include/top.jsp" %>
+    	<%@ include file="../include/topmenu.jsp" %>
     </header>
     
     
