@@ -13,13 +13,13 @@
 	    </div>
 	    <div class="top_logo">
 	        <div style="float:left;width:300px;height:100px;">
-	            <a href="#"><img src="../images/logo_NIKE.jpg" class="img_logo"></a>
+	            <a href="#"><img src="./images/logo_NIKE.jpg" class="img_logo"></a>
 	        </div>
 	        <div style="float:left;width:400px;height:100px;">
 	            <input type="text" class="searchbar">
 	        </div>
 	        <div style="float:left;width:300px;height:100px;">            
-	            <a href="#"><img  src="../images/mypage.png" class="img_mypage"></a>
+	            <a href="#"><img  src="./images/mypage.png" class="img_mypage"></a>
 	        </div>
 	    </div>
 	</header>
