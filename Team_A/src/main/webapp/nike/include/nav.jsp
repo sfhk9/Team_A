@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <div>
     <ul class="nav_ul">
         <li><span style="cursor:pointer;" onmouseover="javascript:" onmouseout="">New releases</span></li>
