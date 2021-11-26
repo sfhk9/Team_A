@@ -1,0 +1,173 @@
+
+/* main.css 변형 */
+.aside_order{
+    width:299px;
+    height: 750px;
+}
+
+/* order_form 고유 css */
+.order_wrap {
+    width:1000px;
+}
+
+.order_title{
+    float:left;
+    width:750px;
+    height:80px;
+    text-align:left;
+
+    font-size:24px;
+    font-weight:bold;
+
+    line-height: 3.3;
+}
+
+.order_process{
+    float:left;
+    width:250px;
+    height:80px;
+    text-align:right;
+
+    font-size:15px;
+    line-height:5.7;
+}
+
+.order_main{
+    width:1000px;
+}
+
+.tbl_order{
+    width:1000px;
+    border-collapse:collapse;
+    margin-bottom:50px;
+}
+
+.tbl_order th{
+    height:40px;
+    border-bottom:2px solid black;
+}
+
+.th1{
+    font-size:20px;
+    text-align: left;
+    font-weight:bold;
+}
+
+.th2{
+    font-size:14px;
+    color:rgb(107, 107, 107);
+}
+
+.tbl_order td{
+    height:80px;
+    border-right:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+    text-align:center;
+
+    font-size:13px;
+}
+
+.order_img{
+    float:left;
+    width:80px;
+    height:80px;
+}
+
+.img_item{
+    width:70px;
+    height:70px;
+    margin-left:5px;
+    margin-top:5px;
+}
+
+.order_detail{
+    float:left;
+    width:300px;
+    padding-top:20px;
+    text-align:left;
+    
+    font-size:13px;
+}
+
+.span_discount{
+    color:red;
+}
+
+.tbl_insertInfo{
+    width:680px;
+    border-collapse:collapse;
+    border-bottom:1px solid #ccc;
+    margin-bottom:50px;
+
+}
+
+.tbl_insertInfo th{
+    height:40px;
+    border-bottom:2px solid black;
+}
+
+.tbl_insertInfo td{
+    border-left:1px solid #ccc;
+    border-right:1px solid #ccc;
+    height:30px;
+
+    padding-left:10px;
+}
+
+.div_pass_wrap{
+    position:sticky;
+    top:50px;
+    width:290px;
+    margin-left:10px;
+    margin-top:2px;
+
+}
+
+.div_pass_order{
+    width:286px;
+    height:260px;
+    border:2px solid black;
+    margin-top:10px;
+}
+
+.tbl_pass {
+    width:266px;
+    margin:0px auto;
+    margin-top:10px;
+}
+
+.tbl_pass th{
+    height:40px;
+    text-align:right;
+}
+
+.tbl_pass td{
+    height:40px;
+}
+
+.th3{
+    padding-top:10px;
+    padding-bottom:10px;
+    border-top:1px solid #ccc;
+    font-size: 17px;
+}
+
+.th4{
+    padding-top:10px;
+    padding-bottom:10px;
+    border-top:1px solid #ccc;
+
+    font-size:20px;
+}
+
+.btn_pass{
+    width:260px;
+    height:40px;
+    margin:0px auto;
+    border:0px;
+    border-radius:0px;
+    cursor:pointer;
+
+    font-size:18px;
+    font-weight:bold;
+}
