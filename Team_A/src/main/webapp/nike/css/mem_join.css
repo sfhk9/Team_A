@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+#title {
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.mem_title{
+    font-weight:bold;
+    font-family:'맑은 고딕';
+    font-size:16px;
+
+    padding-top:15px;
+}
+
+.mem_tbl{
+    width:var(--conWidth);
+    border-top:2px solid black;
+    border-bottom:1px solid #ddd;
+    border-collapse:collapse;
+}
+.mem_cap{
+    font-weight:bold;
+    font-family:'맑은 고딕';
+    font-size:13px;
+    text-align:left;
+    margin-top:20px;
+    margin-bottom:10px;
+}
+.mem_tbl th{
+    width:150px;
+    font-size:14px;
+    font-family:'맑은 고딕';
+    text-align:left;
+    background-color:#f6f6f6;
+    border-right:1px solid #ddd;
+    border-bottom:1px solid #ddd;
+    padding-left:10px;
+    padding-top:5px;
+    padding-bottom:5px; 
+}
+.mem_tbl td{
+    font-size:14px;
+    text-align:left;
+    border-bottom:1px solid #ddd;
+    padding-left:10px;
+    padding-bottom:5px;
+    padding-top:5px;
+
+}
+.mem_str{
+    font-size:13px;
+}
+.mem_div_btn{
+    width:var(--conWidth);
+    text-align:center;
+    padding-top:30px;
+}
+.mem_btn1{
+    width:120px;
+    height:40px;
+    border-radius: 5px;
+    border:1px solid black;
+    background-color:black;
+    color:white;
+}
+.mem_btn2{
+    width:120px;
+    height:40px;
+    border-radius: 5px;
+    border:1px solid black;
+    background-color:white;
+    color:black;    
+}   
+.submit {
+           margin-top: 50px;
+           text-align: center;
+        }
+
+.submit input {
+    width: 100px;
+    padding: 13px 0;
+    font-size: 1.09em;
+    font-weight: bold;
+    border-radius: 5px;
+    letter-spacing: 0;
+    padding: 8px;
+    border: 0;
+    background: black;
+    color: #fff;
+    letter-spacing: -0.1em;
+    cursor: pointer;
+}
+
+.inputBox{
+    background-color:#f6f6f6;
+    border:1px solid #ddd;
+}

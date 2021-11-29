@@ -1,10 +1,27 @@
+/* 공통 변수 선언*/
+
+:root {
+	/*페이지 사이즈 관련*/
+	--pageWidth:1000px;
+	--pageHeight1:1000px;
+	
+	/*본문 길이(section)*/
+	--conWidth:700px;
+	--conHeight1:1000px;
+	
+	/* 좌우 여백 */
+	--asideWidth:150px;
+	
+}
+
+/* 기본 틀 */
 * {
     margin:0px;
     padding:0px;
 }
 
 html,body{
-    width:1000px;
+    width:var(--pageWidth);
 }
 
 a{
@@ -13,90 +30,74 @@ a{
 }
 
 header {
-    width:1000px;
-    height:120px;
+    width:var(--pageWidth);
+    height:100px;
 }
 
 nav{
     position:sticky;
     top:0px;
-    width:1000px;
-    height:40px;
     z-index:3;
-
+    
+    width:var(--pageWidth);
+    height:37px;
     border-top:1px solid #ccc;
     border-bottom:2px solid black;
+    
     background-color:white;
     text-align:center;
+    
+    padding-left:40px;
 }
 
 section {
-    width:1000px;
-    height:1000px;
+    width:var(--pageWidth);
+    height:var(--conHeight1);
 }
 
 aside {
     float:left;
-    width:150px;
-    height:1000px;
+    width:var(--asideWidth);
+    height:var(--conHeight1);
 }
 
 article {
     float:left;
-    width:700px;
-    height:1000px;
+    width:var(--conWidth);
+    height:var(--conHeight1);
 }
 
-footer{
-    width:1000px;
-    height:200px;
-    background-color:black;
-}
 
+/* 여기나 html에 화면 중앙 오도록 조치해야할 듯*/
 .wrap{
-    
     position:absolute;
-    left: 17%;
-    width:1000px;
+
+    width:var(--pageWidth);
     height: 1360px;
 }
 
-.top_menu {
-    width:1000px;
-    height:20px;
-
-    border-bottom:2px solid #ccc;
-    text-align:left;
-}
-
-.top_ul{
-    float:right;
-    margin-right:80px;
-    line-height:1.8;
-}   
-
-.top_ul li{
-    list-style:none;
-    float:left;
-    
-    border-right:1px solid black;
-    padding-left:5px;
-    padding-right:5px;
-
-    font-size:12px;
-
-}
-
+/* Header.jsp */
 .top_logo {
-    width:1000px;
+    width:var(--pageWidth);
     height:100px;
     text-align:center;
+}
+
+.logo_div1{
+	float:left;
+	width:300px;
+	height:100px;
+}
+
+.logo_div2{
+	float:left;
+	width:400px;
+	height:100px;
 }
 
 .img_logo{
     width:100px;
     height:40px;
-    
     
     margin-top:30px;
     margin-left:20px;
@@ -106,7 +107,6 @@ footer{
     width:400px;
     height:40px;
     font-size:30px;
-
     
     margin-top:30px;
     border:2px solid #ccc;
@@ -114,17 +114,18 @@ footer{
 }
 
 .img_mypage{
-    width:80px;
-    height:80px;
-    
-    margin-top:10px;
-    margin-right:20px;
+    width:60px;
+    height:60px;
+    margin-top:22px;
 }
 
+
+<!--nav.jsp-->
+
 .nav_ul {
-    width:700px;
-    margin:0px auto;
-    line-height:1.8
+    width:var(--conWidth);
+    line-height:1.8;
+    margin-right:63px;
 }
 
 .nav_ul li{ 
@@ -133,4 +134,63 @@ footer{
     margin-left:63px;
     font-weight:bold;
     font-size:20px;
+    cursor:pointer;
+}
+
+
+/* footer.jsp */
+.ft1{
+    width:var(--pageWidth);
+    height:38px;
+    text-align:center;
+    border-top:1px solid rgb(163, 163, 163);
+    border-bottom:1px solid rgb(163, 163, 163);
+    background:black;
+    margin-top:30px;
+}
+
+.ul_ft{
+    margin-left:10px;
+    margin-top:13px;
+}
+
+.ul_ft li {
+	color:#555;
+    font-size:14px;
+    font-family:'맑은 고딕';
+    list-style:none;
+    font-weight:bold;
+    float:left;
+    padding-left:12px;
+    padding-right:12px;
+}
+
+.ft2{
+    width:var(--pageWidth);
+    height:90px;
+    font-size:12px;
+    font-family:'맑은 고딕';
+    text-align:left;
+    padding-top:20px;
+	background:black;
+}
+
+.ftTitle{
+    color:rgb(126, 126, 126);
+    font-size:12px;
+    font-weight:bold;
+    padding-left:10px;
+    
+}
+
+.ft3{
+    width:var(--pageWidth);
+    height:30px;
+    color:rgb(158, 158, 158);
+    font-size:12px;
+    text-align:center;
+    padding-top:20px;
+    vertical-align: bottom;
+    background:black;
+    margin-bottom:10px;
 }
