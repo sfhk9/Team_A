@@ -72,7 +72,7 @@
             </aside>
         </section>
         <footer>
-
+			<%@include file="/nike/include/footer.jsp" %>
         </footer>
     </div>
 </body>

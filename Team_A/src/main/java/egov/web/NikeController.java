@@ -15,7 +15,10 @@ public class NikeController {
 	@Resource(name = "nikeService")
 	NikeService nikeService;
 	
-
+	@RequestMapping("goodsList.do")
+	public String goodsList() {
+		return "nike/goodsList";
+	}
 
 
 }

@@ -1,73 +1,73 @@
-    .board_menu{
-        width:140px;
-        height:1000px;
-        margin-left:10px;
-    }
+.board_menu{
+    width:140px;
+    height:var(--contentSize_h1);
+    margin-left:10px;
+}
 
-    .board_main{
-        width:700px;
-        height:1000px;
+.board_main{
+    width:var(--contentSize_w);
+    height:var(--contentSize_h1);
 
-        border-left:2px solid #ccc;
-        border-right:2px solid #ccc;
-    }
+    border-left:2px solid #ccc;
+    border-right:2px solid #ccc;
+}
 
-    .list_left{
-        width:150px;
-        margin-bottom:50px;
-        list-style:none;
-    }
+.list_left{
+    width:150px;
+    margin-bottom:50px;
+    list-style:none;
+}
 
-    .list_left{
-        font-size:13px;
-    }
+.list_left{
+    font-size:13px;
+}
 
-    .list_left li{
-        padding-left: 5px;
-        padding-top:5px;
-        padding-bottom:5px;
-    }
+.list_left li{
+    padding-left: 5px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
 
-    .list_left_title{
-        font-size:17px;
-        font-weight:bold;
-    }
+.list_left_title{
+    font-size:17px;
+    font-weight:bold;
+}
 
-    .board_path {
-        width:650px;
-        height:50px;
-        margin:0px auto;
+.board_path {
+    width:650px;
+    height:50px;
+    margin:0px auto;
 
-        color:darkslategrey;
-        font-size:12px;   
-        line-height:4.0;
-        
-    }
+    color:darkslategrey;
+    font-size:12px;   
+    line-height:4.0;
+    
+}
 
-    .board_title{
-        width: 650px;
-        height:50px;
-        margin:0px auto;
-        border-bottom:2px solid rgb(124, 121, 121);
-        font-size:23px;
-        font-weight:bold;
-        line-height:1.8;
-    }
+.board_title{
+    width: 650px;
+    height:50px;
+    margin:0px auto;
+    border-bottom:2px solid rgb(124, 121, 121);
+    font-size:23px;
+    font-weight:bold;
+    line-height:1.8;
+}
 
-    .list_main {
-        width:650px;
-        height:50px;
-        list-style:none;
+.list_main {
+    width:650px;
+    height:50px;
+    list-style:none;
 
-        
-        margin:0px auto;
-        margin-top:50px;
-    }
+    
+    margin:0px auto;
+    margin-top:50px;
+}
 
-    .list_main li {
-        border-bottom:1px solid #ccc;
-        padding-top:10px;
-        padding-bottom:10px;
+.list_main li {
+    border-bottom:1px solid #ccc;
+    padding-top:10px;
+    padding-bottom:10px;
 
-        font-size:14px;
-    }
+    font-size:14px;
+}
