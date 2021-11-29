@@ -89,9 +89,11 @@
     width:98px;
     height:298px;
     border:1px solid black;
-    text-align:center;
-    
+    text-align:center;   
     z-index:1;
+    
+    margin-left:25px;
+    margin-top:20px;
 }
 
 .right_item {

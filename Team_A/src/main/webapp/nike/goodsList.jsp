@@ -30,20 +30,21 @@
     }
 </script>
 <body>
-    <div class="wrap">
+
        <header>
        		<%@include file="./include/header.jsp" %>
        </header>
        <nav>
        		<%@include file="./include/nav.jsp" %>       
        </nav>
+           <div class="wrap">
         <section>
             <aside>
-
+				
             </aside>
             <article>
                 <div class="goodsList">
-                	<% %>
+                	
                     <div class="item">     
                         <img src="./img/img_item.jfif" class="item_img">
                         <div class="item_container">
@@ -152,9 +153,10 @@
 
             </aside>
         </section>
+        </div>
         <footer>
 			<%@include file="./include/footer.jsp" %>
         </footer>
-    </div>
+
 </body>
 </html>
