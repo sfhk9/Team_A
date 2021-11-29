@@ -78,12 +78,12 @@ CREATE TABLE FAQ_user
 CREATE TABLE goodsinfo
 (
 	g_unq number NOT NULL,
-	-- 1 : 옷
-	-- 2 : 신발
+	-- CLS : 옷
+	-- SHO : 신발
 	category varchar2(5) NOT NULL check (category in ('CLS','SHO')),
-	-- 1 : 스포츠
-	-- 2 : 레저
-	-- 3 : 일상
+	-- SPT : 스포츠
+	-- LES : 레저
+	-- LIF : 일상
 	ctg_type varchar2(5) NOT NULL check (ctg_type in ('SPT','LES','LIF')),
 	-- N : 무관
 	-- M : 남성용
