@@ -79,17 +79,17 @@ CREATE TABLE goodsinfo
 	unq number NOT NULL,
 	-- CLS : 옷
 	-- SHO : 신발
-	category varchar2(5) NOT NULL check (category in ('CLS','SHO')),
+	category varchar2(5) NOT NULL check (category in('CLS','SHO')),
 	-- SPT : 스포츠
 	-- LES : 레저
 	-- LIF : 일상
-	ctgtype varchar2(5) NOT NULL check (ctgtype in ('SPT','LES','LIF')),
+	ctgtype varchar2(5) NOT NULL check (ctgtype in('SPT','LES','LIF')),
 	-- N : 무관
 	-- M : 남성용
 	-- F : 여성용
 	ctggender varchar2(3) NOT NULL check(ctggender in('N','M','F')),
 	price number NOT NULL,
-	csize varcahr2(50) NOT NULL,
+	csize varchar2(50) NOT NULL,
 	color varchar2(50) NOT NULL,
 	-- 썸네일
 	thumbnail varchar2(100) NOT NULL UNIQUE,
@@ -249,7 +249,7 @@ COMMENT ON COLUMN orderCancel.stmt IS '0 : 주문취소대기
 2 : 완료
 3 : 오류';
 COMMENT ON COLUMN orderList.userid IS '사용자 정보 테이블의 userid';
-COMMENT ON COLUMN orderList.gunq IS '상품 정보 테이블의 unq';
+COMMENT ON COLUMN orderList.goodsunq IS '상품 정보 테이블의 unq';
 COMMENT ON COLUMN orderList.stmt IS '주문 배송 상태
 0 : 결제 대기 
 1 : 결제 취소
