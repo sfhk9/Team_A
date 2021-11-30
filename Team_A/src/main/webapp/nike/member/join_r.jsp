@@ -47,13 +47,13 @@
 	}
 </script>
 <body>
-	<div class="wrap">
-		<header>
-			<%@include file="../include/header.jsp" %>
-		</header>
-		<nav>
-			<%@include file="../include/nav.jsp" %>       
-		</nav>
+	<header>
+		<%@include file="../include/header.jsp" %>
+	</header>
+	<nav>
+		<%@include file="../include/nav.jsp" %>       
+	</nav>
+		<div class="wrap">
 		<section>
 			<aside>
 			</aside>
@@ -114,9 +114,10 @@
 			
 			</aside>
 		</section>
-		<footer>
-			<%@include file="../include/footer.jsp" %>
-		</footer>
 	</div>
+	<footer>
+		<%@include file="../include/footer.jsp" %>
+	</footer>
+
 </body>
 </html>
