@@ -11,28 +11,28 @@ DROP TABLE review CASCADE CONSTRAINTS;
 DROP TABLE goodsinfo CASCADE CONSTRAINTS;
 DROP TABLE notice CASCADE CONSTRAINTS;
 DROP TABLE userinfo CASCADE CONSTRAINTS;
-
+DROP TABLE admininfo;
 
 
 
 /* Create Tables */
-
 CREATE TABLE cart
 (
-	c_unq number NOT NULL,
+	unq number NOT NULL,
 	-- 사용자정보테이블의 userid
 	userid varchar2(100) NOT NULL,
 	-- 상품 테이블의 g_unq
-	g_unq number NOT NULL,
+	goodsunq number NOT NULL,
 	csize number NOT NULL,
 	color varchar2(10) NOT NULL,
-	PRIMARY KEY (c_unq)
+	PRIMARY KEY (unq)
 );
 
 
 CREATE TABLE FAQ
 (
-	f_unq number NOT NULL,
+	
+	unq number NOT NULL,
 	title varchar2(100) NOT NULL,
 	name varchar2(50) NOT NULL,
 	content varchar2(4000) NOT NULL,
@@ -48,13 +48,13 @@ CREATE TABLE FAQ
 	udate timestamp NOT NULL,
 	hits number DEFAULT 0 NOT NULL,
 	filename varchar2(50) UNIQUE,
-	PRIMARY KEY (f_unq)
+	PRIMARY KEY (unq)
 );
 
 
 CREATE TABLE FAQ_user
 (
-	fu_unq number NOT NULL,
+	unq number NOT NULL,
 	title varchar2(100) NOT NULL,
 	userid varchar2(100) NOT NULL,
 	content varchar2(4000) NOT NULL,
@@ -69,15 +69,14 @@ CREATE TABLE FAQ_user
 	rdate timestamp NOT NULL,
 	udate timestamp NOT NULL,
 	hits number default 0 NOT NULL,
-	gid number NOT NULL,
-	gthread varchar2(2) NOT NULL,
-	PRIMARY KEY (fu_unq)
+	gid number,
+	PRIMARY KEY (unq)
 );
 
 
 CREATE TABLE goodsinfo
 (
-	g_unq number NOT NULL,
+	unq number NOT NULL,
 	-- CLS : 옷
 	-- SHO : 신발
 	category varchar2(5) NOT NULL check (category in ('CLS','SHO')),
@@ -89,20 +88,21 @@ CREATE TABLE goodsinfo
 	-- M : 남성용
 	-- F : 여성용
 	ctg_gender varchar2(3) NOT NULL check(ctg_gender in('N','M','F')),
-	csize number NOT NULL,
-	color varchar2(10) NOT NULL,
+	price number NOT NULL,
+	csize varcahr2(50) NOT NULL,
+	color varchar2(50) NOT NULL,
 	-- 썸네일
 	thumbnail varchar2(100) NOT NULL UNIQUE,
 	-- 상품 설명용 이미지
 	img_goods varchar2(300) NOT NULL UNIQUE,
 	hits number default '0' NOT NULL,
-	PRIMARY KEY (g_unq)
+	PRIMARY KEY (unq)
 );
 
 
 CREATE TABLE notice
 (
-	n_unq number NOT NULL,
+	unq number NOT NULL,
 	title varchar2(100) NOT NULL,
 	name varchar2(20) NOT NULL,
 	content varchar2(4000) NOT NULL,
@@ -114,14 +114,14 @@ CREATE TABLE notice
 	category varchar2(5) check(category in ('NTC','EVT')),
 	-- 공지사항용 파일 이름
 	filename varchar2(50) UNIQUE,
-	PRIMARY KEY (n_unq)
+	PRIMARY KEY (unq)
 );
 
 
 CREATE TABLE orderCancel
 (
-	c_unq number NOT NULL,
-	o_unq number NOT NULL,
+	unq number NOT NULL,
+	orderunq number NOT NULL,
 	reason varchar2(50),
 	rdate timestamp NOT NULL,
 	udate timestamp NOT NULL,
@@ -130,17 +130,17 @@ CREATE TABLE orderCancel
 	-- 2 : 완료
 	-- 3 : 오류
 	stmt number NOT NULL check(stmt in(0,1,2,3)),
-	PRIMARY KEY (c_unq)
+	PRIMARY KEY (unq)
 );
 
 
 CREATE TABLE orderList
 (
-	o_unq number NOT NULL,
+	unq number NOT NULL,
 	-- 사용자 정보 테이블의 userid
 	userid varchar2(100) NOT NULL,
 	-- 상품 정보 테이블의 unq
-	g_unq number NOT NULL,
+	goodsunq number NOT NULL,
 	csize number NOT NULL,
 	color varchar2(10) NOT NULL,
 	-- 주문 배송 상태
@@ -154,30 +154,29 @@ CREATE TABLE orderList
 	-- 7 : 반송
 	-- 8 : 오류
 	stmt number NOT NULL check(stmt in (0,1,2,3,4,5,6,7,8)),
-	PRIMARY KEY (o_unq)
+	PRIMARY KEY (unq)
 );
 
 
 CREATE TABLE QNA
 (
-	q_unq number NOT NULL,
-	g_unq number NOT NULL,
+	unq number NOT NULL,
+	goodsunq number NOT NULL,
 	title varchar2(100) NOT NULL,
 	userid varchar2(100) NOT NULL,
 	content varchar2(4000) NOT NULL,
 	rdate timestamp NOT NULL,
 	udate timestamp NOT NULL,
 	hits number default 0 NOT NULL,
-	gid number NOT NULL,
-	gthread varchar2(2) NOT NULL,
-	PRIMARY KEY (q_unq)
+	gid number,
+	PRIMARY KEY (unq)
 );
 
 
 CREATE TABLE review
 (
-	r_unq number NOT NULL,
-	g_unq number NOT NULL,
+	unq number NOT NULL,
+	goodsunq number NOT NULL,
 	title varchar2(100) NOT NULL,
 	userid varchar2(100) NOT NULL,
 	content varchar2(4000) NOT NULL,
@@ -185,7 +184,8 @@ CREATE TABLE review
 	udate timestamp NOT NULL,
 	hits number default 0 NOT NULL,
 	img varchar2(100) UNIQUE,
-	PRIMARY KEY (r_unq)
+	mark number default 3 check(mark in(1,2,3,4,5)),
+	PRIMARY KEY (unq)
 );
 
 
@@ -206,71 +206,11 @@ CREATE TABLE userinfo
 );
 
 
-
-/* Create Foreign Keys */
-
-ALTER TABLE cart
-	ADD FOREIGN KEY (g_unq)
-	REFERENCES goodsinfo (g_unq)
-;
-
-
-ALTER TABLE orderList
-	ADD FOREIGN KEY (g_unq)
-	REFERENCES goodsinfo (g_unq)
-;
-
-
-ALTER TABLE QNA
-	ADD FOREIGN KEY (g_unq)
-	REFERENCES goodsinfo (g_unq)
-;
-
-
-ALTER TABLE review
-	ADD FOREIGN KEY (g_unq)
-	REFERENCES goodsinfo (g_unq)
-;
-
-
-ALTER TABLE orderCancel
-	ADD FOREIGN KEY (o_unq)
-	REFERENCES orderList (o_unq)
-;
-
-
-ALTER TABLE cart
-	ADD FOREIGN KEY (userid)
-	REFERENCES userinfo (userid)
-;
-
-
-ALTER TABLE FAQ_user
-	ADD FOREIGN KEY (userid)
-	REFERENCES userinfo (userid)
-;
-
-
-ALTER TABLE orderList
-	ADD FOREIGN KEY (userid)
-	REFERENCES userinfo (userid)
-;
-
-
-ALTER TABLE QNA
-	ADD FOREIGN KEY (userid)
-	REFERENCES userinfo (userid)
-;
-
-
-ALTER TABLE review
-	ADD FOREIGN KEY (userid)
-	REFERENCES userinfo (userid)
-;
-
-
-
-
+CREATE table admininfo 
+(
+    userid varchar2(100) PRIMARY KEY,
+    pass varchar2(100) NOT NULL
+);
 
 
 /* Comments */
