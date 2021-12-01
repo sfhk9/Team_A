@@ -20,13 +20,13 @@
 	
 </script>
 <body>
+	<header>
+		<%@include file="../include/header.jsp" %>
+	</header>
+	<nav>
+		<%@include file="../include/nav.jsp" %>       
+	</nav>
 	<div class="wrap">
-		<header>
-			<%@include file="../include/header.jsp" %>
-		</header>
-		<nav>
-			<%@include file="../include/nav.jsp" %>       
-		</nav>
 		<section>
 			<article>
 				   <div class=joinbody>
@@ -304,9 +304,9 @@
 			
 			</aside>
 		</section>
-		<footer>
-			<%@include file="../include/footer.jsp" %>
-		</footer>
-	</div>
+		</div>
+	<footer>
+		<%@include file="../include/footer.jsp" %>
+	</footer>
 </body>
 </html>

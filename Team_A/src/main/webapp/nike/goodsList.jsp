@@ -37,7 +37,7 @@
        <nav>
        		<%@include file="./include/nav.jsp" %>       
        </nav>
-           <div class="wrap">
+       <div class="wrap">
         <section>
             <aside>
 				
