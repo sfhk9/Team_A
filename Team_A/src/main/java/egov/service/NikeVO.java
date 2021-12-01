@@ -5,7 +5,6 @@ public class NikeVO {
 	//유저 데이터 USERINFO
 	private String userid;
 
-
 	private String pass;
 	private String name;
 	private String birth;
@@ -17,8 +16,8 @@ public class NikeVO {
 	private String rdate;
 	private String udate;
 
-	//상품정보 GOODSINFO
-	private int g_unq;				
+	//상품정보 GOODSINFO	
+	private int unq;
 	private String category; 		// CLS : 옷, SHO : 신발
 	private String ctgtype; 		//SPT : 스포츠, LES : 레저, LIF : 일상  
 	private String ctggender; 		// N : 무관, M : 남성용, F : 여성용
@@ -28,7 +27,6 @@ public class NikeVO {
 	private int price;
 
 	//장바구니 CART     //반품 ORDERCANCEL
-	private int unq;
 	private String reason;		//반품사유
 	//나머진 상품정보에서 받아옴
 	
@@ -146,12 +144,6 @@ public class NikeVO {
 	}
 	public void setUdate(String udate) {
 		this.udate = udate;
-	}
-	public int getG_unq() {
-		return g_unq;
-	}
-	public void setG_unq(int g_unq) {
-		this.g_unq = g_unq;
 	}
 	public String getCategory() {
 		return category;
