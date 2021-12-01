@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+.input1{
+	padding-left:20px;
+	margin-left:8px;
+	margin-bottom:4px; 
+	height:30px;	
+}
+.input2{
+	padding:0px; 
+	margin-top:4px;
+	margin-left:8px;  
+	margin-bottom:4px; 
+	width:400px;
+	height:37px;
+	background:black;
+	color:white;
+	font-size:17px;	
+}
+.input3{
+	padding:0px; 
+	margin-left:8px;  
+	margin-bottom:4px;  
+	width:400px;
+	height:37px;
+	background:yellow;
+	color:black;
+	font-size:17px;	
+}
+.input4{
+	padding:0px; 
+	margin-left:8px;   
+	width:400px;
+	height:37px;
+	background:blue;
+	color:white;
+	font-size:17px;	
+}
+
+.simbol{
+	width:60px;
+	height:60px;
+}
+caption{
+	font-size:17px;
+}
