@@ -4,7 +4,8 @@ public class NikeVO {
 
 	//유저 데이터 USERINFO
 	private String userid;
-	
+
+
 	private String pass;
 	private String name;
 	private String birth;
@@ -19,20 +20,19 @@ public class NikeVO {
 	//상품정보 GOODSINFO
 	private int g_unq;				
 	private String category; 		// CLS : 옷, SHO : 신발
-	private String ctg_type; 		//SPT : 스포츠, LES : 레저, LIF : 일상  
-	private String ctg_gender; 		// N : 무관, M : 남성용, F : 여성용
+	private String ctgtype; 		//SPT : 스포츠, LES : 레저, LIF : 일상  
+	private String ctggender; 		// N : 무관, M : 남성용, F : 여성용
 	private String csize;			//옷사이즈
 	private String color;
 	private String thumbnail;
 	private int price;
 
 	//장바구니 CART     //반품 ORDERCANCEL
-	private int c_unq;
+	private int unq;
 	private String reason;		//반품사유
 	//나머진 상품정보에서 받아옴
 	
 	//주문배송 ORDERLIST
-	private int o_unq;
 	private int stmt;	
 	/*
 	-- 0 : 결제 대기 
@@ -48,21 +48,16 @@ public class NikeVO {
 	//나머진 장바구니에서 받아옴
 	
 	//리뷰 REVIEW
-	private int r_unq;
 	private String title;
 	private String content;
 	private String img;
 	private int mark;
 
 	//상품문의 QNA
-	private int q_unq;
 	private int gid;
-	private String gthread;
 	
 	//사용자>관리자 문의 FAQ_USER
-	private int fu_unq;
 	//NOTICE 공지사항
-	private int n_unq;
 	private String filename;
 
 	//FAQ 자주찾는 질문
@@ -84,8 +79,6 @@ public class NikeVO {
 	//검색변수
 	private String s_field;
 	private String s_text;
-	
-	
 	
 	
 	public String getUserid() {
@@ -166,17 +159,17 @@ public class NikeVO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getCtg_type() {
-		return ctg_type;
+	public String getCtgtype() {
+		return ctgtype;
 	}
-	public void setCtg_type(String ctg_type) {
-		this.ctg_type = ctg_type;
+	public void setCtgtype(String ctgtype) {
+		this.ctgtype = ctgtype;
 	}
-	public String getCtg_gender() {
-		return ctg_gender;
+	public String getCtggender() {
+		return ctggender;
 	}
-	public void setCtg_gender(String ctg_gender) {
-		this.ctg_gender = ctg_gender;
+	public void setCtggender(String ctggender) {
+		this.ctggender = ctggender;
 	}
 	public String getCsize() {
 		return csize;
@@ -202,11 +195,11 @@ public class NikeVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int getC_unq() {
-		return c_unq;
+	public int getUnq() {
+		return unq;
 	}
-	public void setC_unq(int c_unq) {
-		this.c_unq = c_unq;
+	public void setUnq(int unq) {
+		this.unq = unq;
 	}
 	public String getReason() {
 		return reason;
@@ -214,23 +207,11 @@ public class NikeVO {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	public int getO_unq() {
-		return o_unq;
-	}
-	public void setO_unq(int o_unq) {
-		this.o_unq = o_unq;
-	}
 	public int getStmt() {
 		return stmt;
 	}
 	public void setStmt(int stmt) {
 		this.stmt = stmt;
-	}
-	public int getR_unq() {
-		return r_unq;
-	}
-	public void setR_unq(int r_unq) {
-		this.r_unq = r_unq;
 	}
 	public String getTitle() {
 		return title;
@@ -256,35 +237,11 @@ public class NikeVO {
 	public void setMark(int mark) {
 		this.mark = mark;
 	}
-	public int getQ_unq() {
-		return q_unq;
-	}
-	public void setQ_unq(int q_unq) {
-		this.q_unq = q_unq;
-	}
 	public int getGid() {
 		return gid;
 	}
 	public void setGid(int gid) {
 		this.gid = gid;
-	}
-	public String getGthread() {
-		return gthread;
-	}
-	public void setGthread(String gthread) {
-		this.gthread = gthread;
-	}
-	public int getFu_unq() {
-		return fu_unq;
-	}
-	public void setFu_unq(int fu_unq) {
-		this.fu_unq = fu_unq;
-	}
-	public int getN_unq() {
-		return n_unq;
-	}
-	public void setN_unq(int n_unq) {
-		this.n_unq = n_unq;
 	}
 	public String getFilename() {
 		return filename;
@@ -358,4 +315,5 @@ public class NikeVO {
 	public void setS_text(String s_text) {
 		this.s_text = s_text;
 	}
+	
 }

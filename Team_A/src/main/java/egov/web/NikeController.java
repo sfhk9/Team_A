@@ -19,9 +19,12 @@ public class NikeController {
 	NikeService nikeService;
 	
 	@RequestMapping("goodsList.do")
-	public String goodsList( NikeVO vo ) throws Exception {
+	public String goodsList( NikeVO vo, Model model ) throws Exception {
 		
 		List<?> list = nikeService.selectGoodsList(vo);
+		
+		model.addAttribute("list",list); 
+		
 		return "nike/goodsList";
 	}
 
