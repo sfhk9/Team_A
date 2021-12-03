@@ -20,7 +20,7 @@ public class NikeController {
 	
 	@RequestMapping("goodsList.do")
 	public String goodsList( NikeVO vo, Model model ) throws Exception {
-		
+
 		List<?> list = nikeService.selectGoodsList(vo);
 		
 		model.addAttribute("list",list); 

@@ -18,7 +18,7 @@
 				csize,
 				color,
 				thumbnail,
-				name
+				substr(name,0,20) name
 			FROM 
 				goodsinfo
 			ORDER BY 
