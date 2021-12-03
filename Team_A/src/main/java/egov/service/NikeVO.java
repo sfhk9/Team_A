@@ -19,9 +19,9 @@ public class NikeVO {
 	//상품정보 GOODSINFO	
 	private int unq;
 	private String category; 		// CLS : 옷, SHO : 신발
-	private String ctgtype; 		//SPT : 스포츠, LES : 레저, LIF : 일상  
+	private String ctgtype; 		// SPT : 스포츠, LES : 레저, LIF : 일상  
 	private String ctggender; 		// N : 무관, M : 남성용, F : 여성용
-	private String csize;			//옷사이즈
+	private String csize;			// 옷사이즈
 	private String color;
 	private String thumbnail;
 	private int price;

@@ -49,7 +49,7 @@
                 <div class="goodsList">
                 
                 	<!-- 상품리스트 시작  -->
-                	<c:forEach var="result" items="${list}"  varStatus="status" >
+                	<c:forEach var="result" items="${list}" varStatus="status" >
                 	
 	                    <div class="item">    
 	                    
@@ -57,16 +57,13 @@
 							<c:set var="thumbnail" value="${result.thumbnail }" />
 							<%
 				      		String thumbnail = (String) pageContext.getAttribute("thumbnail") ;
-								
-								if( thumbnail != null && !thumbnail.equals("") ) {
+			
 									String[] array = thumbnail.split("/");
 								
 							%>
-									<img src="./goods/${result.unq}/<%=array[0]%>" class="item_img">
-							<%
-								}
-				 			%>
-                
+				
+									<img src="/nike/goods/${result.unq}/<%=array[0]%>" class="item_img">
+
 	                        <!-- 상품정보 -->
 	                        <div class="item_container">
 	                        	<!-- 상품이름 -->
