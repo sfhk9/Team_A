@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="path" value="${pageContext.request.contextPath}/nike" />
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -39,85 +40,71 @@
        </nav>
        <div class="wrap">
         <section>
+        
             <aside>
 				
             </aside>
+            
             <article>
                 <div class="goodsList">
+                
+                	<!-- 상품리스트 시작  -->
+                	<c:forEach var="result" items="${list}"  varStatus="status" >
                 	
-                    <div class="item">     
-                        <img src="./img/img_item.jfif" class="item_img">
-                        <div class="item_container">
-                            <div class="item_name">
-                                상품이름 상품이름 <br>
-                                상품이름 상품이름
-                            </div>
-                            <div style="width:130px;height:30px;">
-                                <div class="item_color" style="background-color:blue;"></div>
-                                <div class="item_color" style="background-color:red;"></div>
-                            </div>
-                        </div>
-
-                        <div class="item_price">
-                            <div class="price_cancel">
-                                999,999원
-                            </div>
-                            <div class="price_sale">
-                                999,999원
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="width:10px; height:100px;float:left;"></div>
-
-                    <div class="item">     
-                        <img src="./images/img_item.jfif" class="item_img">
-                        <div class="item_container">
-                            <div class="item_name">
-                                상품이름 상품이름 <br>
-                                상품이름 상품이름
-                            </div>
-                            <div style="width:130px;height:30px;">
-                                <div class="item_color" style="background-color:blue;"></div>
-                                <div class="item_color" style="background-color:red;"></div>
-                            </div>
-                        </div>
-
-                        <div class="item_price">
-                            <div class="price_cancel">
-                                999,999원
-                            </div>
-                            <div class="price_sale">
-                                999,999원
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="width:10px; height:100px;float:left;"></div>
-
-                    <div class="item">     
-                        <img src="./images/img_item.jfif" class="item_img">
-                        <div class="item_container">
-                            <div class="item_name">
-                                상품이름 상품이름 <br>
-                                상품이름 상품이름
-                            </div>
-                            <div style="width:130px;height:30px;">
-                                <div class="item_color" style="background-color:blue;"></div>
-                                <div class="item_color" style="background-color:red;"></div>
-                            </div>
-                        </div>
-
-                        <div class="item_price">
-                            <div class="price_cancel">
-                                999,999원
-                            </div>
-                            <div class="price_sale">
-                                999,999원
-                            </div>
-                        </div>
-                    </div>
+	                    <div class="item">    
+	                    
+	                    	<!-- 썸네일 출력 -->
+							<c:set var="thumbnail" value="${result.thumbnail }" />
+							<%
+				      		String thumbnail = (String) pageContext.getAttribute("thumbnail") ;
+								
+								if( thumbnail != null && !thumbnail.equals("") ) {
+									String[] array = thumbnail.split("/");
+								
+							%>
+									<img src="./goods/${result.unq}/<%=array[0]%>" class="item_img">
+							<%
+								}
+				 			%>
+                
+	                        <!-- 상품정보 -->
+	                        <div class="item_container">
+	                        	<!-- 상품이름 -->
+	                            <div class="item_name">
+					                               상품 이름 컬럼 추가하기
+	                            </div>
+	                            <!-- 상품색상 -->
+	                            <div style="width:130px;height:30px;">
+	                                <div class="item_color" style="background-color:blue;"></div>
+	                                <div class="item_color" style="background-color:red;"></div>
+	                            </div>
+	                            
+	                        </div>
+	                        
+							<!-- 상품 가격 -->
+	                        <div class="item_price">
+	                        	<!-- 상품가격 -->
+	                            <div class="price_cancel">
+	                                ${result.price}원
+	                            </div>
+	                            <!-- 상품세일 -->
+	                            <div class="price_sale">
+	                                ${result.price/2} 원
+	                            </div>
+	                        </div>
+	                        
+	                    </div>
+	
+	                    <div style="width:10px; height:100px;float:left;"></div>
+	                    <c:set var="rownum" value="${rownum-1}"/>
+					</c:forEach>
+					<!-- 상품리스트 끝 -->
+                
                 </div>
+                
+                
+                
+                
                 <div class="filter_wrap"> 
                     <div style="width:700px;height:30px; background-color:white;">
                        		 페이징

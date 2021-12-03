@@ -5,22 +5,25 @@
 	<typeAlias  alias="nikeVO" type="egov.service.NikeVO"/>
 	
 	<select id="nikeDAO.selectGoodsList" resultClass="egovMap">
-	
-		SELECT rownum rn, a.* FROM (
-								SELECT	unq,
-						        title,
-						        name,
-						        to_char(rdate,'yyyy/mm/dd') rdate,
-						        to_char(udate,'yyyy/mm/dd') udate,
-						        email,
-						        sns,
-						        hits,
-						        (select count(*) from review_comment where review_comment.p_unq = review_board.unq) commcnt					     
-						FROM
-						        review_board
-						ORDER BY
-						        unq DESC 
-	
+		SELECT 
+			rownum rn, a.* 
+		FROM  (
+		
+			SELECT 
+				unq,
+				category,
+				ctgtype,
+				ctggender,
+				price,
+				csize,
+				color,
+				thumbnail
+			FROM 
+				goodsinfo
+			ORDER BY 
+				unq DESC	
+							
+		) a
 	</select>
 	
 	
