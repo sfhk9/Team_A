@@ -59,16 +59,15 @@
 				      		String thumbnail = (String) pageContext.getAttribute("thumbnail") ;
 			
 									String[] array = thumbnail.split("/");
-								
 							%>
 				
-									<img src="/nike/goods/${result.unq}/<%=array[0]%>" class="item_img">
-
+									<img src="../nike/goods/${result.unq}/<%=array[0]%>" class="item_img">
+									
 	                        <!-- 상품정보 -->
 	                        <div class="item_container">
 	                        	<!-- 상품이름 -->
 	                            <div class="item_name">
-					                               상품 이름 컬럼 추가하기
+					            	${result.name}
 	                            </div>
 	                            <!-- 상품색상 -->
 	                            <div style="width:130px;height:30px;">
