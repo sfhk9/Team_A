@@ -94,23 +94,27 @@ $(function(){
 	});
 	
 	$("#info_imgs").on('mousewheel',function(e){
-
+		$('html').on('scroll touchmove mousewheel', function(event) {
+			  event.preventDefault();
+			  event.stopPropagation();
+			  return false;
+		});
+		
 		var wheelDelta = e.originalEvent.wheelDelta;
 
 		if(wheelDelta > 0){
-
 			console.log("up");
-
 			$(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
-
 		}else{
-
-		console.log("down");
-
+			console.log("down");
 			$(this).scrollLeft(-wheelDelta + $(this).scrollLeft());
-
 		}
-});
+
+	});
+	
+	$("#info_imgs").mouseout(function(){
+		$('html').off('scroll touchmove mousewheel');
+	});
 
 });
 </script>

@@ -80,10 +80,9 @@
 	width:300px;
 	height:70px;
 	margin:0px auto;
-	overflow-x:auto;
+	overflow-x:overlay;
 	overflow-y:hidden;
 	white-space:nowrap;
-	
     -ms-overflow-style: none; /* IE and Edge */	
 }
 

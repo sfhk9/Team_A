@@ -19,10 +19,12 @@
 * {
     margin:0px;
     padding:0px;
+    
 }
 
 html,body{
     width:var(--pageFull);
+    height:var(--pageFull);
 }
 
 a{
@@ -147,7 +149,6 @@ footer{
 	margin:0px auto;
     width:var(--pageWidth);
     height: 1360px;
-
 }
 
 /* 최근 본 상품 목록 */
