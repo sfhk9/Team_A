@@ -46,13 +46,11 @@
             </aside>
             
             <article>
-                <div class="goodsList">
-                
+                <div class="goodsList">           
                 	<!-- 상품리스트 시작  -->
                 	<c:forEach var="result" items="${list}" varStatus="status" >
-                	
-	                    <div class="item">    
-	                    
+     
+	                	<div class="item">  
 	                    	<!-- 썸네일 출력 -->
 							<c:set var="thumbnail" value="${result.thumbnail }" />
 							<%
@@ -61,7 +59,7 @@
 									String[] array = thumbnail.split("/");
 							%>
 				
-									<img src="../nike/goods/${result.unq}/<%=array[0]%>" class="item_img">
+							<img src="../nike/goods/${result.unq}/<%=array[0]%>" class="item_img">
 									
 	                        <!-- 상품정보 -->
 	                        <div class="item_container">
@@ -73,8 +71,7 @@
 	                            <div style="width:130px;height:30px;">
 	                                <div class="item_color" style="background-color:blue;"></div>
 	                                <div class="item_color" style="background-color:red;"></div>
-	                            </div>
-	                            
+	                            </div>  
 	                        </div>
 	                        
 							<!-- 상품 가격 -->
@@ -88,10 +85,7 @@
 	                                ${result.price/2} 원
 	                            </div>
 	                        </div>
-	                        
 	                    </div>
-	
-	                    <div style="width:10px; height:100px;float:left;"></div>
 	                    <c:set var="rownum" value="${rownum-1}"/>
 					</c:forEach>
 					<!-- 상품리스트 끝 -->
@@ -122,18 +116,16 @@
             </article>
             <aside>
                 <div class="right_list">
-                    최근 본 상품 <br>
-                    <div class="right_item">
-
-                    </div>
-                    상품 이름 <br> 
-
-                    <div class="right_item">
-
-                    </div>
-                    상품 이름 <br> 
+			                    최근 본 상품 <br>
+			         	<div class="right_item">
+			
+			            </div>
+			                    상품 이름 <br> 
+						<div class="right_item">
+			
+			            </div>
+			                    상품 이름 <br> 
                 </div>
-
             </aside>
         </section>
         </div>

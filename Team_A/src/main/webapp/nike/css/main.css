@@ -40,7 +40,7 @@ nav{
     top:0px;
     z-index:3;
     
-    width:width:var(--pageFull);;
+    width:var(--pageFull);
     height:37px;
     border-top:1px solid #ccc;
     border-bottom:2px solid black;
@@ -70,7 +70,7 @@ article {
 
 footer{
 	width:var(--pageFull);
-	background:black;
+   	background-color:black;
 }
 
 /* Header.jsp */
@@ -120,11 +120,13 @@ footer{
 
 <!--nav.jsp-->
 .nav_div{
-	width:var(--pageFull);
+	width:var(--pageWidth);
 }
 .nav_ul {
+	width:var(--pageWidth);
 	text-align:center;
     line-height:1.8;
+    margin:0px auto;
 }
 
 .nav_ul li{
@@ -143,8 +145,32 @@ footer{
 /* wrap */
 .wrap{
 	margin:0px auto;
-    width:var(--pageFull);
+    width:var(--pageWidth);
     height: 1360px;
+
+}
+
+/* 최근 본 상품 목록 */
+.right_list {
+    position:sticky;
+    top:200px;
+    width:98px;
+    height:298px;
+    border:1px solid black;
+    text-align:center;   
+    z-index:1;
+    
+    margin-left:25px;
+    margin-top:20px;
+}
+
+.right_item {
+    width:70px;
+    height: 90px;
+    border:1px solid black;
+
+    margin: 0px auto;
+    margin-top:15px;
 
 }
 
@@ -152,17 +178,20 @@ footer{
 
 .ft1{
 	width:var(--pageWidth);
-	margin:0px auto;    
+	margin:0px auto;
     height:38px;
     text-align:center;
-        border-top:1px solid rgb(163, 163, 163);
+   	background-color:black;
+    border-top:1px solid rgb(163, 163, 163);
     border-bottom:1px solid rgb(163, 163, 163);
     margin-top:30px;
 }
 
 .ul_ft{
+    width:var(--pageWidth);
 	text-align:center;
     line-height:1.8;
+    margin:0px auto;
 }
 
 .ul_ft li {

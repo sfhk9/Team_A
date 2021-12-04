@@ -1,20 +1,20 @@
 .goodsList{
     position:absolute;
-    margin-top:30px;    
-    
+    width:var(--conWidth);
+    margin-top:30px;
 }
 
 .item {
-    width:225px;
+    width:223px;
     height:300px;
     float:left;
     border:1px solid #ccc;
-
     margin-bottom:20px;
+    margin-left:6px;
 }
 
 .item_img {
-    width:224px;
+    width:223px;
     height:210px;
 }
 
@@ -69,7 +69,7 @@
     top:40px;
     z-index:2;
 
-    width:var(--pageWidth);
+    width:var(--conWidth);
     text-align:right;
     font-size:13px;
     line-height:2.1;
@@ -81,27 +81,4 @@
     background-color:white;
     border:1px solid black;
     margin-top:-30px;
-}
-
-.right_list {
-    position:sticky;
-    top:200px;
-    width:98px;
-    height:298px;
-    border:1px solid black;
-    text-align:center;   
-    z-index:1;
-    
-    margin-left:25px;
-    margin-top:20px;
-}
-
-.right_item {
-    width:70px;
-    height: 90px;
-    border:1px solid black;
-
-    margin: 0px auto;
-    margin-top:15px;
-
 }

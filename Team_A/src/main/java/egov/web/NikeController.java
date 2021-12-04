@@ -28,6 +28,11 @@ public class NikeController {
 		return "nike/goodsList";
 	}
 
-	
+	@RequestMapping("goodsDetail.do")
+	public String goodsDetail() throws Exception {
+
+		return "nike/goodsDetail";
+	}
+
 
 }
