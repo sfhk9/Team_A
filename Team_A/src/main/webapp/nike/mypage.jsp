@@ -28,42 +28,67 @@
 		<section>
 			<aside>
 				<div class="board_menu" style="padding-top:50px;">
-                    <ul class="list_left">
-                        <li class="list_left_title"><a href="#">공지사항</a></li>
+					<div class="mypage">MY PAGE</div>
+                    <div class="userinfo">         	
+	                    <img src="${path}/images/img_user.png" class="userimg">
+	                    <span class="userid">USER_ID</span>
+                    </div>
+
+                    <ul class="left_list">
+                        <li class="list_title"><a href="#">나의 정보</a></li>
+                        <li><a href="#">회원정보 관리</a></li>
+                        <li><a href="#">비밀번호변경</a></li>
+                        <li><a href="#">회원탈퇴</a></li>
                     </ul>
 
-                    <ul class="list_left">
-                        <li class="list_left_title"><a href="#">자주 찾는 내용</a></li>
-                        <li><a href="#">회원혜택/서비스</a></li>
-                        <li><a href="#">A/S</a></li>
-                        <li><a href="#">주문결제</a></li>
-                        <li><a href="#">회원정보</a></li>
-                        <li><a href="#">취소/반품</a></li>
-                        <li><a href="#">기타</a></li>
-                        <li><a href="#">배송</a></li>
-                        <li><a href="#">상품</a></li>
-                    </ul>
-
-                    <ul class="list_left">
-                        <li class="list_left_title"><a href="#">고객문의</a></li>
+                    <ul class="left_list">
+                        <li class="list_title"><a href="#">쇼핑정보</a></li>
+                        <li><a href="#">최근 쇼핑 내용</a></li>
                     </ul>
                 </div>
 			</aside>
 			<article>
 				<form name="frm" method="post" action="joinSave.jsp">
-					
-					
-					
-					
-					
-					
-					
+					<div class="div_content">
+						<table class="tbl_list">
+							<caption>최근 쇼핑 내용</caption>
+							<tr>
+								<td>내용내용내용내용</td>
+							</tr>
+							<tr>
+								<td>내용내용내용내용</td>
+							</tr>
+							<tr>
+								<td>내용내용내용내용</td>
+							</tr>
+						</table>
+						<table class="tbl_list">
+							<caption>최근 쇼핑 내용</caption>
+							<tr>
+								<td>내용내용내용내용</td>
+							</tr>
+							<tr>
+								<td>내용내용내용내용</td>
+							</tr>
+							<tr>
+								<td>내용내용내용내용</td>
+							</tr>
+						</table>
+						<table class="tbl_list">
+							<caption>최근 쇼핑 내용</caption>
+							<tr>
+								<td>내용내용내용내용</td>
+							</tr>
+							<tr>
+								<td>내용내용내용내용</td>
+							</tr>
+							<tr>
+								<td>내용내용내용내용</td>
+							</tr>
+						</table>
+					</div>	
 				</form>
-				
 			</article>
-			<aside>
-			
-			</aside>
 		</section>
 	</div>
 	<footer>

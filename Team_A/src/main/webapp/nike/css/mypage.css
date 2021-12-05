@@ -1,36 +1,104 @@
 @charset "UTF-8";
 
+article{
+	width:var(--conWidth2);
+}
+
+/* 좌측 메뉴 */
 .board_menu{
-    width:140px;
-    height:var(--contentSize_h1);
-    margin-left:10px;
+    width:var(--asideWidth);
+    height:var(--conHeight1);
+    background-color:black;
 }
 
-.board_main{
-    width:var(--contentSize_w);
-    height:var(--contentSize_h1);
 
-    border-left:2px solid #ccc;
-    border-right:2px solid #ccc;
+.mypage{
+	width:var(--asideWidth);
+	color:white;
+	font-size:25px;
+	font-weight:bold;
+	
+	border-bottom:2px solid white;
+	padding-left:5px;
+	padding-bottom:10px;
 }
 
-.list_left{
+.userinfo{
+	padding-left:5px;
+	padding-top:15px;
+	padding-bottom:15px;
+	
+}
+	.userimg{
+		width:20px;
+		height:20px;
+		background-color:white;
+		border-radius:100%;	
+	}
+	
+	.userid{
+		color:white;
+		font-size:20px;
+		font-weight:bold;
+		
+		margin-left:5px;
+	}
+
+.left_list{
     width:150px;
-    margin-bottom:50px;
     list-style:none;
-}
-
-.list_left{
     font-size:13px;
+    
+    border-top:2px solid white;
+    border-bottom:2px solid white;
+    border-collapse:collapse;
+    margin-top:-2px;
+    padding-bottom:10px;
 }
 
-.list_left li{
-    padding-left: 5px;
-    padding-top:5px;
-    padding-bottom:5px;
-}
 
-.list_left_title{
-    font-size:17px;
-    font-weight:bold;
+	.list_title{
+		color:white;
+	    font-size:17px;
+	    font-weight:bold;
+	    
+	    margin-top:10px;
+	    margin-bottom:10px;
+	}
+	
+	.left_list li{
+		color:white;
+	    padding-left: 5px;
+	    padding-top:5px;
+	    padding-bottom:5px;
+	}
+	
+/* 내용 부분의 테이블 */
+.div_content{
+	width:var(--conWidth2);
+	height:var(--conHeight1);
+	padding-top:60px;
+	padding-left:50px;
 }
+	
+.tbl_list{
+	width:var(--conWidth);
+	margin-bottom:30px;
+}
+	.tbl_list caption{
+		width:var(--conWidth);
+		text-align:left;
+		border-bottom:2px solid black;
+		padding-bottom:5px;
+		
+		color:black;
+		font-size:20px;
+		font-weight:bold;
+		
+	}
+	
+	.tbl_list td{
+		padding:5px;
+		height:30px;
+		
+	}

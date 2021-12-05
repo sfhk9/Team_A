@@ -68,7 +68,7 @@
 					            	${result.name}
 	                            </div>
 	                            <!-- 상품색상 -->
-	                            <div style="width:130px;height:30px;">
+	                            <div class="div_color">
 	                                <div class="item_color" style="background-color:blue;"></div>
 	                                <div class="item_color" style="background-color:red;"></div>
 	                            </div>  
@@ -91,10 +91,7 @@
 					<!-- 상품리스트 끝 -->
                 
                 </div>
-                
-                
-                
-                
+            
                 <div class="filter_wrap"> 
                     <div style="width:700px;height:30px; background-color:white;">
                        		 페이징

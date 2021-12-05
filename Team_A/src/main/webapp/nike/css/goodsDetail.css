@@ -6,6 +6,10 @@
 	margin-bottom:30px;
 }
 
+.info_th{
+	background-size: contain;
+}
+
 .info_td1{
 	width:350px;
 	height:20px;
@@ -14,9 +18,8 @@
 	font-weight:bold;
 }
 
-.info_td2{
+.info_td2{s
 	width:350px;
-
 	color:black;
 	font-size:30px;
 	font-weight:bold;
@@ -80,7 +83,7 @@
 	width:300px;
 	height:70px;
 	margin:0px auto;
-	overflow-x:overlay;
+	overflow-x:auto;
 	overflow-y:hidden;
 	white-space:nowrap;
     -ms-overflow-style: none; /* IE and Edge */	
