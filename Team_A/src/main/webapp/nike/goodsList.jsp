@@ -35,9 +35,11 @@
        <header>
        		<%@include file="./include/header.jsp" %>
        </header>
+       
        <nav>
        		<%@include file="./include/nav.jsp" %>       
        </nav>
+       
        <div class="wrap">
         <section>
         
@@ -46,49 +48,10 @@
             </aside>
             
             <article>
-                <div class="goodsList">           
-                	<!-- 상품리스트 시작  -->
-                	<c:forEach var="result" items="${list}" varStatus="status" >
-     
-	                	<div class="item">  
-	                    	<!-- 썸네일 출력 -->
-							<c:set var="thumbnail" value="${result.thumbnail }" />
-							<%
-				      		String thumbnail = (String) pageContext.getAttribute("thumbnail") ;
-			
-									String[] array = thumbnail.split("/");
-							%>
-				
-							<img src="../nike/goods/${result.unq}/<%=array[0]%>" class="item_img">
-									
-	                        <!-- 상품정보 -->
-	                        <div class="item_container">
-	                        	<!-- 상품이름 -->
-	                            <div class="item_name">
-					            	${result.name}
-	                            </div>
-	                            <!-- 상품색상 -->
-	                            <div style="width:130px;height:30px;">
-	                                <div class="item_color" style="background-color:blue;"></div>
-	                                <div class="item_color" style="background-color:red;"></div>
-	                            </div>  
-	                        </div>
-	                        
-							<!-- 상품 가격 -->
-	                        <div class="item_price">
-	                        	<!-- 상품가격 -->
-	                            <div class="price_cancel">
-	                                ${result.price}원
-	                            </div>
-	                            <!-- 상품세일 -->
-	                            <div class="price_sale">
-	                                ${result.price/2} 원
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <c:set var="rownum" value="${rownum-1}"/>
-					</c:forEach>
-					<!-- 상품리스트 끝 -->
+                <div class="goodsList">  
+                
+                    <!-- 상품리스트 시작  -->     
+                	<%@include file="./subList.jsp" %> 
                 
                 </div>
                 
@@ -96,6 +59,9 @@
                 
                 
                 <div class="filter_wrap"> 
+                
+                
+                	<!-- 필터 /////////////////////////////////////-->
                     <div style="width:700px;height:30px; background-color:white;">
                        		 페이징
                         <select>
@@ -108,10 +74,55 @@
 
                         <span onclick="" id="btn_order" style="cursor:pointer;" > 정렬버튼 </span>
                     </div>
+                    
+                    
                     <br>
+                    
+                    
+                    <!-- 펼침 -->
                     <div class="filter_list" name="fl" id="fl" style="display:none;">
-                            <button type="button" style="cursor:pointer" >dfddfdfdfdffdff</button>
+                    
+                    <table border="1">
+						<tr>
+							<th>카테고리</th>
+							<td>
+								<input type="checkbox" name="category" value="LIF">일상
+								<input type="checkbox" name="category" value="SPT">스포츠
+								<input type="checkbox" name="category" value="LES">레저
+							</td>
+							<th>카테고리</th>
+							<td>
+								<input type="checkbox" name="chk_info" value="">일상
+								<input type="checkbox" name="chk_info" value="">스포츠
+								<input type="checkbox" name="chk_info" value="">레저
+							</td>
+						</tr>
+						<tr>
+							<th>2</th>
+							<td>123123123</td>
+							<th>2</th>
+							<td>123123123</td>
+						</tr>
+						<tr>
+							<th>3</th>
+							<td>123123123</td>
+							<th>2</th>
+							<td>123123123</td>
+						</tr>
+						<tr>
+							<th>4</th>
+							<td>123123123</td>
+							<th>2</th>
+							<td>123123123</td>
+						</tr>
+					</table>
+                    	<button type="button" style="cursor:pointer" >dfddfdfdfdffdff</button>
+                    	
+                            
+                    <!-- 필터 /////////////////////////////////////-->
                     </div>
+                    
+                    
                 </div>
             </article>
             <aside>
