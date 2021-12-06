@@ -18,6 +18,8 @@ public class NikeController {
 	@Resource(name = "nikeService")
 	NikeService nikeService;
 	
+	
+	
 	@RequestMapping("goodsList.do")
 	public String goodsList( NikeVO vo, Model model ) throws Exception {
 
@@ -27,6 +29,9 @@ public class NikeController {
 		
 		return "nike/goodsList";
 	}
+	
+	
+	
 
 	@RequestMapping("goodsDetail.do")
 	public String goodsDetail() throws Exception {
@@ -34,5 +39,7 @@ public class NikeController {
 		return "nike/goodsDetail";
 	}
 
+	
+	
 
 }

@@ -28,10 +28,11 @@
 				String color = (String) pageContext.getAttribute("color") ;
 				String[] col = color.split("/");
 						
-					for( int i=0; i<col.length; i++ ) {																			
+					for( int i=0; i<col.length; i++ ) {	
+						if( col[i].equals("white") ) { col[i]="#f0f0f0"; }	// 흰색 대응
 				%>
-				<div class="item_color" style="background-color:<%=col[i]%>;"></div>
-				<%
+						<div class="item_color" style="background-color:<%=col[i]%>;"></div>
+				<%	
 					}
 				%>
 			</div>

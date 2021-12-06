@@ -29,6 +29,61 @@
             document.getElementById("btn_filter").innerText='필터펴기';
         }
     }
+    
+    
+    
+    
+    $(function(){     
+    	
+    	$("#filter").click(function(){
+    		
+    		//카테고리 데이터 
+    		var len = $("input[name='category']").length;
+    		var values = "";
+    		
+    		for(var i=0; i<len; i++) {
+    			var category = document.getElementsByName('category')[i].checked;
+    			if( category == true ) {
+    				values += document.getElementsByName('category')[i].value;
+    				values += ",";
+    			}
+    		}
+    		
+    		
+    		if(values.length > 0) {
+    			
+   				$.ajax({
+   					type : "post",
+   					url  : "goodsList.do",
+   					data : "values="+values,
+   					datatype : "text",
+   					success : function(data) {
+   						if(data == "ok") {
+   							alert("삭제 처리 완료");
+   							document.location.reload();
+   						} else {
+   							alert("삭제 처리 실패!!");
+   						}	
+   					},
+   					error : function() {
+   						alert("시스템 오류");
+   					}
+   				});
+    			
+    		}
+    	});
+    	
+
+    
+    
+    });  
+    
+    
+    
+    
+    
+    
+ 
 </script>
 <body>
 
@@ -60,68 +115,105 @@
                 
                 <div class="filter_wrap"> 
                 
-                
-                	<!-- 필터 /////////////////////////////////////-->
-                    <div style="width:700px;height:30px; background-color:white;">
-                       		 페이징
-                        <select>
-                            <option>10</option>
-                            <option>20</option>
-                        </select>
-                        / 
-                        <span onclick="fn_visible();" id="btn_filter" style="cursor:pointer;" > 필터펴기 </span>
-                        / 
-
-                        <span onclick="" id="btn_order" style="cursor:pointer;" > 정렬버튼 </span>
-                    </div>
-                    
-                    
-                    <br>
-                    
-                    
-                    <!-- 펼침 -->
-                    <div class="filter_list" name="fl" id="fl" style="display:none;">
-                    
-                    <table border="1">
-						<tr>
-							<th>카테고리</th>
-							<td>
-								<input type="checkbox" name="category" value="LIF">일상
-								<input type="checkbox" name="category" value="SPT">스포츠
-								<input type="checkbox" name="category" value="LES">레저
-							</td>
-							<th>카테고리</th>
-							<td>
-								<input type="checkbox" name="chk_info" value="">일상
-								<input type="checkbox" name="chk_info" value="">스포츠
-								<input type="checkbox" name="chk_info" value="">레저
-							</td>
-						</tr>
-						<tr>
-							<th>2</th>
-							<td>123123123</td>
-							<th>2</th>
-							<td>123123123</td>
-						</tr>
-						<tr>
-							<th>3</th>
-							<td>123123123</td>
-							<th>2</th>
-							<td>123123123</td>
-						</tr>
-						<tr>
-							<th>4</th>
-							<td>123123123</td>
-							<th>2</th>
-							<td>123123123</td>
-						</tr>
-					</table>
-                    	<button type="button" style="cursor:pointer" >dfddfdfdfdffdff</button>
-                    	
-                            
-                    <!-- 필터 /////////////////////////////////////-->
-                    </div>
-                    
+                	<form action="">
+	                	<!-- 필터 
+	                	//////////////////////////////////////////////////////////////////////////-->
+	                    <div style="width:700px;height:30px; background-color:white;">
+	                       		 페이징
+	                        <select>
+	                            <option>10</option>
+	                            <option>20</option>
+	                        </select>
+	                        / 
+	                        <span onclick="fn_visible();" id="btn_filter" style="cursor:pointer;" > 필터펴기 </span>
+	                        / 
+	
+	                        <span onclick="" id="btn_order" style="cursor:pointer;" > 정렬버튼 </span>
+	                    </div>
+	                    
+	                    
+	                    <br>
+	                    
+	                    
+	                    <!-- 펼침 -->
+	                    <div class="filter_list" name="fl" id="fl" style="display:none;">
+	                    
+	                    <table border="1">
+							<tr>
+							
+								<th>카테고리</th>
+								<td>
+									<input type="checkbox" name="category" value="LIF">일상
+									<input type="checkbox" name="category" value="SPT">스포츠
+									<input type="checkbox" name="category" value="LES">레저
+								</td>
+								
+								<th>성별</th>
+								<td>
+									<input type="radio" name="ctggender" value="M">남성
+									<input type="radio" name="ctggender" value="F">여성
+									<input type="radio" name="ctggender" value="N">무관
+								</td>
+								
+								<th>가격</th>
+								<td>
+									<input type="range" name="price" min="1000" max="1000000" value="30000">
+								</td>
+								
+							</tr>
+							
+							<tr>
+							
+								<th>사이즈</th>
+								<td>
+									<input type="range" name="size" min="1000" max="1000000" value="30000">
+								</td>
+								
+								<th>색상</th>
+								<td>
+									<input type="checkbox" name="color" value="white">하얀색
+										<div class="item_color" style=" background-color:#f0f0f0;"></div>
+										
+									<input type="checkbox" name="color" value="black">검정색
+										<div class="item_color" style=" background-color:black;"></div>
+										
+									<input type="checkbox" name="color" value="red">빨간색
+										<div class="item_color" style=" background-color:red;"></div>
+								</td>
+								
+								<th>2</th>
+								<td>
+									<span class="input-checkbox checked" data-component-checkbox="" style="user-select: auto;">
+		                 				<input type="checkbox" id="productColorbeige" name="productColor" value="beige" autocomplete="off" style="user-select: auto;">
+		                    			<label for="productColorbeige" style="background-color: rgb(240, 230, 140); user-select: auto;"></label>
+		                   				<span class="productcolor-label" style="user-select: auto;">베이지</span>
+	               					</span>
+               					 </td>
+								
+							</tr>
+							
+							<tr>
+								<th>4</th>
+								<td>123123123</td>
+								
+								<th>2</th>
+								<td>123123123</td>
+								
+								<th>4</th>
+								<td>123123123</td>
+							<tr>
+								
+					
+						</table>
+						
+						
+	                    	<button type="button" id="filter"  style="cursor:pointer" >필터 적용</button>
+	          
+	          
+	                    </div>
+	                <!-- 필터
+	                 //////////////////////////////////////////////////////////////////////-->
+                    </form>
                     
                 </div>
             </article>

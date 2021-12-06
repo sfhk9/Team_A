@@ -5,26 +5,42 @@
 	<typeAlias  alias="nikeVO" type="egov.service.NikeVO"/>
 	
 	<select id="nikeDAO.selectGoodsList" resultClass="egovMap">
-		SELECT 
-			rownum rn, a.* 
-		FROM  (
-		
+	
+		SELECT b.* FROM  (	
 			SELECT 
-				unq,
-				category,
-				ctgtype,
-				ctggender,
-				price,
-				csize,
-				color,
-				thumbnail,
-				substr(name,0,20) name
-			FROM 
-				goodsinfo
-			ORDER BY 
-				unq DESC	
-							
-		) a
+				rownum rn, a.* 
+			FROM  (
+			
+				SELECT 
+					unq,
+					category,
+					ctgtype,
+					ctggender,
+					price,
+					csize,
+					color,
+					thumbnail,
+					substr(name,0,20) name
+				FROM 
+					goodsinfo
+				ORDER BY 
+					unq DESC	
+								
+			) a
+		) b
+		
+		<isNotNull property="s_text">
+	     	<isNotEmpty property="s_text">
+	    		<isNotEqual property="s_field" compareValue="rdate">
+	    		
+	    			WHERE $s_field$ LIKE '%$s_text$%'
+	    			
+				</isNotEqual>
+		   	</isNotEmpty>
+		</isNotNull>
+		
+		
+		
 	</select>
 	
 	
