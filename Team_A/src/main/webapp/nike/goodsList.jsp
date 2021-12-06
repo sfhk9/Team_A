@@ -166,14 +166,24 @@
 								
 								<th>색상</th>
 								<td>
-									<input type="checkbox" name="color" value="white">하얀색
-										<div class="item_color" style=" background-color:#f0f0f0;"></div>
-										
-									<input type="checkbox" name="color" value="black">검정색
-										<div class="item_color" style=" background-color:black;"></div>
-										
-									<input type="checkbox" name="color" value="red">빨간색
-										<div class="item_color" style=" background-color:red;"></div>
+									<div style="width:40px;margin-right:10px;float:left;">									
+										<input type="checkbox" name="color" id="color_white" value="white">
+										<label for="color_white" style="cursor:pointer">
+											<div class="item_color" style=" background-color:#f0f0f0;"></div>
+										</label>
+									</div>
+									<div style="width:40px;margin-right:10px;float:left;">									
+										<input type="checkbox" name="color" id="color_black" value="black">
+										<label for="color_black" style="cursor:pointer">
+											<div class="item_color" style=" background-color:black;"></div>
+										</label>
+									</div>
+									<div style="width:40px;margin-right:10px;float:left;">									
+										<input type="checkbox" name="color" id="color_red" value="red">
+										<label for="color_red" style="cursor:pointer">
+											<div class="item_color" style=" background-color:red;"></div>
+										</label>
+									</div>
 								</td>
 								
 								<th>2</th>

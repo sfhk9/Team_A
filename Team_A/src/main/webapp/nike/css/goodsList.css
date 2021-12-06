@@ -62,9 +62,9 @@
 		.item_color{
 		    border-radius:100%;
 		    width:20px;
-		    height:20px; 
-		    float:left;
+		    height:20px;
 		    margin-left:5px;
+		    float:right;
 		}
 
 .filter_wrap {
