@@ -103,16 +103,11 @@
             </aside>
             
             <article>
-                <div class="goodsList">  
-                
+                <div class="goodsList">                  
                     <!-- 상품리스트 시작  -->     
-                	<%@include file="./subList.jsp" %> 
-                
+                	<%@include file="./subList.jsp" %>           
                 </div>
-                
-                
-                
-                
+            
                 <div class="filter_wrap"> 
                 
                 	<form action="">

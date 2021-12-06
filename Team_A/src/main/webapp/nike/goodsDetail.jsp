@@ -93,12 +93,47 @@ $(function(){
 		$("#content_view").html(content4);
 	});
 	
-	$("#info_imgs").on('mousewheel',function(e){
+	/*
+	// 썸네일 마우스 휠 이벤트 
+	$("#info_th").on('mousewheel',function(e){
 		$('html').on('scroll touchmove mousewheel', function(event) {
 			  event.preventDefault();
 			  event.stopPropagation();
 			  return false;
 		});
+		
+		var wheelDelta = e.originalEvent.wheelDelta;
+
+		if(wheelDelta > 0){
+			console.log("up");
+			// 이벤트 추가 : .animate() + 다음 이미지 가져오기
+			
+			$("info_th").animate({
+				background-image:;
+			},1000);
+			
+		}else{
+			console.log("down");
+			// 이벤트 추가 : 
+		}
+
+	});
+	$("#info_th").mouseout(function(){
+		$('html').off('scroll touchmove mousewheel');
+	});
+	*/
+	
+	/* 상품 이미지 마우스 휠 이벤트 */
+	$("#info_imgs").on('mousewheel',function(e){
+		$('html').on('scroll touchmove mousewheel', function(event) {
+			event.preventDefault();
+			event.stopPropagation();
+			// 위의 둘 = return false;
+			// return false;
+			event.returnValue = '';
+			
+		});
+		
 		
 		var wheelDelta = e.originalEvent.wheelDelta;
 
@@ -139,7 +174,7 @@ $(function(){
 						
 						<tr>
 							<!-- thumbnail 넣는 곳 -->
-							<td rowspan="5" class="info_th">
+							<td rowspan="5" class="info_th" id="info_th">
 								<div style="width:338px;height:338px;border:1px solid #ccc;">
 								</div>
 							</td>
@@ -180,14 +215,17 @@ $(function(){
 										* 클래스명 img_goods를 사용하시면 사이즈가 적용됩니다
 										* 일정 수 이상의 이미지 등록시 스크롤 가능하도록 추가할 예정입니다
 									-->
-									<img src="" class="imgs">
-									<img src="" class="imgs">
-									<img src="" class="imgs">
-									<img src="" class="imgs">
-									<img src="" class="imgs">
-									<img src="" class="imgs">
-									<img src="" class="imgs">
-									<img src="" class="imgs">
+									<span class="imgs" style="font-size:40px;"> df1 </span>
+									<span class="imgs" style="font-size:40px;"> df2 </span>
+									<span class="imgs" style="font-size:40px;"> df3 </span>
+									<span class="imgs" style="font-size:40px;"> df4 </span>
+									<span class="imgs" style="font-size:40px;"> df5 </span>
+									<span class="imgs" style="font-size:40px;"> df6 </span>
+									<span class="imgs" style="font-size:40px;"> df7 </span>
+									<span class="imgs" style="font-size:40px;"> df8 </span>
+									<span class="imgs" style="font-size:40px;"> df9 </span>
+									<span class="imgs" style="font-size:40px;"> df10 </span>
+									<span class="imgs" style="font-size:40px;"> df11 </span>
 																		
 								</div>
 							</td>

@@ -3,11 +3,12 @@
 :root {
 	/*페이지 사이즈 관련*/
 	--pageFull:100%;
-	--pageWidth:1000px;
+	--pageWidth:1000px;	/* aside 0개일 때도 사용 */
 	--pageHeight1:1000px;
 	
 	/*본문 길이(section)*/
-	--conWidth:700px;
+	--conWidth:700px;	/* aside 2개인 경우 */
+	--conWidth2:850px;	/* aside 1개인 경우 */
 	--conHeight1:1000px;
 	
 	/* 좌우 여백 */
@@ -24,7 +25,6 @@
 
 html,body{
     width:var(--pageFull);
-    height:var(--pageFull);
 }
 
 a{
