@@ -38,7 +38,7 @@ $(function() {
 				return false;
 			}
 			if( $.trim($("#birth").val()) == "" ) {
-				alert("생일을 입력해주세요.");
+				alert("생년월일을 입력해주세요.");
 				$("#birth").focus();
 				return false;
 			}
@@ -123,7 +123,7 @@ $(function() {
 							<td><input type="text" name="name" id="name" class="inputBox" style="width:70px"></td>
 						</tr>
 						<tr>
-							<th>Birth</th>
+							<th>생년월일</th>
 							<td><span class="mem_str">※ 오른쪽 달력 아이콘을 이용해 주세요.<br></span>
 							<input type="date" name="birth" id="birth" class="inputBox" ></td>
 						</tr>
