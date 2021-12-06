@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import egov.service.NikeService;
 import egov.service.NikeVO;
@@ -34,5 +35,20 @@ public class NikeController {
 		return "nike/goodsDetail";
 	}
 
-
+	@RequestMapping("joinWrite.do")
+	public String joinWrite() throws Exception{
+		
+		return "nike/member/join_r";
+	}
+	
+	@RequestMapping("joinWriteSave.do")
+	@ResponseBody
+	public String joinWriteSave( NikeVO vo  ) throws Exception {
+		
+		String msg = "ok";
+		String result = nikeService.insertJoin(vo);
+		if(result != null) msg = "save_fail";
+		
+		return msg;
+	}
 }
