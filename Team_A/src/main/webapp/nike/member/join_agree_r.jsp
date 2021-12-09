@@ -14,8 +14,9 @@
 	  	<script> window.MSInputMethodContext && document.documentMode && document.write('<script src="https://cdn.jsdelivr.net/gh/nuxodin/ie11CustomProperties@4.1.0/ie11CustomProperties.min.js"><\/script>'); </script>
 	<link rel="stylesheet" href="${path}/css/main.css">
 	<link rel="stylesheet" href="${path}/css/mem_join_agree.css">
-	<title>Document</title>
+	<title>회원가입 약관동의</title>
 </head>
+
 <script>
 	
 </script>
@@ -36,7 +37,8 @@
 				       <h2>
 				           회원가입약관
 				       </h2>
-				       <textarea readonly>제 1 장 총 칙
+				       <textarea readonly>
+				       제 1 장 총 칙
 				
 				           제 1 조 (목적) 
 				             이 이용약관(이하 약관이라 합니다)은 제주렌터카 (상호명 : 제주허브닷컴, 이하 회사라 합니다)와 이용 고객(이하 회원이라 합니다)간에 회사가 제공하는 서비스의 가입조건 및 이용에 관한 제반 사항과 기타 필요한 사항을 구체적으로 규정함을 목적으로 합니다.
@@ -174,7 +176,8 @@
 				           (2) 회사의 정액 서비스 회원 및 기타 유료 서비스 이용 회원의 경우 당해 서비스와 관련하여서는 회사가 별도로 정한 약관 및 정책에 따릅니다.
 				           (3) 서비스 이용으로 발생한 분쟁에 대해 소송이 제기되는 경우 대한민국 서울중앙지방법원을 관할 법원으로 합니다.
 				           &lt;부칙&gt;
-				           1. 본 약관은 2016년 4월 1일부터 적용됩니다.</textarea>
+				           1. 본 약관은 2016년 4월 1일부터 적용됩니다.
+				           </textarea>
 				       <fieldset class="fregister_agree">
 				           <label for="agree11">회원가입약관의 내용에 동의합니다.</label>
 				           <input type="checkbox" name="agree" value="1" id="agree11">
@@ -185,7 +188,7 @@
 				       <h2>
 				           개인정보처리방침안내
 				       </h2>
-				       <textarea readonly="">제주렌트카 (상호명 : 제주허브닷컴, 이하 회사라 함)는 이용자들의 개인정보보호를 매우 중요시하며, 이용자가 회사의 서비스(이하 회사 서비스 또는 회사라)를 이용함과 동시에 온라인상에서 회사에 제공한 개인정보가 보호 받을 수 있도록 최선을 다하고 있습니다. 이에 회사는 통신비밀보호법, 전기통신사업법, 정보통신망이용촉진등에관한법률 등 정보통신서비스제공자가 준수하여야 할 관련 법규상의 개인정보보호 규정 및 정보통신부가 제정한 개인정보보호지침을 준수하 있습니다. 회사는 개인정보 보호정책을 통하여 이용자들이 제공하는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.
+				       <textarea readonly>제주렌트카 (상호명 : 제주허브닷컴, 이하 회사라 함)는 이용자들의 개인정보보호를 매우 중요시하며, 이용자가 회사의 서비스(이하 회사 서비스 또는 회사라)를 이용함과 동시에 온라인상에서 회사에 제공한 개인정보가 보호 받을 수 있도록 최선을 다하고 있습니다. 이에 회사는 통신비밀보호법, 전기통신사업법, 정보통신망이용촉진등에관한법률 등 정보통신서비스제공자가 준수하여야 할 관련 법규상의 개인정보보호 규정 및 정보통신부가 제정한 개인정보보호지침을 준수하 있습니다. 회사는 개인정보 보호정책을 통하여 이용자들이 제공하는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.
 				
 				           회사는 개인정보 보호정책을 홈페이지 첫 화면에 공개함으로써 이용자들이 언제나 용이하게 보실 수 있도록 조치하고 있습니다.
 				           
@@ -296,7 +299,7 @@
 				       </fieldset>
 				   </div>
 				   <div class="submit">
-				       <a href="join_r.jsp"><input class="" type="submit" value="회원가입"></a>
+				       <a href="joinWrite.do"><input class="" type="submit" value="회원가입"></a>
 				   </div>
 				   </div>
 			</article>

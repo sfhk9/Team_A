@@ -16,6 +16,12 @@
 	<link rel="stylesheet" href="${path}/css/mem_login2.css">
 	<title>로그인</title>
 </head>
+<style>
+table {
+	margin-left:180px;
+
+}
+</style>
 <body>
 	<header>
 		<%@include file="../include/header.jsp" %>
@@ -31,7 +37,7 @@
 				<form name="frm" method="post" action="joinSave.jsp">
 					<table align="center" style="width:400px;"> 
 						<caption >
-							<a href="#"><img src="./simbol.jpg" class="simbol"></a>
+							<a href="#"><img src="/nike/member/simbol.jpg" class="simbol"></a>
 							<br>로그인
    						</caption>
 						<tr>
@@ -70,7 +76,7 @@
 						</tr>
 						<tr>
 							<td>
-								<a href="join_agree_r.jsp">
+								<a href="joinAgree.do">
 								<input type="button" value="회원가입" class="input4"></a>
 							</td>
 						</tr>
