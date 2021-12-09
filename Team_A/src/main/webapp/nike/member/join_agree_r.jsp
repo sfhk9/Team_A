@@ -296,7 +296,7 @@
 				       </fieldset>
 				   </div>
 				   <div class="submit">
-				       <a href="../member/join.jsp"><input class="" type="submit" value="회원가입"></a>
+				       <a href="join_r.jsp"><input class="" type="submit" value="회원가입"></a>
 				   </div>
 				   </div>
 			</article>
