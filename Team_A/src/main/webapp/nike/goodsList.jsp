@@ -16,6 +16,13 @@
   	<link rel="stylesheet" href="${path}/css/main.css">
     <link rel="stylesheet" href="${path}/css/goodsList.css">
     <title>Document</title>
+    <script>
+    $( function() {
+        $( "color" ).checkboxradio({
+          icon: false
+        });
+      } );
+    </script>
 </head>
 
 
@@ -33,36 +40,77 @@
     
     
     
+    
+    
     $(function(){     
     	
     	$("#filter").click(function(){
     		
     		//카테고리 데이터 
-    		var len = $("input[name='category']").length;
-    		var values = "";
+    		var category_len = $("input[name='category']").length;
+    		var category = "";
     		
-    		for(var i=0; i<len; i++) {
-    			var category = document.getElementsByName('category')[i].checked;
-    			if( category == true ) {
-    				values += document.getElementsByName('category')[i].value;
-    				values += ",";
+    		for( var i=0; i<category_len; i++ ) {
+    			var category_val = document.getElementsByName('category')[i].checked;
+    			if( category_val == true ) {
+    				category += document.getElementsByName('category')[i].value;
+    				category += ",";
     			}
     		}
+    		///////////////////////
+    		 
+    		//성별 데이터 
+    		var ctggender_len = $("input[name='category']").length;
+    		var ctggender = "";
+    		
+    		for( var i=0; i<ctggender_len; i++ ) {
+	   			var ctggender_val = document.getElementsByName('ctggender')[i].checked;
+	   			if( ctggender_val == true ) {
+	   				ctggender += document.getElementsByName('ctggender')[i].value;
+	  				ctggender += ",";    	
+	   			}
+   			}
+    		///////////////////////
+    		
+    		//색상 데이터 
+    		var color_len = $("input[name='color']").length;
+    		var color = "";
+    		
+    		for( var i=0; i<color_len; i++ ) {
+	   			var color_val = document.getElementsByName('color')[i].checked;
+	   			if( color_val == true ) {
+	   				color += document.getElementsByName('color')[i].value;
+	   				color += ",";    	
+	   			}
+   			}
+    		///////////////////////
+    		
+    		//최종 보낼 데이터
+    		var data = "";
     		
     		
-    		if(values.length > 0) {
+    		if ( category != "" ) {		data += category + "&"; } 	
+    		if ( ctggender != "" ) {	data += ctggender + "&"; } 	
+    		if ( color != "" ) {		data += color + "&"; } 	
+    		
+    		alert(data+"입니다");
+    		
+    		
+    		
+    		/* 
+    		if(data.length > 0) {
     			
    				$.ajax({
    					type : "post",
    					url  : "goodsList.do",
-   					data : "values="+values,
+   					data : data,
    					datatype : "text",
    					success : function(data) {
    						if(data == "ok") {
-   							alert("삭제 처리 완료");
+   							alert("검색 완료");
    							document.location.reload();
    						} else {
-   							alert("삭제 처리 실패!!");
+   							alert("검색 실패");
    						}	
    					},
    					error : function() {
@@ -70,12 +118,15 @@
    					}
    				});
     			
-    		}
+    		} */
+    		
+    		
+    		
+    		
+    		
+    		
     	});
-    	
 
-    
-    
     });  
     
     
@@ -153,6 +204,7 @@
 								<th>가격</th>
 								<td>
 									<input type="range" name="price" min="1000" max="1000000" value="30000">
+									
 								</td>
 								
 							</tr>
@@ -161,25 +213,25 @@
 							
 								<th>사이즈</th>
 								<td>
-									<input type="range" name="size" min="1000" max="1000000" value="30000">
+									<input type="range" name="size" min="60" max="200" value="70">
 								</td>
 								
 								<th>색상</th>
 								<td>
 									<div style="width:40px;margin-right:10px;float:left;">									
-										<input type="checkbox" name="color" id="color_white" value="white">
+										<input type="checkbox" name="color" id="color" value="white">
 										<label for="color_white" style="cursor:pointer">
 											<div class="item_color" style=" background-color:#f0f0f0;"></div>
 										</label>
 									</div>
 									<div style="width:40px;margin-right:10px;float:left;">									
-										<input type="checkbox" name="color" id="color_black" value="black">
+										<input type="checkbox" name="color" id="color" value="black">
 										<label for="color_black" style="cursor:pointer">
 											<div class="item_color" style=" background-color:black;"></div>
 										</label>
 									</div>
 									<div style="width:40px;margin-right:10px;float:left;">									
-										<input type="checkbox" name="color" id="color_red" value="red">
+										<input type="checkbox" name="color" id="color" value="red">
 										<label for="color_red" style="cursor:pointer">
 											<div class="item_color" style=" background-color:red;"></div>
 										</label>
@@ -212,7 +264,7 @@
 						</table>
 						
 						
-	                    	<button type="button" id="filter"  style="cursor:pointer" >필터 적용</button>
+	                    	<button type="button" id="filter" style="cursor:pointer" >필터 적용</button>
 	          
 	          
 	                    </div>

@@ -33,7 +33,7 @@
 	     	<isNotEmpty property="s_text">
 	    		<isNotEqual property="s_field" compareValue="rdate">
 	    		
-	    			WHERE $s_field$ LIKE '%$s_text$%'
+	    			WHERE name LIKE '%$s_text$%'
 	    			
 				</isNotEqual>
 		   	</isNotEmpty>
