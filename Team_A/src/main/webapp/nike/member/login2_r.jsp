@@ -14,8 +14,14 @@
 	<script> window.MSInputMethodContext && document.documentMode && document.write('<script src="https://cdn.jsdelivr.net/gh/nuxodin/ie11CustomProperties@4.1.0/ie11CustomProperties.min.js"><\/script>'); </script>
 	<link rel="stylesheet" href="${path}/css/main.css">
 	<link rel="stylesheet" href="${path}/css/mem_login2.css">
-	<title>Document</title>
+	<title>로그인</title>
 </head>
+<style>
+table {
+	margin-left:180px;
+
+}
+</style>
 <body>
 	<header>
 		<%@include file="../include/header.jsp" %>
@@ -31,8 +37,8 @@
 				<form name="frm" method="post" action="joinSave.jsp">
 					<table align="center" style="width:400px;"> 
 						<caption >
-							<a href="#"><img src="./simbol.jpg" class="simbol"></a>
-							<br>로그인 화면
+							<a href="#"><img src="/nike/member/simbol.jpg" class="simbol"></a>
+							<br>로그인
    						</caption>
 						<tr>
 							<td style="height:50px;">
@@ -64,14 +70,14 @@
 						</tr>
 						<tr>
 							<td>
-								<a href="find_info.jsp">
-								<input type="submit" value="아이디/비번찾기" class="input3"></a>
+								<a href="find_info_r.jsp">
+								<input type="button" value="아이디/비번찾기" class="input3"></a>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<a href="join_agree.jsp">
-								<input type="submit" value="회원가입" class="input4"></a>
+								<a href="joinAgree.do">
+								<input type="button" value="회원가입" class="input4"></a>
 							</td>
 						</tr>
 					</table>

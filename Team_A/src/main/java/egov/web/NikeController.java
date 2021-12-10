@@ -115,7 +115,17 @@ public class NikeController {
 
 		return "nike/goodsDetail";
 	}
-
+	
+	@RequestMapping("Login.do")
+	public String Login() throws Exception{
+		
+		return "nike/member/login2_r";
+	}
+	
+	@RequestMapping("joinAgree.do")
+	public String joinAgree() throws Exception{
+		return "nike/member/join_agree_r";
+	}
 
 	@RequestMapping("joinWrite.do")
 	public String joinWrite() throws Exception{

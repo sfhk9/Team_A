@@ -73,7 +73,7 @@ $(function() {
 				success : function(data) {  
 					if(data == "ok") {
 						alert("저장완료");
-						
+						location="joinWrite.do";
 					} else {
 						alert("저장실패");
 					}
@@ -102,7 +102,7 @@ $(function() {
 						<caption class="mem_cap">사이트 이용정보 입력</caption>
 						<tr>
 							<th>아이디</th>
-							<td><span class="mem_str">영문자, 숫자,_만 입력 가능. 최소 3자이상 입력하세요.<br></span>
+							<td><span class="mem_str">영문,숫자만 입력 가능. 최소 3자이상 입력하세요.<br></span>
 							<input type="text" name="userid" id="userid" class="inputBox" placeholder=" 아이디를 입력해주세요." autofocus>
 							
 							</td>
