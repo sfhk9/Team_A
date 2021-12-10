@@ -14,7 +14,6 @@
 		%>
 		<img src="../nike/goods/${result.unq}/<%=th[0]%>" class="item_img">
 		
-		
 		<!-- 상품정보 -->
 		<div class="item_container">
 		       

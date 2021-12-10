@@ -24,6 +24,8 @@ public class NikeController {
 	@RequestMapping("goodsList.do")
 	public String goodsList( NikeVO vo, Model model ) throws Exception {
 		
+		//ctgtype=LIF,SPT,&ctggender=M,&color=white,red,
+		
 		// 타입
 		String[] ctgtype;
 		String ctgtype_sql = "( ";
@@ -41,7 +43,9 @@ public class NikeController {
 					
 				}
 			}
-		
+		// ( CTGTYPE like '%LIF%' or CTGTYPE like '%SPT%' )
+			
+			
 		// 사이즈
 		String[] csize;
 		String csize_sql = "( ";

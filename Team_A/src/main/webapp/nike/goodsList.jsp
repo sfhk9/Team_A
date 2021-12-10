@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="${path}/css/goodsList.css">
     <title>Document</title>
 <script>
-/* 	$( function() {
+	$( function() {
 		$( "input" ).checkboxradio({
 			icon: false
 		});
@@ -36,7 +36,7 @@
 	});
     
 	$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-	" - $" + $( "#slider-range" ).slider( "values", 1 ) ); */
+	" - $" + $( "#slider-range" ).slider( "values", 1 ) );
 </script>
 
 </head>
@@ -53,10 +53,6 @@
             document.getElementById("btn_filter").innerText='필터펴기';
         }
     }
-    
-    
-    
-    
     
     
     $(function(){   
@@ -110,9 +106,7 @@
     		if ( color != "" ) {		data += "color=" + color + "&"; } 	
     		
     		alert(data+"입니다");
-    		
-    		
-    		
+
     		window.location.href = "/goodsList.do?" + data;
     		
     		
