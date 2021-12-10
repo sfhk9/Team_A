@@ -26,14 +26,13 @@ public class NikeVO {
 	private String thumbnail;
 	private int price;
 	
+	private String sql;
+	
+	
+
 	private String search;
 
-	public String getSearch() {
-		return search;
-	}
-	public void setSearch(String search) {
-		this.search = search;
-	}
+
 	//장바구니 CART     //반품 ORDERCANCEL
 	private String reason;		//반품사유
 	//나머진 상품정보에서 받아옴
@@ -315,5 +314,16 @@ public class NikeVO {
 	public void setS_text(String s_text) {
 		this.s_text = s_text;
 	}
-	
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	public String getSql() {
+		return sql;
+	}
+	public void setSql(String sql) {
+		this.sql = sql;
+	}
 }

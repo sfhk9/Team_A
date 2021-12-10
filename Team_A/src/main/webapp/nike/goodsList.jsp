@@ -10,23 +10,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
   	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
   	<script> window.MSInputMethodContext && document.documentMode && document.write('<script src="https://cdn.jsdelivr.net/gh/nuxodin/ie11CustomProperties@4.1.0/ie11CustomProperties.min.js"><\/script>'); </script>
   	<link rel="stylesheet" href="${path}/css/main.css">
     <link rel="stylesheet" href="${path}/css/goodsList.css">
     <title>Document</title>
-    <script>
-    $( function() {
-        $( "color" ).checkboxradio({
-          icon: false
-        });
-      } );
-    </script>
+<script>
+/* 	$( function() {
+		$( "input" ).checkboxradio({
+			icon: false
+		});
+	});
+	
+	
+    $( "#slider-range" ).slider({
+		range: true,
+		min: 0,
+		max: 500,
+		values: [ 75, 300 ],
+		slide: function( event, ui ) {
+			$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+		}
+	});
+    
+	$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+	" - $" + $( "#slider-range" ).slider( "values", 1 ) ); */
+</script>
+
 </head>
 
 
 <script>
+
     function fn_visible(){
         if(document.getElementById("fl").style.display=='none'){
             document.getElementById("fl").style.display='block';
@@ -42,25 +59,24 @@
     
     
     
-    $(function(){     
-    	
+    $(function(){   
+	    
     	$("#filter").click(function(){
     		
-    		//카테고리 데이터 
-    		var category_len = $("input[name='category']").length;
-    		var category = "";
+    		//타입 데이터 
+    		var ctgtype_len = $("input[name='ctgtype']").length;
+    		var ctgtype = "";
     		
-    		for( var i=0; i<category_len; i++ ) {
-    			var category_val = document.getElementsByName('category')[i].checked;
-    			if( category_val == true ) {
-    				category += document.getElementsByName('category')[i].value;
-    				category += ",";
+    		for( var i=0; i<ctgtype_len; i++ ) {
+    			var ctgtype_val = document.getElementsByName('ctgtype')[i].checked;
+    			if( ctgtype_val == true ) {
+    				ctgtype += document.getElementsByName('ctgtype')[i].value;
+    				ctgtype += ",";
     			}
     		}
-    		///////////////////////
-    		 
+    	
     		//성별 데이터 
-    		var ctggender_len = $("input[name='category']").length;
+    		var ctggender_len = $("input[name='ctggender']").length;
     		var ctggender = "";
     		
     		for( var i=0; i<ctggender_len; i++ ) {
@@ -70,7 +86,6 @@
 	  				ctggender += ",";    	
 	   			}
    			}
-    		///////////////////////
     		
     		//색상 데이터 
     		var color_len = $("input[name='color']").length;
@@ -83,22 +98,26 @@
 	   				color += ",";    	
 	   			}
    			}
-    		///////////////////////
+    		
+    		
+    		
     		
     		//최종 보낼 데이터
     		var data = "";
     		
-    		
-    		if ( category != "" ) {		data += category + "&"; } 	
-    		if ( ctggender != "" ) {	data += ctggender + "&"; } 	
-    		if ( color != "" ) {		data += color + "&"; } 	
+    		if ( ctgtype != "" ) {		data += "ctgtype=" + ctgtype + "&"; } 	
+    		if ( ctggender != "" ) {	data += "ctggender=" + ctggender + "&"; } 	
+    		if ( color != "" ) {		data += "color=" + color + "&"; } 	
     		
     		alert(data+"입니다");
     		
     		
     		
-    		/* 
-    		if(data.length > 0) {
+    		window.location.href = "/goodsList.do?" + data;
+    		
+    		
+    		
+    		/* if(data.length > 0) {
     			
    				$.ajax({
    					type : "post",
@@ -120,10 +139,7 @@
     			
     		} */
     		
-    		
-    		
-    		
-    		
+
     		
     	});
 
@@ -138,6 +154,8 @@
 </script>
 <body>
 
+
+	
        <header>
        		<%@include file="./include/header.jsp" %>
        </header>
@@ -154,6 +172,7 @@
             </aside>
             
             <article>
+
                 <div class="goodsList">                  
                     <!-- 상품리스트 시작  -->     
                 	<%@include file="./subList.jsp" %>           
@@ -189,9 +208,9 @@
 							
 								<th>카테고리</th>
 								<td>
-									<input type="checkbox" name="category" value="LIF">일상
-									<input type="checkbox" name="category" value="SPT">스포츠
-									<input type="checkbox" name="category" value="LES">레저
+									<input type="checkbox" name="ctgtype" value="LIF">일상
+									<input type="checkbox" name="ctgtype" value="SPT">스포츠
+									<input type="checkbox" name="ctgtype" value="LES">레저
 								</td>
 								
 								<th>성별</th>
@@ -203,7 +222,12 @@
 								
 								<th>가격</th>
 								<td>
-									<input type="range" name="price" min="1000" max="1000000" value="30000">
+									<p>
+									  <label for="amount">Price range:</label>
+									  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+									</p>
+ 
+									<div id="slider-range"></div>
 									
 								</td>
 								
@@ -240,12 +264,15 @@
 								
 								<th>2</th>
 								<td>
-									<span class="input-checkbox checked" data-component-checkbox="" style="user-select: auto;">
-		                 				<input type="checkbox" id="productColorbeige" name="productColor" value="beige" autocomplete="off" style="user-select: auto;">
-		                    			<label for="productColorbeige" style="background-color: rgb(240, 230, 140); user-select: auto;"></label>
-		                   				<span class="productcolor-label" style="user-select: auto;">베이지</span>
-	               					</span>
-               					 </td>
+									<label for="checkbox-1">2 Star</label>
+									<input type="checkbox" name="checkbox-1" id="checkbox-1">
+									<label for="checkbox-2">3 Star</label>
+									<input type="checkbox" name="checkbox-2" id="checkbox-2">
+									<label for="checkbox-3">4 Star</label>
+									<input type="checkbox" name="checkbox-3" id="checkbox-3">
+									<label for="checkbox-4">5 Star</label>
+									<input type="checkbox" name="checkbox-4" id="checkbox-4">
+               					</td>
 								
 							</tr>
 							
