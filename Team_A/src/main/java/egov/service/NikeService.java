@@ -9,5 +9,8 @@ public interface NikeService {
 	
 	// 회원 가입
 	String insertJoin(NikeVO vo) throws Exception;
+	
+	// 상품 상세 보기
+	NikeVO selectGoodsDetail(NikeVO vo) throws Exception;
 
 }

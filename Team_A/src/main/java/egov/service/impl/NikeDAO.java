@@ -18,4 +18,8 @@ public class NikeDAO extends EgovAbstractDAO {
 		return (String) insert("nikeDAO.insertJoin",vo);
 	}
 
+	public NikeVO selectGoodsDetail(NikeVO vo) {
+		return (NikeVO) select("nikeDAO.selectGoodsDetail",vo);
+	}
+
 }
