@@ -143,5 +143,11 @@ public class NikeController {
 		
 		return msg;
 	}
+	
+	@RequestMapping("myPage.do")
+	public String myPage() throws Exception{
+		
+		return "nike/mypage";
+	}
 
 }
