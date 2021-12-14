@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
@@ -14,7 +15,6 @@
 		$( "input" ).checkboxradio({
 			icon: false
 		});
-		
 		
 		$( "#slider-range" ).slider({
 		      range: true,
@@ -27,7 +27,9 @@
 		    });
 		    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
 		      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-	});
+	});	
+		
+
 </script>
 </head>
 <body>

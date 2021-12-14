@@ -43,9 +43,34 @@ public class NikeController {
 					
 				}
 			}
+
+		String ctggender;	
+		String ctggender_sql = "( ";
+		if ( vo.getCtggender() != null ) {
+			ctggender = vo.getCtggender();
+			ctggender_sql += "ctggender LIKE'%" + ctggender + "%'";	//남여
+			ctggender_sql += "or ctggender LIKE '%N%' )";	//무관 추가
+		}
+		
+		int pricemin = 0;	
+		int pricemax = 0;
+		String price_sql = "( ";
+		if ( vo.getPricemin() != 0 || vo.getPricemax() != 0) {
+			pricemin = vo.getPricemin();
+			pricemax = vo.getPricemax();
+			if ( pricemax > pricemin) {
+				price_sql += "price BETWEEN " + pricemin + " and " + pricemax + " )";	
+			} else if ( pricemin > pricemax ) {
+				price_sql += "price BETWEEN " + pricemax + " and " + pricemin + " )";	
+			}
+			
+			
+		}
+		
+		
 		// ( CTGTYPE like '%LIF%' or CTGTYPE like '%SPT%' )
 			
-			
+		/*	
 		// 사이즈
 		String[] csize;
 		String csize_sql = "( ";
@@ -63,6 +88,7 @@ public class NikeController {
 					
 				}
 			}
+		*/
 		
 		// 색상
 		String[] color;
@@ -86,13 +112,25 @@ public class NikeController {
 
 		
 			if ( !ctgtype_sql.equals("( ") ) {
-				sql += "and" + ctgtype_sql;
+				sql += " and " + ctgtype_sql;
 			}
+			
+			if ( !ctggender_sql.equals("( ") ) {
+				sql += " and " + ctggender_sql;
+			}
+			
+			if ( !price_sql.equals("( ") ) {
+				sql += " and " + price_sql;
+			}
+			
+			/*
 			if ( !csize_sql.equals("( ") ) {
-				sql += "and" +  csize_sql;
+				sql += " and " +  csize_sql;
 			}
+			*/
+			
 			if ( !color_sql.equals("( ") ) {
-				sql += "and" +  color_sql;
+				sql += " and " + color_sql;
 			}
 			
 			if ( !sql.equals("") ) {
@@ -111,8 +149,11 @@ public class NikeController {
 	}
 
 	@RequestMapping("goodsDetail.do")
-	public String goodsDetail() throws Exception {
-
+	public String goodsDetail(NikeVO vo, Model model) throws Exception {
+		
+		vo = nikeService.selectGoodsDetail(vo);
+		model.addAttribute("vo",vo);
+		
 		return "nike/goodsDetail";
 	}
 	

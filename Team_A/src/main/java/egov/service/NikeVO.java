@@ -24,12 +24,16 @@ public class NikeVO {
 	private String csize;			// 옷사이즈
 	private String color;
 	private String thumbnail;
-	private int price;
+	
+	private int price = 0;
+	private int pricemin = 0;
+	private int pricemax = 0;
+	
+	private int hits;
 	
 	private String sql;
 	
 	
-
 	private String search;
 
 
@@ -325,5 +329,24 @@ public class NikeVO {
 	}
 	public void setSql(String sql) {
 		this.sql = sql;
+	}
+	public int getHits() {
+		return hits;
+	}
+	public void setHits(int hits) {
+		this.hits = hits;
+	}
+	
+	public int getPricemin() {
+		return pricemin;
+	}
+	public void setPricemin(int pricemin) {
+		this.pricemin = pricemin;
+	}
+	public int getPricemax() {
+		return pricemax;
+	}
+	public void setPricemax(int pricemax) {
+		this.pricemax = pricemax;
 	}
 }

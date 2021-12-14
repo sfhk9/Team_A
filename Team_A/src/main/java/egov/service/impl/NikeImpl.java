@@ -24,4 +24,9 @@ public class NikeImpl implements NikeService {
 	public String insertJoin(NikeVO vo) throws Exception {
 		return nikeDAO.insertJoin(vo);
 	}
+
+	@Override
+	public NikeVO selectGoodsDetail(NikeVO vo) throws Exception {
+		return nikeDAO.selectGoodsDetail(vo);
+	}
 }
