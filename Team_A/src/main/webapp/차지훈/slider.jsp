@@ -10,13 +10,11 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-  <script>
-	$( function() {
-		$( "input" ).checkboxradio({
-			icon: false
-		});
-		
-	});	
+<script>
+$( function() {
+    $( ".selector" ).checkboxradio();
+
+  } );
 		
 
 </script>
@@ -38,7 +36,7 @@
 </head>
 <body>
 
-<div class="">
+
 	<h1>Checkbox and radio button widgets</h1>
 	
 	<h2>Radio Group</h2>
@@ -55,14 +53,17 @@
 	<h2>Checkbox</h2>
 	<fieldset>
 
+		<label for="checkbox">2 Star</label>
+		<input type="checkbox"  id="checkbox" class="selector">
+		
+	
+		
 		<label for="checkbox-1">2 Star</label>
-		<input type="checkbox" name="checkbox-1" id="checkbox-1">
-		<label for="checkbox-2">3 Star</label>
-		<input type="checkbox" name="checkbox-2" id="checkbox-2">
-		<label for="checkbox-3">4 Star</label>
-		<input type="checkbox" name="checkbox-3" id="checkbox-3">
-		<label for="checkbox-4">5 Star</label>
-		<input type="checkbox" name="checkbox-4" id="checkbox-4">
+		<input type="checkbox"  id="checkbox-1">
+		
+
+		
+
 	</fieldset>
 
 

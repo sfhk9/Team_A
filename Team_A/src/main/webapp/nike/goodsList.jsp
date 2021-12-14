@@ -17,26 +17,29 @@
   	<link rel="stylesheet" href="${path}/css/main.css">
     <link rel="stylesheet" href="${path}/css/goodsList.css">
     <title>Document</title>
+    
 <script>
 	$( function() {
-		$( "input" ).checkboxradio({
+		$( ".selector" ).checkboxradio({
 			icon: false
 		});
-	});
-	
-	
+		
+	});	
+</script>
+
+<script>
+  $( function() {
     $( "#slider-range" ).slider({
-		range: true,
-		min: 0,
-		max: 500,
-		values: [ 75, 300 ],
-		slide: function( event, ui ) {
-			$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-		}
-	});
-    
-	$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-	" - $" + $( "#slider-range" ).slider( "values", 1 ) );
+      range: true,
+      min: 10000,
+      max: 1000000,
+      values: [ 20000, 50000 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( ui.values[ 0 ] + "원 - " + ui.values[ 1 ] + "원" );
+      }
+    });
+    $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) + "원 - " + $( "#slider-range" ).slider( "values", 1 ) + "원" );
+  } );
 </script>
 
 </head>
@@ -79,7 +82,6 @@
 	   			var ctggender_val = document.getElementsByName('ctggender')[i].checked;
 	   			if( ctggender_val == true ) {
 	   				ctggender += document.getElementsByName('ctggender')[i].value;
-	  				ctggender += ",";    	
 	   			}
    			}
     		
@@ -95,15 +97,22 @@
 	   			}
    			}
     		
+    		//가격 데이터
+    		var pricemin = "";
+    			pricemin = document.getElementById("price_min").value;
     		
+    		var pricemax = "";
+    			pricemax = document.getElementById("price_max").value;
     		
     		
     		//최종 보낼 데이터
     		var data = "";
     		
-    		if ( ctgtype != "" ) {		data += "ctgtype=" + ctgtype + "&"; } 	
-    		if ( ctggender != "" ) {	data += "ctggender=" + ctggender + "&"; } 	
-    		if ( color != "" ) {		data += "color=" + color + "&"; } 	
+    		if ( ctgtype != "" 	) {	data += "ctgtype=" + ctgtype + "&"; } 	
+    		if ( ctggender != "") {	data += "ctggender=" + ctggender + "&"; } 	
+    		if ( color != "" 	) {	data += "color=" + color + "&"; } 	
+    		if ( pricemin != ""	) {	data += "pricemin=" + pricemin + "&";}
+    		if ( pricemax != ""	) { data += "pricemax=" + pricemax + "&";}
     		
     		alert(data+"입니다");
 
@@ -174,7 +183,6 @@
             
                 <div class="filter_wrap"> 
                 
-                	<form action="">
 	                	<!-- 필터 
 	                	//////////////////////////////////////////////////////////////////////////-->
 	                    <div style="width:700px;height:30px; background-color:white;">
@@ -194,104 +202,7 @@
 	                    <br>
 	                    
 	                    
-	                    <!-- 펼침 -->
-	                    <div class="filter_list" name="fl" id="fl" style="display:none;">
-	                    
-	                    <table border="1">
-							<tr>
-							
-								<th>카테고리</th>
-								<td>
-									<input type="checkbox" name="ctgtype" value="LIF">일상
-									<input type="checkbox" name="ctgtype" value="SPT">스포츠
-									<input type="checkbox" name="ctgtype" value="LES">레저
-								</td>
-								
-								<th>성별</th>
-								<td>
-									<input type="radio" name="ctggender" value="M">남성
-									<input type="radio" name="ctggender" value="F">여성
-									<input type="radio" name="ctggender" value="N">무관
-								</td>
-								
-								<th>가격</th>
-								<td>
-									<p>
-									  <label for="amount">Price range:</label>
-									  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-									</p>
- 
-									<div id="slider-range"></div>
-									
-								</td>
-								
-							</tr>
-							
-							<tr>
-							
-								<th>사이즈</th>
-								<td>
-									<input type="range" name="size" min="60" max="200" value="70">
-								</td>
-								
-								<th>색상</th>
-								<td>
-									<div style="width:40px;margin-right:10px;float:left;">									
-										<input type="checkbox" name="color" id="color" value="white">
-										<label for="color_white" style="cursor:pointer">
-											<div class="item_color" style=" background-color:#f0f0f0;"></div>
-										</label>
-									</div>
-									<div style="width:40px;margin-right:10px;float:left;">									
-										<input type="checkbox" name="color" id="color" value="black">
-										<label for="color_black" style="cursor:pointer">
-											<div class="item_color" style=" background-color:black;"></div>
-										</label>
-									</div>
-									<div style="width:40px;margin-right:10px;float:left;">									
-										<input type="checkbox" name="color" id="color" value="red">
-										<label for="color_red" style="cursor:pointer">
-											<div class="item_color" style=" background-color:red;"></div>
-										</label>
-									</div>
-								</td>
-								
-								<th>2</th>
-								<td>
-									<label for="checkbox-1">2 Star</label>
-									<input type="checkbox" name="checkbox-1" id="checkbox-1">
-									<label for="checkbox-2">3 Star</label>
-									<input type="checkbox" name="checkbox-2" id="checkbox-2">
-									<label for="checkbox-3">4 Star</label>
-									<input type="checkbox" name="checkbox-3" id="checkbox-3">
-									<label for="checkbox-4">5 Star</label>
-									<input type="checkbox" name="checkbox-4" id="checkbox-4">
-               					</td>
-								
-							</tr>
-							
-							<tr>
-								<th>4</th>
-								<td>123123123</td>
-								
-								<th>2</th>
-								<td>123123123</td>
-								
-								<th>4</th>
-								<td>123123123</td>
-							<tr>
-								
-					
-						</table>
-						
-						
-	                    	<button type="button" id="filter" style="cursor:pointer" >필터 적용</button>
-	          
-	          
-	                    </div>
-	                <!-- 필터
-	                 //////////////////////////////////////////////////////////////////////-->
-                    </form>
+	                    <%@include file="./subFilter.jsp" %>       
                     
                 </div>
             </article>
