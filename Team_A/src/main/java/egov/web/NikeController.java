@@ -111,8 +111,11 @@ public class NikeController {
 	}
 
 	@RequestMapping("goodsDetail.do")
-	public String goodsDetail() throws Exception {
-
+	public String goodsDetail(NikeVO vo, Model model) throws Exception {
+		
+		vo = nikeService.selectGoodsDetail(vo);
+		model.addAttribute("vo",vo);
+		
 		return "nike/goodsDetail";
 	}
 	

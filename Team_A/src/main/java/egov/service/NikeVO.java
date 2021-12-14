@@ -25,11 +25,11 @@ public class NikeVO {
 	private String color;
 	private String thumbnail;
 	private int price;
+	private int hits;
 	
 	private String sql;
 	
 	
-
 	private String search;
 
 
@@ -325,5 +325,11 @@ public class NikeVO {
 	}
 	public void setSql(String sql) {
 		this.sql = sql;
+	}
+	public int getHits() {
+		return hits;
+	}
+	public void setHits(int hits) {
+		this.hits = hits;
 	}
 }
