@@ -30,7 +30,22 @@ $(function(){
 				"한줄 씩 작성 후 <br>"+
 				"+로 연결하면 됩니다<br>"+
 				"<%String msg="jsp 주석을 쌍 따옴표 안에서 넣고, 마찬가지로 한줄씩 분리하면 jsp도 가능";%>"+
-				"<%=msg%>";
+				"<%=msg%>"
+				<%
+	      		String goodsimg = (String)pageContext.getAttribute("goodsimg") ;
+				String[] array1 = null;
+				if(goodsimg != null && !goodsimg.equals("")) {
+					array1 = goodsimg.split("/");
+					for( int i=0; i<array1.length; i++ ) {
+				%>
+						"<span><img src="<%=array1[i] %>"/></span><br>"
+				<%
+					}
+				}
+				%>
+				
+				
+				;
 
 	/*탭에 들어갈 내용 부분 - 구매후기 탭*/		
 	var content2=""+
@@ -166,6 +181,7 @@ $(function(){
 			</aside>
 			<article>
 				<div class="info_wrap">
+					<form name="frm">
 					<table class="tbl_info">
 						<colgroup>
 							<col width="50%" />
@@ -180,28 +196,38 @@ $(function(){
 							</td>
 							
 							<!-- 카테고리 명 -->
-							<td class="info_td1">카테고리</td>
+							<td class="info_td1">${vo.category} : ${vo.ctgtype} 카테고리 : 대분류</td>
 						</tr>
 						
 						<tr>
 							<!-- 상품 이름 -->
-							<td class="info_td2">상품이름 상품이름 상품이름 상품이름</td>
+							<td class="info_td2">${vo.name}상품이름</td>
 						</tr>
 						
 						<tr>
 							<td class="info_td3">
 								<div class="discount_rate">20%</div>
-								<div class="discount_price">999,999원</div>
+								<div class="discount_price">${vo.price}999원</div>
 								<div class="price">999,999원</div>																
 							</td>
 						</tr>
 						<tr>
 							<td class="info_td4">
-								<div class="opt_box">사이즈</div>
-								<div class="opt_box">95(s)</div>
-								<div class="opt_box">95(s)</div>
-								<div class="opt_box">95(s)</div>
-								<div class="opt_box">95(s)</div>
+								<c:set var="csize" value="${vo.csize}" />
+								<%
+								String csize = (String)pageContext.getAttribute("csize");
+								
+								if(csize != null && !csize.equals("")) {
+									String[] array = csize.split("/");
+									for(int i=0; i<array.length; i++) {
+										if(i  < array.length ) {
+								%>			
+											<div class="opt_box"><%=array[i] %>사이즈</div>										
+								<%
+										}
+									}
+								}
+								%>
 							</td>
 						</tr>
 						<tr class="info_td5">
@@ -215,6 +241,22 @@ $(function(){
 										* 클래스명 img_goods를 사용하시면 사이즈가 적용됩니다
 										* 일정 수 이상의 이미지 등록시 스크롤 가능하도록 추가할 예정입니다
 									-->
+									<!-- ?????? -->
+									
+									<%
+						      		String thumbnail = (String)pageContext.getAttribute("thumbnail") ;
+									String[] array = null;
+									if(thumbnail != null && !thumbnail.equals("")) {
+										array = thumbnail.split("/");
+										for( int i=0; i<array.length; i++ ) {
+									%>
+											<span class="img_goods">
+												<img src="<%=array[i] %>"/>
+											</span>
+									<%
+										}
+									}
+									%>
 									<span class="imgs" style="font-size:40px;"> df1 </span>
 									<span class="imgs" style="font-size:40px;"> df2 </span>
 									<span class="imgs" style="font-size:40px;"> df3 </span>
@@ -235,6 +277,7 @@ $(function(){
 							</td>
 						</tr>
 					</table>
+					</form>
 				</div>
 				<table class="tbl_content">
 					<tr>
