@@ -24,7 +24,11 @@ public class NikeVO {
 	private String csize;			// 옷사이즈
 	private String color;
 	private String thumbnail;
-	private int price;
+	
+	private int price = 0;
+	private int pricemin = 0;
+	private int pricemax = 0;
+	
 	private int hits;
 	
 	private String sql;
@@ -72,16 +76,16 @@ public class NikeVO {
 	private int page_unit = 10;
 	private int page_size = 10;
 	
-	private int page_no = 1;
-	
 	private int total = 1;
 	private int total_page = 1;
 	private int rownum = 1;
 	
+	private int page_no = 1;
 	private int s_no = 1;
-	private int e_no = 10;
+	private int e_no = 12;
 	
 	//검색변수
+	
 	private String s_field;
 	private String s_text;
 	
@@ -331,5 +335,18 @@ public class NikeVO {
 	}
 	public void setHits(int hits) {
 		this.hits = hits;
+	}
+	
+	public int getPricemin() {
+		return pricemin;
+	}
+	public void setPricemin(int pricemin) {
+		this.pricemin = pricemin;
+	}
+	public int getPricemax() {
+		return pricemax;
+	}
+	public void setPricemax(int pricemax) {
+		this.pricemax = pricemax;
 	}
 }
