@@ -33,6 +33,8 @@
 								
 			) a
 		) b
+		
+		WHERE rn >= #s_no#  AND rn <![CDATA[<=]]> #e_no#
 
 	</select>
 	
