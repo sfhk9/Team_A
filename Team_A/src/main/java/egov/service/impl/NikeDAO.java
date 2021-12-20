@@ -24,4 +24,8 @@ public class NikeDAO extends EgovAbstractDAO {
 		return (NikeVO) select("nikeDAO.selectGoodsDetail",vo);
 	}
 
+	public void updateGoodsInfoHits(NikeVO vo) {
+		update("nikeDAO.updateGoodsInfoHits",vo);
+	}
+
 }

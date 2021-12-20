@@ -85,7 +85,14 @@
 				)
 	</insert>
 	
-	
+	<update id="nikeDAO.updateGoodsInfoHits">
+		UPDATE 
+				goodsinfo
+		SET
+				hits=hits+1
+		WHERE
+				unq=#unq#
+	</update>
 	
 	
 	

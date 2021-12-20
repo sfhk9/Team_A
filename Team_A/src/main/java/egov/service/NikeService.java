@@ -12,5 +12,8 @@ public interface NikeService {
 	
 	// 상품 상세 보기
 	NikeVO selectGoodsDetail(NikeVO vo) throws Exception;
+	
+	// 조회수 증가 서비스
+	void updateGoodsInfoHits(NikeVO vo) throws Exception;
 
 }
