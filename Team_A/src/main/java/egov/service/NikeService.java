@@ -12,5 +12,14 @@ public interface NikeService {
 	
 	// 상품 상세 보기
 	NikeVO selectGoodsDetail(NikeVO vo) throws Exception;
+	
+	// 조회수 증가 서비스
+	void updateGoodsInfoHits(NikeVO vo) throws Exception;
+
+	// Id 중복체크
+	int selectIdCheck(String userid)throws Exception;
+
+	// 로그인 검증
+	int selectMemberCertify(NikeVO vo)throws Exception;
 
 }

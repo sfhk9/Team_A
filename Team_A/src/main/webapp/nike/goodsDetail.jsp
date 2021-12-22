@@ -14,8 +14,36 @@
 	<script> window.MSInputMethodContext && document.documentMode && document.write('<script src="https://cdn.jsdelivr.net/gh/nuxodin/ie11CustomProperties@4.1.0/ie11CustomProperties.min.js"><\/script>'); </script>
 	<link rel="stylesheet" href="${path}/css/main.css">
 	<link rel="stylesheet" href="${path}/css/goodsDetail.css">
+	
 	<title>Document</title>
 </head>
+<style>
+	 .size_btn {
+	 	float:left;
+	 	width:24px;
+	 	margin-top:10px;
+	 	margin-left:6px;
+	 }
+	 .img_goods {	 	
+	 	width:60px;
+		height:58px;
+		margin-top:10px;
+		margin-left:4px;
+		margin-right:4px;
+		
+		border:1px solid #ffccee;
+	 }
+
+</style>
+
+<script>
+  $( function() {
+    $( ".csize_btn" ).checkboxradio({
+      icon: false
+    });
+  });
+</script>
+
 <script>
 $(function(){
 	var t1 = $("#tab1");
@@ -47,12 +75,7 @@ $(function(){
 				%>";
 
 	/*탭에 들어갈 내용 부분 - 구매후기 탭*/		
-	var content2=""+
-				"두번째 탭입니다<br>"+
-				"여러줄 작성 예시<br>"+
-				"한줄 씩 작성 후 <br>"+
-				"+로 연결하면 됩니다<br>"+
-				"<%=msg%>";
+	var content2= "<div id='mydiv'></div>";
 				
 	/*탭에 들어갈 내용 부분 - 상품문의 탭*/				
 	var content3=""+
@@ -167,6 +190,7 @@ $(function(){
 
 });
 </script>
+
 <body>
 	<header>
 		<%@include file="./include/header.jsp" %>
@@ -219,11 +243,12 @@ $(function(){
 								if(csize != null && !csize.equals("")) {
 									String[] array = csize.split("/");
 									for(int i=0; i<array.length; i++) {
-										if(i < array.length ) {
+										if(i < array.length ) {	
 								%>			
-											<button type=button id="csizeButton" onclick="return false;">
-												<div class="opt_box"><%=array[i] %></div>
-											</button>										
+											<label for="radio<%=i %>" id="radio"  class="size_btn" >
+												<span><%=array[i] %></span>
+											</label>
+											<input type="radio" name="radio<%=i %>" id="radio<%=i %>" class="csize_btn">
 								<%
 										}
 									}
@@ -252,8 +277,8 @@ $(function(){
 										for( int i=0; i<array.length; i++ ) {
 											if(i < array.length ) {
 									%>
-											<span class="img_goods">
-												<img src="./nike/goods/${vo.unq}/<%=array[i] %>"style="width:50px; height:50px;"/>
+											<span>
+												<img src="./nike/goods/${vo.unq}/<%=array[i] %>" class="img_goods"/>
 											</span>
 									<%
 											}
@@ -314,6 +339,6 @@ $(function(){
 	<footer>
 		<%@include file="./include/footer.jsp" %>
 	</footer>
-
+	
 </body>
 </html>
