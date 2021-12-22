@@ -143,6 +143,7 @@ function filterRe() {
 	    	var addurl = "/addList.do?" + data;
 	    	
 	    	$(".wrap").css('height', 1360*page);
+	    	$(".add").css('margin-top', 1360*page-130);
 	    	
 	    	$('#list').load(addurl);
 	    	
@@ -181,18 +182,19 @@ function filterRe() {
             </aside>
             
             <article>
-				<div>
-					<div class="goodsList" id="list">                  
-	                    <!-- 상품리스트 시작  -->     
-	                   <%@include file="./subList.jsp" %>   
-	  
+				<div style="position:relative">
+					<div class="div_abs">
+						<div class="goodsList" id="list">                  
+		                    <!-- 상품리스트 시작  -->     
+		                   <%@include file="./subList.jsp" %>   
+						</div>
+						
+	                    <div class="add" id="add">
+	           	     		더보기
+	            	    </div>
 	                </div>
-	                
-					<div>
-                		<button type="button" id="add" style="cursor:pointer">더보기</button>
-              		</div>
 				</div>
-                
+
                 
                
           			
