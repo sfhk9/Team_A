@@ -57,6 +57,20 @@
 				unq=#unq#
 	</select>
 	
+	
+   <select id="nikeDAO.selectIdCheck" resultClass="java.lang.Integer">
+		SELECT COUNT(*) FROM  userinfo WHERE userid=#userid#
+	
+	
+	</select>
+	
+  <select id="nikeDAO.selectMemberCertify" resultClass="java.lang.Integer">
+		SELECT COUNT(*) 
+				FROM userinfo 
+				WHERE 
+					userid=#userid# AND pass=#pass#
+	</select>
+
 	<insert id="nikeDAO.insertJoin">
 		INSERT INTO USERINFO(
 				    USERID,

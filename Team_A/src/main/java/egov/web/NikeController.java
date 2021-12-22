@@ -1,12 +1,14 @@
 package egov.web;
 
 import java.util.List;
+
 import java.util.Locale;
 import java.util.Map;
 
-import javax.annotation.Resource;
 
-import org.apache.commons.collections.map.HashedMap;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -41,17 +43,15 @@ public class NikeController {
 		return "nike/goodsList";
 	}
 	
-	@RequestMapping("goodsListAdd.do")
-	@ResponseBody
-	public List<?> goodsListAdd( NikeVO vo, Model model ) throws Exception {
+	@RequestMapping("addList.do")
+	public String addList( NikeVO vo, Model model ) throws Exception {
 		
 		// 현재 출력할 페이지 번호
 		int page_no = vo.getPage_no();
 
 		int s_no = ((page_no - 1) * 12) + 1;
 		int e_no = s_no + (12-1);
-		
-		vo.setS_no(s_no);
+	
 		vo.setE_no(e_no);
 		/////
 		
@@ -61,9 +61,15 @@ public class NikeController {
 		///
 		
 		List<?> list = nikeService.selectGoodsList(vo);
-		return list;
+		
+		System.out.println("리스트"+list);
+  
+		model.addAttribute("list",list);
+		
+		return "nike/addList";
 	}
 	
+
 	
 	// sql 작성 함수
 	public String getSetSql( NikeVO vo ) {
@@ -171,32 +177,91 @@ public class NikeController {
 	}
 
 	
-	@RequestMapping("Login.do")
-	public String Login() throws Exception{
-		
-		return "nike/member/login2_r";
-	}
-	
 	@RequestMapping("joinAgree.do")
 	public String joinAgree() throws Exception{
 		return "nike/member/join_agree_r";
 	}
 
 	@RequestMapping("joinWrite.do")
-	public String joinWrite() throws Exception{
+	public String joinWrite() {
 		
 		return "nike/member/join_r";
 	}
 	
 	@RequestMapping("joinWriteSave.do")
 	@ResponseBody
-	public String joinWriteSave( NikeVO vo  ) throws Exception {
+	public String insertJoin( NikeVO vo ) throws Exception {
 		
 		String msg = "ok";
-		String result = nikeService.insertJoin(vo);
-		if(result != null) msg = "save_fail";
+		int chk = nikeService.selectIdCheck(vo.getUserid());
+		
+		if( chk == 0 ) {
+			String result = nikeService.insertJoin(vo);
+			if( result != null ) {
+				msg = "save_fail";
+			}
+		} else { msg = "er1";  }
 		
 		return msg;
+	} 
+	
+	@RequestMapping("id_check.do")
+	@ResponseBody
+	public String selectMemberIdCheck( String userid ) throws Exception {
+		
+		String msg = "ok";
+		// 아이디 : 맨앞 첫글자 영문, 총길이 4 ~ 12; 
+		String pattern = "^[a-zA-Z]{1}[a-zA-Z0-9_-]{3,11}";
+		boolean chk = userid.matches(pattern);  // true, false;
+		
+		if( chk == false ) {
+			msg = "er1";
+		} else {
+			int result = nikeService.selectIdCheck(userid);
+			if( result > 0 ) {
+				msg = "er2";
+			}
+		}
+		return msg;
+	}
+	
+	
+	@RequestMapping("loginWrite.do")
+	public String loginWrite() {
+		
+		return "nike/member/login2_r";
+	}
+	
+
+	@RequestMapping("logout.do")
+	@ResponseBody
+	public String logout(HttpSession session) {	
+		session.removeAttribute("MemberSessionId");	
+		return "ok";
+	}
+	
+	@RequestMapping("loginCertify.do")
+	@ResponseBody
+	public String selectMemberCertify(NikeVO vo, HttpSession session) throws Exception {
+		
+		String msg = "ok";
+		
+		int cnt = nikeService.selectMemberCertify(vo);
+		
+		if(cnt == 0) {
+			msg = "er1";
+		} else if( cnt == 1 ) {
+			session.setAttribute("MemberSessionId", vo.getUserid());			
+		}
+		
+		return msg;
+	}
+
+	
+	@RequestMapping("myPage.do")
+	public String myPage() throws Exception{
+		
+		return "nike/mypage";
 	}
 
 }
