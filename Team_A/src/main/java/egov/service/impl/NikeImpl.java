@@ -29,4 +29,9 @@ public class NikeImpl implements NikeService {
 	public NikeVO selectGoodsDetail(NikeVO vo) throws Exception {
 		return nikeDAO.selectGoodsDetail(vo);
 	}
+
+	@Override
+	public void updateGoodsInfoHits(NikeVO vo) throws Exception {
+		nikeDAO.updateGoodsInfoHits(vo);
+	}
 }
