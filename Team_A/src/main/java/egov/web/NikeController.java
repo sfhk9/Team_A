@@ -1,6 +1,12 @@
 package egov.web;
 
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.Locale;
+import java.util.Map;
+
+>>>>>>> branch 'master' of https://github.com/sfhk9/Team_A.git
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +14,7 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import egov.service.NikeService;
@@ -155,17 +162,20 @@ public class NikeController {
 		
 	}
 	
-	
-	
 
 	@RequestMapping("goodsDetail.do")
 	public String goodsDetail(NikeVO vo, Model model) throws Exception {
 		
+		// 조회수 증가 서비스 실행
+		nikeService.updateGoodsInfoHits(vo);
+		
+		//상세보기 서비스 실행
 		vo = nikeService.selectGoodsDetail(vo);
 		model.addAttribute("vo",vo);
 		
 		return "nike/goodsDetail";
 	}
+
 	
 	@RequestMapping("joinAgree.do")
 	public String joinAgree() throws Exception{

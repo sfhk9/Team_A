@@ -31,6 +31,7 @@ public class NikeImpl implements NikeService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public int selectIdCheck(String userid) throws Exception {
 		return nikeDAO.selectIdCheck(userid);
 	}
@@ -38,5 +39,9 @@ public class NikeImpl implements NikeService {
 	@Override
 	public int selectMemberCertify(NikeVO vo) throws Exception {
 		return nikeDAO.selectMemberCertify(vo);
+=======
+	public void updateGoodsInfoHits(NikeVO vo) throws Exception {
+		nikeDAO.updateGoodsInfoHits(vo);
+>>>>>>> branch 'master' of https://github.com/sfhk9/Team_A.git
 	}
 }
