@@ -59,9 +59,6 @@ public class NikeController {
 		///
 		
 		List<?> list = nikeService.selectGoodsList(vo);
-
-		System.out.println(list);
-		
 		return list;
 	}
 	

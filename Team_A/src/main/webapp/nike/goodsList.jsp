@@ -147,13 +147,7 @@ function filterRe() {
 				   url  : "goodsListAdd.do",
 				   data : data,
 				   datatype : "json",
-				   success : function(data) {
-				      if(data != null) { 
-				    	  alert( "데이터!!!!" + data );
-				    	     
-				      } else {
-				         alert("검색 실패");
-				      }   
+				   success : function() {
 				   },
 				   error : function() {
 				      alert("시스템 오류");
@@ -241,9 +235,10 @@ function filterRe() {
             <article>
 
                 <div class="goodsList">                  
-                    <!-- 상품리스트 시작  -->     
-                   <%@include file="./subList.jsp" %>   
-                     
+                    <!-- 상품리스트 시작  -->
+                    <div id="test">     
+                   		<%@include file="./subList.jsp" %>   
+                    </div>  
                    <button type="button" id="add" style="cursor:pointer">더보기</button>        
                 </div>
             

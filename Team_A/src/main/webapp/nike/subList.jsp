@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+
 <!-- 상품리스트 시작//////////////////////////////////////////////  -->
 <c:forEach var="result" items="${list}" varStatus="status" >
 	<div class="item">  
