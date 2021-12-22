@@ -1,12 +1,11 @@
 package egov.web;
 
 import java.util.List;
-<<<<<<< HEAD
-=======
+
 import java.util.Locale;
 import java.util.Map;
 
->>>>>>> branch 'master' of https://github.com/sfhk9/Team_A.git
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
