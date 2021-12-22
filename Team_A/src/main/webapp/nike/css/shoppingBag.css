@@ -13,6 +13,7 @@ article {
 	padding-top : 10px;
 }
 
+
 .tbl_bag td{
 	width:100px;
 	height:30px;
@@ -21,8 +22,20 @@ article {
 }
 
 
+
 .td1{
+	height:40px;
 	border:2px solid gray;
 	background-color:#ccc;
 	margin-bottom:10px;
+}
+
+.td3{
+	font-size:12px;
+	
+}
+
+
+.img_bag{
+	
 }
