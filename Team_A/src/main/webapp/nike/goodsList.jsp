@@ -140,83 +140,28 @@ function filterRe() {
 	    	
 	    	data += "&page_no=" + page
 	    	
-	    	alert(data);
-				
- 			$.ajax({
-				   type : "post",
-				   url  : "goodsListAdd.do",
-				   data : data,
-				   datatype : "json",
-				   success : function(data) {
-				      if(data != null) { 
-				    	  alert( "데이터!!!!" + data );
-				    	     
-				      } else {
-				         alert("검색 실패");
-				      }   
-				   },
-				   error : function() {
-				      alert("시스템 오류");
-				   }
-			});	 		
+	    	var addurl = "/addList.do?" + data;
 	    	
+	    	$(".wrap").css('height', 1360*page);
+	    	
+	    	$('#list').load(addurl);
+	    	
+
 		});
 		
 
     });  
 
     
-	/*     
+	  
 	
-	function resultHtml(data){
-		var html = "<table border = '1'>";
-		html += "<tr>";
-		html += "<th>노선번호</th>";
-		html += "<th>출발지</th>";
-		html += "<th>도착지</th>";
-		html += "<th>첫차</th>";
-		html += "<th>막차</th>";
-		html += "<th>운행간격</th>";
-		html += "<th>노선종류</th>";
-		html += "</tr>";
-		
-		var ROW_COUNT = $(data).find("ROW_COUNT").text();
-		//alert(ROW_COUNT);
-		var LINE = $(data).find("LINE");
-		//alert(LINE.text());
-		var BusInfo = "";
-		
-		for(var i = 0; i < ROW_COUNT; i++){
-			BusInfo = LINE.eq(i);
-			html += "<tr align = 'center'>";
-			html += "<td>" + BusInfo.find("LINE_NAME").text() + "</td>";
-			html += "<td>" + BusInfo.find("DIR_UP_NAME").text() + "</td>";
-			html += "<td>" + BusInfo.find("DIR_DOWN_NAME").text() + "</td>";
-			html += "<td>" + BusInfo.find("FIRST_RUN_TIME").text() + "</td>";
-			html += "<td>" + BusInfo.find("LAST_RUN_TIME").text() + "</td>";
-			html += "<td>" + BusInfo.find("RUN_INTERVAL").text() + "</td>";
-			if(BusInfo.find("LINE_KIND").text() == 1){
-				html += "<td>급행간선</td>";
-			}else if(BusInfo.find("LINE_KIND").text() == 2){
-				html += "<td>간선</td>";
-			}else if(BusInfo.find("LINE_KIND").text() == 3){
-				html += "<td>지선</td>";
-			}else if(BusInfo.find("LINE_KIND").text() == 4){
-				html += "<td>마을버스</td>";
-			}		
-			html += "</tr>"; 
-		}
-			
-		html += "</table>";
-		$("#display").empty();
-		$("#display").append(html);
-	}
 
- */
     
     
 
 </script>
+
+
 <body>
 
 
@@ -227,28 +172,31 @@ function filterRe() {
        
        <nav>
              <%@include file="./include/nav.jsp" %>     
-             
-             
        </nav>
        
        <div class="wrap">
         <section>
         
             <aside>
-            
             </aside>
             
             <article>
-
-                <div class="goodsList">                  
-                    <!-- 상품리스트 시작  -->     
-                   <%@include file="./subList.jsp" %>   
-                     
-                   <button type="button" id="add" style="cursor:pointer">더보기</button>        
-                </div>
-            
-                <div class="filter_wrap"> 
+				<div>
+					<div class="goodsList" id="list">                  
+	                    <!-- 상품리스트 시작  -->     
+	                   <%@include file="./subList.jsp" %>   
+	  
+	                </div>
+	                
+					<div>
+                		<button type="button" id="add" style="cursor:pointer">더보기</button>
+              		</div>
+				</div>
                 
+                
+               
+          			
+                <div class="filter_wrap"> 
                       <!-- 필터 
                       //////////////////////////////////////////////////////////////////////////-->
                        <div style="width:700px;height:30px; background-color:white;">
