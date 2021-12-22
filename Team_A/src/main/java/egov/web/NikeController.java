@@ -1,11 +1,9 @@
 package egov.web;
 
 import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -169,33 +167,86 @@ public class NikeController {
 		return "nike/goodsDetail";
 	}
 	
-	@RequestMapping("Login.do")
-	public String Login() throws Exception{
-		
-		return "nike/member/login2_r";
-	}
-	
 	@RequestMapping("joinAgree.do")
 	public String joinAgree() throws Exception{
 		return "nike/member/join_agree_r";
 	}
 
 	@RequestMapping("joinWrite.do")
-	public String joinWrite() throws Exception{
+	public String joinWrite() {
 		
 		return "nike/member/join_r";
 	}
 	
 	@RequestMapping("joinWriteSave.do")
 	@ResponseBody
-	public String joinWriteSave( NikeVO vo  ) throws Exception {
+	public String insertJoin( NikeVO vo ) throws Exception {
 		
 		String msg = "ok";
-		String result = nikeService.insertJoin(vo);
-		if(result != null) msg = "save_fail";
+		int chk = nikeService.selectIdCheck(vo.getUserid());
+		
+		if( chk == 0 ) {
+			String result = nikeService.insertJoin(vo);
+			if( result != null ) {
+				msg = "save_fail";
+			}
+		} else { msg = "er1";  }
+		
+		return msg;
+	} 
+	
+	@RequestMapping("id_check.do")
+	@ResponseBody
+	public String selectMemberIdCheck( String userid ) throws Exception {
+		
+		String msg = "ok";
+		// 아이디 : 맨앞 첫글자 영문, 총길이 4 ~ 12; 
+		String pattern = "^[a-zA-Z]{1}[a-zA-Z0-9_-]{3,11}";
+		boolean chk = userid.matches(pattern);  // true, false;
+		
+		if( chk == false ) {
+			msg = "er1";
+		} else {
+			int result = nikeService.selectIdCheck(userid);
+			if( result > 0 ) {
+				msg = "er2";
+			}
+		}
+		return msg;
+	}
+	
+	
+	@RequestMapping("loginWrite.do")
+	public String loginWrite() {
+		
+		return "nike/member/login2_r";
+	}
+	
+
+	@RequestMapping("logout.do")
+	@ResponseBody
+	public String logout(HttpSession session) {	
+		session.removeAttribute("MemberSessionId");	
+		return "ok";
+	}
+	
+	@RequestMapping("loginCertify.do")
+	@ResponseBody
+	public String selectMemberCertify(NikeVO vo, HttpSession session) throws Exception {
+		
+		String msg = "ok";
+		
+		int cnt = nikeService.selectMemberCertify(vo);
+		
+		if(cnt == 0) {
+			msg = "er1";
+		} else if( cnt == 1 ) {
+			session.setAttribute("MemberSessionId", vo.getUserid());			
+		}
 		
 		return msg;
 	}
+
 	
 	@RequestMapping("myPage.do")
 	public String myPage() throws Exception{

@@ -29,4 +29,14 @@ public class NikeImpl implements NikeService {
 	public NikeVO selectGoodsDetail(NikeVO vo) throws Exception {
 		return nikeDAO.selectGoodsDetail(vo);
 	}
+
+	@Override
+	public int selectIdCheck(String userid) throws Exception {
+		return nikeDAO.selectIdCheck(userid);
+	}
+
+	@Override
+	public int selectMemberCertify(NikeVO vo) throws Exception {
+		return nikeDAO.selectMemberCertify(vo);
+	}
 }

@@ -180,7 +180,7 @@
 				           </textarea>
 				       <fieldset class="fregister_agree">
 				           <label for="agree11">회원가입약관의 내용에 동의합니다.</label>
-				           <input type="checkbox" name="agree" value="1" id="agree11">
+				           <input type="checkbox" name="agree" value="1" id="agree11" checked>
 				       </fieldset>
 				   </div>
 				
@@ -295,7 +295,7 @@
 				          + 개인정보침해신고센터 (www.cyberprivacy.or.kr, 전화 : 02-1336)</textarea>
 				       <fieldset class="fregister_agree">
 				           <label for="agree11">개인정보처리방침안내의 내용에 동의합니다</label>
-				           <input type="checkbox" name="agree" value="1" id="agree11">
+				           <input type="checkbox" name="agree" value="1" id="agree11" checked>
 				       </fieldset>
 				   </div>
 				   <div class="submit">
