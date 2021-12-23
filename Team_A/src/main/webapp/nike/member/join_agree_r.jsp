@@ -299,7 +299,7 @@
 				       </fieldset>
 				   </div>
 				   <div class="submit">
-				       <a href="joinWrite.do"><input class="" type="submit" value="회원가입"></a>
+				       <a href="joinWrite.do"><input class="" type="submit" value="약관동의"></a>
 				   </div>
 				   </div>
 			</article>

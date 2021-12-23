@@ -222,6 +222,47 @@ public class NikeController {
 		return msg;
 	} 
 	
+	@RequestMapping("memberModifySave.do")
+	@ResponseBody
+	public String updateMember( NikeVO vo, HttpSession session ) throws Exception {
+		
+		String msg = "ok";
+		
+		String userid = (String)session.getAttribute("MemberSessionId");
+		vo.setUserid(userid);
+		/*
+		 *  회원 아이디/암호 일치 검사;; userid + pass
+		 */
+		int cnt = nikeService.selectMemberCertify(vo);
+		
+		if( cnt == 0 ) {
+			msg = "er1";
+		} else {	
+	
+		    int result = nikeService.updateMember(vo);
+			if( result == 0 ) {
+				msg = "save_fail";
+			}
+		} 
+		
+		return msg;
+	} 
+	
+	@RequestMapping("memberModify.do")
+	public String selectMemberDetail(NikeVO vo , 
+									 HttpSession session ,
+									 Model model ) throws Exception {
+		
+		String userid = (String)session.getAttribute("MemberSessionId");
+		vo.setUserid(userid);
+
+		vo = nikeService.selectMemberDetail(vo);
+		model.addAttribute("vo",vo);
+		
+		return "nike/member/memberModify";
+	}
+
+	
 	@RequestMapping("id_check.do")
 	@ResponseBody
 	public String selectMemberIdCheck( String userid ) throws Exception {
@@ -273,7 +314,11 @@ public class NikeController {
 		
 		return msg;
 	}
-
+	@RequestMapping("findInfo.do")
+	public String findInfo() throws Exception{
+		
+		return "nike/member/find_info_r";
+	}
 	
 	@RequestMapping("myPage.do")
 	public String myPage() throws Exception{

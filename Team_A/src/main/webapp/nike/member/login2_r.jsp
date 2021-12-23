@@ -177,13 +177,13 @@ function fn_logout(){
 						</tr>
 						<tr>
 							<td>
-								<a href="#">
+								<a href="myPage.do">
 								<input type="button" value="마이페이지" class="input3"></a>
 							</td>
 						</tr>					
 						<tr>
 							<td>
-								<a href="#">
+								<a href="memberModify.do">
 								<input type="button" value="정보수정" class="input4"></a>
 							</td>
 						</tr>

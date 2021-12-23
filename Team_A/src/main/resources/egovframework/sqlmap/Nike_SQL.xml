@@ -111,20 +111,39 @@
 				WHERE 
 					userid=#userid# AND pass=#pass#
 	</select>
+	
+  <select id="nikeDAO.selectMemberDetail" resultClass="nikeVO">
+		SELECT  userid,
+			    pass,
+			    name,
+			    birth,
+			    phone,
+			    email,
+			    zipcode,
+			    address1,
+			    address2,
+			    rdate,
+			    udate
+		   FROM 
+		        userinfo 
+		  WHERE 
+		        userid=#userid#
+	
+	</select>
 
 	<insert id="nikeDAO.insertJoin">
-		INSERT INTO USERINFO(
-				    USERID,
-				    PASS,
-				    NAME,
-				    BIRTH,
-				    PHONE,
-				    EMAIL,
-				    ZIPCODE,
-				    ADDRESS1,
-				    ADDRESS2,
-				    RDATE,
-				    UDATE
+		INSERT INTO userinfo(
+				    userid,
+				    pass,
+				    name,
+				    birth,
+				    phone,
+				    email,
+				    zipcode,
+				    address1,
+				    address2,
+				    rdate,
+				    udate
 				) VALUES (
 				    #userid#,
 				    #pass#,
@@ -139,6 +158,21 @@
 				    sysdate
 				)
 	</insert>
+	
+	<update id="nikeDAO.updateMember">
+		UPDATE userinfo set 
+						    name=#name#,
+						    birth=#birth#,
+						    phone=#phone#,
+						    email=#email#,
+						    zipcode=#zipcode#,
+						    address1=#address1#,
+						    address2=#address2#,						    
+						    udate=sysdate
+						WHERE userid=#userid#
+	
+	</update>
+	
 	
 	<update id="nikeDAO.updateGoodsInfoHits">
 		UPDATE 

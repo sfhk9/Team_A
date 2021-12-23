@@ -57,5 +57,15 @@ public class NikeImpl implements NikeService {
 		return nikeDAO.selectMemberCertify(vo);
 	}
 
+	@Override
+	public int updateMember(NikeVO vo) throws Exception {
+		return nikeDAO.updateMember(vo);
+	}
+
+	@Override
+	public NikeVO selectMemberDetail(NikeVO vo) throws Exception {
+		return nikeDAO.selectMemberDetail(vo);
+	}
+
 
 }
