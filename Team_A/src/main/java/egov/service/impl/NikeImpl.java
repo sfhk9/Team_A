@@ -16,6 +16,11 @@ public class NikeImpl implements NikeService {
 	NikeDAO nikeDAO;
 
 	@Override
+	public List<?> selectHitGoodsList() {
+		return nikeDAO.selectHitGoodsList();
+	}
+	
+	@Override
 	public List<?> selectGoodsList(NikeVO vo) throws Exception {
 		return nikeDAO.selectGoodsList(vo);
 	}
@@ -33,12 +38,24 @@ public class NikeImpl implements NikeService {
 	@Override
 	public void updateGoodsInfoHits(NikeVO vo) throws Exception {
 		nikeDAO.updateGoodsInfoHits(vo);
+
 	}
+
 
 	@Override
 	public NikeVO selectTab1(NikeVO vo) throws Exception {
 		return nikeDAO.selectTab1(vo);
 	}
 
-	
+	@Override
+	public int selectIdCheck(String userid) throws Exception {
+		return nikeDAO.selectIdCheck(userid);
+	}
+
+	@Override
+	public int selectMemberCertify(NikeVO vo) throws Exception {
+		return nikeDAO.selectMemberCertify(vo);
+	}
+
+
 }

@@ -7,83 +7,122 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+	<title>회원가입</title>
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">	
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<script> window.MSInputMethodContext && document.documentMode && document.write('<script src="https://cdn.jsdelivr.net/gh/nuxodin/ie11CustomProperties@4.1.0/ie11CustomProperties.min.js"><\/script>'); </script>
 	<link rel="stylesheet" href="${path}/css/main.css">
 	<link rel="stylesheet" href="${path}/css/mem_join.css">
-	<title>회원가입</title>
-</head>
-<script>
-$(function() {
 	
-		$("#btn_save").click(function(){  
+</head>
+<style>
+.font_green {
+	color : green;
+}
+.font_red {
+	color : red;
+}
+
+</style>
+<script>
+function fn_idchk(userid) {
+	var msg = "";
+	var len = userid.length;
+	if( len  < 4 || len > 12 ) {
+		msg = "<span class='font_red'>아이디는 4자리 ~ 12자 사이로 입력바랍니다.</span>";
+	} else {
+		$.ajax({
+			type :"post",
+			url  :"id_check.do",
+			data :"userid="+userid, 
 			
-			if( $.trim($("#userid").val()) == "" ) {
-				alert("아이디를 입력해주세요.");
-				$("#userid").focus();
-				return false;
-			}
-			if( $.trim($("#pass").val()) == "" ) {
-				alert("암호를 입력해주세요.");
-				$("#pass").focus();
-				return false;
-			}
-			if( $.trim($("#name").val()) == "" ) {
-				alert("이름을 입력해주세요.");
-				$("#name").focus();
-				return false;
-			}
-			if( $.trim($("#birth").val()) == "" ) {
-				alert("생년월일을 입력해주세요.");
-				$("#birth").focus();
-				return false;
-			}
-			if( $.trim($("#phone").val()) == "" ) {
-				alert("핸드폰 번호를 입력해주세요.");
-				$("#phone").focus();
-				return false;
-			}
-			if( $.trim($("#email").val()) == "" ) {
-				alert("email을 입력해주세요.");
-				$("#email").focus();
-				return false;
-			}
-			if( $.trim($("#address1").val()) == "" ) {
-				alert("주소를 입력해주세요.");
-				$("#address1").focus();
-				return false;
-			}
-			if( $.trim($("#address2").val()) == "" ) {
-				alert("상세주소를 입력해주세요.");
-				$("#address2").focus();
-				return false;
-			}
-			var formdata = $("#frm").serialize();
-			
-			$.ajax({
-				type : "POST",
-				url  : "joinWriteSave.do",
-				data : formdata,
+			datatype : "text",
+			success  : function(data){
+				if( data == "ok" ) msg = "<span class='font_green'>사용 가능한 아이디 입니다.</span>";
+				else if( data == "er1" ) msg = "<span class='font_red'>첫 글자는영문, 아이디는 영문+숫자+특수문자(_,-)의 혼합으로만 구성해주세요.</span>";
+				else msg = "<span class='font_red'>이미 사용중인 아이디 입니다.</span>";
 				
-				datatype : "text",
-				success : function(data) {  
+				$("#id_chk_msg").html(msg);
+			},
+			error : function() {   }
+			
+		});
+	}
+	$("#id_chk_msg").html(msg);
+}
+
+$(function(){
+	
+	$("#btn_save").click(function(){
+		
+		if( $("#userid").val() == "" ) {
+			alert("아이디를 입력해주세요.");
+			$("#userid").focus();
+			return false;				
+		}
+		if( $("#pass").val() == "" ) {
+			alert("암호를 입력해주세요.");
+			$("#pass").focus();
+			return false;				
+		}
+		if( $("#pass").val() != $("#pass_chk").val()  ) {
+			alert("암호가 서로 일치하지 않습니다.");
+			$("#pass").focus();
+			return false;				
+		}
+		if( $("#name").val() == "" ) {
+			alert("이름을 입력해주세요.");
+			$("#name").focus();
+			return false;				
+		}
+		if( $("#birth").val() == "" ) {
+			alert("생년월일을 선택해주세요.");
+			$("#birth").focus();
+			return false;				
+		}
+		if( $("#email").val() == "" ) {
+			alert("E-mail을 입력해주세요.");
+			$("#email").focus();
+			return false;				
+		}
+		if( $("#address1").val() == "" ) {
+			alert("주소를 입력해주세요.");
+			$("#address1").focus();
+			return false;				
+		}
+		if( $("#address2").val() == "" ) {
+			alert("상세주소를 입력해주세요.");
+			$("#address2").focus();
+			return false;				
+		}
+		var formdata = $("#frm").serialize();
+		
+		$.ajax({
+			type : "post",
+			url  : "joinWriteSave.do",
+			data : formdata,
+			
+			datatype : "text",
+			success : function(data) {
 					if(data == "ok") {
-						alert("저장완료");
-						location="joinWrite.do";
+						alert("저장 완료");
+					} else if(data == "er1") {
+						alert("이미 사용중인 아이디 입니다.");
 					} else {
-						alert("저장실패");
+						alert("저장 실패");
 					}
-				},
-			    error : function() {
-			    	alert("오류발생");
-			    }
-			});
+			},
+			error : function() {
+				alert("저장오류!!");
+			}
+			
 		});
 	});
+});
 </script>
 <body>
 	<header>
@@ -94,8 +133,6 @@ $(function() {
 	</nav>
 		<div class="wrap">
 		<section>
-			<aside>
-			</aside>
 			<article>
 				<form id="frm">
 					<table class="mem_tbl">
@@ -103,20 +140,28 @@ $(function() {
 						<tr>
 							<th>아이디</th>
 							<td><span class="mem_str">영문,숫자만 입력 가능. 최소 3자이상 입력하세요.<br></span>
-							<input type="text" name="userid" id="userid" class="inputBox" placeholder=" 아이디를 입력해주세요." autofocus>
-							
+							<input type="text" 
+								   name="userid" 
+								   id="userid" 
+								   class="inputBox" 						  				  
+								   onkeyup="fn_idchk(this.value)"
+                        		   maxlength="12"
+                        		   placeholder=" 아이디를 입력해주세요." 	
+                        		   autofocus>
+							 <span id="id_chk_msg"></span>
 							</td>
 						</tr>
 						<tr>
 							<th>비밀번호</th>
 							<td><input type="password" name="pass" id="pass" class="inputBox" placeholder=" 비밀번호를 입력해주세요."></td>
 						</tr>
-				
+						<tr>
+                    		<th>비밀번호 확인</th>
+                    		<td><input type="password" name="pass_chk" id="pass_chk" class="inputBox"></td>
+                		</tr>
 					</table>
 					<table class="mem_tbl">
-						<colgroup>
 						
-						</colgroup>
 						<caption class="mem_cap">개인 정보 입력</caption>
 						<tr>
 							<th>이름</th>
@@ -149,15 +194,13 @@ $(function() {
 						</tr>
 					</table>
 					<div class="mem_div_btn">
-						<button type="button" class="mem_btn1" id="btn_save">회원가입</button>
+						<button type="submit" class="mem_btn1" id="btn_save" onclick="return false;">회원가입</button>
 						<button type="reset" class="mem_btn2">취소</button>
 					</div>
 				</form>
 				
 			</article>
-			<aside>
 			
-			</aside>
 		</section>
 	</div>
 	<footer>

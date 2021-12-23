@@ -315,6 +315,7 @@ $(function(){
 			</aside>
 		</section>
 	</div>
+	
 	<footer>
 		<%@include file="./include/footer.jsp" %>
 	</footer>

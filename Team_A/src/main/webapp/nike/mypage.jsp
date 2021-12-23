@@ -14,7 +14,7 @@
 	<script> window.MSInputMethodContext && document.documentMode && document.write('<script src="https://cdn.jsdelivr.net/gh/nuxodin/ie11CustomProperties@4.1.0/ie11CustomProperties.min.js"><\/script>'); </script>
 	<link rel="stylesheet" href="${path}/css/main.css">
 	<link rel="stylesheet" href="${path}/css/mypage.css">
-	<title>Document</title>
+	<title>마이페이지</title>
 </head>
 
 <body>
@@ -48,7 +48,7 @@
                 </div>
 			</aside>
 			<article>
-				<form name="frm" method="post" action="joinSave.jsp">
+				<form name="frm" method="post" >
 					<div class="div_content">
 						<table class="tbl_list">
 							<caption>최근 쇼핑 내용</caption>
