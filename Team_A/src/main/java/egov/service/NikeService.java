@@ -4,6 +4,9 @@ import java.util.List;
 
 public interface NikeService {
 
+	//인기 상품 리스트 서비스
+	List<?> selectHitGoodsList();
+	
 	//상품 리스트 서비스
 	List<?> selectGoodsList(NikeVO vo) throws Exception;
 	
@@ -21,5 +24,7 @@ public interface NikeService {
 
 	// 로그인 검증
 	int selectMemberCertify(NikeVO vo)throws Exception;
+
+	
 
 }

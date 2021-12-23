@@ -64,123 +64,17 @@ $(function(){
 			</aside>
 			<article>
 				<form name="frm" method="post" action="joinSave.jsp">
-					
+					<!-- 메인이미지 -->
 					<div class="mainimg">
-						
+						<img src="../nike/images/main.png"  height="300" width="700">
 					</div>
+					
+					<!-- 추천상품 -->
 					<div class="rec_title">추천 상품</div>
 					<div class="recommends">
-						<div class="item">     
-	                        <img src="./img/img_item.jfif" class="item_img">
-	                        <div class="item_container">
-	                            <div class="item_name">
-					                                상품이름 상품이름 <br>
-					                                상품이름 상품이름
-	                            </div>
-	                            <div class="div_color">
-	                                <div class="item_color" style="background-color:blue;"></div>
-	                                <div class="item_color" style="background-color:red;"></div>
-	                            </div>
-	                        </div>
-	
-	                        <div class="item_price">
-	                            <div class="price_cancel">
-	                                999,999원
-	                            </div>
-	                            <div class="price_sale">
-	                                999,999원
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="item">     
-	                        <img src="./img/img_item.jfif" class="item_img">
-	                        <div class="item_container">
-	                            <div class="item_name">
-					                                상품이름 상품이름 <br>
-					                                상품이름 상품이름
-	                            </div>
-	                            <div class="div_color">
-	                                <div class="item_color" style="background-color:blue;"></div>
-	                                <div class="item_color" style="background-color:red;"></div>
-	                            </div>
-	                        </div>
-	
-	                        <div class="item_price">
-	                            <div class="price_cancel">
-	                                999,999원
-	                            </div>
-	                            <div class="price_sale">
-	                                999,999원
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="item">     
-	                        <img src="./img/img_item.jfif" class="item_img">
-	                        <div class="item_container">
-	                            <div class="item_name">
-					                                상품이름 상품이름 <br>
-					                                상품이름 상품이름
-	                            </div>
-	                            <div class="div_color">
-	                                <div class="item_color" style="background-color:blue;"></div>
-	                                <div class="item_color" style="background-color:red;"></div>
-	                            </div>
-	                        </div>
-	
-	                        <div class="item_price">
-	                            <div class="price_cancel">
-	                                999,999원
-	                            </div>
-	                            <div class="price_sale">
-	                                999,999원
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="item">     
-	                        <img src="./img/img_item.jfif" class="item_img">
-	                        <div class="item_container">
-	                            <div class="item_name">
-					                                상품이름 상품이름 <br>
-					                                상품이름 상품이름
-	                            </div>
-	                            <div class="div_color">
-	                                <div class="item_color" style="background-color:blue;"></div>
-	                                <div class="item_color" style="background-color:red;"></div>
-	                            </div>
-	                        </div>
-	
-	                        <div class="item_price">
-	                            <div class="price_cancel">
-	                                999,999원
-	                            </div>
-	                            <div class="price_sale">
-	                                999,999원
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="item">     
-	                        <img src="./img/img_item.jfif" class="item_img">
-	                        <div class="item_container">
-	                            <div class="item_name">
-					                                상품이름 상품이름 <br>
-					                                상품이름 상품이름
-	                            </div>
-	                            <div class="div_color">
-	                                <div class="item_color" style="background-color:blue;"></div>
-	                                <div class="item_color" style="background-color:red;"></div>
-	                            </div>
-	                        </div>
-	
-	                        <div class="item_price">
-	                            <div class="price_cancel">
-	                                999,999원
-	                            </div>
-	                            <div class="price_sale">
-	                                999,999원
-	                            </div>
-	                        </div>
-	                    </div>
+						<%@include file="./subList.jsp" %>   
 					</div>
+					
 					
 					<div class="div_tbl">
 						<table class="tbl_list" style="margin-right:20px;">

@@ -4,6 +4,37 @@
 	<typeAlias  alias="egovMap"  type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="nikeVO" type="egov.service.NikeVO"/>
 	
+	<select id="nikeDAO.selectHitGoodsList" resultClass="egovMap">
+	
+		SELECT b.* FROM  (	
+			SELECT 
+				rownum rn, a.* 
+			FROM  (
+			
+				SELECT 
+					unq,
+					category,
+					ctgtype,
+					ctggender,
+					price,
+					csize,
+					color,
+					thumbnail,
+                    hits,
+					substr(name,0,20) name
+				FROM 
+					goodsinfo	
+				ORDER BY 
+					hits DESC	
+								
+			) a
+		) b
+		
+		
+		WHERE rn >= 1  AND rn <![CDATA[<=]]> 6
+
+	</select>
+	
 	<select id="nikeDAO.selectGoodsList" resultClass="egovMap">
 	
 		SELECT b.* FROM  (	

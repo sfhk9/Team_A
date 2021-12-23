@@ -25,7 +25,16 @@ public class NikeController {
 	@Resource(name = "nikeService")
 	NikeService nikeService;
 	
-	
+	@RequestMapping("mainpage.do")
+	public String mainpage( Model model ) throws Exception {
+		
+		List<?> list = nikeService.selectHitGoodsList();
+		
+		System.out.println("리스트"+list);
+  
+		model.addAttribute("list",list);
+		return "nike/mainpage";
+	}
 	
 	@RequestMapping("goodsList.do")
 	public String goodsList( NikeVO vo, Model model ) throws Exception {
