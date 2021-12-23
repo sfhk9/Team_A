@@ -28,7 +28,7 @@
 	 	width:60px;
 		height:58px;
 		margin-top:10px;
-		margin-left:4px;
+		margin-left:4px;`
 		margin-right:4px;
 		
 		border:1px solid #ffccee;
@@ -51,85 +51,53 @@ $(function(){
 	var t3 = $("#tab3");
 	var t4 = $("#tab4");
 	
-	/*탭에 들어갈 내용 부분 - 제품정보 탭*/
-	var content1=""+
-				"첫번째 탭입니다<br>"+
-				"여러줄 작성 예시<br>"+
-				"한줄 씩 작성 후 <br>"+
-				"+로 연결하면 됩니다<br>"+
-				"<%String msg="jsp 주석을 쌍 따옴표 안에서 넣고, 마찬가지로 한줄씩 분리하면 jsp도 가능";%>"+
-				"<%=msg%> <br>" +
-				
-				"<%
-	      		String goodsimg = (String)pageContext.getAttribute("goodsimg") ;
-				if(goodsimg != null && !goodsimg.equals("")) {
-					String[]  array1 = goodsimg.split("/");
-					for( int i=0; i<array1.length; i++ ) {
-						if(i < array1.length ) {
-				%>" +
-						"<span><img src=./nike/goods/${vo.unq}/"<%=array1[i] %>"/></span><br>"
-				"<%
-						}
-					}
-				}
-				%>";
-
-	/*탭에 들어갈 내용 부분 - 구매후기 탭*/		
-	var content2= "<div id='mydiv'></div>";
-				
-	/*탭에 들어갈 내용 부분 - 상품문의 탭*/				
-	var content3=""+
-				"세번째 탭입니다<br>"+
-				"여러줄 작성 예시<br>"+
-				"한줄 씩 작성 후 <br>"+
-				"+로 연결하면 됩니다<br>"+
-				"<%=msg%>";
-
-	/*탭에 들어갈 내용 부분 - 추천상품 탭*/
-	var content4=""+
-				"네번째 탭입니다<br>"+
-				"여러줄 작성 예시<br>"+
-				"한줄 씩 작성 후 <br>"+
-				"+로 연결하면 됩니다<br>"+
-				"<%=msg%>";
-
-	$("#content_view").html(content1);
+	//제품정보 기본으로 설정
+	//$("#content_view").html(content1);
+	
+	/* 제품정보 탭 */
 	t1.click(function(){
 		t1.css({"background-color":"black","color":"white"});
 		t2.css({"background-color":"white","color":"black"});
 		t3.css({"background-color":"white","color":"black"});
 		t4.css({"background-color":"white","color":"black"});
-		
-		$("#content_view").html(content1);
+		$("#content_view").load("/goodsDetail.do #test123");
+	});
+	$("#tb1").click(function() {
+		$("#content_view").load("/detailTab1.do #tabtab1");
 	});
 	
+	/* 구매후기 탭 */
 	t2.click(function(){
 		t1.css({"background-color":"white","color":"black"});
 		t2.css({"background-color":"black","color":"white"});
 		t3.css({"background-color":"white","color":"black"});
 		t4.css({"background-color":"white","color":"black"});
-		
-		$("#content_view").html(content2);
+	});
+	$("#tb2").click(function() {
+		$("#content_view").load("/detailTab1.do");
 	});
 	
+	/* 상품문의 탭 */	
 	t3.click(function(){
 		t1.css({"background-color":"white","color":"black"});
 		t2.css({"background-color":"white","color":"black"});
 		t3.css({"background-color":"black","color":"white"});
 		t4.css({"background-color":"white","color":"black"});
-		
-		$("#content_view").html(content3);
+	});
+	$("#tb3").click(function() {
+		$("#content_view").load("/nike/detailTab1.jsp");
 	});
 	
+	/* 추천상품 탭 */
 	t4.click(function(){
 		t1.css({"background-color":"white","color":"black"});
 		t2.css({"background-color":"white","color":"black"});
 		t3.css({"background-color":"white","color":"black"});
 		t4.css({"background-color":"black","color":"white"});
-		
-		$("#content_view").html(content4);
 	});
-	
+	$("#tb4").click(function() {
+		$("#content_view").load("/nike/detailTab1.jsp #tabtab4");
+	});
 	/*
 	// 썸네일 마우스 휠 이벤트 
 	$("#info_th").on('mousewheel',function(e){
@@ -285,12 +253,6 @@ $(function(){
 										}
 									}
 									%>
-									<span class="imgs" style="font-size:40px;"> df1 </span>
-									<span class="imgs" style="font-size:40px;"> df2 </span>
-									<span class="imgs" style="font-size:40px;"> df3 </span>
-									<span class="imgs" style="font-size:40px;"> df4 </span>
-									
-																		
 								</div>
 							</td>
 							<td class="info_td6">
@@ -307,15 +269,32 @@ $(function(){
 							* 탭 클릭시 배경색, 글자색 변경됨
 							* 탭 클릭시 innerHTML 등을 활용하여 content 부분을 바꿀 예정
 						 -->
-						<td class="content_td" id="tab1" style="background-color:black;color:white;"><div class="content_tab">제품정보</div></td>
-						<td class="content_td" id="tab2"><div class="content_tab">구매후기</div></td>
-						<td class="content_td" id="tab3"><div class="content_tab">상품문의</div></td>
-						<td class="content_td" id="tab4"><div class="content_tab">추천상품</div></td>
+						<td class="content_td" id="tab1" style="background-color:black;color:white;"><div id="tb1" class="content_tab">제품정보</div></td>
+						<td class="content_td" id="tab2"><div id="tb2" class="content_tab">구매후기</div></td>
+						<td class="content_td" id="tab3"><div id="tb3" class="content_tab">상품문의</div></td>
+						<td class="content_td" id="tab4"><div id="tb4" class="content_tab">추천상품</div></td>
 					</tr>
 					<tr>
 						<td colspan="4">
 							<div id="content_view">
-								페이지 오류 발생
+								페이지 오류 발생 111
+								
+								<p id="test123">
+		 	<c:set var="goodsimg" value="${vo.goodsimg }" />
+			<%
+	      		String goodsimg = (String)pageContext.getAttribute("goodsimg") ;
+				if(goodsimg != null && !goodsimg.equals("")) {
+					String[] array = goodsimg.split("/");
+					for( int i=0; i<array.length; i++ ) {
+						if(i < array.length ) {
+			%>
+							<span><img src="./nike/goods/${vo.unq}/<%=array[i] %>"/></span><br>
+			<%
+						}
+					}
+				}
+			%>
+		</p>
 							</div>
 						</td>
 					</tr>
@@ -336,6 +315,7 @@ $(function(){
 			</aside>
 		</section>
 	</div>
+	
 	<footer>
 		<%@include file="./include/footer.jsp" %>
 	</footer>

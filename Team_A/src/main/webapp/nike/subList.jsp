@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+
 <!-- 상품리스트 시작//////////////////////////////////////////////  -->
 <c:forEach var="result" items="${list}" varStatus="status" >
-	<div class="item">  
+	<div class="item" OnClick="location.href ='/goodsDetail.do?unq=${result.unq}'">  
 	
-		
 		<!-- 썸네일 출력////////////// -->
 		<c:set var="thumbnail" value="${result.thumbnail }" />
 		<%

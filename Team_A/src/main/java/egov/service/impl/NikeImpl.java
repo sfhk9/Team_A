@@ -16,6 +16,11 @@ public class NikeImpl implements NikeService {
 	NikeDAO nikeDAO;
 
 	@Override
+	public List<?> selectHitGoodsList() {
+		return nikeDAO.selectHitGoodsList();
+	}
+	
+	@Override
 	public List<?> selectGoodsList(NikeVO vo) throws Exception {
 		return nikeDAO.selectGoodsList(vo);
 	}
@@ -31,7 +36,18 @@ public class NikeImpl implements NikeService {
 	}
 
 	@Override
-<<<<<<< HEAD
+	public void updateGoodsInfoHits(NikeVO vo) throws Exception {
+		nikeDAO.updateGoodsInfoHits(vo);
+
+	}
+
+
+	@Override
+	public NikeVO selectTab1(NikeVO vo) throws Exception {
+		return nikeDAO.selectTab1(vo);
+	}
+
+	@Override
 	public int selectIdCheck(String userid) throws Exception {
 		return nikeDAO.selectIdCheck(userid);
 	}
@@ -39,9 +55,17 @@ public class NikeImpl implements NikeService {
 	@Override
 	public int selectMemberCertify(NikeVO vo) throws Exception {
 		return nikeDAO.selectMemberCertify(vo);
-=======
-	public void updateGoodsInfoHits(NikeVO vo) throws Exception {
-		nikeDAO.updateGoodsInfoHits(vo);
->>>>>>> branch 'master' of https://github.com/sfhk9/Team_A.git
 	}
+
+	@Override
+	public int updateMember(NikeVO vo) throws Exception {
+		return nikeDAO.updateMember(vo);
+	}
+
+	@Override
+	public NikeVO selectMemberDetail(NikeVO vo) throws Exception {
+		return nikeDAO.selectMemberDetail(vo);
+	}
+
+
 }

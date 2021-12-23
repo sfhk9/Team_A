@@ -25,7 +25,16 @@ public class NikeController {
 	@Resource(name = "nikeService")
 	NikeService nikeService;
 	
-	
+	@RequestMapping("mainpage.do")
+	public String mainpage( Model model ) throws Exception {
+		
+		List<?> list = nikeService.selectHitGoodsList();
+		
+		System.out.println("리스트"+list);
+  
+		model.addAttribute("list",list);
+		return "nike/mainpage";
+	}
 	
 	@RequestMapping("goodsList.do")
 	public String goodsList( NikeVO vo, Model model ) throws Exception {
@@ -43,17 +52,15 @@ public class NikeController {
 		return "nike/goodsList";
 	}
 	
-	@RequestMapping("goodsListAdd.do")
-	@ResponseBody
-	public List<?> goodsListAdd( NikeVO vo, Model model ) throws Exception {
+	@RequestMapping("addList.do")
+	public String addList( NikeVO vo, Model model ) throws Exception {
 		
 		// 현재 출력할 페이지 번호
 		int page_no = vo.getPage_no();
 
 		int s_no = ((page_no - 1) * 12) + 1;
 		int e_no = s_no + (12-1);
-		
-		vo.setS_no(s_no);
+	
 		vo.setE_no(e_no);
 		/////
 		
@@ -63,12 +70,15 @@ public class NikeController {
 		///
 		
 		List<?> list = nikeService.selectGoodsList(vo);
-
-		System.out.println(list);
 		
-		return list;
+		System.out.println("리스트"+list);
+  
+		model.addAttribute("list",list);
+		
+		return "nike/addList";
 	}
 	
+
 	
 	// sql 작성 함수
 	public String getSetSql( NikeVO vo ) {
@@ -173,6 +183,14 @@ public class NikeController {
 		model.addAttribute("vo",vo);
 		
 		return "nike/goodsDetail";
+	}
+	@RequestMapping("detailTab1.do")
+	public String detailTab1(NikeVO vo, Model model) throws Exception {
+		
+		vo = nikeService.selectTab1(vo);
+		model.addAttribute("vo",vo);
+		
+		return "nike/detailTab1";
 	}
 
 	

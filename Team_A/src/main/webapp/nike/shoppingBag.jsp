@@ -33,28 +33,28 @@
 						<tr>
 							<td colspan="4" class="td1">
 								<input type="checkbox" id="allchk"> 전체 선택 | 
-								<span id="">선택삭제</span>
+								<span id="unchk" class="unchk">선택삭제</span>
 							</td>
 						</tr>
-						<tr class="td3">
-							<td>
+						<tr>
+							<td class="td2">
 								<input type="checkbox" id="chk" value="">
-								<img src="" style="">
+								<img src="#" style="img_bag">
 							</td>
-							<td>
+							<td class="td3">
 								[유니우] 후드 / 신상 / 봄 가을 특앙면 / M~XXL 사이즈 <br>
 								옵션 ㅣ 프리즈 / 후드기모 / 블랙 L <br>
 								<input type="text">
 								<button type="button">옵션변경</button>
 							</td>
-							<td>
+							<td class="td4">
 								23,900원
-								<button type="button">옵션변경</button>
+								<button type="button" class=" ">옵션변경</button>
 							</td>
-							<td class="td6">무료배송</td>
+							<td class="td5">무료배송</td>
 						</tr>
 						<tr>
-							<td colspan="4"class="td7">
+							<td colspan="4"class="td6">
 								스토어 주문 합
 								<span>상품금액</span>
 								23,900원

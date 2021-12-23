@@ -24,6 +24,7 @@ public class NikeVO {
 	private String csize;			// 옷사이즈
 	private String color;
 	private String thumbnail;
+	private String goodsimg;
 	
 	private int price = 0;
 	private int pricemin = 0;
@@ -349,4 +350,12 @@ public class NikeVO {
 	public void setPricemax(int pricemax) {
 		this.pricemax = pricemax;
 	}
+	public String getGoodsimg() {
+		return goodsimg;
+	}
+	public void setGoodsimg(String goodsimg) {
+		this.goodsimg = goodsimg;
+	}
+	
+	
 }
