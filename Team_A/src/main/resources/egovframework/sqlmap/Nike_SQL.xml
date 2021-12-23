@@ -56,6 +56,16 @@
 		WHERE
 				unq=#unq#
 	</select>
+
+	<select id="nikeDAO.selectTab1" resultClass="nikeVO">
+		SELECT
+				unq,
+				goodsimg
+		FROM
+				goodsinfo
+		WHERE
+				unq=#unq#
+	</select>
 	
 	<insert id="nikeDAO.insertJoin">
 		INSERT INTO USERINFO(

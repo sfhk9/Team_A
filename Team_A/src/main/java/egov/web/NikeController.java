@@ -172,6 +172,14 @@ public class NikeController {
 		
 		return "nike/goodsDetail";
 	}
+	@RequestMapping("detailTab1.do")
+	public String detailTab1(NikeVO vo, Model model) throws Exception {
+		
+		vo = nikeService.selectTab1(vo);
+		model.addAttribute("vo",vo);
+		
+		return "nike/detailTab1";
+	}
 
 	
 	@RequestMapping("Login.do")

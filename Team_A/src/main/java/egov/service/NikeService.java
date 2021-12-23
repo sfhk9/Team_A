@@ -15,5 +15,9 @@ public interface NikeService {
 	
 	// 조회수 증가 서비스
 	void updateGoodsInfoHits(NikeVO vo) throws Exception;
+	
+	// detail Tab부분
+	NikeVO selectTab1(NikeVO vo) throws Exception;
+	
 
 }
