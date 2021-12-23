@@ -38,4 +38,12 @@ public class NikeDAO extends EgovAbstractDAO {
 
 	}
 
+	public int updateMember(NikeVO vo) {
+		return update("nikeDAO.updateMember",vo);
+	}
+
+	public NikeVO selectMemberDetail(NikeVO vo) {
+		return (NikeVO) select("nikeDAO.selectMemberDetail",vo);
+	}
+
 }

@@ -17,9 +17,15 @@ public interface NikeService {
 	void updateGoodsInfoHits(NikeVO vo) throws Exception;
 
 	// Id 중복체크
-	int selectIdCheck(String userid)throws Exception;
+	int selectIdCheck(String userid) throws Exception;
 
 	// 로그인 검증
-	int selectMemberCertify(NikeVO vo)throws Exception;
+	int selectMemberCertify(NikeVO vo) throws Exception;
+	
+	// 회원정보 업데이트
+	int updateMember(NikeVO vo) throws Exception;
+	
+	// 회원정보 수정
+	NikeVO selectMemberDetail(NikeVO vo) throws Exception;
 
 }

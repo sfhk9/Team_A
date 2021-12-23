@@ -51,34 +51,15 @@
 	                       class="email_input required">
 	            </div>
 	        </fieldset>
-	
-	        <fieldset id="info" class="cah">
-	            <div class="captcha-box">
-	                <img class="capcha">
-	                <button type="button" id="captcha_sound">
-	                    <span></span>
-	                </button>
-	                <button type="button" id="captcha_reload">
-	                    <span></span>
-	                </button>
-	                <input type="text"
-	                	   name="captcha_key" 
-	                	   id="captcha_key" 
-	                	   required="" 
-	                	   class="captcha_box required" 
-	                	   size="6"
-	                       maxlength="6">
-	            </div>
-	
-	            <span id="captcha_info">자동등록방지 숫자를 순서대로 입력하세요.</span>
-	        </fieldset>
-	
 	        <div class="win_btn">
 	            <input type="submit" 
 	             	   value="확인" 
 	             	   class="btn_submit" 
 	             	   onclick="CheckEmail()">
-	            <button type="button" onclick="window.close();">창닫기</button>
+	            <input type="button" 
+	            	   value="창닫기" 
+	            	   class="btn_submit2"  
+	            	   onclick="window.close();">
 	        </div>
 	    </div>
 	</div>
