@@ -49,7 +49,7 @@ public class NikeController {
   
 		model.addAttribute("list",list);
 		
-		return "nike/goodsList";
+		return "nike/nikeweb/goodsList";
 	}
 	
 	@RequestMapping("addList.do")
