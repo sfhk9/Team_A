@@ -30,6 +30,12 @@
 			<article>
 				<div class="">
 					<table class="tbl_bag">
+						<colgroup>
+							<col width="20%" />
+							<col width="*" />
+							<col width="20%" />
+							<col width="20%" />
+						</colgroup>
 						<tr>
 							<td colspan="4" class="td1">
 								<input type="checkbox" id="allchk"> 전체 선택 | 
@@ -49,12 +55,12 @@
 							</td>
 							<td class="td4">
 								23,900원
-								<button type="button" class=" ">옵션변경</button>
+								<button type="button" class=" ">바로 구매</button>
 							</td>
 							<td class="td5">무료배송</td>
 						</tr>
 						<tr>
-							<td colspan="4"class="td6">
+							<td colspan="4" class="td6">
 								스토어 주문 합
 								<span>상품금액</span>
 								23,900원
@@ -71,7 +77,7 @@
 	                        <table class="tbl_pass">
 	                            <colgroup>
 	                                <col width="40%" />
-	                                <col width="60$" />
+	                                <col width="60%" />
 	                            </colgroup>
 	                            <tr>
 	                                <td>상품금액</td>
