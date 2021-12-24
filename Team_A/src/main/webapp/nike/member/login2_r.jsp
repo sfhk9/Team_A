@@ -147,7 +147,7 @@ function fn_logout(){
 						</tr>
 						<tr>
 							<td>
-								<a href="find_info_r.jsp">
+								<a href="findInfo.do">
 								<input type="button" value="아이디/비번찾기" class="input3"></a>
 							</td>
 						</tr>

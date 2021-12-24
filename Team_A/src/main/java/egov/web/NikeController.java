@@ -287,7 +287,7 @@ public class NikeController {
 	@RequestMapping("loginWrite.do")
 	public String loginWrite() {
 		
-		return "nike/member/login2_r";
+		return "nike/nikeweb/login-register";
 	}
 	
 
