@@ -130,7 +130,7 @@ $("#add").click(function(){
   width: 28px; height: 28px;
   display: block;
   position: relative;
-  padding-left: 35px;
+  padding-left: 25px;
   margin-bottom: 12px;
   cursor: pointer;
   -webkit-user-select: none;
