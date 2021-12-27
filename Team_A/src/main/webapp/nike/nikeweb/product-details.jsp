@@ -476,6 +476,24 @@
                         </div>
                         <div class="pro-details-size">
                             <span>Size</span>
+                            
+                            <div class="pro-details-size-content">
+                                <ul>
+                                    <li><a href="#">s</a></li>
+                                    <li><a href="#">m</a></li>
+                                    <li><a href="#">l</a></li>
+                                    <li><a href="#">xl</a></li>
+                                    <li><a href="#">xxl</a></li>
+                                </ul>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                             <div class="pro-details-size-content">
                                 <ul>
                                     <li><a href="#">s</a></li>
