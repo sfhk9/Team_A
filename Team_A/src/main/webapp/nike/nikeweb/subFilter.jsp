@@ -81,8 +81,9 @@
                             <div class="product-filter">
                                 <h5>색상</h5>
                                 <ul class="color-filter">
-                                
-	          						<li>
+
+
+<!-- 	          						<li>
 		          						<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 			          						<label for="checkbox-1" style="background-color:white; width: 28px; height: 28px;" ></label>
 					    					<input type="checkbox" id="checkbox-1" name="color" value="white" class="selector"><br>
@@ -169,11 +170,46 @@
 					    					<a>스카이</a>
 										</div>     
 				         			</li> 
-             
-             
-             
-          
-             
+-->
+									<li>
+		          						<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+			          						<label for="checkbox-11" style="background-color:skyblue; width: 28px; height: 28px;" ></label>
+					    					<input type="checkbox" id="checkbox-11" name="color" value="skyblue" class="selector"><br>
+					    					<a>스카이</a>
+										</div>     
+				         			</li>  
+				         			
+            						<li>
+            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+											<label class="chkbox" for="checkbox-test"  >
+												<span class="checkmark" style="z-index:1;"></span>
+											</label>
+											<input class="chkinput" type="checkbox" id="checkbox-test" style="z-index:2;" checked="checked">
+											<br>
+											<a>체크박</a>
+										</div>
+									</li> 
+
+            						<li>
+            							<div style="position: relative; text-align: center; width: 50px; float:left; margin: 5px;">
+											<label  class="chkbox" style="position: absolute;">
+												<input type="checkbox" checked="checked" style="position: absolute;">
+												<span class="checkmark"></span>
+											</label>
+											<a>체크박스</a>
+										</div>
+									</li>
+									 
+									<li>
+            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+											<label class="chkbox">
+												<input type="checkbox" checked="checked">
+												<span class="checkmark"></span>
+											</label>
+											<a>체크박스</a>
+										</div>
+									</li> 
+
              
              
              
