@@ -38,9 +38,6 @@ public interface NikeService {
 	// 회원정보 수정
 	NikeVO selectMemberDetail(NikeVO vo) throws Exception;
 	
-	//상품리스트 개수
-	int selectGoodsTotal(NikeVO vo) throws Exception;
-	
 	// 장바구니 리스트
 	List<?> selectCartList(NikeVO vo) throws Exception;
 	

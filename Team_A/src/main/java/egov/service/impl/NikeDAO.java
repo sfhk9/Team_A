@@ -59,10 +59,6 @@ public class NikeDAO extends EgovAbstractDAO {
 
 	}
 	
-	public int selectGoodsTotal(NikeVO vo) {
-		return (int) select("nikeDAO.selectGoodsTotal",vo); 
-	}
-	
 	public List<?> selectCartList(NikeVO vo) {
 		return list("nikeDAO.selectCartList",vo);
 	}
