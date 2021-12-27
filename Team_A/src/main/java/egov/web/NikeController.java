@@ -1,5 +1,7 @@
 package egov.web;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import java.util.Locale;
@@ -12,9 +14,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import egov.service.NikeService;
 import egov.service.NikeVO;
@@ -324,6 +329,68 @@ public class NikeController {
 	public String myPage() throws Exception{
 		
 		return "nike/mypage";
+	}
+	
+	@RequestMapping("cart.do")
+	public String cart(NikeVO vo, Model model,HttpSession session) throws Exception{
+		
+		//String userid = (String) session.getAttribute("SessionId");
+		String userid="test";
+		vo.setUserid(userid);
+		
+		List<?> list = nikeService.selectCartList(vo);
+		model.addAttribute("list",list);
+		
+		return "nike/nikeweb/cart-page";
+	}
+	
+	@RequestMapping("cartSave.do")
+	@ResponseBody
+	public String updateCartList(@RequestBody String inputJSON, NikeVO vo) throws Exception{		
+		String msg="ok";
+		int result=0;
+		
+		System.out.println(inputJSON.getClass().getName());
+		
+		Map<String, Object> map = new ObjectMapper().readValue(inputJSON, Map.class);
+		
+		System.out.println(map.get(0));
+	
+		/*
+		 * // update or delete 유무 판단 및 sql 실행 if(qty==0) {
+		 * result=nikeService.updateCartList(vo); } else {
+		 * result=nikeService.deleteCartList(vo); }
+		 */		
+		return msg;
+	}
+	
+	@RequestMapping("cartClear.do")
+	@ResponseBody
+	public String deleteAllCartList(NikeVO vo) throws Exception{
+		String msg="ok";
+		
+		//String userid = (String) session.getAttribute("SessionId");
+		String userid="test";
+		vo.setUserid(userid);
+		
+		int cnt=nikeService.selectCartListCnt(vo);
+		int result=nikeService.deleteAllCartList(vo);
+		
+		if(cnt==0) msg="er1";
+		else if(result!=cnt) msg="er2";
+
+		return msg;
+	}
+	
+	@RequestMapping("checkout.do")
+	public String selectCheckout(NikeVO vo, Model model) throws Exception{
+		//String userid = (String) session.getAttribute("SessionId");
+		String userid="test";
+		vo.setUserid(userid);
+		
+		List<?> list=nikeService.selectCheckout(vo);
+		model.addAttribute("list",list);
+		return "nike/nikeweb/checkout";
 	}
 
 }

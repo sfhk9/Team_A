@@ -41,7 +41,6 @@ public class NikeImpl implements NikeService {
 
 	}
 
-
 	@Override
 	public NikeVO selectTab1(NikeVO vo) throws Exception {
 		return nikeDAO.selectTab1(vo);
@@ -66,6 +65,37 @@ public class NikeImpl implements NikeService {
 	public NikeVO selectMemberDetail(NikeVO vo) throws Exception {
 		return nikeDAO.selectMemberDetail(vo);
 	}
+
+	@Override
+	public List<?> selectCartList(NikeVO vo) throws Exception {
+		return nikeDAO.selectCartList(vo);
+	}
+	
+	@Override
+	public int selectCartListCnt(NikeVO vo) throws Exception {
+		return nikeDAO.selectCartListCnt(vo);
+	}
+	
+	@Override
+	public int updateCartList(NikeVO vo) throws Exception{
+		return nikeDAO.updateCartList(vo);
+	}
+
+	@Override
+	public int deleteCartList(NikeVO vo) throws Exception{
+		return nikeDAO.deleteCartList(vo);
+	}
+
+	@Override
+	public int deleteAllCartList(NikeVO vo) throws Exception {
+		return nikeDAO.deleteAllCartList(vo);
+	}
+
+	@Override
+	public List<?> selectCheckout(NikeVO vo) throws Exception {
+		return nikeDAO.selectCheckOut(vo);
+	}
+
 
 
 }

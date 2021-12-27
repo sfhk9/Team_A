@@ -34,7 +34,24 @@ public interface NikeService {
 	
 	// 회원정보 수정
 	NikeVO selectMemberDetail(NikeVO vo) throws Exception;
-
 	
+	// 장바구니 리스트
+	List<?> selectCartList(NikeVO vo) throws Exception;
+	
+	// 장바구니 리스트 상품 수
+	int selectCartListCnt(NikeVO vo) throws Exception;
+	
+	// 장바구니 항목 1개 수량 변경
+	int updateCartList(NikeVO vo) throws Exception;
+
+	// 장바구니 항목 1개 삭제
+	int deleteCartList(NikeVO vo) throws Exception;
+
+	// 장바구니 전체 비우기
+	int deleteAllCartList(NikeVO vo) throws Exception;
+
+	// 주문 결제 명세서
+	List<?> selectCheckout(NikeVO vo) throws Exception;
+
 
 }

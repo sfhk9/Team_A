@@ -38,7 +38,10 @@ public class NikeVO {
 	private String search;
 
 
-	//장바구니 CART     //반품 ORDERCANCEL
+	//장바구니 CART
+	private int qty;
+	
+	//반품 ORDERCANCEL
 	private String reason;		//반품사유
 	//나머진 상품정보에서 받아옴
 	
@@ -204,6 +207,12 @@ public class NikeVO {
 	}
 	public void setUnq(int unq) {
 		this.unq = unq;
+	}
+	public int getQty() {
+		return qty;
+	}
+	public void setQty(int qty) {
+		this.qty = qty;
 	}
 	public String getReason() {
 		return reason;
