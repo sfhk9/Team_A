@@ -35,6 +35,23 @@
 
 	</select>
 	
+	<select id="nikeDAO.selectGoodsTotal" resultClass="java.lang.Integer">
+
+		SELECT 
+			COUNT(*)
+		FROM 
+			goodsinfo
+			
+		<isNotNull property="sql">
+			<isNotEmpty property="sql">
+				WHERE ( 1=1 ) $sql$
+			</isNotEmpty>
+		</isNotNull>	
+		
+
+
+	</select>
+	
 	<select id="nikeDAO.selectGoodsList" resultClass="egovMap">
 	
 		SELECT b.* FROM  (	

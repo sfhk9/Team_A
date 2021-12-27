@@ -44,15 +44,21 @@ public class NikeController {
 	@RequestMapping("goodsList.do")
 	public String goodsList( NikeVO vo, Model model ) throws Exception {
 		
+		//sql 확인
 		String sql = getSetSql(vo);
-		
 		System.out.println( sql + "  sql!!!" );
+		///
 		
 		List<?> list = nikeService.selectGoodsList(vo);
+		int total = nikeService.selectGoodsTotal(vo);
+		
+		int total_page = (int) Math.ceil( (double)total/12 );
 		
 		System.out.println("리스트"+list);
   
 		model.addAttribute("list",list);
+		model.addAttribute("total",total);
+		model.addAttribute("total_page",total_page);
 		
 		return "nike/nikeweb/goodsList";
 	}
@@ -77,7 +83,7 @@ public class NikeController {
 		List<?> list = nikeService.selectGoodsList(vo);
 		
 		System.out.println("리스트"+list);
-  
+		
 		model.addAttribute("list",list);
 		
 		return "nike/addList";
@@ -95,17 +101,17 @@ public class NikeController {
 		String ctgtype_sql = "( ";
 			if ( vo.getCtgtype() != null ) {
 				ctgtype = vo.getCtgtype().split(",");
-	
-				for (int i=0; i<ctgtype.length; i++) {
-					ctgtype_sql += "ctgtype LIKE'%" + ctgtype[i] + "%'";
-					
-					if ( ctgtype.length-1 != i ) {
-						ctgtype_sql += " or ";
-					} else {
-						ctgtype_sql += " )";
+		
+					for (int i=0; i<ctgtype.length; i++) {
+						ctgtype_sql += "ctgtype LIKE'%" + ctgtype[i] + "%'";
+						
+						if ( ctgtype.length-1 != i ) {
+							ctgtype_sql += " or ";
+						} else {
+							ctgtype_sql += " )";
+						}
+						
 					}
-					
-				}
 			}
 
 		String ctggender;	
@@ -122,13 +128,11 @@ public class NikeController {
 		if ( vo.getPricemin() != 0 || vo.getPricemax() != 0) {
 			pricemin = vo.getPricemin();
 			pricemax = vo.getPricemax();
-			if ( pricemax > pricemin) {
-				price_sql += "price BETWEEN " + pricemin + " and " + pricemax + " )";	
-			} else if ( pricemin > pricemax ) {
-				price_sql += "price BETWEEN " + pricemax + " and " + pricemin + " )";	
-			}
-			
-			
+				if ( pricemax > pricemin) {
+					price_sql += "price BETWEEN " + pricemin + " and " + pricemax + " )";	
+				} else if ( pricemin > pricemax ) {
+					price_sql += "price BETWEEN " + pricemax + " and " + pricemin + " )";	
+				}
 		}
 
 		// 색상
@@ -136,17 +140,17 @@ public class NikeController {
 		String color_sql = "( ";
 			if ( vo.getColor() != null ) {
 				color = vo.getColor().split(",");
-	
-				for (int i=0; i<color.length; i++) {
-					color_sql += "color LIKE'%" + color[i] + "%'";
-					
-					if ( color.length-1 != i ) {
-						color_sql += " or ";
-					} else {
-						color_sql += " )";
+		
+					for (int i=0; i<color.length; i++) {
+						color_sql += "color LIKE'%" + color[i] + "%'";
+							
+							if ( color.length-1 != i ) {
+								color_sql += " or ";
+							} else {
+								color_sql += " )";
+							}
+							
 					}
-					
-				}
 			}
 
 		String sql = "";
@@ -187,7 +191,7 @@ public class NikeController {
 		vo = nikeService.selectGoodsDetail(vo);
 		model.addAttribute("vo",vo);
 		
-		return "nike/goodsDetail";
+		return "nike/nikeweb/goodsDetail";
 	}
 	@RequestMapping("detailTab1.do")
 	public String detailTab1(NikeVO vo, Model model) throws Exception {
