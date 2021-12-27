@@ -152,6 +152,15 @@ $("#add").click(function(){
             	<!-- 필터시작///////////////////// -->
 				<%@include file="subFilter.jsp" %>
             	<!-- 필터끝////////////////////// -->
+            	
+            	
+<div class="pro-details-size-color"><div class="pro-details-color-wrap"><span>Color</span><div class="pro-details-color-content"><label class="pro-details-color-content--single white"><input type="radio" name="product-color" value="white" checked=""><span class="checkmark"></span></label><label class="pro-details-color-content--single black"><input type="radio" name="product-color" value="black"><span class="checkmark"></span></label><label class="pro-details-color-content--single brown"><input type="radio" name="product-color" value="brown"><span class="checkmark"></span></label></div></div><div class="pro-details-size"><span>Size</span><div class="pro-details-size-content"><label class="pro-details-size-content--single"><input type="radio" value="x" checked=""><span class="size-name">x</span></label><label class="pro-details-size-content--single"><input type="radio" value="m"><span class="size-name">m</span></label><label class="pro-details-size-content--single"><input type="radio" value="xl"><span class="size-name">xl</span></label></div></div></div>
+
+
+
+
+
+
 
                 <div class="shop-bottom-area">
                     <div class="row">
@@ -159,7 +168,6 @@ $("#add").click(function(){
 	                    <!-- 리스트 시작//////////// -->
 						<%@include file="subList.jsp" %>
 						<!-- 리스트 끝 //////////// -->
-	                        
 	                        
 						<!-- 페이징 버튼 -->
 						<div class="pro-pagination-style text-center mt-30">

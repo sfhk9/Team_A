@@ -6,7 +6,7 @@ article {
 
 .tbl_bag{
 	border:1px solid black;
-
+	border-spacing:0px;
 	margin:0px auto;
 	margin-top:100px;
 	
@@ -22,17 +22,36 @@ article {
 }
 
 
-
 .td1{
 	height:40px;
 	border:2px solid gray;
-	background-color:#ccc;
+	background-color:#dddddd;
 	margin-bottom:10px;
+	
+	font-size:12px;
+	
+	
 }
 
+/* 옵션 정보 */
 .td3{
 	font-size:12px;
 	
+}
+
+/* 가격 및 구매 버튼 */
+.td4{
+	
+}
+
+/* 배송 정보 */
+.td5 {
+	text-align:center;
+}
+
+/* 할인 적용 금액 */
+.td6{
+	font-size:12px;
 }
 
 
