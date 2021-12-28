@@ -35,6 +35,23 @@
 
 	</select>
 	
+	<select id="nikeDAO.selectGoodsTotal" resultClass="java.lang.Integer">
+
+		SELECT 
+			COUNT(*)
+		FROM 
+			goodsinfo
+			
+		<isNotNull property="sql">
+			<isNotEmpty property="sql">
+				WHERE ( 1=1 ) $sql$
+			</isNotEmpty>
+		</isNotNull>	
+		
+
+
+	</select>
+	
 	<select id="nikeDAO.selectGoodsList" resultClass="egovMap">
 	
 		SELECT b.* FROM  (	
@@ -147,6 +164,44 @@
 				review r, goodsinfo g 
 		WHERE 
 				r.goodsunq=g.unq and g.unq=#unq# 
+
+	</select>
+	
+	<select id="nikeDAO.selectCartList" resultClass="egovMap">
+		SELECT 	c.unq,
+				c.userid userid,
+		        c.goodsunq goodsunq,
+		        c.qty qty,
+		        nvl(substr(g.thumbnail,0,instr(g.thumbnail,'/')-1),g.thumbnail) thumbnail,
+		        g.name name,
+		        c.color color,
+		        c.csize csize,
+		        g.price price
+		    FROM 
+		    	cart c, goodsinfo g
+		    WHERE 
+		    	c.goodsunq=g.unq
+		    <!-- session 추가한 뒤 -->
+		    <!-- and userid=#userid# -->
+	</select>
+	
+	<select id="nikeDAO.selectCartListCnt" resultClass="java.lang.Integer">
+		SELECT count(*) FROM cart WHERE userid=#userid#
+	</select>
+	
+	<select id="nikeDAO.selectCheckout" resultClass="egovMap">
+		SELECT 	c.unq,
+				c.userid userid,
+		        c.goodsunq goodsunq,
+		        c.qty qty,
+		        g.name name,
+		        c.color color,
+		        c.csize csize,
+		        g.price price
+		    FROM 
+		    	cart c, goodsinfo g
+		    WHERE 
+		    	c.goodsunq=g.unq
 	</select>
 
 	<insert id="nikeDAO.insertJoin">
@@ -201,6 +256,22 @@
 				unq=#unq#
 	</update>
 	
+	<update id="nikeDAO.updateCartList">
+		UPDATE
+				cart
+		SET
+				qty=#qty#
+		WHERE
+			 	unq=#unq#
+	</update>
+	
+	<delete id="nikeDAO.deleteCartList">
+		DELETE FROM cart WHERE unq=#unq#
+	</delete>
+	
+	<delete id="nikeDAO.deleteAllCartList">
+		DELETE FROM cart WHERE userid=#userid#
+	</delete>
 	
 	
 </sqlMap>

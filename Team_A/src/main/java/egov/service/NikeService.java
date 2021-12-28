@@ -10,6 +10,9 @@ public interface NikeService {
 	//상품 리스트 서비스
 	List<?> selectGoodsList(NikeVO vo) throws Exception;
 	
+	//상품리스트 개수
+	int selectGoodsTotal(NikeVO vo) throws Exception;
+	
 	// 회원 가입
 	String insertJoin(NikeVO vo) throws Exception;
 	
@@ -41,6 +44,23 @@ public interface NikeService {
 	// 리뷰 갯수
 	int selectReviewCnt(NikeVO vo) throws Exception;
 
+	// 장바구니 리스트
+	List<?> selectCartList(NikeVO vo) throws Exception;
 	
+	// 장바구니 리스트 상품 수
+	int selectCartListCnt(NikeVO vo) throws Exception;
+	
+	// 장바구니 항목 1개 수량 변경
+	int updateCartList(NikeVO vo) throws Exception;
+
+	// 장바구니 항목 1개 삭제
+	int deleteCartList(NikeVO vo) throws Exception;
+
+	// 장바구니 전체 비우기
+	int deleteAllCartList(NikeVO vo) throws Exception;
+
+	// 주문 결제 명세서
+	List<?> selectCheckout(NikeVO vo) throws Exception;
+
 
 }

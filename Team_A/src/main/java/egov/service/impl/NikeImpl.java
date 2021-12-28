@@ -24,6 +24,11 @@ public class NikeImpl implements NikeService {
 	public List<?> selectGoodsList(NikeVO vo) throws Exception {
 		return nikeDAO.selectGoodsList(vo);
 	}
+	
+	@Override
+	public int selectGoodsTotal(NikeVO vo) throws Exception {
+		return nikeDAO.selectGoodsTotal(vo);
+	}
 
 	@Override
 	public String insertJoin(NikeVO vo) throws Exception {
@@ -40,7 +45,6 @@ public class NikeImpl implements NikeService {
 		nikeDAO.updateGoodsInfoHits(vo);
 
 	}
-
 
 	@Override
 	public NikeVO selectTab1(NikeVO vo) throws Exception {
@@ -76,6 +80,37 @@ public class NikeImpl implements NikeService {
 	public int selectReviewCnt(NikeVO vo) throws Exception {
 		return nikeDAO.selectReviewCnt(vo);
 	}
+	public List<?> selectCartList(NikeVO vo) throws Exception {
+		return nikeDAO.selectCartList(vo);
+	}
+	
+	@Override
+	public int selectCartListCnt(NikeVO vo) throws Exception {
+		return nikeDAO.selectCartListCnt(vo);
+	}
+	
+	@Override
+	public int updateCartList(NikeVO vo) throws Exception{
+		return nikeDAO.updateCartList(vo);
+	}
+
+	@Override
+	public int deleteCartList(NikeVO vo) throws Exception{
+		return nikeDAO.deleteCartList(vo);
+	}
+
+	@Override
+	public int deleteAllCartList(NikeVO vo) throws Exception {
+		return nikeDAO.deleteAllCartList(vo);
+	}
+
+	@Override
+	public List<?> selectCheckout(NikeVO vo) throws Exception {
+		return nikeDAO.selectCheckOut(vo);
+	}
+
+
+
 
 
 }
