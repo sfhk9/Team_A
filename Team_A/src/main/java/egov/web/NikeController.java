@@ -213,7 +213,24 @@ public class NikeController {
 
 	
 	@RequestMapping("mainPage.do")
-	public String mainPage() throws Exception{
+	public String mainList( NikeVO vo, Model model ) throws Exception {
+		
+		//sql 확인
+		String sql = getSetSql(vo);
+		System.out.println( sql + "  sql!!!" );
+		///
+		
+		List<?> list = nikeService.selectGoodsList(vo);
+		int total = nikeService.selectGoodsTotal(vo);
+		
+		int total_page = (int) Math.ceil( (double)total/12 );
+		
+		System.out.println("리스트"+list);
+  
+		model.addAttribute("list",list);
+		model.addAttribute("total",total);
+		model.addAttribute("total_page",total_page);
+		
 		return "nike/nikeweb/index-2";
 	}
 	
