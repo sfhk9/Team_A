@@ -67,5 +67,15 @@ public class NikeImpl implements NikeService {
 		return nikeDAO.selectMemberDetail(vo);
 	}
 
+	@Override
+	public List<?> selectCommList(NikeVO vo) throws Exception {
+		return nikeDAO.selectCommList(vo);
+	}
+
+	@Override
+	public int selectReviewCnt(NikeVO vo) throws Exception {
+		return nikeDAO.selectReviewCnt(vo);
+	}
+
 
 }

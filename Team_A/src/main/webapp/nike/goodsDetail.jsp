@@ -246,7 +246,7 @@ $(function(){
 											if(i < array.length ) {
 									%>
 											<span>
-												<img src="./nike/goods/${vo.unq}/<%=array[i] %>" class="img_goods"/>
+												<img src="./nike/goods/${vo.unq}/<li class="black"></li>" class="img_goods"/>
 											</span>
 									<%
 											}

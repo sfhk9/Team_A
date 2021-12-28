@@ -35,6 +35,12 @@ public interface NikeService {
 	// 회원정보 수정
 	NikeVO selectMemberDetail(NikeVO vo) throws Exception;
 
+	// 리뷰 서비스
+	List<?> selectCommList(NikeVO vo) throws Exception;
+	
+	// 리뷰 갯수
+	int selectReviewCnt(NikeVO vo) throws Exception;
+
 	
 
 }

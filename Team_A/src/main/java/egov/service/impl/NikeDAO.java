@@ -54,4 +54,12 @@ public class NikeDAO extends EgovAbstractDAO {
 
 	}
 
+	public List<?> selectCommList(NikeVO vo) {
+		return list("nikeDAO.selectCommList",vo);
+	}
+
+	public int selectReviewCnt(NikeVO vo) {
+		return (int) select("nikeDAO.selectReviewCnt",vo);
+	}
+
 }

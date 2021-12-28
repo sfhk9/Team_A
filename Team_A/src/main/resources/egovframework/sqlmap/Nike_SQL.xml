@@ -130,6 +130,24 @@
 		        userid=#userid#
 	
 	</select>
+	
+	<select id="nikeDAO.selectCommList" resultClass="egovMap">
+		SELECT
+				*
+		FROM
+				review r, goodsinfo g
+		WHERE
+				r.goodsunq=g.unq and g.unq=#unq# 
+	</select>
+	
+	<select id="nikeDAO.selectReviewCnt" resultClass="java.lang.Integer">
+		SELECT 
+				COUNT(*) 
+		FROM 
+				review r, goodsinfo g 
+		WHERE 
+				r.goodsunq=g.unq and g.unq=#unq# 
+	</select>
 
 	<insert id="nikeDAO.insertJoin">
 		INSERT INTO userinfo(
