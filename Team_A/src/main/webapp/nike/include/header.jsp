@@ -192,7 +192,7 @@ function fn_logout(){
                                     -->
                                 </ul>
                       		</li>
-                            <li><a href="contact.html"> 문의</a></li>
+                            <li><a href="contact.do"> 문의</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -222,8 +222,9 @@ function fn_logout(){
                                 <li><a href="joinWrite.do">회원가입</a></li>
 				            <%
 				            } else {
-				            %>
-                              	<li><a href="wishlist.html">위시리스트  </a></li>
+				            %>                              	
+                                <li><a href="#">주문 목록  </a></li>
+                                <li><a href="wishlist.html">위시리스트  </a></li>
                                 <li><a href="memberModify.do">내정보</a></li>
                                 <li style="font-weight:bold"><a href="javascript:fn_logout()">로그아웃</a></li>
                             <% 
