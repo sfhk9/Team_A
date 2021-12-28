@@ -8,7 +8,7 @@
 		<div class="product-wrap mb-25 scroll-zoom">
 			<!-- 이미지 -->
 			<div class="product-img">
-				<a href="product-details.html">
+				<a href="goodsDetail.do?unq=${result.unq}">
 				
 					<!-- 썸네일 출력////////////// -->
 					<c:set var="thumbnail" value="${result.thumbnail }" />
@@ -42,7 +42,7 @@
 			<!-- 텍스트 -->
 			<div class="product-content text-center">
 			
-				<h3><a href="product-details.html">${result.name}</a></h3>
+				<h3><a href="goodsDetail.do?unq=${result.unq}">${result.name}</a></h3>
 				
 				<div class="product-rating">
 					<i class="fa fa-star-o yellow"></i>

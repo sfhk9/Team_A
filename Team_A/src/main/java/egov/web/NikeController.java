@@ -1,12 +1,7 @@
 package egov.web;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
-
-import java.util.Locale;
-import java.util.Map;
-
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -16,9 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import egov.service.NikeService;
@@ -30,7 +25,7 @@ public class NikeController {
 	@Resource(name = "nikeService")
 	NikeService nikeService;
 	
-	@RequestMapping("mainpage.do")
+	@RequestMapping("index.do")
 	public String mainpage( Model model ) throws Exception {
 		
 		List<?> list = nikeService.selectHitGoodsList();
@@ -38,7 +33,7 @@ public class NikeController {
 		System.out.println("리스트"+list);
   
 		model.addAttribute("list",list);
-		return "nike/mainpage";
+		return "nike/nikeweb/index";
 	}
 	
 	@RequestMapping("goodsList.do")
@@ -382,21 +377,45 @@ public class NikeController {
 	
 	@RequestMapping("cartSave.do")
 	@ResponseBody
-	public String updateCartList(@RequestBody String inputJSON, NikeVO vo) throws Exception{		
+	public String updateCartList(@RequestBody String jsonList, NikeVO vo) throws Exception{		
 		String msg="ok";
-		int result=0;
+		int unq=0;		// cart 테이블 unq
+		int qty=0;		// cart 테이블 qty
+		int result=0;	// cart 한 상품에 대한 sql 결과 저장
+		int cnt=0;		// cart 전체 update or delete 결과
 		
-		System.out.println(inputJSON.getClass().getName());
+		// 객체 생성
+		ObjectMapper mapper = new ObjectMapper();
+		// JSON String -> LinkedHashMap 변환
+		List<NikeVO> readList=mapper.readValue(jsonList, List.class);
+		// LinkedHashMap -> ArrayList 변환
+		List<NikeVO> convertList = mapper.convertValue(readList,new TypeReference<List<NikeVO>>(){});
 		
-		Map<String, Object> map = new ObjectMapper().readValue(inputJSON, Map.class);
+		for(int i=0;i<convertList.size();i++) {
+			// i번째 리스트에서 unq, qty 추출
+			unq=convertList.get(i).getUnq();
+			qty=convertList.get(i).getQty();
+			
+			// 추출한 unq, qty를 VO에 셋팅
+			vo.setUnq(unq);
+			vo.setQty(qty);
+			
+			// qty = 0 -> 항목 삭제 / qty > 0 -> 수량 변경
+		    if(qty==0) { 
+		    	result=nikeService.deleteCartList(vo); cnt+=result; 
+		    } else if(qty>0) { 
+		    	result=nikeService.updateCartList(vo); cnt+=result; 
+		    } else {
+		    	msg="err1";
+		    }
+			 
+		}
 		
-		System.out.println(map.get(0));
-	
-		/*
-		 * // update or delete 유무 판단 및 sql 실행 if(qty==0) {
-		 * result=nikeService.updateCartList(vo); } else {
-		 * result=nikeService.deleteCartList(vo); }
-		 */		
+		// 전체 update or delete 중 누락된 경우 (오류가 발생한 경우)
+		if(cnt<convertList.size()) {
+			msg="err2";
+		}
+		
 		return msg;
 	}
 	

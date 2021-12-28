@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-xl-2 col-lg-2 col-md-6 col-4">
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="index.do">
                         <img alt="" src="/nike/nikeweb/assets/img/logo/logo.png">
                     </a>
                 </div>
@@ -15,47 +15,47 @@
                 <div class="main-menu">
                     <nav>
                         <ul>
-                            <li><a href="index.html">홈 </a>
-							<li><a href="index.html">이벤트 </a>
+                            <li><a href="index.do">홈 </a>
+							<li><a href="goodsList.do">이벤트 </a>
                             
-                            <li><a href="shop.html">남자 <i class="fa fa-angle-down"></i> </a>
+                            <li><a href="goodsList.do">남자 <i class="fa fa-angle-down"></i> </a>
                                 <ul class="mega-menu">
                                     <li>
                                         <ul>
-                                            <li class="mega-menu-title"><a href="#">추천상품</a></li>
-                                            <li><a href="*">추천 전체보기</a></li>
-                                            <li><a href="*">이벤트</a></li>
-                                            <li><a href="*">기간한정 상품</a></li>
-                                            <li><a href="*">기간한정 세일</a></li>
-                                            <li><a href="*">품절임박</a></li>
+                                            <li class="mega-menu-title"><a href="goodsList.do">추천상품</a></li>
+                                            <li><a href="goodsList.do">추천 전체보기</a></li>
+                                            <li><a href="goodsList.do">이벤트</a></li>
+                                            <li><a href="goodsList.do">기간한정 상품</a></li>
+                                            <li><a href="goodsList.do">기간한정 세일</a></li>
+                                            <li><a href="goodsList.do">품절임박</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <ul>
-                                            <li class="mega-menu-title"><a href="#">의류</a></li>
-                                            <li><a href="*">의류 전체</a></li>
-                                            <li><a href="*">후디 & 크루</a></li>
-                                            <li><a href="*">팬츠 & 타이즈</a></li>
-                                            <li><a href="*">재킷 & 베스트</a></li>
-                                            <li><a href="*">탑 & 티셔츠</a></li>
-                                            <li><a href="*">숏팬츠 </a></li>
-                                            <li><a href="*">나이키 프로</a></li>
-                                            <li><a href="*">양말</a></li>
+                                            <li class="mega-menu-title"><a href="goodsList.do">의류</a></li>
+                                            <li><a href="goodsList.do">의류 전체</a></li>
+                                            <li><a href="goodsList.do">후디 & 크루</a></li>
+                                            <li><a href="goodsList.do">팬츠 & 타이즈</a></li>
+                                            <li><a href="goodsList.do">재킷 & 베스트</a></li>
+                                            <li><a href="goodsList.do">탑 & 티셔츠</a></li>
+                                            <li><a href="goodsList.do">숏팬츠 </a></li>
+                                            <li><a href="goodsList.do">나이키 프로</a></li>
+                                            <li><a href="goodsList.do">양말</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <ul>
-                                            <li class="mega-menu-title"><a href="#">신발</a></li>
-                                            <li><a href="*">신발 전체</a></li>
-                                            <li><a href="*">일상</a></li>
-                                            <li><a href="*">러닝</a></li>
-                                            <li><a href="*">트레이닝 & 짐</a></li>
-                                            <li><a href="*">농구</a></li>
-                                            <li><a href="*">조던</a></li>
-                                            <li><a href="*">축구</a></li>
-                                            <li><a href="*">골프</a></li>
-                                            <li><a href="*">샌들</a></li>
-                                            <li><a href="*">슬리퍼</a></li>
+                                            <li class="mega-menu-title"><a href="goodsList.do">신발</a></li>
+                                            <li><a href="goodsList.do">신발 전체</a></li>
+                                            <li><a href="goodsList.do">일상</a></li>
+                                            <li><a href="goodsList.do">러닝</a></li>
+                                            <li><a href="goodsList.do">트레이닝 & 짐</a></li>
+                                            <li><a href="goodsList.do">농구</a></li>
+                                            <li><a href="goodsList.do">조던</a></li>
+                                            <li><a href="goodsList.do">축구</a></li>
+                                            <li><a href="goodsList.do">골프</a></li>
+                                            <li><a href="goodsList.do">샌들</a></li>
+                                            <li><a href="goodsList.do">슬리퍼</a></li>
                                         </ul>
                                     </li>
                      				<!-- 
@@ -68,44 +68,44 @@
                                 </ul>
                       		</li>
 
-                            <li><a href="shop.html">여자 <i class="fa fa-angle-down"></i> </a>
+                            <li><a href="goodsList.do">여자 <i class="fa fa-angle-down"></i> </a>
                                 <ul class="mega-menu">
                                     <li>
                                         <ul>
-                                            <li class="mega-menu-title"><a href="#">추천상품</a></li>
-                                            <li><a href="*">추천 전체보기</a></li>
-                                            <li><a href="*">이벤트</a></li>
-                                            <li><a href="*">기간한정 상품</a></li>
-                                            <li><a href="*">기간한정 세일</a></li>
-                                            <li><a href="*">품절임박</a></li>
+                                            <li class="mega-menu-title"><a href="goodsList.do">추천상품</a></li>
+                                            <li><a href="goodsList.do">추천 전체보기</a></li>
+                                            <li><a href="goodsList.do">이벤트</a></li>
+                                            <li><a href="goodsList.do">기간한정 상품</a></li>
+                                            <li><a href="goodsList.do">기간한정 세일</a></li>
+                                            <li><a href="goodsList.do">품절임박</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <ul>
-                                            <li class="mega-menu-title"><a href="#">의류</a></li>
-                                            <li><a href="*">의류 전체</a></li>
-                                            <li><a href="*">후디 & 크루</a></li>
-                                            <li><a href="*">팬츠 & 타이즈</a></li>
-                                            <li><a href="*">재킷 & 베스트</a></li>
-                                            <li><a href="*">탑 & 티셔츠</a></li>
-                                            <li><a href="*">숏팬츠 </a></li>
-                                            <li><a href="*">나이키 프로</a></li>
-                                            <li><a href="*">양말</a></li>
+                                            <li class="mega-menu-title"><a href="goodsList.do">의류</a></li>
+                                            <li><a href="goodsList.do">의류 전체</a></li>
+                                            <li><a href="goodsList.do">후디 & 크루</a></li>
+                                            <li><a href="goodsList.do">팬츠 & 타이즈</a></li>
+                                            <li><a href="goodsList.do">재킷 & 베스트</a></li>
+                                            <li><a href="goodsList.do">탑 & 티셔츠</a></li>
+                                            <li><a href="goodsList.do">숏팬츠 </a></li>
+                                            <li><a href="goodsList.do">나이키 프로</a></li>
+                                            <li><a href="goodsList.do">양말</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <ul>
-                                            <li class="mega-menu-title"><a href="#">신발</a></li>
-                                            <li><a href="*">신발 전체</a></li>
-                                            <li><a href="*">일상</a></li>
-                                            <li><a href="*">러닝</a></li>
-                                            <li><a href="*">트레이닝 & 짐</a></li>
-                                            <li><a href="*">농구</a></li>
-                                            <li><a href="*">조던</a></li>
-                                            <li><a href="*">축구</a></li>
-                                            <li><a href="*">골프</a></li>
-                                            <li><a href="*">샌들</a></li>
-                                            <li><a href="*">슬리퍼</a></li>
+                                            <li class="mega-menu-title"><a href="goodsList.do">신발</a></li>
+                                            <li><a href="goodsList.do">신발 전체</a></li>
+                                            <li><a href="goodsList.do">일상</a></li>
+                                            <li><a href="goodsList.do">러닝</a></li>
+                                            <li><a href="goodsList.do">트레이닝 & 짐</a></li>
+                                            <li><a href="goodsList.do">농구</a></li>
+                                            <li><a href="goodsList.do">조던</a></li>
+                                            <li><a href="goodsList.do">축구</a></li>
+                                            <li><a href="goodsList.do">골프</a></li>
+                                            <li><a href="goodsList.do">샌들</a></li>
+                                            <li><a href="goodsList.do">슬리퍼</a></li>
                                         </ul>
                                     </li>
                      				<!-- 
@@ -118,44 +118,44 @@
                                 </ul>
                       		</li>
                       		
-                            <li><a href="shop.html">어린이 <i class="fa fa-angle-down"></i> </a>
+                            <li><a href="goodsList.do">어린이 <i class="fa fa-angle-down"></i> </a>
                                 <ul class="mega-menu">
                                     <li>
                                         <ul>
-                                            <li class="mega-menu-title"><a href="#">추천상품</a></li>
-                                            <li><a href="*">추천 전체보기</a></li>
-                                            <li><a href="*">이벤트</a></li>
-                                            <li><a href="*">기간한정 상품</a></li>
-                                            <li><a href="*">기간한정 세일</a></li>
-                                            <li><a href="*">품절임박</a></li>
+                                            <li class="mega-menu-title"><a href="goodsList.do">추천상품</a></li>
+                                            <li><a href="goodsList.do">추천 전체보기</a></li>
+                                            <li><a href="goodsList.do">이벤트</a></li>
+                                            <li><a href="goodsList.do">기간한정 상품</a></li>
+                                            <li><a href="goodsList.do">기간한정 세일</a></li>
+                                            <li><a href="goodsList.do">품절임박</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <ul>
-                                            <li class="mega-menu-title"><a href="#">의류</a></li>
-                                            <li><a href="*">의류 전체</a></li>
-                                            <li><a href="*">후디 & 크루</a></li>
-                                            <li><a href="*">팬츠 & 타이즈</a></li>
-                                            <li><a href="*">재킷 & 베스트</a></li>
-                                            <li><a href="*">탑 & 티셔츠</a></li>
-                                            <li><a href="*">숏팬츠 </a></li>
-                                            <li><a href="*">나이키 프로</a></li>
-                                            <li><a href="*">양말</a></li>
+                                            <li class="mega-menu-title"><a href="goodsList.do">의류</a></li>
+                                            <li><a href="goodsList.do">의류 전체</a></li>
+                                            <li><a href="goodsList.do">후디 & 크루</a></li>
+                                            <li><a href="goodsList.do">팬츠 & 타이즈</a></li>
+                                            <li><a href="goodsList.do">재킷 & 베스트</a></li>
+                                            <li><a href="goodsList.do">탑 & 티셔츠</a></li>
+                                            <li><a href="goodsList.do">숏팬츠 </a></li>
+                                            <li><a href="goodsList.do">나이키 프로</a></li>
+                                            <li><a href="goodsList.do">양말</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <ul>
-                                            <li class="mega-menu-title"><a href="#">신발</a></li>
-                                            <li><a href="*">신발 전체</a></li>
-                                            <li><a href="*">일상</a></li>
-                                            <li><a href="*">러닝</a></li>
-                                            <li><a href="*">트레이닝 & 짐</a></li>
-                                            <li><a href="*">농구</a></li>
-                                            <li><a href="*">조던</a></li>
-                                            <li><a href="*">축구</a></li>
-                                            <li><a href="*">골프</a></li>
-                                            <li><a href="*">샌들</a></li>
-                                            <li><a href="*">슬리퍼</a></li>
+                                            <li class="mega-menu-title"><a href="goodsList.do">신발</a></li>
+                                            <li><a href="goodsList.do">신발 전체</a></li>
+                                            <li><a href="goodsList.do">일상</a></li>
+                                            <li><a href="goodsList.do">러닝</a></li>
+                                            <li><a href="goodsList.do">트레이닝 & 짐</a></li>
+                                            <li><a href="goodsList.do">농구</a></li>
+                                            <li><a href="goodsList.do">조던</a></li>
+                                            <li><a href="goodsList.do">축구</a></li>
+                                            <li><a href="goodsList.do">골프</a></li>
+                                            <li><a href="goodsList.do">샌들</a></li>
+                                            <li><a href="goodsList.do">슬리퍼</a></li>
                                         </ul>
                                     </li>
                      				<!-- 
@@ -187,10 +187,10 @@
                         <a class="account-satting-active" href="#"><i class="pe-7s-user-female"></i></a>
                         <div class="account-dropdown">
                             <ul>
-                                <li><a href="login-register.html">Login</a></li>
-                                <li><a href="login-register.html">Register</a></li>
-                                <li><a href="wishlist.html">Wishlist  </a></li>
-                                <li><a href="my-account.html">my account</a></li>
+                                <li><a href="loginWrite.do">로그인</a></li>
+                                <li><a href="joinWrite.do">회원가입</a></li>
+                                <li><a href="wishlist.html">위시리스트  </a></li>
+                                <li><a href="memberModify.do">내정보</a></li>
                             </ul>
                         </div>
                     </div>

@@ -1,9 +1,15 @@
 
+// update 용 변수
+var cartList=new Array();
+
 /* 리스트 변동여부 체크*/
-/* function fn_isChange(){
+/* function fn_isChange(e){
 	var isChange = false;
+	var qty_init=0;
 	
-	
+	for(var i=0;i<;i++){
+		qty_init=e.parent().find("input").val();
+	}
 	
 	if(){
 		isChange=true;
@@ -11,8 +17,6 @@
 	
 	return isChange;
 } */
-
-
 
 /* 명세서에 모든 상품의 총가격 계산, 반영해서 화면에 출력 */
 function fn_cartTotal(){	
@@ -39,27 +43,27 @@ function fn_cartTotal(){
 	grandTotal=fn_comma(grandTotal);
 	
 	$("#cartTotal").html(cartTotal);
-	$("#grandTotal").html(grandTotal)
+	$("#grandTotal").html(grandTotal);
 }
 
 
 /* 수량 버튼 클릭시 상품별 총 가격, 모든 상품 총 가격 계산, 변동 내용을 화면에 출력*/
 // e : 수량 증가, 감소 버튼 객체를 받아옴
-function fn_change(e){
+function fn_change(ths){
 	
 	/* 상품별 총가격 계산, 화면 출력*/
 	// 버튼의 부모 객체인 <div class="cart-plus-minus"> 안의 자식 객체 중 input 즉, id=qty인 객체의 값을 가지고 옴
-	var qty=e.parent().find("input").val();
+	var qty=ths.parent().find("input").val();
 	
 	// 버튼의 상위 부모 객체 중 <td>의 자식 요소 중 id값이 price인 것의 값을 가지고 옴
-	var price=e.parents("td").find("#price").val();
+	var price=ths.parents("td").find("#price").val();
 	// 그리고서 "상품*수량 = 한 항목의 총 가격"을 계산
 	var price_total=price*qty;
 	price_total=fn_comma(price_total);
 	
 	// 버튼의 상위 부모 객체 중 <tr>의 자식 요소 중 id값이 total인 객체를 total 변수에 담음
 	// 해당 객체의 innerHTML을 위에서 계산한 price_total로 변경
-	var total=e.parents("tr").find("#total");
+	var total=ths.parents("tr").find("#total");
 	total.html(price_total);
 	
 	fn_cartTotal();
@@ -92,20 +96,56 @@ function fn_rowCheck(){
 	}
 }
 
-function fn_delete(ths){
-    var ths = $(ths);
+function fn_delete(ths){	
+	var unq = ths.parents().find("#unq");
+	
+	// 삭제용 객체 생성
+	var data = new Object();
+	data.unq=unq.val();
+	data.qty=0;
+	
+	cartList.push(data);
+
     // 화면에서 한 행 삭제
     ths.parents("tr").remove();
-    
-    // 삭제된 행의 qty의 value를 0으로 바꿈
-    ths.parents().find("#qty").val(0);
     
     // 한 행 삭제 후 리스트가 비었는지 검사
     fn_rowCheck();
     fn_cartTotal();
 }
 
+
+
+function fn_qtychk(ths){
+	var q = ths.val();
+	var chk= /\d/ ;
+	
+	var total=ths.parents("tr").find("#total");
+	var msg="";
+	
+	if(!chk.test(q)) msg = "잘못된 입력입니다.";
+	else if(q<0) msg="수량을 확인해주세요";
+	else {
+		fn_change(ths);
+		return false;
+	}
+	
+	alert("잘못된 입력입니다.");		
+	total.html("올바른 수량 입력 필요");
+}
+
+function fn_isZero(q){
+	if(q.val()==0){
+		return true;
+	} else {
+		return false;
+	}
+}
+
 $(function(){
+	// 공통 변수 : 리스트가 비었는지 여부 확인
+	var check = $("tbody").children().find("#price").val();
+	
 	// 리스트 공백 여부 체크
 	fn_rowCheck();
 	
@@ -113,13 +153,15 @@ $(function(){
 	fn_cartTotal();
 	
 	// 수량 감소 버튼
+	var zero=false;
 	$(".dec.qtybutton").on("click",function() {
 		var q = $(this).parent().find("input");
 		
-		if(q.val()=="0"){
-			alert("최저 수량은  1개입니다");
-			q.val("1");
+		if(zero==true){
+			alert("최저 수량은 0개 입니다.");
 		}
+		
+		zero=fn_isZero(q);
 		
 		fn_change($(this));
 
@@ -134,7 +176,7 @@ $(function(){
 	
 	// UPDATE 버튼
 	$("#btn_save").click(function(){
-		var check = $("tbody").children().find("#price").val();
+		check = $("tbody").children().find("#price").val();
 		
 		if(typeof check=="undefined"){
 			alert("장바구니가 비어있습니다.");
@@ -142,7 +184,6 @@ $(function(){
 		}
 		
 		// json 데이터 생성하기
-		var cartList=new Array();
 		var len=$('#cartTable >tbody tr').length;
 		for(var i=0;i<len;i++){
 			var unq=$("tbody").children().eq(i).find("#unq").val();		
@@ -156,10 +197,11 @@ $(function(){
 			// 리스트에 생성된 객체 삽입
 			cartList.push(data);	
 		}
+		
 		 
 		// String 형태로 변환
 		var jsonData = JSON.stringify(cartList);
-		 
+		
 		$.ajax({
 			type:"post",
 			url:"cartSave.do",
@@ -172,6 +214,8 @@ $(function(){
 				if(data=="ok"){
 					alert("저장 성공");
 					document.location.reload();
+				} else if(data=="err1"){
+					alert("입력 수량에서 문제가 있습니다");
 				} else {
 					alert("저장 실패");
 				}
@@ -180,17 +224,18 @@ $(function(){
 				alert("오류 발생");
 			}
 		});
-		
-		$("#btn_save").submit();
 	});
 	
 	
 	// Clear 버튼
 	$("#btn_clear").click(function(){
-		if(!confirm("정말로 전부 삭제하시겠습니까?")){
-			return false;
-		}	
+		check = $("tbody").children().find("#price").val();
+		var msg="정말로 전부 삭제하시겠습니까?";
+		var msg2="장바구니를 비웠습니다";
 		
+		if(typeof check=="undefined") msg="장바구니가 비워져있습니다.\n저장하시겠습니까?";
+		if(!confirm(msg)) return false;
+	
 		$.ajax({
 			type:"post",
 			url:"cartClear.do",
@@ -199,7 +244,8 @@ $(function(){
 			datatype:"text",
 			success:function(data){
 				if(data=="ok"){
-					alert("삭제 처리 완료");
+					if(typeof check=="undefined") mag2="비워진 장바구니를 저장했습니다."; 
+					alert(msg2);
 					document.location.reload();
 				} else if(data=="er1"){
 					alert("장바구니가 비어있습니다");
@@ -214,9 +260,11 @@ $(function(){
 	});
 	
 	
-	// CheckOut(결) 버튼
+	// CheckOut(결제) 버튼
 	$("#checkout").click(function(){
-		var check = $("tbody").children().find("#price").val();
+		// update 여부 확인
+		
+		check = $("tbody").children().find("#price").val();
 		if(typeof check=="undefined"){
 			alert("장바구니가 비어있습니다.");
 			return false;
