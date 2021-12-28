@@ -212,6 +212,11 @@ public class NikeController {
 	}
 
 	
+	@RequestMapping("mainPage.do")
+	public String mainPage() throws Exception{
+		return "nike/nikeweb/index-2";
+	}
+	
 	@RequestMapping("joinAgree.do")
 	public String joinAgree() throws Exception{
 		return "nike/member/join_agree_r";
@@ -220,7 +225,7 @@ public class NikeController {
 	@RequestMapping("joinWrite.do")
 	public String joinWrite() {
 		
-		return "nike/member/join_r";
+		return "nike/nikeweb/login-register";
 	}
 	
 	@RequestMapping("joinWriteSave.do")
@@ -277,7 +282,7 @@ public class NikeController {
 		vo = nikeService.selectMemberDetail(vo);
 		model.addAttribute("vo",vo);
 		
-		return "nike/member/memberModify";
+		return "nike/nikeweb/my-account";
 	}
 
 	
@@ -305,8 +310,9 @@ public class NikeController {
 	@RequestMapping("loginWrite.do")
 	public String loginWrite() {
 		
-		return "nike/member/login2_r";
+		return "nike/nikeweb/login-register";
 	}
+	
 	
 
 	@RequestMapping("logout.do")
