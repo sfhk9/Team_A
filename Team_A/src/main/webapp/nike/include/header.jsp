@@ -198,7 +198,7 @@
                         <a href="wishlist.html"><i class="pe-7s-like"></i></a>
                     </div>
                     <div class="same-style cart-wrap">
-                        <button class="icon-cart">
+                        <button class="icon-cart" onclick="location.href='cart.do';">
                             <i class="pe-7s-shopbag"></i>
                             <span class="count-style">02</span>
                         </button>
