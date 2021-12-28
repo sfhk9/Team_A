@@ -133,7 +133,7 @@
 		SELECT  userid,
 			    pass,
 			    name,
-			    birth,
+			    to_char(birth,'yyyy-mm-dd') birth,
 			    phone,
 			    email,
 			    zipcode,
@@ -146,6 +146,25 @@
 		  WHERE 
 		        userid=#userid#
 	
+	</select>
+	
+	<select id="nikeDAO.selectCommList" resultClass="egovMap">
+		SELECT
+				*
+		FROM
+				review r, goodsinfo g
+		WHERE
+				r.goodsunq=g.unq and g.unq=#unq# 
+	</select>
+	
+	<select id="nikeDAO.selectReviewCnt" resultClass="java.lang.Integer">
+		SELECT 
+				COUNT(*) 
+		FROM 
+				review r, goodsinfo g 
+		WHERE 
+				r.goodsunq=g.unq and g.unq=#unq# 
+
 	</select>
 	
 	<select id="nikeDAO.selectCartList" resultClass="egovMap">

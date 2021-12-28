@@ -54,26 +54,37 @@
             <div class="col-xl-7 col-lg-7 col-md-12">
                 <div class="product-details-img mr-20 product-details-tab">
                     <div id="gallery" class="product-dec-slider-2">
-                        <a data-image="/nike/nikeweb/assets/img/product-details/product-detalis-l1.jpg" data-zoom-image="/nike/nikeweb/assets/img/product-details/product-detalis-bl1.jpg">
-                            <img src="/nike/nikeweb/assets/img/product-details/product-detalis-s6.jpg" alt="">
+                        <c:set var="thumbnail" value="${vo.thumbnail }" />
+                        <%
+			      		String thumbnail = (String) pageContext.getAttribute("thumbnail") ;
+						
+						if(thumbnail != null && !thumbnail.equals("")) {
+							String[] array = thumbnail.split("/");
+							for( int i=0; i<array.length; i++ ) {
+								if(i < array.length ) {
+						%>
+                        <a data-image="/nike/goods/${vo.unq}/<%=array[i] %>" data-zoom-image="/nike/goods/${vo.unq}/<%=array[i] %>">
+                            <img src="/nike/goods/${vo.unq}/<%=array[i] %>" alt="">
                         </a>
-                        <a data-image="/nike/nikeweb/assets/img/product-details/product-detalis-l2.jpg" data-zoom-image="/nike/nikeweb/assets/img/product-details/product-detalis-bl2.jpg">
-                            <img src="/nike/nikeweb/assets/img/product-details/product-detalis-s7.jpg" alt="">
-                        </a>
-                        <a data-image="/nike/nikeweb/assets/img/product-details/product-detalis-l3.jpg" data-zoom-image="/nike/nikeweb/assets/img/product-details/product-detalis-bl3.jpg">
-                            <img src="/nike/nikeweb/assets/img/product-details/product-detalis-s9.jpg" alt="">
-                        </a>
-                        <a data-image="/nike/nikeweb/assets/img/product-details/product-detalis-l5.jpg" data-zoom-image="/nike/nikeweb/assets/img/product-details/product-detalis-bl5.jpg">
-                            <img src="/nike/nikeweb/assets/img/product-details/product-detalis-s8.jpg" alt="">
-                        </a> 
-                        <a data-image="/nike/nikeweb/assets/img/product-details/product-detalis-l4.jpg" data-zoom-image="/nike/nikeweb/assets/img/product-details/product-detalis-bl4.jpg">
-                            <img src="/nike/nikeweb/assets/img/product-details/product-detalis-s1.jpg" alt="">
-                        </a> 
+                        <%
+								}
+							}
+						}
+						%>
                     </div>
                     <div class="zoompro-wrap zoompro-2 pl-20">
                         <div class="zoompro-border zoompro-span">
-                            <img class="zoompro" src="/nike/nikeweb/assets/img/product-details/product-detalis-l1.jpg" data-zoom-image="/nike/nikeweb/assets/img/product-details/product-detalis-bl1.jpg" alt=""/>          
-                            <span>-9%</span>
+                        	<%
+				      		thumbnail = (String) pageContext.getAttribute("thumbnail") ;
+							
+							if(thumbnail != null && !thumbnail.equals("")) {
+								String[] array = thumbnail.split("/");
+							%>
+                            	<img class="zoompro" src="/nike/goods/${vo.unq}/<%=array[0] %>" data-zoom-image="/nike/goods/${vo.unq}/<%=array[0] %>" alt=""/>          
+                            <%
+							}
+							%>
+                            <span>-10%</span>
                             <div class="product-video">
                                 <!-- <a class="video-popup" href="https://www.youtube.com/watch?v=tce_Ap96b0c">
                                     <i class="fa fa-video-camera"></i>
@@ -89,10 +100,10 @@
             </div>
             <div class="col-lg-5 col-lg-5 col-md-12">
                 <div class="product-details-content">
-                    <h2>Products Name Here</h2>
+                    <h2>${vo.name}</h2>
                     <div class="product-details-price">
                         <span>${vo.price}원 </span>
-                        <span class="old">000원 </span>
+                        <span class="old">${vo.price*1.1}원 </span>
                     </div>
                     <div class="pro-details-rating-wrap">
                         <div class="pro-details-rating">
@@ -102,7 +113,7 @@
                             <i class="fa fa-star-o"></i>
                             <i class="fa fa-star-o"></i>
                         </div>
-                        <span><a href="#">3 Reviews</a></span>
+                        <span><a href="#">리뷰  ${review_cnt }</a></span>
                     </div>
                     <p>제품 설명?</p>
                     <div class="pro-details-list">
@@ -117,11 +128,30 @@
                             <span>Color</span>
                             <div class="pro-details-color-content">
                                 <ul>
-                                    <li class="blue"></li>
-                                    <li class="maroon active"></li>
-                                    <li class="gray"></li>
-                                    <li class="green"></li>
-                                    <li class="yellow"></li>
+                                <c:set var="color" value="${vo.color }" />
+                                <%
+					      		String color = (String) pageContext.getAttribute("color") ;
+								
+								if(color != null && !color.equals("")) {
+									String[] array = color.split("/");
+									for( int i=0; i<array.length; i++ ) {
+										if(i < array.length ) {
+								%>
+											<li>
+		            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+													<label for="chk<%=i %>" class="chkbox" >										
+														<input id="chk<%=i %>" type="checkbox" value="<%=array[i] %>">
+														<span class="checkmark" style="background-color: <%=array[i] %>;"></span>
+													</label><br>
+												</div>
+											</li> 
+								<%
+										}
+									}
+								}
+								%>
+                                
+                               
                                 </ul>
                             </div>
                         </div>
@@ -129,21 +159,33 @@
                             <span>Size</span>
                             <div class="pro-details-size-content">
                                 <ul>
-                                    <li><a href="#">s</a></li>
-                                    <li><a href="#">m</a></li>
-                                    <li><a href="#">l</a></li>
-                                    <li><a href="#">xl</a></li>
-                                    <li><a href="#">xxl</a></li>
+	                                <c:set var="csize" value="${vo.csize}" />
+	                                <%
+									String csize = (String)pageContext.getAttribute("csize");
+									
+									if(csize != null && !csize.equals("")) {
+										String[] array = csize.split("/");
+										for(int i=0; i<array.length; i++) {
+											if(i < array.length ) {	
+									%>	
+												
+												<li><a href="#"><%=array[i] %></a></li>
+												
+									<%
+											}
+										}
+									}
+									%>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="pro-details-quality">
                         <div class="cart-plus-minus">
-                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="2">
+                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
                         </div>
                         <div class="pro-details-cart btn-hover">
-                            <a href="#">Add To Cart</a>
+                            <a href="#">장바구니</a>
                         </div>
                         <div class="pro-details-wishlist">
                             <a href="#"><i class="fa fa-heart-o"></i></a>
@@ -153,21 +195,24 @@
                         </div>
                     </div>
                     <div class="pro-details-meta">
-                        <span>Categories :</span>
+                        <span>카테고리 :</span>
                         <ul>
-                            <li><a href="#">Minimal,</a></li>
-                            <li><a href="#">Furniture,</a></li>
-                            <li><a href="#">Fashion</a></li>
+                            <li><a href="#">${vo.category eq 'CLS'?'의류':'신발'},</a></li>
+                            <li><a href="#">${vo.ctgtype eq 'SPT'?'스포츠':'LES'?'레저':'일상'},</a></li>
+                            <li><a href="#">${vo.ctggender eq 'M'?'남성':'F'?'여성':'성별 무관'}</a></li>
                         </ul>
                     </div>
+                <!-- 
                     <div class="pro-details-meta">
-                        <span>Tag :</span>
+                        <span>태그 :</span>
                         <ul>
                             <li><a href="#">Fashion, </a></li>
                             <li><a href="#">Furniture,</a></li>
                             <li><a href="#">Electronic</a></li>
                         </ul>
                     </div>
+                -->
+                 <!-- 
                     <div class="pro-details-social">
                         <ul>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -177,6 +222,7 @@
                             <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                         </ul>
                     </div>
+                 -->
                 </div>
             </div>
         </div>
@@ -186,9 +232,9 @@
     <div class="container">
         <div class="description-review-wrapper">
             <div class="description-review-topbar nav">
-                <a data-bs-toggle="tab" href="#des-details1">Additional information</a>
-                <a class="active" data-bs-toggle="tab" href="#des-details2">Description</a>
-                <a data-bs-toggle="tab" href="#des-details3">Reviews (2)</a>
+                <a data-bs-toggle="tab" href="#des-details1">추가 정보</a>
+                <a class="active" data-bs-toggle="tab" href="#des-details2">상세정보</a>
+                <a data-bs-toggle="tab" href="#des-details3">리뷰</a>
             </div>
             <div class="tab-content description-review-bottom">
                 <div id="des-details2" class="tab-pane active">
@@ -199,14 +245,25 @@
                 </div>
                 <div id="des-details1" class="tab-pane ">
                     <div class="product-anotherinfo-wrapper">
-                        <ul>
-                            <li><span>Weight</span> 400 g</li>
-                            <li><span>Dimensions</span>10 x 10 x 15 cm </li>
-                            <li><span>Materials</span> 60% cotton, 40% polyester</li>
-                            <li><span>Other Info</span> American heirloom jean shorts pug seitan letterpress</li>
-                        </ul>
+                        <c:set var="goodsimg" value="${vo.goodsimg }" />
+						<%
+				      		String goodsimg = (String)pageContext.getAttribute("goodsimg") ;
+							if(goodsimg != null && !goodsimg.equals("")) {
+								String[] array = goodsimg.split("/");
+								for( int i=0; i<array.length; i++ ) {
+									if(i < array.length ) {
+						%>
+										<span><img src="/nike/goods/${vo.unq}/<%=array[i] %>"/></span><br>
+						<%
+									}
+								}
+							}
+						%>
                     </div>
                 </div>
+                
+                <!-- 리뷰 시작 -->
+                
                 <div id="des-details3" class="tab-pane">
                     <div class="row">
                         <div class="col-lg-7">
@@ -219,7 +276,7 @@
                                         <div class="review-top-wrap">
                                             <div class="review-left">
                                                 <div class="review-name">
-                                                    <h4>White Lewis</h4>
+                                                    <h4>리뷰 작성자</h4>
                                                 </div>
                                                 <div class="review-rating">
                                                     <i class="fa fa-star"></i>
@@ -229,15 +286,18 @@
                                                     <i class="fa fa-star"></i>
                                                 </div>
                                             </div>
+                                        <!--     
                                             <div class="review-left">
-                                                <a href="#">Reply</a>
+                                                <a href="#">답글</a>
                                             </div>
+                                         -->
                                         </div>
                                         <div class="review-bottom">
-                                            <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla.</p>
+                                            <p> 리뷰 글</p>
                                         </div>
                                     </div>
                                 </div>
+                            <!-- 답글
                                 <div class="single-review child-review">
                                     <div class="review-img">
                                         <img src="/nike/nikeweb/assets/img/testimonial/2.jpg" alt="">
@@ -265,15 +325,17 @@
                                         </div>
                                     </div>
                                 </div>
+                             -->
                             </div>
                         </div>
+                        <!-- 리뷰작성 -->
                         <div class="col-lg-5">
                             <div class="ratting-form-wrapper pl-50">
-                                <h3>Add a Review</h3>
+                                <h3>리뷰 작성</h3>
                                 <div class="ratting-form">
                                     <form action="#">
                                         <div class="star-box">
-                                            <span>Your rating:</span>
+                                            <span>만족도 선택:</span>
                                             <div class="ratting-star">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -283,19 +345,21 @@
                                             </div>
                                         </div>
                                         <div class="row">
+                                        <!--     
                                             <div class="col-md-6">
                                                 <div class="rating-form-style mb-10">
-                                                    <input placeholder="Name" type="text">
+                                                    <input placeholder="이름 입력" type="text">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="rating-form-style mb-10">
-                                                    <input placeholder="Email" type="email">
+                                                    <input placeholder="이메일 입력" type="email">
                                                 </div>
                                             </div>
+                                        -->    
                                             <div class="col-md-12">
                                                 <div class="rating-form-style form-submit">
-                                                    <textarea name="Your Review" placeholder="Message"></textarea>
+                                                    <textarea name="Your Review" placeholder="최소 10자 이상 입력해주세요"></textarea>
                                                     <input type="submit" value="Submit">
                                                 </div>
                                             </div>
@@ -304,18 +368,28 @@
                                 </div>
                             </div>
                         </div>
+                    	<!-- 리뷰작성 -->
                     </div>
                 </div>
+				
+				<!-- 리뷰 끝 -->
+				            
             </div>
         </div>
     </div>
 </div>
+
+<!--  상품 추천  -->
+
 <div class="related-product-area pb-95">
     <div class="container">
         <div class="section-title text-center mb-50">
-            <h2>Related products</h2>
+            <h2>추천 상품</h2>
         </div>
         <div class="related-product-active owl-carousel owl-dot-none">
+            
+            
+            
             <div class="product-wrap">
                 <div class="product-img">
                     <a href="product-details-2.html">
@@ -350,6 +424,9 @@
                     </div>
                 </div>
             </div>
+            
+            
+            
             <div class="product-wrap">
                 <div class="product-img">
                     <a href="product-details-2.html">
@@ -383,6 +460,9 @@
                     </div>
                 </div>
             </div>
+            
+            
+            
             <div class="product-wrap">
                 <div class="product-img">
                     <a href="product-details-2.html">
@@ -417,6 +497,9 @@
                     </div>
                 </div>
             </div>
+            
+            
+            
             <div class="product-wrap">
                 <div class="product-img">
                     <a href="product-details-2.html">
@@ -450,6 +533,9 @@
                     </div>
                 </div>
             </div>
+            
+            
+            
             <div class="product-wrap">
                 <div class="product-img">
                     <a href="product-details-2.html">
@@ -484,6 +570,9 @@
                     </div>
                 </div>
             </div>
+        
+        
+        
         </div>
     </div>
 </div>

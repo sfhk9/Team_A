@@ -31,15 +31,9 @@
     <link rel="stylesheet" href="/nike/nikeweb/assets/css/style.css">
 </head>
 
-<script>
-$( function() {
-	   $( ".selector" ).checkboxradio({
-	      icon: false
-	   });
-}); 
-</script>
 
 <script>
+
 //데이터 수집 함수
 function filterRe() {
 		
@@ -119,86 +113,8 @@ $("#add").click(function(){
    	$('#list').load(addurl);
    	
 });
-		
-
 </script>
 
-<style>
-
-
-.chkbox {
-  width: 28px; height: 28px;
-  display: block;
-  position: relative;
-  padding-left: 25px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* 브라우저의 기본 체크박스 숨기기 */
-.chkbox input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-/* 브라우저의 기본 체크박스 숨기기 */
-.chkbox input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-
-/* 사용자 정의 체크박스 생성 */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #ff0000;
-}
-
-
-/* 체크박스 체크 시 배경 추가 */
-.chkbox input:checked ~ .checkmark {
-  background-color: #ff0000;
-}
-
-/* 체크 표시/인디케이터 생성(선택하지 않으면 숨겨짐) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* 체크 시 체크 표시 */
-.chkbox input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* 체크 표시/인디케이터 스타일 지정 */
-.chkbox .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 7px;
-  height: 14px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-</style>
 
 <body>
 

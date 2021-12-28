@@ -25,7 +25,7 @@ public class NikeController {
 	@Resource(name = "nikeService")
 	NikeService nikeService;
 	
-	@RequestMapping("mainpage.do")
+	@RequestMapping("index.do")
 	public String mainpage( Model model ) throws Exception {
 		
 		List<?> list = nikeService.selectHitGoodsList();
@@ -33,7 +33,7 @@ public class NikeController {
 		System.out.println("리스트"+list);
   
 		model.addAttribute("list",list);
-		return "nike/mainpage";
+		return "nike/nikeweb/index";
 	}
 	
 	@RequestMapping("goodsList.do")
@@ -184,7 +184,16 @@ public class NikeController {
 		
 		//상세보기 서비스 실행
 		vo = nikeService.selectGoodsDetail(vo);
+		
+		//리뷰관련 서비스 실행
+		List<?> comm_list = nikeService.selectCommList(vo);
+		
+		//리뷰 갯수
+		int review_cnt = nikeService.selectReviewCnt(vo);
+		
 		model.addAttribute("vo",vo);
+		model.addAttribute("comm_list",comm_list);
+		model.addAttribute("review_cnt",review_cnt);
 		
 		return "nike/nikeweb/goodsDetail";
 	}
@@ -198,6 +207,11 @@ public class NikeController {
 	}
 
 	
+	@RequestMapping("mainPage.do")
+	public String mainPage() throws Exception{
+		return "nike/nikeweb/index-2";
+	}
+	
 	@RequestMapping("joinAgree.do")
 	public String joinAgree() throws Exception{
 		return "nike/member/join_agree_r";
@@ -206,7 +220,7 @@ public class NikeController {
 	@RequestMapping("joinWrite.do")
 	public String joinWrite() {
 		
-		return "nike/member/join_r";
+		return "nike/nikeweb/login-register";
 	}
 	
 	@RequestMapping("joinWriteSave.do")
@@ -263,7 +277,7 @@ public class NikeController {
 		vo = nikeService.selectMemberDetail(vo);
 		model.addAttribute("vo",vo);
 		
-		return "nike/member/memberModify";
+		return "nike/nikeweb/my-account";
 	}
 
 	
@@ -291,8 +305,9 @@ public class NikeController {
 	@RequestMapping("loginWrite.do")
 	public String loginWrite() {
 		
-		return "nike/member/login2_r";
+		return "nike/nikeweb/login-register";
 	}
+	
 	
 
 	@RequestMapping("logout.do")
