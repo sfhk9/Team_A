@@ -81,128 +81,118 @@
                             <div class="product-filter">
                                 <h5>색상</h5>
                                 <ul class="color-filter">
-
-
-<!-- 	          						<li>
-		          						<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-			          						<label for="checkbox-1" style="background-color:white; width: 28px; height: 28px;" ></label>
-					    					<input type="checkbox" id="checkbox-1" name="color" value="white" class="selector"><br>
-					    					<a>하얀색</a>
-										</div>     
-				         			</li> 
-				         			  
-	          						<li>
-		          						<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-			          						<label for="checkbox-2" style="background-color:gray; width: 28px; height: 28px;" ></label>
-					    					<input type="checkbox" id="checkbox-2" name="color" value="gray" class="selector"><br>
-					    					<a>회색</a>
-										</div>     
-				         			</li> 
-				         			
-	          						<li>
-		          						<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-			          						<label for="checkbox-3" style="background-color:black; width: 28px; height: 28px;" ></label>
-					    					<input type="checkbox" id="checkbox-3" name="color" value="black" class="selector"><br>
-					    					<a>검은색</a>
-										</div>     
-				         			</li> 
-				         			
-				         			<li>
-		          						<div style="text-align: center; width: 50px; float:left; margin: 5px;" >
-			          						<label for="checkbox-4" style="background-color:red; width: 28px; height: 28px;" ></label>
-					    					<input type="checkbox" id="checkbox-4" name="color" value="red" class="selector"><br>
-					    					<a>빨간색</a>
-										</div>     
-				         			</li> 
-				         			
-				         			<li>
-		          						<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-			          						<label for="checkbox-5" style="background-color:yellow; width: 28px; height: 28px;" ></label>
-					    					<input type="checkbox" id="checkbox-5" name="color" value="yellow" class="selector"><br>
-					    					<a>노란색</a>
-										</div>     
-				         			</li> 
-				         			
-				         			<li>
-		          						<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-			          						<label for="checkbox-6" style="background-color:#F5F5DC; width: 28px; height: 28px;" ></label>
-					    					<input type="checkbox" id="checkbox-6" name="beige" value="brown" class="selector"><br>
-					    					<a>베이지</a>
-										</div>     
-				         			</li> 
-				         			
-	          						<li>
-		          						<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-			          						<label for="checkbox-7" style="background-color:brown; width: 28px; height: 28px;" ></label>
-					    					<input type="checkbox" id="checkbox-7" name="color" value="brown" class="selector"><br>
-					    					<a>갈색</a>
-										</div>     
-				         			</li> 
-				         			
-				         			<li>
-		          						<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-			          						<label for="checkbox-8" style="background-color:navy; width: 28px; height: 28px;" ></label>
-					    					<input type="checkbox" id="checkbox-8" name="color" value="navy" class="selector"><br>
-					    					<a>나이비</a>
-										</div>     
-				         			</li> 
-
-				         			<li>
-		          						<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-			          						<label for="checkbox-9" style="background-color:pink; width: 28px; height: 28px;" ></label>
-					    					<input type="checkbox" id="checkbox-9" name="color" value="pink" class="selector"><br>
-					    					<a>분홍색</a>
-										</div>     
-				         			</li> 
-				         			
-				         			<li>
-		          						<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-			          						<label for="checkbox-10" style="background-color:blue; width: 28px; height: 28px;" ></label>
-					    					<input type="checkbox" id="checkbox-10" name="color" value="blue" class="selector"><br>
-					    					<a>파란색</a>
-										</div>     
-				         			</li> 
-
-				         			<li>
-		          						<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-			          						<label for="checkbox-11" style="background-color:skyblue; width: 28px; height: 28px;" ></label>
-					    					<input type="checkbox" id="checkbox-11" name="color" value="skyblue" class="selector"><br>
-					    					<a>스카이</a>
-										</div>     
-				         			</li> 
--->
 									 
 									<li>
             							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-											<label for="chk1" class="chkbox" style="width:25px; height:25px; margin:0px auto;">										
-												<input id="chk1" type="checkbox" checked="checked" style="position:absolute;left:-4px;" >
-												<span class="checkmark"></span>
-											</label>
-											<a style="margin:0px auto;">체크박</a>
+											<label for="chk1" class="chkbox" >										
+												<input id="chk1" type="checkbox" >
+												<span class="checkmark" style="background-color: black;"></span>
+											</label><br>
+											<a>검은색</a>
+										</div>
+									</li> 
+									
+									<li>
+            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+											<label for="chk2" class="chkbox" >										
+												<input id="chk2" type="checkbox" >
+												<span class="checkmark" style="background-color: gray;"></span>
+											</label><br>
+											<a>회색</a>
+										</div>
+									</li> 
+									
+									<li>
+            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+											<label for="chk3" class="chkbox" >										
+												<input id="chk3" type="checkbox" >
+												<span class="checkmark2" style="background-color: white;"></span>
+											</label><br>
+											<a>흰색</a>
+										</div>
+									</li> 
+									
+									<li>
+            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+											<label for="chk4" class="chkbox" >										
+												<input id="chk4" type="checkbox" >
+												<span class="checkmark" style="background-color: red;"></span>
+											</label><br>
+											<a>빨간색</a>
+										</div>
+									</li> 
+									
+									<li>
+            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+											<label for="chk5" class="chkbox" >										
+												<input id="chk5" type="checkbox" >
+												<span class="checkmark2" style="background-color: yellow;"></span>
+											</label><br>
+											<a>노랑색</a>
+										</div>
+									</li> 
+									
+									<li>
+            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+											<label for="chk6" class="chkbox" >										
+												<input id="chk6" type="checkbox" >
+												<span class="checkmark2" style="background-color: beige;"></span>
+											</label><br>
+											<a>베이지</a>
+										</div>
+									</li> 
+									
+									<li>
+            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+											<label for="chk7" class="chkbox" >										
+												<input id="chk7" type="checkbox" >
+												<span class="checkmark" style="background-color: brown;"></span>
+											</label><br>
+											<a>갈색</a>
+										</div>
+									</li> 
+									
+									<li>
+            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+											<label for="chk8" class="chkbox" >										
+												<input id="chk8" type="checkbox" >
+												<span class="checkmark" style="background-color: navy;"></span>
+											</label><br>
+											<a>나이비</a>
+										</div>
+									</li> 
+									
+									<li>
+            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+											<label for="chk9" class="chkbox" >										
+												<input id="chk9" type="checkbox" >
+												<span class="checkmark" style="background-color: pink;"></span>
+											</label><br>
+											<a>분홍색</a>
+										</div>
+									</li> 
+									
+									<li>
+            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+											<label for="chk10" class="chkbox" >										
+												<input id="chk10" type="checkbox" >
+												<span class="checkmark" style="background-color: blue;"></span>
+											</label><br>
+											<a>파랑색</a>
 										</div>
 									</li> 
 									<li>
             							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-											<label for="chk2" class="chkbox" style="width:25px; height:25px; margin:0px auto;">										
-												<input id="chk2" type="checkbox" checked="checked" style="position:absolute;">
-												<span class="checkmark"></span>
-											</label>
-											<a style="margin:0px auto;">체크박</a>
+											<label for="chk11" class="chkbox" >										
+												<input id="chk11" type="checkbox" >
+												<span class="checkmark" style="background-color: skyblue;"></span>
+											</label><br>
+											<a>스카이</a>
 										</div>
 									</li> 
-																		<li>
-            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-											<label for="chk3" class="chkbox" style="width:25px; height:25px; margin:0px auto;">										
-												<input id="chk3" type="checkbox" checked="checked" style="position:absolute;">
-												<span class="checkmark"></span>
-											</label>
-											<a style="margin:0px auto;">체크박</a>
-										</div>
-									</li> 
-             
-             
-             
-             
+									
+	
+
                                 </ul>
                             </div>
                         </div>
