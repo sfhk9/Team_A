@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -12,9 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-  	<link rel="stylesheet" href="/resources/demos/style.css">
-  	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="../../Flone/flone/assets/img/favicon.png">
@@ -31,58 +31,15 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="../../Flone/flone/assets/css/style.css">
 </head>
-<style>
-.font_green {
-	color : green;
-}
-.font_red {
-	color : red;
-}
 
-</style>
 <script>
-// 회원가입 - 아이디 중복체크
-function fn_idchk(userid) {
-	var msg = "";
-	var len = userid.length;
-	if( len  < 4 || len > 12 ) {
-		msg = "<span class='font_red'>아이디는 4자리 ~ 12자 사이로 입력바랍니다.</span>";
-	} else {
-		$.ajax({
-			type :"post",
-			url  :"id_check.do",
-			data :"userid="+userid, 
-			
-			datatype : "text",
-			success  : function(data){
-				if( data == "ok" ) msg = "<span class='font_green'>사용 가능한 아이디 입니다.</span>";
-				else if( data == "er1" ) msg = "<span class='font_red'>첫 글자는영문, 아이디는 영문+숫자+특수문자(_,-)의 혼합으로만 구성해주세요.</span>";
-				else msg = "<span class='font_red'>이미 사용중인 아이디 입니다.</span>";
-				
-				$("#id_chk_msg").html(msg);
-			},
-			error : function() {   }
-			
-		});
-	}
-	$("#id_chk_msg").html(msg);
-}
-//회원가입 - 유효성 체크
 $(function(){
-	$("#btn_save2").click(function(){		
-		if( $("#userid2").val() == "" ) {
-			alert("아이디를 입력해주세요.");
-			$("#userid2").focus();
-			return false;				
-		}
-		if( $("#pass2").val() == "" ) {
+	
+	$("#btn_save").click(function(){
+
+		if( $("#pass").val() == "" ) {
 			alert("암호를 입력해주세요.");
-			$("#pass2").focus();
-			return false;				
-		}
-		if( $("#pass2").val() != $("#pass_chk").val()  ) {
-			alert("암호가 서로 일치하지 않습니다.");
-			$("#pass2").focus();
+			$("#pass").focus();
 			return false;				
 		}
 		if( $("#name").val() == "" ) {
@@ -90,40 +47,21 @@ $(function(){
 			$("#name").focus();
 			return false;				
 		}
-		if( $("#birth").val() == "" ) {
-			alert("생년월일을 선택해주세요.");
-			$("#birth").focus();
-			return false;				
-		}
-		if( $("#email").val() == "" ) {
-			alert("E-mail을 입력해주세요.");
-			$("#email").focus();
-			return false;				
-		}
-		if( $("#address1").val() == "" ) {
-			alert("주소를 입력해주세요.");
-			$("#address1").focus();
-			return false;				
-		}
-		if( $("#address2").val() == "" ) {
-			alert("상세주소를 입력해주세요.");
-			$("#address2").focus();
-			return false;				
-		}
-		var formdata = $("#frm2").serialize();
+	
+		var formdata = $("#frm").serialize();
 		
 		$.ajax({
 			type : "post",
-			url  : "joinWriteSave.do",
+			url  : "memberModifySave.do",
 			data : formdata,
 			
 			datatype : "text",
 			success : function(data) {
 					if(data == "ok") {
-						alert("저장 완료");
-						location="mainPage.do";
+						alert("수정 완료");
+						location = "memberModify.do";
 					} else if(data == "er1") {
-						alert("이미 사용중인 아이디 입니다.");
+						alert("암호가 일치하지 않습니다.");
 					} else {
 						alert("저장 실패");
 					}
@@ -135,66 +73,6 @@ $(function(){
 		});
 	});
 });
-// 로그아웃
-function fn_logout(){
-	
-	if( confirm("로그아웃하시겠습니까?") ){
-		
-		$.ajax({			
-			type : "post",
-			data : "",
-			url  : "/logout.do",
-			
-			datatype : "text",
-			success  : function(){
-				alert("로그아웃 되었습니다.");
-				location="/loginWrite.do";
-			},
-			error    : function(){
-				
-			}			
-		});		
-	}
-}
-
-// 로그인 - 유효성 체크
-	$(function(){	
-		$("#btn_save").click(function(){
-			
-			if( $("#userid").val() == "" ) {
-				alert("아이디를 입력해주세요.");
-				$("#userid").focus();
-				return false;				
-			}
-			if( $("#pass").val() == "" ) {
-				alert("암호를 입력해주세요.");
-				$("#pass").focus();
-				return false;				
-			}		
-			var formdata = $("#frm").serialize();			
-			$.ajax({
-				type : "post",
-				url  : "loginCertify.do", // (1) 검증 , (2) 세션
-				data : formdata,
-				
-				datatype : "text",
-				success : function(data) {
-						if(data == "ok") {
-							alert( $("#userid").val() + "님 로그인 되었습니다.");							
-							location = "loginWrite.do";							
-						} else if(data == "er1") {
-							alert("존재하지 않는 정보입니다.");
-						} else {
-							alert("인증 실패");
-						}
-				},
-				error : function() {
-					alert("오류!!");
-				}
-				
-			});
-		});
-	});
 </script>
 <body>
 <header class="header-area header-in-container clearfix">
@@ -207,7 +85,7 @@ function fn_logout(){
                 <li>
                     <a href="mainPage.do">Home</a>
                 </li>
-                <li class="active">Login/Join </li>
+                <li class="active">정보 수정 </li>
             </ul>
         </div>
     </div>
@@ -219,111 +97,88 @@ function fn_logout(){
                 <div class="login-register-wrapper">
                     <div class="login-register-tab-list nav">                       
                         <a class="active" data-bs-toggle="tab" href="#lg1">
-                            <h4> login </h4>
+                            <h4> 회원 정보 수정 </h4>
                         </a>
-                        <a data-bs-toggle="tab" href="#lg2">
+                        <!-- <a data-bs-toggle="tab" href="#lg2">
                             <h4> join </h4>
-                        </a>
+                        </a> -->
                     </div>
                     <div class="tab-content">
                         <div id="lg1" class="tab-pane active">
                             <div class="login-form-container">
                                 <div class="login-register-form">
-                                    <form id="frm" >
-                                 <%
-			  					 String session_id = (String) session.getAttribute("MemberSessionId");
-			  					%>
-			  					<%
-			            		if(session_id == null){
-			            		%> 
-                                        <input type="text" 
+                                   <form id="frm">
+                                       <label>Id</label>
+                                       <input type="text" 
                                          	   name="userid" 
                                          	   id="userid" 
-                                         	   maxlength="12" 
-                                         	   placeholder="Userid">
-                                        <input type="password" 
-                                        	   name="pass" 
-                                        	   id="pass" 
-                                        	   placeholder="Password">
-                                        <div class="button-box">
-                                            <div class="login-toggle-btn">                                               
-                                                <a href="#">Forgot Password?</a>
-                                            </div>
-                                            <button type="submit" id="btn_save" onclick="return false;"><span>Login</span></button>                           
-                                 <%
-			            		}else{
-                                 %>
-                                 <span>반갑습니다 !</span>
-                                        <div class="button-box">
-                                            <div class="login-toggle-btn">
-                           
-                                            </div>
-                                            <button type="button"  onclick="javascript:fn_logout()"><span>Logout</span></button>                  
-                                  <%
-			            		}
-                                  %>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="lg2" class="tab-pane">
-                            <div class="login-form-container">
-                                <div class="login-register-form">
-                                    <form id="frm2">
-                                        <input type="text" 
-                                        	   name="userid" 
-								   			   id="userid2"   
-								   			   onkeyup="fn_idchk(this.value)"
-                        		               maxlength="12" 
-                        		               placeholder="Userid" 
-                        		               autofocus>
-                        		        <span id="id_chk_msg"></span>
+                                         	   value="${vo.userid }"
+                                         	   readonly
+                                         	   >
+                                        <label>Password</label>
                                         <input type="password" 
                                              	name="pass" 
-                                             	id="pass2" 
-                                             	placeholder="Password">
-                                        <input type="password" 
-                                        	   name="pass_chk" 
-                                        	   id="pass_chk" 
-                                        	   placeholder="Password 확인">
+                                             	id="pass" 
+                                             	placeholder="Password">                                 
+                                       <label>Name</label>
                                        <input type="text" 
                                               name="name" 
-                                              id="name"  
-                                              placeholder="Name">
+                                              id="name"
+                                              value="${vo.name }"  
+                                              placeholder="Name"
+                                             >
+                                     <label>Birth</label><br>
                                       <span class="mem_str">※ 오른쪽 달력 아이콘을 이용해 주세요.<br></span>
 							          <input type="date" 
 							          		 name="birth" 
 							          		 id="birth"
-							          		 placeholder="Birth">
+							          		 value="${vo.birth }"							         
+							          		 >
+							          <label>Phone</label>
 							          <input type="tel" 
 							          		 name="phone" 
 							          		 id="phone" 
+							          		 value="${vo.phone }" 
 							          		 placeholder="PhoneNumber">
+                                      <label>E-mail</label>
                                       <input type="email"
                                       		 name="email" 
                                       		 id="email" 
+                                      		 value="${vo.email }"
                                       		 placeholder="Email 형식을 확인 해주세요. ex) aaa@aaaa.com" >
+                                      <label>우편 번호</label>
                                       <input type="text" 
                                       		 name="zipcode" 
                                       		 id="zipcode"
+                                      		 value="${vo.zipcode }"
                                       		 placeholder="우편번호" >
+                                      <label>주소</label>
                                       <input type="text" 
                                       		 name="address1" 
                                       		 id="address1"
+                                      		 value="${vo.address1 }"
                                       		 placeholder="주소" >
+                                      <label>상세주소</label>
                                       <input type="text" 
                                       		 name="address2" 
                                       		 id="address2"
+                                      		 value="${vo.address2 }"
                                       		 placeholder="상세주소" >
                                         <div class="button-box">
-                                            <button type="submit"id="btn_save2" onclick="return false;"><span>회원가입</span></button>
+                                            <button type="submit"id="btn_save" onclick="return false;"><span>수정하기</span></button>
                                             <button type="reset" >취소</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
+                     <!--    <div id="lg2" class="tab-pane">
+                            <div class="login-form-container">
+                                <div class="login-register-form">
+                                    
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
