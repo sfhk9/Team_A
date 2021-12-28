@@ -373,7 +373,7 @@ public class NikeController {
 		List<NikeVO> readList=mapper.readValue(jsonList, List.class);
 		// LinkedHashMap -> ArrayList 변환
 		List<NikeVO> convertList = mapper.convertValue(readList,new TypeReference<List<NikeVO>>(){});
-		
+
 		for(int i=0;i<convertList.size();i++) {
 			// i번째 리스트에서 unq, qty 추출
 			unq=convertList.get(i).getUnq();
@@ -429,6 +429,14 @@ public class NikeController {
 		List<?> list=nikeService.selectCheckout(vo);
 		model.addAttribute("list",list);
 		return "nike/nikeweb/checkout";
+	}
+	
+	@RequestMapping("checkoutSave.do")
+	@ResponseBody
+	public String insertCheckout(NikeVO vo) throws Exception{
+		String msg="ok";
+		
+		return msg;
 	}
 
 }

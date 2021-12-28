@@ -1,6 +1,13 @@
 $(function(){
 	$("#btn_save").click(function(){
 		
+		/* 유효성 검사 형식 */
+		if($("#")==""){
+			alert("");
+			$("#").focus();
+			return false;
+		}
+		
 		var formdata = $("#frm").serialize();
 		
 		$.ajax({

@@ -60,6 +60,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="table-content table-responsive cart-table-content">
                     <table id="cartTable">
+                    	<caption>>> 수량이 0개인 상품은 저장시 목록에서 지워집니다</caption>
                         <thead>
                             <tr>
                                 <th>이미지</th>
@@ -97,7 +98,7 @@
                          			<input type="hidden" name="unq" id="unq" value="${result.unq}">
                          			<input type="hidden" name="goods" id="goodsunq" value="${result.goodsunq}">
                                      <div class="cart-plus-minus">
-                                     	<!-- cart 테이블에 수량 관련된 Column 추가 필요함 -->
+                                     	 <!-- cart 테이블에 수량 관련된 Column 추가 필요함 -->
                                          <input class="cart-plus-minus-box" 
                                          	   type="text" 
                                          	   id="qty"
@@ -125,7 +126,7 @@
                         <div class="cart-shiping-update-wrapper">
                             <div class="cart-shiping-update">
                             	<!-- 변경 후 저장 안했을 경우 체크하기 -->
-                                <a href="/goodsList.do">쇼핑 계속하기</a>
+                                <a href="#" id="btn_continue">쇼핑 계속하기</a>
                             </div>
                             <div class="cart-clear">
                             	<button id="btn_save">변경사항 저장하기</button>
