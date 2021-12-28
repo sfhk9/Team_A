@@ -137,21 +137,21 @@
 									for( int i=0; i<array.length; i++ ) {
 										if(i < array.length ) {
 								%>
-											<li class="<%=array[i] %>"></li>
+											<li>
+		            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+													<label for="chk<%=i %>" class="chkbox" >										
+														<input id="chk<%=i %>" type="checkbox" value="<%=array[i] %>">
+														<span class="checkmark" style="background-color: <%=array[i] %>;"></span>
+													</label><br>
+												</div>
+											</li> 
 								<%
 										}
 									}
 								}
 								%>
                                 
-                                    <li class="black"></li>
-                                    <li class="white"></li>
-                        			<li class="gray"></li>
-                        			<li class="navy"></li>
-                        			<li class="violet"></li>
-                        			<li class="pink"></li>
-                        			<li class="skyblue"></li>
-                        			<li class="yellow"></li>
+                               
                                 </ul>
                             </div>
                         </div>
