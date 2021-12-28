@@ -135,27 +135,6 @@ $(function(){
 		});
 	});
 });
-// 로그아웃
-function fn_logout(){
-	
-	if( confirm("로그아웃하시겠습니까?") ){
-		
-		$.ajax({			
-			type : "post",
-			data : "",
-			url  : "/logout.do",
-			
-			datatype : "text",
-			success  : function(){
-				alert("로그아웃 되었습니다.");
-				location="/loginWrite.do";
-			},
-			error    : function(){
-				
-			}			
-		});		
-	}
-}
 
 // 로그인 - 유효성 체크
 	$(function(){	
@@ -181,7 +160,7 @@ function fn_logout(){
 				success : function(data) {
 						if(data == "ok") {
 							alert( $("#userid").val() + "님 로그인 되었습니다.");							
-							location = "loginWrite.do";							
+							location = "index.do";							
 						} else if(data == "er1") {
 							alert("존재하지 않는 정보입니다.");
 						} else {
@@ -221,7 +200,7 @@ function fn_logout(){
                         <a class="active" data-bs-toggle="tab" href="#lg1">
                             <h4> 로그인 </h4>
                         </a>
-                        <a data-bs-toggle="tab" href="#lg2">
+                        <a  data-bs-toggle="tab" href="#lg2">
                             <h4> 회원가입 </h4>
                         </a>
                     </div>
@@ -229,13 +208,7 @@ function fn_logout(){
                         <div id="lg1" class="tab-pane active">
                             <div class="login-form-container">
                                 <div class="login-register-form">
-                                    <form id="frm" >
-                                 <%
-			  					 String session_id = (String) session.getAttribute("MemberSessionId");
-			  					%>
-			  					<%
-			            		if(session_id == null){
-			            		%> 
+                                    <form id="frm" >                               
                                         <input type="text" 
                                          	   name="userid" 
                                          	   id="userid" 
@@ -249,20 +222,7 @@ function fn_logout(){
                                             <div class="login-toggle-btn">                                               
                                                 <a href="#">Forgot Password?</a>
                                             </div>
-                                            <button type="submit" id="btn_save" onclick="return false;"><span>로그인</span></button>                           
-                                 
-                                 <%
-			            		}else{
-                                 %>
-                                 <span>반갑습니다 !</span>
-                                        <div class="button-box">
-                                            <div class="login-toggle-btn">
-                           
-                                            </div>
-                                            <button type="button"  onclick="javascript:fn_logout()"><span>로그아웃</span></button>                  
-                                  <%
-			            		}
-                                  %>
+                                            <button type="submit" id="btn_save" onclick="return false;"><span>로그인</span></button>                                                       
                                         </div>
                                     </form>
                                 </div>

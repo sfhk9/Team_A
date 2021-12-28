@@ -1,6 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
+<script>
+
+function fn_logout(){
+	
+	if( confirm("로그아웃하시겠습니까?") ){
+		
+		$.ajax({			
+			type : "post",
+			data : "",
+			url  : "/logout.do",
+			
+			datatype : "text",
+			success  : function(){
+				alert("로그아웃 되었습니다.");
+				location="/loginWrite.do";
+			},
+			error    : function(){
+				
+			}			
+		});		
+	}
+}	
+</script>
+	
 <div class="header-bottom sticky-bar header-res-padding">
     <div class="container">
         <div class="row">
@@ -185,12 +210,25 @@
                     </div>
                     <div class="same-style account-satting">
                         <a class="account-satting-active" href="#"><i class="pe-7s-user-female"></i></a>
-                        <div class="account-dropdown">
+                        <div class="account-dropdown">                            
                             <ul>
+                            <%
+						    String session_id = (String) session.getAttribute("MemberSessionId");
+						    %> 
+						    <%
+				            if(session_id == null){
+				            %>
                                 <li><a href="loginWrite.do">로그인</a></li>
                                 <li><a href="joinWrite.do">회원가입</a></li>
-                                <li><a href="wishlist.html">위시리스트  </a></li>
+				            <%
+				            } else {
+				            %>
+                              	<li><a href="wishlist.html">위시리스트  </a></li>
                                 <li><a href="memberModify.do">내정보</a></li>
+                                <li style="font-weight:bold"><a href="javascript:fn_logout()">로그아웃</a></li>
+                            <% 
+				            }
+				            %>  
                             </ul>
                         </div>
                     </div>
