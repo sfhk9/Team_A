@@ -83,9 +83,9 @@ $(function(){
         <div class="breadcrumb-content text-center">
             <ul>
                 <li>
-                    <a href="mainPage.do">Home</a>
+                    <a href="mainPage.do">홈</a>
                 </li>
-                <li class="active">정보 수정 </li>
+                <li class="active">회원 정보 수정 </li>
             </ul>
         </div>
     </div>
@@ -108,39 +108,39 @@ $(function(){
                             <div class="login-form-container">
                                 <div class="login-register-form">
                                    <form id="frm">
-                                       <label>Id</label>
+                                       <label>아이디</label>
                                        <input type="text" 
                                          	   name="userid" 
                                          	   id="userid" 
                                          	   value="${vo.userid }"
                                          	   readonly
                                          	   >
-                                        <label>Password</label>
+                                        <label>비밀번호</label>
                                         <input type="password" 
                                              	name="pass" 
                                              	id="pass" 
                                              	placeholder="Password">                                 
-                                       <label>Name</label>
+                                       <label>이름</label>
                                        <input type="text" 
                                               name="name" 
                                               id="name"
                                               value="${vo.name }"  
                                               placeholder="Name"
                                              >
-                                     <label>Birth</label><br>
+                                     <label>생년월일</label><br>
                                       <span class="mem_str">※ 오른쪽 달력 아이콘을 이용해 주세요.<br></span>
 							          <input type="date" 
 							          		 name="birth" 
 							          		 id="birth"
 							          		 value="${vo.birth }"							         
 							          		 >
-							          <label>Phone</label>
+							          <label>연락처</label>
 							          <input type="tel" 
 							          		 name="phone" 
 							          		 id="phone" 
 							          		 value="${vo.phone }" 
 							          		 placeholder="PhoneNumber">
-                                      <label>E-mail</label>
+                                      <label>이메일</label>
                                       <input type="email"
                                       		 name="email" 
                                       		 id="email" 

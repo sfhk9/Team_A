@@ -135,27 +135,6 @@ $(function(){
 		});
 	});
 });
-// 로그아웃
-function fn_logout(){
-	
-	if( confirm("로그아웃하시겠습니까?") ){
-		
-		$.ajax({			
-			type : "post",
-			data : "",
-			url  : "/logout.do",
-			
-			datatype : "text",
-			success  : function(){
-				alert("로그아웃 되었습니다.");
-				location="/loginWrite.do";
-			},
-			error    : function(){
-				
-			}			
-		});		
-	}
-}
 
 // 로그인 - 유효성 체크
 	$(function(){	
@@ -181,7 +160,7 @@ function fn_logout(){
 				success : function(data) {
 						if(data == "ok") {
 							alert( $("#userid").val() + "님 로그인 되었습니다.");							
-							location = "loginWrite.do";							
+							location = "index.do";							
 						} else if(data == "er1") {
 							alert("존재하지 않는 정보입니다.");
 						} else {
@@ -205,9 +184,9 @@ function fn_logout(){
         <div class="breadcrumb-content text-center">
             <ul>
                 <li>
-                    <a href="mainPage.do">Home</a>
+                    <a href="mainPage.do">홈</a>
                 </li>
-                <li class="active">Login/Join </li>
+                <li class="active">로그인/회원가입 </li>
             </ul>
         </div>
     </div>
@@ -219,50 +198,31 @@ function fn_logout(){
                 <div class="login-register-wrapper">
                     <div class="login-register-tab-list nav">                       
                         <a class="active" data-bs-toggle="tab" href="#lg1">
-                            <h4> login </h4>
+                            <h4> 로그인 </h4>
                         </a>
-                        <a data-bs-toggle="tab" href="#lg2">
-                            <h4> join </h4>
+                        <a  data-bs-toggle="tab" href="#lg2">
+                            <h4> 회원가입 </h4>
                         </a>
                     </div>
                     <div class="tab-content">
                         <div id="lg1" class="tab-pane active">
                             <div class="login-form-container">
                                 <div class="login-register-form">
-                                    <form id="frm" >
-                                 <%
-			  					 String session_id = (String) session.getAttribute("MemberSessionId");
-			  					%>
-			  					<%
-			            		if(session_id == null){
-			            		%> 
+                                    <form id="frm" >                               
                                         <input type="text" 
                                          	   name="userid" 
                                          	   id="userid" 
                                          	   maxlength="12" 
-                                         	   placeholder="Userid">
+                                         	   placeholder="아이디">
                                         <input type="password" 
                                         	   name="pass" 
                                         	   id="pass" 
-                                        	   placeholder="Password">
+                                        	   placeholder="비밀번호">
                                         <div class="button-box" >
                                             <div class="login-toggle-btn">                                               
                                                 <a href="#">Forgot Password?</a>
                                             </div>
-                                            <button type="submit" id="btn_save" onclick="return false;"><span>Login</span></button>                           
-                                 
-                                 <%
-			            		}else{
-                                 %>
-                                 <span>반갑습니다 !</span>
-                                        <div class="button-box">
-                                            <div class="login-toggle-btn">
-                           
-                                            </div>
-                                            <button type="button"  onclick="javascript:fn_logout()"><span>Logout</span></button>                  
-                                  <%
-			            		}
-                                  %>
+                                            <button type="submit" id="btn_save" onclick="return false;"><span>로그인</span></button>                                                       
                                         </div>
                                     </form>
                                 </div>
@@ -277,34 +237,34 @@ function fn_logout(){
 								   			   id="userid2"   
 								   			   onkeyup="fn_idchk(this.value)"
                         		               maxlength="12" 
-                        		               placeholder="Userid" 
+                        		               placeholder="아이디" 
                         		               autofocus>
                         		        <span id="id_chk_msg"></span>
                                         <input type="password" 
                                              	name="pass" 
                                              	id="pass2" 
-                                             	placeholder="Password">
+                                             	placeholder="비밀번호">
                                         <input type="password" 
                                         	   name="pass_chk" 
                                         	   id="pass_chk" 
-                                        	   placeholder="Password 확인">
+                                        	   placeholder="비밀번호 확인">
                                        <input type="text" 
                                               name="name" 
                                               id="name"  
-                                              placeholder="Name">
+                                              placeholder="이름">
                                       <span class="mem_str">※ 오른쪽 달력 아이콘을 이용해 주세요.<br></span>
 							          <input type="date" 
 							          		 name="birth" 
 							          		 id="birth"
-							          		 placeholder="Birth">
+							          		 placeholder="생년월일">
 							          <input type="tel" 
 							          		 name="phone" 
 							          		 id="phone" 
-							          		 placeholder="PhoneNumber">
+							          		 placeholder="연락처">
                                       <input type="email"
                                       		 name="email" 
                                       		 id="email" 
-                                      		 placeholder="Email 형식을 확인 해주세요. ex) aaa@aaaa.com" >
+                                      		 placeholder="이메일 형식을 확인 해주세요. ex) aaa@aaaa.com" >
                                       <input type="text" 
                                       		 name="zipcode" 
                                       		 id="zipcode"

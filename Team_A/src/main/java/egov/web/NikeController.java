@@ -208,7 +208,24 @@ public class NikeController {
 
 	
 	@RequestMapping("mainPage.do")
-	public String mainPage() throws Exception{
+	public String mainList( NikeVO vo, Model model ) throws Exception {
+		
+		//sql 확인
+		String sql = getSetSql(vo);
+		System.out.println( sql + "  sql!!!" );
+		///
+		
+		List<?> list = nikeService.selectGoodsList(vo);
+		int total = nikeService.selectGoodsTotal(vo);
+		
+		int total_page = (int) Math.ceil( (double)total/12 );
+		
+		System.out.println("리스트"+list);
+  
+		model.addAttribute("list",list);
+		model.addAttribute("total",total);
+		model.addAttribute("total_page",total_page);
+		
 		return "nike/nikeweb/index-2";
 	}
 	
@@ -373,7 +390,7 @@ public class NikeController {
 		List<NikeVO> readList=mapper.readValue(jsonList, List.class);
 		// LinkedHashMap -> ArrayList 변환
 		List<NikeVO> convertList = mapper.convertValue(readList,new TypeReference<List<NikeVO>>(){});
-
+		
 		for(int i=0;i<convertList.size();i++) {
 			// i번째 리스트에서 unq, qty 추출
 			unq=convertList.get(i).getUnq();
@@ -431,13 +448,15 @@ public class NikeController {
 		return "nike/nikeweb/checkout";
 	}
 	
-	@RequestMapping("checkoutSave.do")
-	@ResponseBody
-	public String insertCheckout(NikeVO vo) throws Exception{
-		String msg="ok";
-		
-		return msg;
+	
+	
+	@RequestMapping("contact.do")
+	public String contact(NikeVO vo, Model model) throws Exception{
+
+		return "nike/nikeweb/contact";
 	}
+	
+	
 
 }
 
