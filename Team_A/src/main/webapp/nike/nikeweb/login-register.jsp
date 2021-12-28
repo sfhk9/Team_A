@@ -205,9 +205,9 @@ function fn_logout(){
         <div class="breadcrumb-content text-center">
             <ul>
                 <li>
-                    <a href="mainPage.do">Home</a>
+                    <a href="mainPage.do">홈</a>
                 </li>
-                <li class="active">Login/Join </li>
+                <li class="active">로그인/회원가입 </li>
             </ul>
         </div>
     </div>
@@ -219,10 +219,10 @@ function fn_logout(){
                 <div class="login-register-wrapper">
                     <div class="login-register-tab-list nav">                       
                         <a class="active" data-bs-toggle="tab" href="#lg1">
-                            <h4> login </h4>
+                            <h4> 로그인 </h4>
                         </a>
                         <a data-bs-toggle="tab" href="#lg2">
-                            <h4> join </h4>
+                            <h4> 회원가입 </h4>
                         </a>
                     </div>
                     <div class="tab-content">
@@ -240,16 +240,16 @@ function fn_logout(){
                                          	   name="userid" 
                                          	   id="userid" 
                                          	   maxlength="12" 
-                                         	   placeholder="Userid">
+                                         	   placeholder="아이디">
                                         <input type="password" 
                                         	   name="pass" 
                                         	   id="pass" 
-                                        	   placeholder="Password">
+                                        	   placeholder="비밀번호">
                                         <div class="button-box" >
                                             <div class="login-toggle-btn">                                               
                                                 <a href="#">Forgot Password?</a>
                                             </div>
-                                            <button type="submit" id="btn_save" onclick="return false;"><span>Login</span></button>                           
+                                            <button type="submit" id="btn_save" onclick="return false;"><span>로그인</span></button>                           
                                  
                                  <%
 			            		}else{
@@ -259,7 +259,7 @@ function fn_logout(){
                                             <div class="login-toggle-btn">
                            
                                             </div>
-                                            <button type="button"  onclick="javascript:fn_logout()"><span>Logout</span></button>                  
+                                            <button type="button"  onclick="javascript:fn_logout()"><span>로그아웃</span></button>                  
                                   <%
 			            		}
                                   %>
@@ -277,34 +277,34 @@ function fn_logout(){
 								   			   id="userid2"   
 								   			   onkeyup="fn_idchk(this.value)"
                         		               maxlength="12" 
-                        		               placeholder="Userid" 
+                        		               placeholder="아이디" 
                         		               autofocus>
                         		        <span id="id_chk_msg"></span>
                                         <input type="password" 
                                              	name="pass" 
                                              	id="pass2" 
-                                             	placeholder="Password">
+                                             	placeholder="비밀번호">
                                         <input type="password" 
                                         	   name="pass_chk" 
                                         	   id="pass_chk" 
-                                        	   placeholder="Password 확인">
+                                        	   placeholder="비밀번호 확인">
                                        <input type="text" 
                                               name="name" 
                                               id="name"  
-                                              placeholder="Name">
+                                              placeholder="이름">
                                       <span class="mem_str">※ 오른쪽 달력 아이콘을 이용해 주세요.<br></span>
 							          <input type="date" 
 							          		 name="birth" 
 							          		 id="birth"
-							          		 placeholder="Birth">
+							          		 placeholder="생년월일">
 							          <input type="tel" 
 							          		 name="phone" 
 							          		 id="phone" 
-							          		 placeholder="PhoneNumber">
+							          		 placeholder="연락처">
                                       <input type="email"
                                       		 name="email" 
                                       		 id="email" 
-                                      		 placeholder="Email 형식을 확인 해주세요. ex) aaa@aaaa.com" >
+                                      		 placeholder="이메일 형식을 확인 해주세요. ex) aaa@aaaa.com" >
                                       <input type="text" 
                                       		 name="zipcode" 
                                       		 id="zipcode"
