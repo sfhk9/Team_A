@@ -49,6 +49,7 @@
 		
 		<th>색상</th>
 		<td colspan='3'>
+		
 			<label for="checkbox-1" id="test"  >
 				<div class="item_color" style=" background-color:white;"></div>
 			</label>

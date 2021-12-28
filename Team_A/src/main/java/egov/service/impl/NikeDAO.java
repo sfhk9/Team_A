@@ -18,6 +18,11 @@ public class NikeDAO extends EgovAbstractDAO {
 	public List<?> selectGoodsList(NikeVO vo) {
 		return list("nikeDAO.selectGoodsList",vo);
 	}
+	
+	public int selectGoodsTotal(NikeVO vo) {
+		return (int) select("nikeDAO.selectGoodsTotal",vo); 
+	}
+
 
 	public String insertJoin(NikeVO vo) {
 		return (String) insert("nikeDAO.insertJoin",vo);
@@ -53,5 +58,36 @@ public class NikeDAO extends EgovAbstractDAO {
 		return (NikeVO) select("nikeDAO.selectTab1",vo);
 
 	}
+	
+	public List<?> selectCartList(NikeVO vo) {
+		return list("nikeDAO.selectCartList",vo);
+	}
+	
+	public int selectCartListCnt(NikeVO vo) {
+		return (int) select("nikeDAO.selectCartListCnt",vo);
+	}
+	
+	public int updateCartList(NikeVO vo) {
+		return (int) update("nikeDAO.updateCartList",vo);
+	}
 
+	public List<?> selectCommList(NikeVO vo) {
+		return list("nikeDAO.selectCommList",vo);
+	}
+
+	public int selectReviewCnt(NikeVO vo) {
+		return (int) select("nikeDAO.selectReviewCnt",vo);
+	}
+
+	public int deleteCartList(NikeVO vo) {
+		return (int) delete("nikeDAO.deleteCartList",vo);
+	}
+
+	public int deleteAllCartList(NikeVO vo) {
+		return (int) delete("nikeDAO.deleteAllCartList",vo);
+	}
+
+	public List<?> selectCheckOut(NikeVO vo) {
+		return list("nikeDAO.selectCheckout",vo);
+	}
 }

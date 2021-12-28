@@ -1,5 +1,7 @@
 package egov.web;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import java.util.Locale;
@@ -12,9 +14,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import egov.service.NikeService;
 import egov.service.NikeVO;
@@ -39,15 +44,21 @@ public class NikeController {
 	@RequestMapping("goodsList.do")
 	public String goodsList( NikeVO vo, Model model ) throws Exception {
 		
+		//sql 확인
 		String sql = getSetSql(vo);
-		
 		System.out.println( sql + "  sql!!!" );
+		///
 		
 		List<?> list = nikeService.selectGoodsList(vo);
+		int total = nikeService.selectGoodsTotal(vo);
+		
+		int total_page = (int) Math.ceil( (double)total/12 );
 		
 		System.out.println("리스트"+list);
   
 		model.addAttribute("list",list);
+		model.addAttribute("total",total);
+		model.addAttribute("total_page",total_page);
 		
 		return "nike/nikeweb/goodsList";
 	}
@@ -72,7 +83,7 @@ public class NikeController {
 		List<?> list = nikeService.selectGoodsList(vo);
 		
 		System.out.println("리스트"+list);
-  
+		
 		model.addAttribute("list",list);
 		
 		return "nike/addList";
@@ -90,17 +101,17 @@ public class NikeController {
 		String ctgtype_sql = "( ";
 			if ( vo.getCtgtype() != null ) {
 				ctgtype = vo.getCtgtype().split(",");
-	
-				for (int i=0; i<ctgtype.length; i++) {
-					ctgtype_sql += "ctgtype LIKE'%" + ctgtype[i] + "%'";
-					
-					if ( ctgtype.length-1 != i ) {
-						ctgtype_sql += " or ";
-					} else {
-						ctgtype_sql += " )";
+		
+					for (int i=0; i<ctgtype.length; i++) {
+						ctgtype_sql += "ctgtype LIKE'%" + ctgtype[i] + "%'";
+						
+						if ( ctgtype.length-1 != i ) {
+							ctgtype_sql += " or ";
+						} else {
+							ctgtype_sql += " )";
+						}
+						
 					}
-					
-				}
 			}
 
 		String ctggender;	
@@ -117,13 +128,11 @@ public class NikeController {
 		if ( vo.getPricemin() != 0 || vo.getPricemax() != 0) {
 			pricemin = vo.getPricemin();
 			pricemax = vo.getPricemax();
-			if ( pricemax > pricemin) {
-				price_sql += "price BETWEEN " + pricemin + " and " + pricemax + " )";	
-			} else if ( pricemin > pricemax ) {
-				price_sql += "price BETWEEN " + pricemax + " and " + pricemin + " )";	
-			}
-			
-			
+				if ( pricemax > pricemin) {
+					price_sql += "price BETWEEN " + pricemin + " and " + pricemax + " )";	
+				} else if ( pricemin > pricemax ) {
+					price_sql += "price BETWEEN " + pricemax + " and " + pricemin + " )";	
+				}
 		}
 
 		// 색상
@@ -131,17 +140,17 @@ public class NikeController {
 		String color_sql = "( ";
 			if ( vo.getColor() != null ) {
 				color = vo.getColor().split(",");
-	
-				for (int i=0; i<color.length; i++) {
-					color_sql += "color LIKE'%" + color[i] + "%'";
-					
-					if ( color.length-1 != i ) {
-						color_sql += " or ";
-					} else {
-						color_sql += " )";
+		
+					for (int i=0; i<color.length; i++) {
+						color_sql += "color LIKE'%" + color[i] + "%'";
+							
+							if ( color.length-1 != i ) {
+								color_sql += " or ";
+							} else {
+								color_sql += " )";
+							}
+							
 					}
-					
-				}
 			}
 
 		String sql = "";
@@ -180,9 +189,18 @@ public class NikeController {
 		
 		//상세보기 서비스 실행
 		vo = nikeService.selectGoodsDetail(vo);
-		model.addAttribute("vo",vo);
 		
-		return "nike/goodsDetail";
+		//리뷰관련 서비스 실행
+		List<?> comm_list = nikeService.selectCommList(vo);
+		
+		//리뷰 갯수
+		int review_cnt = nikeService.selectReviewCnt(vo);
+		
+		model.addAttribute("vo",vo);
+		model.addAttribute("comm_list",comm_list);
+		model.addAttribute("review_cnt",review_cnt);
+		
+		return "nike/nikeweb/goodsDetail";
 	}
 	@RequestMapping("detailTab1.do")
 	public String detailTab1(NikeVO vo, Model model) throws Exception {
@@ -329,6 +347,68 @@ public class NikeController {
 	public String myPage() throws Exception{
 		
 		return "nike/mypage";
+	}
+	
+	@RequestMapping("cart.do")
+	public String cart(NikeVO vo, Model model,HttpSession session) throws Exception{
+		
+		//String userid = (String) session.getAttribute("SessionId");
+		String userid="test";
+		vo.setUserid(userid);
+		
+		List<?> list = nikeService.selectCartList(vo);
+		model.addAttribute("list",list);
+		
+		return "nike/nikeweb/cart-page";
+	}
+	
+	@RequestMapping("cartSave.do")
+	@ResponseBody
+	public String updateCartList(@RequestBody String inputJSON, NikeVO vo) throws Exception{		
+		String msg="ok";
+		int result=0;
+		
+		System.out.println(inputJSON.getClass().getName());
+		
+		Map<String, Object> map = new ObjectMapper().readValue(inputJSON, Map.class);
+		
+		System.out.println(map.get(0));
+	
+		/*
+		 * // update or delete 유무 판단 및 sql 실행 if(qty==0) {
+		 * result=nikeService.updateCartList(vo); } else {
+		 * result=nikeService.deleteCartList(vo); }
+		 */		
+		return msg;
+	}
+	
+	@RequestMapping("cartClear.do")
+	@ResponseBody
+	public String deleteAllCartList(NikeVO vo) throws Exception{
+		String msg="ok";
+		
+		//String userid = (String) session.getAttribute("SessionId");
+		String userid="test";
+		vo.setUserid(userid);
+		
+		int cnt=nikeService.selectCartListCnt(vo);
+		int result=nikeService.deleteAllCartList(vo);
+		
+		if(cnt==0) msg="er1";
+		else if(result!=cnt) msg="er2";
+
+		return msg;
+	}
+	
+	@RequestMapping("checkout.do")
+	public String selectCheckout(NikeVO vo, Model model) throws Exception{
+		//String userid = (String) session.getAttribute("SessionId");
+		String userid="test";
+		vo.setUserid(userid);
+		
+		List<?> list=nikeService.selectCheckout(vo);
+		model.addAttribute("list",list);
+		return "nike/nikeweb/checkout";
 	}
 
 }

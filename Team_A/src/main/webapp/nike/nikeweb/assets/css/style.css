@@ -15817,3 +15817,113 @@ h3.cart-page-title {
     margin-bottom: 20px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 추가 스타일 */
+.chkbox {
+  display: block;
+  position: relative;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* 브라우저의 기본 체크박스 숨기기 */
+.chkbox input {
+  left:0px;
+  position: absolute;
+  opacity: 0;
+}
+
+/* 사용자 정의 체크박스 생성 */
+.checkmark {
+  border-radius: 20%;
+  border: 1px solid #d3d3d3;
+  position: absolute;
+  top: 0;
+  left: 9px;
+  height: 33px;
+  width: 33px;
+}
+
+/* 체크 표시/인디케이터 생성(선택하지 않으면 숨겨짐) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* 체크 시 체크 표시 */
+.chkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* 체크 표시/인디케이터 스타일 지정 */
+.chkbox .checkmark:after {
+  left: 11px;
+  top: 4px;
+  width: 9px;
+  height: 18px;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+
+
+
+
+
+.checkmark2 {
+  border-radius: 20%;
+  border: 1px solid #d3d3d3;
+  position: absolute;
+  top: 0;
+  left: 9px;
+  height: 33px;
+  width: 33px;
+}
+
+/* 체크 표시/인디케이터 생성(선택하지 않으면 숨겨짐) */
+.checkmark2:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* 체크 시 체크 표시 */
+.chkbox input:checked ~ .checkmark2:after {
+  display: block;
+}
+
+/* 체크 표시/인디케이터 스타일 지정 */
+.chkbox .checkmark2:after {
+  left: 11px;
+  top: 4px;
+  width: 9px;
+  height: 18px;
+  border: solid black;
+  border-width: 0 4px 4px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
