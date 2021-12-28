@@ -447,6 +447,16 @@ public class NikeController {
 		model.addAttribute("list",list);
 		return "nike/nikeweb/checkout";
 	}
+	
+	
+	
+	@RequestMapping("contact.do")
+	public String contact(NikeVO vo, Model model) throws Exception{
+
+		return "nike/nikeweb/contact";
+	}
+	
+	
 
 }
 
