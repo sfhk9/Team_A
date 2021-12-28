@@ -85,7 +85,7 @@
 									<li>
             							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 											<label for="chk1" class="chkbox" >										
-												<input id="chk1" type="checkbox" >
+												<input id="chk1" type="checkbox" value="black">
 												<span class="checkmark" style="background-color: black;"></span>
 											</label><br>
 											<a>검은색</a>
@@ -95,7 +95,7 @@
 									<li>
             							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 											<label for="chk2" class="chkbox" >										
-												<input id="chk2" type="checkbox" >
+												<input id="chk2" type="checkbox" value="gray">
 												<span class="checkmark" style="background-color: gray;"></span>
 											</label><br>
 											<a>회색</a>
@@ -105,7 +105,7 @@
 									<li>
             							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 											<label for="chk3" class="chkbox" >										
-												<input id="chk3" type="checkbox" >
+												<input id="chk3" type="checkbox" value="white">
 												<span class="checkmark2" style="background-color: white;"></span>
 											</label><br>
 											<a>흰색</a>
@@ -115,7 +115,7 @@
 									<li>
             							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 											<label for="chk4" class="chkbox" >										
-												<input id="chk4" type="checkbox" >
+												<input id="chk4" type="checkbox" value="red">
 												<span class="checkmark" style="background-color: red;"></span>
 											</label><br>
 											<a>빨간색</a>
@@ -125,7 +125,7 @@
 									<li>
             							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 											<label for="chk5" class="chkbox" >										
-												<input id="chk5" type="checkbox" >
+												<input id="chk5" type="checkbox" value="yellow">
 												<span class="checkmark2" style="background-color: yellow;"></span>
 											</label><br>
 											<a>노랑색</a>
@@ -135,7 +135,7 @@
 									<li>
             							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 											<label for="chk6" class="chkbox" >										
-												<input id="chk6" type="checkbox" >
+												<input id="chk6" type="checkbox" value="beige">
 												<span class="checkmark2" style="background-color: beige;"></span>
 											</label><br>
 											<a>베이지</a>
@@ -145,7 +145,7 @@
 									<li>
             							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 											<label for="chk7" class="chkbox" >										
-												<input id="chk7" type="checkbox" >
+												<input id="chk7" type="checkbox" value="brown">
 												<span class="checkmark" style="background-color: brown;"></span>
 											</label><br>
 											<a>갈색</a>
@@ -155,7 +155,7 @@
 									<li>
             							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 											<label for="chk8" class="chkbox" >										
-												<input id="chk8" type="checkbox" >
+												<input id="chk8" type="checkbox" value="navy">
 												<span class="checkmark" style="background-color: navy;"></span>
 											</label><br>
 											<a>나이비</a>
@@ -165,7 +165,7 @@
 									<li>
             							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 											<label for="chk9" class="chkbox" >										
-												<input id="chk9" type="checkbox" >
+												<input id="chk9" type="checkbox" value="pink">
 												<span class="checkmark" style="background-color: pink;"></span>
 											</label><br>
 											<a>분홍색</a>
@@ -175,7 +175,7 @@
 									<li>
             							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 											<label for="chk10" class="chkbox" >										
-												<input id="chk10" type="checkbox" >
+												<input id="chk10" type="checkbox" value="blue">
 												<span class="checkmark" style="background-color: blue;"></span>
 											</label><br>
 											<a>파랑색</a>
@@ -184,7 +184,7 @@
 									<li>
             							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 											<label for="chk11" class="chkbox" >										
-												<input id="chk11" type="checkbox" >
+												<input id="chk11" type="checkbox" value="skyblue">
 												<span class="checkmark" style="background-color: skyblue;"></span>
 											</label><br>
 											<a>스카이</a>
