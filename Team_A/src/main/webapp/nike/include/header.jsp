@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-xl-2 col-lg-2 col-md-6 col-4">
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="index.do">
                         <img alt="" src="/nike/nikeweb/assets/img/logo/logo.png">
                     </a>
                 </div>
@@ -15,7 +15,7 @@
                 <div class="main-menu">
                     <nav>
                         <ul>
-                            <li><a href="index.html">홈 </a>
+                            <li><a href="index.do">홈 </a>
 							<li><a href="goodsList.do">이벤트 </a>
                             
                             <li><a href="goodsList.do">남자 <i class="fa fa-angle-down"></i> </a>

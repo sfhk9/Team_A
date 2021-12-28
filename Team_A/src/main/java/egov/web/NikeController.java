@@ -30,7 +30,7 @@ public class NikeController {
 	@Resource(name = "nikeService")
 	NikeService nikeService;
 	
-	@RequestMapping("mainpage.do")
+	@RequestMapping("index.do")
 	public String mainpage( Model model ) throws Exception {
 		
 		List<?> list = nikeService.selectHitGoodsList();
@@ -38,7 +38,7 @@ public class NikeController {
 		System.out.println("리스트"+list);
   
 		model.addAttribute("list",list);
-		return "nike/mainpage";
+		return "nike/nikeweb/index";
 	}
 	
 	@RequestMapping("goodsList.do")
