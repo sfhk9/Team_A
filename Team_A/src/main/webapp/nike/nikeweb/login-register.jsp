@@ -245,11 +245,12 @@ function fn_logout(){
                                         	   name="pass" 
                                         	   id="pass" 
                                         	   placeholder="Password">
-                                        <div class="button-box">
+                                        <div class="button-box" >
                                             <div class="login-toggle-btn">                                               
                                                 <a href="#">Forgot Password?</a>
                                             </div>
                                             <button type="submit" id="btn_save" onclick="return false;"><span>Login</span></button>                           
+                                 
                                  <%
 			            		}else{
                                  %>

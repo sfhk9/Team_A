@@ -164,7 +164,7 @@ $(function(){
                                       		 id="address2"
                                       		 value="${vo.address2 }"
                                       		 placeholder="상세주소" >
-                                        <div class="button-box">
+                                        <div class="button-box" style=margin-left:150px;>
                                             <button type="submit"id="btn_save" onclick="return false;"><span>수정하기</span></button>
                                             <button type="reset" >취소</button>
                                         </div>
