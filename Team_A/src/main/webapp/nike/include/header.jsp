@@ -218,8 +218,8 @@ function fn_logout(){
 						    <%
 				            if(session_id == null){
 				            %>
-                                <li><a href="loginWrite.do">로그인</a></li>
-                                <li><a href="joinWrite.do">회원가입</a></li>
+                                <li><a href="loginWrite.do">로그인/회원가입</a></li>
+                               
 				            <%
 				            } else {
 				            %>                              	
