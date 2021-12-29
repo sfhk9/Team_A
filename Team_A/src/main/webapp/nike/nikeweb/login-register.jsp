@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>회원 정보 수정</title>
+    <title>로그인/회원가입</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -121,7 +121,7 @@ $(function(){
 			success : function(data) {
 					if(data == "ok") {
 						alert("저장 완료");
-						location="mainPage.do";
+						location="loginWrite.do";
 					} else if(data == "er1") {
 						alert("이미 사용중인 아이디 입니다.");
 					} else {
