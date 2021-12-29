@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -103,7 +105,7 @@
                     <h2>${vo.name}</h2>
                     <div class="product-details-price">
                         <span>${vo.price}원 </span>
-                        <span class="old">${vo.price*1.1}원 </span>
+                        <span class="old"><fmt:parseNumber var="percent" value="${vo.price*1.1}" integerOnly="true"/>${percent}원 </span>
                     </div>
                     <div class="pro-details-rating-wrap">
                         <div class="pro-details-rating">
