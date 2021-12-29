@@ -121,7 +121,7 @@ $(function(){
 			success : function(data) {
 					if(data == "ok") {
 						alert("저장 완료");
-						location="mainPage.do";
+						location="loginWrite.do";
 					} else if(data == "er1") {
 						alert("이미 사용중인 아이디 입니다.");
 					} else {
