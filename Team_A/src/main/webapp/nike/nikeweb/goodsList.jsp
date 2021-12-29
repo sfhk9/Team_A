@@ -31,15 +31,9 @@
     <link rel="stylesheet" href="/nike/nikeweb/assets/css/style.css">
 </head>
 
-<script>
-$( function() {
-	   $( ".selector" ).checkboxradio({
-	      icon: false
-	   });
-}); 
-</script>
 
 <script>
+
 //데이터 수집 함수
 function filterRe() {
 		
@@ -119,15 +113,8 @@ $("#add").click(function(){
    	$('#list').load(addurl);
    	
 });
-		
-
 </script>
 
-<style>
-
-
-
-</style>
 
 <body>
 

@@ -13,8 +13,16 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
+
     <!-- jquery -->	
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	
+    <!-- 다음 api -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type ="text/javascript" src="${nikeweb}/assets/js/postcode.v2.js"></script>
+	
+	<!-- checkout 스크립트 -->
+	<script type ="text/javascript" src="${nikeweb}/assets/js/checkout.js"></script>
 	
 	<!-- cart & checkout 공통 function -->
 	<script type ="text/javascript" src="${nikeweb}/assets/js/CartAndCheckout.js"></script>
@@ -35,6 +43,56 @@
     <link rel="stylesheet" href="${nikeweb}/assets/css/style.css">
 </head>
 <body>
+<script>
+/* 다음 주소 검색 api */
+function DaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+            var extraAddr = ''; // 참고항목 변수
+
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+            if(data.userSelectedType === 'R'){
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraAddr !== ''){
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                // 조합된 참고항목을 해당 필드에 넣는다.
+                document.getElementById("extraAddr").value = extraAddr;
+            
+            } else {
+                document.getElementById("extraAddr").value = '';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('postcode').value = data.zonecode;
+            document.getElementById("Addr").value = addr;
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById("detailAddr").focus();
+        }
+    }).open();
+}
+</script>
 <header class="header-area header-in-container clearfix">
 	<%@include file="../include/header.jsp" %>
 </header>
@@ -43,9 +101,9 @@
         <div class="breadcrumb-content text-center">
             <ul>
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="index.html">홈</a>
                 </li>
-                <li class="active">Checkout </li>
+                <li class="active">주문결제 </li>
             </ul>
         </div>
     </div>
@@ -55,168 +113,69 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="billing-info-wrap">
-                    <h3>Billing Details</h3>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="billing-info mb-20">
-                                <label>First Name</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="billing-info mb-20">
-                                <label>Last Name</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="billing-info mb-20">
-                                <label>Company Name</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="billing-select mb-20">
-                                <label>Country</label>
-                                <select>
-                                    <option>Select a country</option>
-                                    <option>Azerbaijan</option>
-                                    <option>Bahamas</option>
-                                    <option>Bahrain</option>
-                                    <option>Bangladesh</option>
-                                    <option>Barbados</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="billing-info mb-20">
-                                <label>Street Address</label>
-                                <input class="billing-address" placeholder="House number and street name" type="text">
-                                <input placeholder="Apartment, suite, unit etc." type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="billing-info mb-20">
-                                <label>Town / City</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="billing-info mb-20">
-                                <label>State / County</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="billing-info mb-20">
-                                <label>Postcode / ZIP</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="billing-info mb-20">
-                                <label>Phone</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="billing-info mb-20">
-                                <label>Email Address</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="checkout-account mb-50">
-                        <input class="checkout-toggle2" type="checkbox">
-                        <span>Create an account?</span>
-                    </div>
-                    <div class="checkout-account-toggle open-toggle2 mb-30">
-                        <input placeholder="Email address" type="email">
-                        <input placeholder="Password" type="password">
-                        <button class="btn-hover checkout-btn" type="submit">register</button>
-                    </div>
-                    <div class="additional-info-wrap">
-                        <h4>Additional information</h4>
-                        <div class="additional-info">
-                            <label>Order notes</label>
-                            <textarea placeholder="Notes about your order, e.g. special notes for delivery. " name="message"></textarea>
-                        </div>
-                    </div>
-                    <div class="checkout-account mt-25">
-                        <input class="checkout-toggle" type="checkbox">
-                        <span>Ship to a different address?</span>
-                    </div>
+                    <h3>주문 정보 입력</h3>
                     <form id="frm">
-	                    <div class="different-address open-toggle mt-30">
-	                        <div class="row">
-	                            <div class="col-lg-6 col-md-6">
-	                                <div class="billing-info mb-20">
-	                                    <label>First Name</label>
-	                                    <input type="text">
-	                                </div>
+	                    <div class="row">
+	                        <div class="col-lg-6 col-md-6">
+	                            <div class="billing-info mb-20">
+	                                <label>이름 </label>
+	                                <input type="text" name="name" id="name">
 	                            </div>
-	                            <div class="col-lg-6 col-md-6">
-	                                <div class="billing-info mb-20">
-	                                    <label>Last Name</label>
-	                                    <input type="text">
-	                                </div>
+	                        </div>
+	                        <div class="col-lg-6 col-md-6">
+	                            <div class="billing-info mb-20">
+	                                <button type="button" class="checkout-btn:hover">가져오기</button>
 	                            </div>
-	                            <div class="col-lg-12">
-	                                <div class="billing-info mb-20">
-	                                    <label>Company Name</label>
-	                                    <input type="text">
-	                                </div>
+	                        </div>		
+	                        <div class="col-lg-6 col-md-6">
+	                            <div class="billing-info mb-20">
+	                                <label>우편번호</label>
+	                                <input type="text" name="zipcode" id="zipcode">
 	                            </div>
-	                            <div class="col-lg-12">
-	                                <div class="billing-select mb-20">
-	                                    <label>Country</label>
-	                                    <select>
-	                                        <option>Select a country</option>
-	                                        <option>Azerbaijan</option>
-	                                        <option>Bahamas</option>
-	                                        <option>Bahrain</option>
-	                                        <option>Bangladesh</option>
-	                                        <option>Barbados</option>
-	                                    </select>
-	                                </div>
+	                        </div>
+							<div class="col-lg-6 col-md-6">
+	                            <div class="billing-info mb-20">
+	                                <input type="button" onclick="DaumPostcode()" value="주소검색">
 	                            </div>
-	                            <div class="col-lg-12">
-	                                <div class="billing-info mb-20">
-	                                    <label>Street Address</label>
-	                                    <input class="billing-address" placeholder="House number and street name" type="text">
-	                                    <input placeholder="Apartment, suite, unit etc." type="text">
-	                                </div>
+	                        </div>
+	                        <div class="col-lg-12">
+	                            <div class="billing-info mb-20">
+	                                <label>주소</label>
+	                                <input type="text" name="address1" id="address1">
 	                            </div>
-	                            <div class="col-lg-12">
-	                                <div class="billing-info mb-20">
-	                                    <label>Town / City</label>
-	                                    <input type="text">
-	                                </div>
+	                        </div>
+							<div class="col-lg-6 col-md-6">
+	                            <div class="billing-info mb-20">
+	                                <label>상세주소</label>
+	                                <input type="text" name="detailAddr" id="detailAddr">
 	                            </div>
-	                            <div class="col-lg-6 col-md-6">
-	                                <div class="billing-info mb-20">
-	                                    <label>State / County</label>
-	                                    <input type="text">
-	                                </div>
+	                        </div>
+	                        
+	                     	<div class="col-lg-6 col-md-6">
+	                            <div class="billing-info mb-20">
+	                                <label>참고항목</label>
+	                                <input type="text" name="extraAddr" id="extraAddr">
 	                            </div>
-	                            <div class="col-lg-6 col-md-6">
-	                                <div class="billing-info mb-20">
-	                                    <label>Postcode / ZIP</label>
-	                                    <input type="text">
-	                                </div>
+	                        </div>
+	                        <input type="hidden" name="address2" value="javascript:fn_addr2()">
+	                        
+	                        <div class="col-lg-6 col-md-6">
+	                            <div class="billing-info mb-20">
+	                                <label>휴대폰 번호</label>
+	                                <input type="text"name="phone" id="phone">
 	                            </div>
-	                            <div class="col-lg-6 col-md-6">
-	                                <div class="billing-info mb-20">
-	                                    <label>Phone</label>
-	                                    <input type="text">
-	                                </div>
+	                        </div>
+	                        <div class="col-lg-6 col-md-6">
+	                            <div class="billing-info mb-20">
+	                                <label>이메일</label>
+	                                <input type="email" name="email" id="eamil">
 	                            </div>
-	                            <div class="col-lg-6 col-md-6">
-	                                <div class="billing-info mb-20">
-	                                    <label>Email Address</label>
-	                                    <input type="text">
-	                                </div>
-	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="additional-info-wrap">
+	                        <h4>추가 요청 사항</h4>
+	                        <div class="additional-info">
+	                            <textarea placeholder="배송시 요청사항을 입력" name="message"></textarea>
 	                        </div>
 	                    </div>
                     </form>
@@ -224,13 +183,13 @@
             </div>
             <div class="col-lg-5">
                 <div class="your-order-area">
-                    <h3>Your order</h3>
+                    <h3>주문서</h3>
                     <div class="your-order-wrap gray-bg-4">
                         <div class="your-order-product-info">
                             <div class="your-order-top">
                                 <ul>
-                                    <li>Product</li>
-                                    <li>Total</li>
+                                    <li>상품명</li>
+                                    <li>합계</li>
                                 </ul>
                             </div>
                             <div class="your-order-middle">
@@ -252,13 +211,13 @@
                             </div>
                             <div class="your-order-bottom">
                                 <ul>
-                                    <li class="your-order-shipping">Shipping</li>
-                                    <li>Free shipping</li>
+                                    <li class="your-order-shipping">배송료</li>
+                                    <li>무료 배송</li>
                                 </ul>
                             </div>
                             <div class="your-order-total">
                                 <ul>
-                                    <li class="order-total">Total</li>
+                                    <li class="order-total">총계</li>
                                     <li>
                                  		<script>
                                   			document.write(fn_comma(${grandTotal}));
@@ -317,7 +276,7 @@
                         </div> -->
                     </div>
                     <div class="Place-order mt-25">
-                        <a class="btn-hover" href="#" id="btn_save">Place Order</a>
+                        <a class="btn-hover" id="btn_save">주문 접수</a>
                     </div>
                 </div>
             </div>
@@ -350,6 +309,7 @@
 <!-- Main JS -->
 <script src="${nikeweb}/assets/js/main.js"></script>
 
+    
 </body>
 
 </html>

@@ -46,96 +46,95 @@
         <div class="breadcrumb-content text-center">
             <ul>
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="index.html">홈</a>
                 </li>
-                <li class="active">Cart Page </li>
+                <li class="active">장바구니 </li>
             </ul>
         </div>
     </div>
 </div>
 <div class="cart-main-area pt-90 pb-100">
     <div class="container">
-        <h3 class="cart-page-title">Your cart items</h3>
+        <h3 class="cart-page-title">장바구니 목록</h3>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <form>
-                    <div class="table-content table-responsive cart-table-content">
-                        <table id="cartTable">
-                            <thead>
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Product Name</th>
-                                    <th>Until Price</th>
-                                    <th>Qty</th>
-                                    <th>Subtotal</th>
-                                    <th>action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                           		<c:forEach var="result" items="${list}">
-	                                <tr>
-	                                    <td class="product-thumbnail">
-	                                        <a href="/goodsDetail.do?unq=${result.goodsunq}">
-	                                        	<img src="${nike}/goods/${result.goodsunq}/${result.thumbnail}" 
-	                                        		 alt="" 
-	                                        		 class="product-img"
-	                                        		 style="width:84px;height:84px;">
-	                                        </a>
-	                                    </td>
-	                                    <td class="product-name">
-	                                    	<a href="/goodsDetail.do?unq=${result.goodsunq}">${result.name}</a><br>
-	                                    	<span style="font-size:13px;color:gray">[color : ${result.color} / size : ${result.csize}]</span>	
-	                                    </td>
-	                                    <td class="product-price-cart">
-	                                    	<span class="amount">
-	                                    		<script>
-	                                    			document.write(fn_comma(${result.price}));
-	                                    		</script>
-	                                    	</span>
-	                                    </td>
-	                                    <td class="product-quantity">
-	                                    	<input type="hidden" id="price" value="${result.price}">
-		                           			<input type="hidden" name="unq" id="unq" value="${result.unq}">
-		                           			<input type="hidden" name="goods" id="goodsunq" value="${result.goodsunq}">
-	                                        <div class="cart-plus-minus">
-	                                        	<!-- cart 테이블에 수량 관련된 Column 추가 필요함 -->
-	                                            <input class="cart-plus-minus-box" 
-	                                            	   type="text" 
-	                                            	   id="qty"
-	                                            	   name="qtybutton"
-	                                            	   value="${result.qty}"
-	                                            	   onchange="fn_change($(this))">
-	                                        </div>
-	                                    </td>
-	                                    <td id="total" class="product-subtotal">
-	                                    	<script>
-	                                    		 document.write(fn_comma(${result.price}));
-	                                    	</script>
-	                                    </td>
-	                                    <td class="product-remove">
-	                                        <a href="#"><i class="fa fa-pencil"></i></a>
-	                                        <a href="#"><i class="fa fa-times" onclick="fn_delete(this)"></i></a>
-	                                   </td>
-	                                </tr>
-                               	</c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="cart-shiping-update-wrapper">
-                                <div class="cart-shiping-update">
-                                	<!-- 변경 후 저장 안했을 경우 체크하기 -->
-                                    <a href="/goodsList.do">Continue Shopping</a>
-                                </div>
-                                <div class="cart-clear">
-                                	<button id="btn_save" onclick="return false;">Update Shopping Cart</button>
-                                    <a href="#" id="btn_clear">Clear Shopping Cart</a>
-                                </div>
+                <div class="table-content table-responsive cart-table-content">
+                    <table id="cartTable">
+                    	<caption>>> 수량이 0개인 상품은 저장시 목록에서 지워집니다</caption>
+                        <thead>
+                            <tr>
+                                <th>이미지</th>
+                                <th>상품 정보</th>
+                                <th>가격</th>
+                                <th>수량</th>
+                                <th>합계</th>
+                                <th>메모/삭제</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                       		<c:forEach var="result" items="${list}">
+                             <tr>
+                                 <td class="product-thumbnail">
+                                     <a href="/goodsDetail.do?unq=${result.goodsunq}">
+                                     	<img src="${nike}/goods/${result.goodsunq}/${result.thumbnail}" 
+                                     		 alt="" 
+                                     		 class="product-img"
+                                     		 style="width:84px;height:84px;">
+                                     </a>
+                                 </td>
+                                 <td class="product-name">
+                                 	<a href="/goodsDetail.do?unq=${result.goodsunq}">${result.name}</a><br>
+                                 	<span style="font-size:13px;color:gray">[color : ${result.color} / size : ${result.csize}]</span>	
+                                 </td>
+                                 <td class="product-price-cart">
+                                 	<span class="amount">
+                                 		<script>
+                                 			document.write(fn_comma(${result.price}));
+                                 		</script>
+                                 	</span>
+                                 </td>
+                                 <td class="product-quantity">
+                                 	<input type="hidden" id="price" value="${result.price}">
+                         			<input type="hidden" name="unq" id="unq" value="${result.unq}">
+                         			<input type="hidden" name="goods" id="goodsunq" value="${result.goodsunq}">
+                                     <div class="cart-plus-minus">
+                                     	 <!-- cart 테이블에 수량 관련된 Column 추가 필요함 -->
+                                         <input class="cart-plus-minus-box" 
+                                         	   type="text" 
+                                         	   id="qty"
+                                         	   name="qtybutton"
+                                         	   value="${result.qty}"
+                                         	   onchange="fn_qtychk($(this));">
+                                     </div>
+                                 </td>
+                                 <td id="total" class="product-subtotal">
+                                 	<script>
+                                 		 document.write(fn_comma(${result.price}));
+                                 	</script>
+                                 </td>
+                                 <td class="product-remove">
+                                     <a href="#"><i class="fa fa-pencil"></i></a>
+                                     <a><i class="fa fa-times" onclick="fn_delete($(this))"></i></a>
+                                </td>
+                             </tr>
+                           	</c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="cart-shiping-update-wrapper">
+                            <div class="cart-shiping-update">
+                            	<!-- 변경 후 저장 안했을 경우 체크하기 -->
+                                <a href="#" id="btn_continue">쇼핑 계속하기</a>
+                            </div>
+                            <div class="cart-clear">
+                            	<button id="btn_save">변경사항 저장하기</button>
+                                <a href="#" id="btn_clear">장바구니 비우기</a>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
                 <div class="row">
                     <div class="col-lg-4 col-md-6">
                         <div class="cart-tax">
@@ -199,19 +198,19 @@
                     <div class="col-lg-4 col-md-12">
                         <div class="grand-totall">
                             <div class="title-wrap">
-                                <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
+                                <h4 class="cart-bottom-title section-bg-gary-cart">장바구니 총계</h4>
                             </div>
-                            <h5>Total products <span id="cartTotal">0</span></h5>
+                            <h5>상품 가격 합 <span id="cartTotal">0</span></h5>
                             <div class="total-shipping">
-                                <h5>Total shipping</h5>
+                                <h5>배송 요금</h5>
                                 <ul>
                                 	<!-- 배송 요금 관련된 column이 필요하지 않을까 싶음 -->
                                     <li><input type="checkbox"> Standard <span>$20.00</span></li>
                                     <li><input type="checkbox"> Express <span>$30.00</span></li>
                                 </ul>
                             </div>
-                            <h4 class="grand-totall-title">Grand Total  <span id="grandTotal">0</span></h4>
-                            <a href="/checkout.do" id="checkout">Proceed to Checkout</a>
+                            <h4 class="grand-totall-title">총계  <span id="grandTotal">0</span></h4>
+                            <a href="/checkout.do" id="checkout">결제 진행하기</a>
                         </div>
                     </div>
                 </div>
