@@ -62,5 +62,6 @@ public interface NikeService {
 	// 주문 결제 명세서
 	List<?> selectCheckout(NikeVO vo) throws Exception;
 
-
+	// 주문 접수
+	String insertOrderList(NikeVO vo) throws Exception;
 }

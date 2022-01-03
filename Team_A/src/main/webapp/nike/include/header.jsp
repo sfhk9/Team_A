@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String wishCnt = (String) request.getAttribute("wishCnt");
+%>
+<c:set var="nike" value="${pageContext.request.contextPath}/nike" />
+
+<!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<!-- cart & checkout 공통 function -->
+<script type ="text/javascript" src="${nikeweb}/assets/js/CartAndCheckout.js"></script>
 
 <script>
 
@@ -23,7 +33,23 @@ function fn_logout(){
 			}			
 		});		
 	}
-}	
+}
+
+$(function(){
+	$.ajax({
+		type : "post",
+		data : "ok",
+		url  : "wishList.do",
+		
+		datatype : "text",
+		success  : function(data){
+			
+		},
+		error    : function(){
+			
+		}
+	});
+});
 </script>
 	
 <div class="header-bottom sticky-bar header-res-padding">
@@ -239,44 +265,41 @@ function fn_logout(){
                     <div class="same-style cart-wrap">
                         <button class="icon-cart" onclick="location.href='cart.do';">
                             <i class="pe-7s-shopbag"></i>
-                            <span class="count-style">02</span>
+                            <span class="count-style"><%=wishCnt %></span>
                         </button>
                         <div class="shopping-cart-content">
                             <ul>
-                                <li class="single-shopping-cart">
-                                    <div class="shopping-cart-img">
-                                        <a href="#"><img alt="" src="assets/img/cart/cart-1.png"></a>
-                                    </div>
-                                    <div class="shopping-cart-title">
-                                        <h4><a href="#">T- Shart & Jeans </a></h4>
-                                        <h6>Qty: 02</h6>
-                                        <span>$260.00</span>
-                                    </div>
-                                    <div class="shopping-cart-delete">
-                                        <a href="#"><i class="fa fa-times-circle"></i></a>
-                                    </div>
-                                </li>
-                                <li class="single-shopping-cart">
-                                    <div class="shopping-cart-img">
-                                        <a href="#"><img alt="" src="assets/img/cart/cart-2.png"></a>
-                                    </div>
-                                    <div class="shopping-cart-title">
-                                        <h4><a href="#">T- Shart & Jeans </a></h4>
-                                        <h6>Qty: 02</h6>
-                                        <span>$260.00</span>
-                                    </div>
-                                    <div class="shopping-cart-delete">
-                                        <a href="#"><i class="fa fa-times-circle"></i></a>
-                                    </div>
-                                </li>
+                              	<c:forEach var="result" items="${wishList}">
+	                                <li class="single-shopping-cart">
+	                                    <div class="shopping-cart-img">
+	                                        <a href="#"><img alt="" src="${nike}/goods/${result.goodsunq}/${result.thumbnail}"></a>
+	                                    </div>
+	                                    <div class="shopping-cart-title">
+	                                        <h4><a href="#"> ${result.name} </a></h4>
+	                                        <h6>Qty: ${result.qty}</h6>
+	                                        <span>
+	                                        	<script>
+	                                    			document.write(fn_comma(${result.price}));
+	                                    		</script>
+	                                        </span>
+	                                    </div>
+	                                    <div class="shopping-cart-delete">
+	                                        <a href="#"><i class="fa fa-times-circle"></i></a>
+	                                    </div>
+	                                </li>
+	                        	</c:forEach>
                             </ul>
                             <div class="shopping-cart-total">
                                 <h4>Shipping : <span>$20.00</span></h4>
-                                <h4>Total : <span class="shop-total">$260.00</span></h4>
+                                <h4>Total : 
+                                		<span class="shop-total">
+                                			$260.00
+                                		</span>
+                                </h4>
                             </div>
                             <div class="shopping-cart-btn btn-hover text-center">
-                                <a class="default-btn" href="cart-page.html">view cart</a>
-                                <a class="default-btn" href="checkout.html">checkout</a>
+                                <a class="default-btn" href="cart-page.html">장바구니</a>
+                                <a class="default-btn" href="checkout.html">주문결제</a>
                             </div>
                         </div>
                     </div>

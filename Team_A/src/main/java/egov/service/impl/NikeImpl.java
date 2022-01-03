@@ -109,6 +109,11 @@ public class NikeImpl implements NikeService {
 		return nikeDAO.selectCheckOut(vo);
 	}
 
+	@Override
+	public String insertOrderList(NikeVO vo) throws Exception {
+		return nikeDAO.insertOrderList(vo);
+	}
+
 
 
 

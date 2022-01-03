@@ -109,7 +109,7 @@
                                  </td>
                                  <td id="total" class="product-subtotal">
                                  	<script>
-                                 		 document.write(fn_comma(${result.price}));
+                                 		 document.write(fn_comma(${result.price*result.qty}));
                                  	</script>
                                  </td>
                                  <td class="product-remove">

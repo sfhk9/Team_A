@@ -90,4 +90,8 @@ public class NikeDAO extends EgovAbstractDAO {
 	public List<?> selectCheckOut(NikeVO vo) {
 		return list("nikeDAO.selectCheckout",vo);
 	}
+
+	public String insertOrderList(NikeVO vo) {
+		return (String) insert("nikeDAO.insertOrderList",vo);
+	}
 }

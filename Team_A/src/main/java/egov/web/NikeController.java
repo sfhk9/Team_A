@@ -4,6 +4,8 @@ package egov.web;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import egov.service.NikeService;
 import egov.service.NikeVO;
+import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 @Controller
 public class NikeController {
@@ -364,9 +367,7 @@ public class NikeController {
 	
 	@RequestMapping("cart.do")
 	public String cart(NikeVO vo, Model model,HttpSession session) throws Exception{
-		
-		//String userid = (String) session.getAttribute("SessionId");
-		String userid="test";
+		String userid = (String) session.getAttribute("MemberSessionId");
 		vo.setUserid(userid);
 		
 		List<?> list = nikeService.selectCartList(vo);
@@ -377,7 +378,7 @@ public class NikeController {
 	
 	@RequestMapping("cartSave.do")
 	@ResponseBody
-	public String updateCartList(@RequestBody String jsonList, NikeVO vo) throws Exception{		
+	public String updateCartList(@RequestBody String jsonList, NikeVO vo) throws Exception{	
 		String msg="ok";
 		int unq=0;		// cart 테이블 unq
 		int qty=0;		// cart 테이블 qty
@@ -421,11 +422,10 @@ public class NikeController {
 	
 	@RequestMapping("cartClear.do")
 	@ResponseBody
-	public String deleteAllCartList(NikeVO vo) throws Exception{
+	public String deleteAllCartList(HttpSession session, NikeVO vo) throws Exception{
 		String msg="ok";
 		
-		//String userid = (String) session.getAttribute("SessionId");
-		String userid="test";
+		String userid = (String) session.getAttribute("MemberSessionId");
 		vo.setUserid(userid);
 		
 		int cnt=nikeService.selectCartListCnt(vo);
@@ -438,26 +438,75 @@ public class NikeController {
 	}
 	
 	@RequestMapping("checkout.do")
-	public String selectCheckout(NikeVO vo, Model model) throws Exception{
-		//String userid = (String) session.getAttribute("SessionId");
-		String userid="test";
+	public String selectCheckout(HttpSession session, NikeVO vo, Model model) throws Exception{
+		String userid = (String) session.getAttribute("MemberSessionId");
 		vo.setUserid(userid);
-		
 		List<?> list=nikeService.selectCheckout(vo);
+		NikeVO userinfo = nikeService.selectMemberDetail(vo);
+		
 		model.addAttribute("list",list);
+		model.addAttribute("vo",userinfo);
 		return "nike/nikeweb/checkout";
 	}
 	
+	@RequestMapping("checkoutSave.do")
+	@ResponseBody
+	public String insertOrderList(HttpSession session, NikeVO vo) throws Exception{
+		String msg="ok";
+		String result="";
+		int resultCnt=0;
+
+		String userid = (String) session.getAttribute("MemberSessionId");
+		vo.setUserid(userid);
+		
+		// 상품 가져오기
+		List<?> list=nikeService.selectCheckout(vo);
+		int cnt=nikeService.selectCartListCnt(vo);	
+		
+		// 만약 리스트 가져오는 도중 문제가 발생했다면?
+		
+		// 반복문 돌리기
+		for(Object object:list) {
+			EgovMap item = (EgovMap) object;
+			String name = (String) item.get("name");
+			String goodsunq = (String) item.get("goodsunq");
+			String csize = (String) item.get("csize");
+			String color = (String) item.get("color");
+			vo.setName(name);
+			vo.setName(goodsunq);
+			vo.setCsize(csize);
+			vo.setName(color);
+			
+			//result=nikeService.insertOrderList(vo);
+
+			if(result!=null) resultCnt+=1;
+		}
+		
+		if(cnt!=resultCnt) msg="er1";
+		
+		return msg;
+	}
 	
+	@RequestMapping("wishList.do")
+	@ResponseBody
+	public String selectWishList(HttpSession session, NikeVO vo, HttpServletRequest request) throws Exception{
+		String userid = (String) session.getAttribute("MemberSessionId");
+		vo.setUserid(userid);
+		
+		int wishCnt = nikeService.selectCartListCnt(vo);
+		//List<?> wishList = nikeService.selectCartList(vo);
+		
+		request.setAttribute("wishCnt",wishCnt);
+		//model.addAttribute("wishList",wishList);
+		
+		return "ok";
+	}
 	
 	@RequestMapping("contact.do")
 	public String contact(NikeVO vo, Model model) throws Exception{
 
 		return "nike/nikeweb/contact";
 	}
-	
-	
-
 }
 
 class Item {
