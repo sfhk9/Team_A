@@ -35,8 +35,6 @@ function fn_logout(){
 	}
 }
 
-<<<<<<< HEAD
-=======
 $(function(){
 	$.ajax({
 		type : "post",
@@ -52,7 +50,7 @@ $(function(){
 		}
 	});
 });
->>>>>>> branch 'master' of https://github.com/sfhk9/Team_A.git
+
 </script>
 	
 <div class="header-bottom sticky-bar header-res-padding">
