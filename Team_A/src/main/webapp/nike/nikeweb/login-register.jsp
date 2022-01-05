@@ -95,6 +95,11 @@ $(function(){
 			$("#birth").focus();
 			return false;				
 		}
+		if( $("#phone").val() == "" ) {
+			alert("연락처를 입력해주세요.");
+			$("#phone").focus();
+			return false;				
+		}
 		if( $("#email").val() == "" ) {
 			alert("E-mail을 입력해주세요.");
 			$("#email").focus();
@@ -234,7 +239,7 @@ $(function(){
                                     <form id="frm2">
                                         <input type="text" 
                                         	   name="userid" 
-								   			   id="userid2"   
+								   			   id="userid"   
 								   			   onkeyup="fn_idchk(this.value)"
                         		               maxlength="12" 
                         		               placeholder="아이디" 
@@ -250,7 +255,7 @@ $(function(){
                                         	   placeholder="비밀번호 확인">
                                        <input type="text" 
                                               name="name" 
-                                              id="name"  
+                                              id="name2"  
                                               placeholder="이름">
                                       <span class="mem_str">※ 오른쪽 달력 아이콘을 이용해 주세요.<br></span>
 							          <input type="date" 
