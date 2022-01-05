@@ -36,7 +36,6 @@
 	</select>
 	
 	<select id="nikeDAO.selectGoodsTotal" resultClass="java.lang.Integer">
-
 		SELECT 
 			COUNT(*)
 		FROM 
@@ -47,9 +46,6 @@
 				WHERE ( 1=1 ) $sql$
 			</isNotEmpty>
 		</isNotNull>	
-		
-
-
 	</select>
 	
 	<select id="nikeDAO.selectGoodsList" resultClass="egovMap">
@@ -173,7 +169,10 @@
 		        c.goodsunq goodsunq,
 		        c.qty qty,
 		        nvl(substr(g.thumbnail,0,instr(g.thumbnail,'/')-1),g.thumbnail) thumbnail,
-		        g.name name,
+		        CASE
+				WHEN LENGTH(g.name) > 50 THEN SubStr(g.name, 0, 50) || '...'
+				ELSE g.name
+				END as name,
 		        c.color color,
 		        c.csize csize,
 		        g.price price
@@ -181,8 +180,7 @@
 		    	cart c, goodsinfo g
 		    WHERE 
 		    	c.goodsunq=g.unq
-		    <!-- session 추가한 뒤 -->
-		    <!-- and userid=#userid# -->
+		    	and userid=#userid#
 	</select>
 	
 	<select id="nikeDAO.selectCartListCnt" resultClass="java.lang.Integer">
@@ -194,7 +192,10 @@
 				c.userid userid,
 		        c.goodsunq goodsunq,
 		        c.qty qty,
-		        g.name name,
+		        CASE
+				WHEN LENGTH(g.name) > 20 THEN SubStr(g.name, 0, 20) || '...'
+				ELSE g.name
+				END as name,
 		        c.color color,
 		        c.csize csize,
 		        g.price price
@@ -202,6 +203,7 @@
 		    	cart c, goodsinfo g
 		    WHERE 
 		    	c.goodsunq=g.unq
+		    	and userid=#userid#
 	</select>
 
 	<insert id="nikeDAO.insertJoin">
@@ -230,6 +232,39 @@
 				    sysdate,
 				    sysdate
 				)
+	</insert>
+	
+	<insert id="nikeDAO.insertOrderList">
+		INSERT INTO orderlist(
+								unq,
+								userid,
+								goodsunq,
+								csize,
+								color,
+								stmt,
+								name,
+								zipcode,
+								address1,
+								address2,
+								phone,
+								email,
+								message
+							 )
+					   VALUES(
+								orderlist_seq.nextVal,
+								#userid#,
+								#goodsunq#,
+								#csize#,
+								#color#,
+								0,
+								#name#,
+								#zipcode#,
+								#address1#,
+								#address2#,
+								#phone#,
+								#email#,
+								#message#
+						     )
 	</insert>
 	
 	<update id="nikeDAO.updateMember">

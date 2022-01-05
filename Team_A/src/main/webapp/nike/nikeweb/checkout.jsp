@@ -5,7 +5,6 @@
 <c:set var="nikeweb" value="${pageContext.request.contextPath}/nike/nikeweb" />
 <!doctype html>
 <html class="no-js" lang="zxx">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -45,6 +44,16 @@
 <body>
 <script>
 /* 다음 주소 검색 api */
+
+function fn_import(){
+	$("#name").val("${vo.name}");
+	$("#zipcode").val("${vo.zipcode}");
+	$("#address1").val("${vo.address1}");
+	$("#detailAddr").val("${vo.address2}");
+	$("#phone").val("${vo.phone}");
+	$("#email").val("${vo.email}");
+}
+
 function DaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -88,6 +97,7 @@ function DaumPostcode() {
             document.getElementById('zipcode').value = data.zonecode;
             document.getElementById("address1").value = addr;
             // 커서를 상세주소 필드로 이동한다.
+            document.getElementById("detailAddr").value = "";
             document.getElementById("detailAddr").focus();
         }
     }).open();
@@ -118,36 +128,36 @@ function DaumPostcode() {
 	                    <div class="row">
 	                        <div class="col-lg-6 col-md-6">
 	                            <div class="billing-info mb-20">
-	                                <label>이름 </label>
-	                                <input type="text" name="name" id="name">
+	                                <label>이름 *</label>
+	                                <input type="text" name="name" id="name" maxlength="10">
 	                            </div>
 	                        </div>
+	                        <div class="col-lg-6 col-md-6">	                        
+		                        <div class="btnstyle">
+		                                <a class="btn-hover" id="btn_import">내 정보 가져오기</a>
+		                        </div>	
+	                        </div>	
 	                        <div class="col-lg-6 col-md-6">
 	                            <div class="billing-info mb-20">
-	                                <button type="button" class="checkout-btn:hover">가져오기</button>
-	                            </div>
-	                        </div>		
-	                        <div class="col-lg-6 col-md-6">
-	                            <div class="billing-info mb-20">
-	                                <label>우편번호</label>
-	                                <input type="text" name="zipcode" id="zipcode">
+	                                <label>우편번호 *</label>
+	                                <input type="text" name="zipcode" id="zipcode" placeholder="검색 버튼으로 검색" maxlength="6" readonly>
 	                            </div>
 	                        </div>
-							<div class="col-lg-6 col-md-6">
-	                            <div class="billing-info mb-20">
-	                                <input type="button" onclick="DaumPostcode()" value="주소검색">
-	                            </div>
+	                        <div class="col-lg-6 col-md-6">	                        
+		                        <div class="test">
+		                                <a class="btn-hover" onclick="DaumPostcode()">주소검색</a>
+		                        </div>	
 	                        </div>
 	                        <div class="col-lg-12">
 	                            <div class="billing-info mb-20">
-	                                <label>주소</label>
-	                                <input type="text" name="address1" id="address1">
+	                                <label>주소 *</label>
+	                                <input type="text" name="address1" id="address1"  maxlength="100" readonly>
 	                            </div>
 	                        </div>
 							<div class="col-lg-6 col-md-6">
 	                            <div class="billing-info mb-20">
 	                                <label>상세주소</label>
-	                                <input type="text" name="detailAddr" id="detailAddr">
+	                                <input type="text" name="detailAddr" id="detailAddr" maxlength="50">
 	                            </div>
 	                        </div>
 	                        
@@ -155,27 +165,27 @@ function DaumPostcode() {
 	                            <div class="billing-info mb-20">
 	                                <label>참고항목</label>
 	                                <input type="text" name="extraAddr" id="extraAddr">
-	                            </div>
-	                        </div>
-	                        <input type="hidden" name="address2" value="javascript:fn_addr2()">
-	                        
-	                        <div class="col-lg-6 col-md-6">
-	                            <div class="billing-info mb-20">
-	                                <label>휴대폰 번호</label>
-	                                <input type="text"name="phone" id="phone">
+	                                <input type="hidden" name="address2" id="address2" maxlength="50" value="">
 	                            </div>
 	                        </div>
 	                        <div class="col-lg-6 col-md-6">
 	                            <div class="billing-info mb-20">
-	                                <label>이메일</label>
+	                                <label>휴대폰 번호 *</label>
+	                                <input type="text"name="phone" id="phone" maxlength="20">
+	                            </div>
+	                        </div>
+	                        <div class="col-lg-6 col-md-6">
+	                            <div class="billing-info mb-20">
+	                                <label>이메일 *</label>
 	                                <input type="email" name="email" id="eamil">
 	                            </div>
 	                        </div>
 	                    </div>
 	                    <div class="additional-info-wrap">
 	                        <h4>추가 요청 사항</h4>
+	                        <label id="message_label">(0 / 3000)</label>
 	                        <div class="additional-info">
-	                            <textarea placeholder="배송시 요청사항을 입력" name="message"></textarea>
+	                            <textarea placeholder="배송시 요청사항을 입력" name="message" id="message"></textarea>
 	                        </div>
 	                    </div>
                     </form>

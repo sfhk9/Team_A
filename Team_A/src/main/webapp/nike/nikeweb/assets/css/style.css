@@ -15927,3 +15927,23 @@ h3.cart-page-title {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+/* 버튼 스타일 추가 */
+.btnstyle > a{
+  background-color: #a749ff;
+  color: #fff;
+  display: block;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1;
+  padding: 18px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 50px;
+  
+  margin-top:29px;
+}
+
+.btnstyle > a:hover {
+  background-color: #333;
+}
