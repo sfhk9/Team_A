@@ -136,7 +136,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6" style="visibility:hidden">
                         <div class="cart-tax">
                             <div class="title-wrap">
                                 <h4 class="cart-bottom-title section-bg-gray">Estimate Shipping And Tax</h4>
@@ -179,7 +179,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6" style="visibility:hidden">
                         <div class="discount-code-wrapper">
                             <div class="title-wrap">
                                <h4 class="cart-bottom-title section-bg-gray">Use Coupon Code</h4> 
@@ -204,9 +204,11 @@
                             <div class="total-shipping">
                                 <h5>배송 요금</h5>
                                 <ul>
-                                	<!-- 배송 요금 관련된 column이 필요하지 않을까 싶음 -->
+                                	<!-- 
                                     <li><input type="checkbox"> Standard <span>$20.00</span></li>
                                     <li><input type="checkbox"> Express <span>$30.00</span></li>
+                                    -->
+                                    <li>무료배송<span>0원</span></li>
                                 </ul>
                             </div>
                             <h4 class="grand-totall-title">총계  <span id="grandTotal">0</span></h4>

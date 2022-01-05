@@ -452,7 +452,7 @@ public class NikeController {
 	public String selectCheckout(HttpSession session, NikeVO vo, Model model) throws Exception{
 		String userid = (String) session.getAttribute("MemberSessionId");
 		vo.setUserid(userid);
-		List<?> list=nikeService.selectCheckout(vo);
+		List<?> list=nikeService.selectCheckout(vo);		
 		NikeVO userinfo = nikeService.selectMemberDetail(vo);
 		
 		model.addAttribute("list",list);
