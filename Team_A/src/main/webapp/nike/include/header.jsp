@@ -23,7 +23,8 @@ function fn_logout(){
 			}			
 		});		
 	}
-}	
+}
+
 </script>
 	
 <div class="header-bottom sticky-bar header-res-padding">
@@ -202,8 +203,8 @@ function fn_logout(){
                     <div class="same-style header-search">
                         <a class="search-active" href="#"><i class="pe-7s-search"></i></a>
                         <div class="search-content">
-                            <form action="#">
-                                <input type="text" placeholder="Search" />
+                            <form action="javascript:search()">
+                                <input type="text" id="name" placeholder="검색" value=""/>
                                 <button class="button-search"><i class="pe-7s-search"></i></button>
                             </form>
                         </div> 

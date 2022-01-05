@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
-
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -37,6 +36,12 @@
 //데이터 수집 함수
 function filterRe() {
 		
+	//네임 데이터 
+	
+	var name = "";
+	name = document.getElementById("name").value;
+	
+
 	//타입 데이터 
 	var ctgtype_len = $("input[name='ctgtype']").length;
 	var ctgtype = "";
@@ -83,36 +88,63 @@ function filterRe() {
 	//최종 보낼 데이터
 	var data = "";
 	
-	if ( ctgtype != ""    ) {   data += "ctgtype=" + ctgtype + "&"; }    
-	if ( ctggender != "") {   data += "ctggender=" + ctggender + "&"; }    
-	if ( color != ""    ) {   data += "color=" + color + "&"; }    
-	if ( pricemin != ""   ) {   data += "pricemin=" + pricemin + "&";}
-	if ( pricemax != ""   ) { data += "pricemax=" + pricemax + "&";}
-	
-	alert(data+"입니다");
+	if ( name != "" 	  ) {   data += "name=" + name + "&";		 	}
+	if ( ctgtype != ""    ) {   data += "ctgtype=" + ctgtype + "&";		 	}    
+	if ( ctggender != ""  ) {   data += "ctggender=" + ctggender + "&"; 	}    
+	if ( color != ""      ) {   data += "color=" + color + "&"; 			}    
+	if ( pricemin != ""   ) {   data += "pricemin=" + pricemin + "&";		}
+	if ( pricemax != ""   ) { 	data += "pricemax=" + pricemax + "&";		}
 	
 	return data;
 
 } 
-    
 
 
+function search(){
+	//필터정보 함수 
+	var data = filterRe();
+	
+	var addurl = "/addList.do?" + data;
+   	
+   	//디버그용
+   	alert(data+"입니다");
+   	
+   	$('#list').load(addurl, function() {//콜백함수
+   		
+   		var totaltexhi = $('#totaltex1').val();
+   	   	totaltex.innerHTML = totaltexhi;
+   	   	
+   	});
 
-//페이징 버튼
-
-$("#add").click(function(){
+}
+//페이징 로드 함수
+function page(pgno){
+	
    	//필터정보 함수
 	var data = filterRe();
    	
-   	page++;
-   	
-   	data += "&page_no=" + page
+   	data += "&page_no=" + pgno
    	
    	var addurl = "/addList.do?" + data;
    	
-   	$('#list').load(addurl);
+   	//디버그용
+   	/* alert(data+"입니다"); */
    	
-});
+   	$('#list').load(addurl, function() {//콜백함수
+   		
+   		var totaltexhi = $('#totaltex1').val();
+   	   	totaltex.innerHTML = totaltexhi;
+   	   	
+   	});
+   	
+
+
+};
+
+
+/* 페이지 로드시 첫실행 */
+window.onload = function(){ page(1) }
+	
 </script>
 
 
@@ -128,13 +160,14 @@ $("#add").click(function(){
         <div class="breadcrumb-content text-center">
             <ul>
                 <li>
-                    <a href="index.html">홈</a>
+                    <a href="index.do">홈</a>
                 </li>
                 <li class="active">상품 </li>
             </ul>
         </div>
     </div>
 </div>
+
 
 <div class="shop-area pt-95 pb-100">
     <div class="container">
@@ -146,26 +179,16 @@ $("#add").click(function(){
             	<!-- 필터끝////////////////////// -->
             	
                 <div class="shop-bottom-area">
-                    <div class="row">
-	                    
-	                    <!-- 리스트 시작//////////// -->
-						<%@include file="subList.jsp" %>
-						<!-- 리스트 끝 //////////// -->
-
-						<!-- 페이징 버튼 -->
-						<div class="pro-pagination-style text-center mt-30">
-	                        <ul>
-	                        	<li><a class="prev" href="#"><i class="fa fa-angle-double-left"></i></a></li>
-								<c:forEach var="i" begin="1" end="${total_page }">
-									<a href="">${i }</a>
-								</c:forEach>
-	                            
-	                            <li><a class="active" href="#">1</a></li>
-	                            <li><a href="#">2</a></li>
-	                            <li><a class="next" href="#"><i class="fa fa-angle-double-right"></i></a></li>
-	                        </ul>
-						</div>
-                        
+                    <div class="row" id="list">
+                    	                    
+	                    <!--
+	                                       리스트 출력 공간
+	                    ///////
+	                    ///////
+	                    ///////
+	                    /////// 
+	                    -->
+	       			
 					</div>
        			</div> 
        			     
@@ -173,6 +196,7 @@ $("#add").click(function(){
         </div>
     </div>
 </div>
+
 
 <footer class="footer-area bg-gray pt-100 pb-70">
     <%@include file="../include/footer.jsp" %>

@@ -33,9 +33,18 @@
 </header>
 
 
-<div class="slider-area ml-70 mr-70">
+<div class="slider-area">
     <div class="slider-active owl-carousel nav-style-1 owl-dot-none">
-        <div class="single-slider-2 slider-height-1 d-flex align-items-center slider-height-res bg-img" style="background-image:url(assets/img/slider/slider-1.jpg);">
+    
+        <div class="single-slider-2 slider-height-1 d-flex align-items-center slider-height-res bg-img" style="background-image:url(/nike/images/main.jpg);">
+            <div class="container">
+                <div class="row">
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="single-slider-2 slider-height-1 d-flex align-items-center slider-height-res bg-img" style="background-color: #ff99cc;">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-7 ms-auto">
@@ -50,26 +59,14 @@
                 </div>
             </div>
         </div>
-        <div class="single-slider-2 slider-height-1 d-flex align-items-center slider-height-res bg-img" style="background-image:url(assets/img/slider/slider-2-2.jpg);">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-7 ms-auto">
-                        <div class="slider-content-2 slider-animated-1">
-                            <h3 class="animated">Sale Off 40%</h3>
-                            <h1 class="animated">Summer Offer <br>2020 Collection</h1>
-                            <div class="slider-btn btn-hover">
-                                <a class="animated" href="shop.html">SHOP NOW</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>
+
 <div class="banner-area pt-60 pb-65">
     <div class="container">
         <div class="row">
+        
             <div class="col-lg-4 col-md-4">
                 <div class="single-banner mb-30">
                     <a href="product-details.html"><img src="assets/img/banner/banner-1.jpg" alt=""></a>
@@ -80,6 +77,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-lg-4 col-md-4">
                 <div class="single-banner mb-30">
                     <a href="product-details.html"><img src="assets/img/banner/banner-2.jpg" alt=""></a>
@@ -90,6 +88,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-lg-4 col-md-4">
                 <div class="single-banner mb-30">
                     <a href="product-details.html"><img src="assets/img/banner/banner-3.jpg" alt=""></a>
@@ -100,9 +99,11 @@
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
+
 <div class="product-area pb-60">
     <div class="container">
         <div class="tab-filter-wrap mb-60">
@@ -188,8 +189,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-5.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-5.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-5.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-5.jpg" alt="">
                                 </a>
                                 <span class="pink">-10%</span>
                                 <div class="product-action-2">
@@ -216,8 +217,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-4.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-4.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-4.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-4.jpg" alt="">
                                 </a>
                                 <span class="purple">New</span>
                                 <div class="product-action-2">
@@ -243,8 +244,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-3.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-3.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-3.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-3.jpg" alt="">
                                 </a>
                                 <span class="pink">-10%</span>
                                 <div class="product-action-2">
@@ -271,8 +272,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-2.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-2.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-2.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-2.jpg" alt="">
                                 </a>
                                 <span class="purple">New</span>
                                 <div class="product-action-2">
@@ -298,8 +299,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-1.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-1.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-1.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-1.jpg" alt="">
                                 </a>
                                 <span class="pink">-10%</span>
                                 <div class="product-action-2">
@@ -326,8 +327,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-8.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-8.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-8.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-8.jpg" alt="">
                                 </a>
                                 <span class="purple">New</span>
                                 <div class="product-action-2">
@@ -353,8 +354,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-7.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-7.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-7.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-7.jpg" alt="">
                                 </a>
                                 <span class="pink">-10%</span>
                                 <div class="product-action-2">
@@ -381,8 +382,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-6.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-6.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-6.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-6.jpg" alt="">
                                 </a>
                                 <span class="purple">New</span>
                                 <div class="product-action-2">
@@ -412,8 +413,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-1.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-1.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-1.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-1.jpg" alt="">
                                 </a>
                                 <span class="pink">-10%</span>
                                 <div class="product-action-2">
@@ -440,8 +441,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-2.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-2.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-2.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-2.jpg" alt="">
                                 </a>
                                 <span class="purple">New</span>
                                 <div class="product-action-2">
@@ -467,8 +468,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-3.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-3.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-3.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-3.jpg" alt="">
                                 </a>
                                 <span class="pink">-10%</span>
                                 <div class="product-action-2">
@@ -495,8 +496,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-4.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-4.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-4.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-4.jpg" alt="">
                                 </a>
                                 <span class="purple">New</span>
                                 <div class="product-action-2">
@@ -522,8 +523,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-5.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-5.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-5.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-5.jpg" alt="">
                                 </a>
                                 <span class="pink">-10%</span>
                                 <div class="product-action-2">
@@ -550,8 +551,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-6.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-6.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-6.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-6.jpg" alt="">
                                 </a>
                                 <span class="purple">New</span>
                                 <div class="product-action-2">
@@ -577,8 +578,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-7.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-7.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-7.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-7.jpg" alt="">
                                 </a>
                                 <span class="pink">-10%</span>
                                 <div class="product-action-2">
@@ -605,8 +606,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-8.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-8.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-8.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-8.jpg" alt="">
                                 </a>
                                 <span class="purple">New</span>
                                 <div class="product-action-2">
@@ -636,8 +637,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-8.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-8.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-8.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-8.jpg" alt="">
                                 </a>
                                 <span class="pink">-10%</span>
                                 <div class="product-action-2">
@@ -664,8 +665,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-7.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-7.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-7.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-7.jpg" alt="">
                                 </a>
                                 <span class="purple">New</span>
                                 <div class="product-action-2">
@@ -691,8 +692,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-6.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-6.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-6.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-6.jpg" alt="">
                                 </a>
                                 <span class="pink">-10%</span>
                                 <div class="product-action-2">
@@ -719,8 +720,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-5.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-5.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-5.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-5.jpg" alt="">
                                 </a>
                                 <span class="purple">New</span>
                                 <div class="product-action-2">
@@ -746,8 +747,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-4.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-4.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-4.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-4.jpg" alt="">
                                 </a>
                                 <span class="pink">-10%</span>
                                 <div class="product-action-2">
@@ -774,8 +775,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-3.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-3.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-3.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-3.jpg" alt="">
                                 </a>
                                 <span class="purple">New</span>
                                 <div class="product-action-2">
@@ -801,8 +802,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-2.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-2.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-2.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-2.jpg" alt="">
                                 </a>
                                 <span class="pink">-10%</span>
                                 <div class="product-action-2">
@@ -829,8 +830,8 @@
                         <div class="product-wrap-2 mb-25">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="assets/img/product/hm2-pro-1.jpg" alt="">
-                                    <img class="hover-img" src="assets/img/product/hm2-pro-1.jpg" alt="">
+                                    <img class="default-img" src="/nike/nikeweb/assets/img/product/hm2-pro-1.jpg" alt="">
+                                    <img class="hover-img" src="/nike/nikeweb/assets/img/product/hm2-pro-1.jpg" alt="">
                                 </a>
                                 <span class="purple">New</span>
                                 <div class="product-action-2">
@@ -866,7 +867,7 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="blog-wrap mb-30 scroll-zoom">
                     <div class="blog-img">
-                        <a href="blog-details.html"><img src="assets/img/blog/blog-1.jpg" alt=""></a>
+                        <a href="blog-details.html"><img src="/nike/nikeweb/assets/img/blog/blog-1.jpg" alt=""></a>
                         <span class="purple">Lifestyle</span>
                     </div>
                     <div class="blog-content-wrap">
@@ -880,7 +881,7 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="blog-wrap mb-30 scroll-zoom">
                     <div class="blog-img">
-                        <a href="blog-details.html"><img src="assets/img/blog/blog-2.jpg" alt=""></a>
+                        <a href="blog-details.html"><img src="/nike/nikeweb/assets/img/blog/blog-2.jpg" alt=""></a>
                         <span class="pink">Lifestyle</span>
                     </div>
                     <div class="blog-content-wrap">
@@ -894,7 +895,7 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="blog-wrap mb-30 scroll-zoom">
                     <div class="blog-img">
-                        <a href="blog-details.html"><img src="assets/img/blog/blog-3.jpg" alt=""></a>
+                        <a href="blog-details.html"><img src="/nike/nikeweb/assets/img/blog/blog-3.jpg" alt=""></a>
                         <span class="purple">Lifestyle</span>
                     </div>
                     <div class="blog-content-wrap">
@@ -1006,16 +1007,16 @@
                     <div class="col-md-5 col-sm-12 col-xs-12">
                         <div class="tab-content quickview-big-img">
                             <div id="pro-1" class="tab-pane fade show active">
-                                <img src="assets/img/product/quickview-l1.jpg" alt="">
+                                <img src="/nike/nikeweb/assets/img/product/quickview-l1.jpg" alt="">
                             </div>
                             <div id="pro-2" class="tab-pane fade">
-                                <img src="assets/img/product/quickview-l2.jpg" alt="">
+                                <img src="/nike/nikeweb/assets/img/product/quickview-l2.jpg" alt="">
                             </div>
                             <div id="pro-3" class="tab-pane fade">
-                                <img src="assets/img/product/quickview-l3.jpg" alt="">
+                                <img src="/nike/nikeweb/assets/img/product/quickview-l3.jpg" alt="">
                             </div>
                             <div id="pro-4" class="tab-pane fade">
-                                <img src="assets/img/product/quickview-l2.jpg" alt="">
+                                <img src="/nike/nikeweb/assets/img/product/quickview-l2.jpg" alt="">
                             </div>
                         </div>
                         <!-- Thumbnail Large Image End -->
@@ -1023,9 +1024,9 @@
                         <div class="quickview-wrap mt-15">
                             <div class="quickview-slide-active owl-carousel nav nav-style-1" role="tablist">
                                 <a class="active" data-bs-toggle="tab" href="#pro-1"><img src="assets/img/product/quickview-s1.jpg" alt=""></a>
-                                <a data-bs-toggle="tab" href="#pro-2"><img src="assets/img/product/quickview-s2.jpg" alt=""></a>
-                                <a data-bs-toggle="tab" href="#pro-3"><img src="assets/img/product/quickview-s3.jpg" alt=""></a>
-                                <a data-bs-toggle="tab" href="#pro-4"><img src="assets/img/product/quickview-s2.jpg" alt=""></a>
+                                <a data-bs-toggle="tab" href="#pro-2"><img src="/nike/nikeweb/assets/img/product/quickview-s2.jpg" alt=""></a>
+                                <a data-bs-toggle="tab" href="#pro-3"><img src="/nike/nikeweb/assets/img/product/quickview-s3.jpg" alt=""></a>
+                                <a data-bs-toggle="tab" href="#pro-4"><img src="/nike/nikeweb/assets/img/product/quickview-s2.jpg" alt=""></a>
                             </div>
                         </div>
                     </div>

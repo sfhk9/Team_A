@@ -1,9 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}/nike" />
+<!DOCTYPE html>
+<html>
 
-
+<body>
+<input type="hidden" id="nameval" value="${name}">
+<input type="hidden" id="totaltex1" value="
+		<% 
+		String name = (String) pageContext.getAttribute("name");
+		if ( name != null ) { 
+		%>
+		<strong>'${name}'</strong> &nbsp;
+		<% 
+		}  
+		%> 
+		총 ${total}개 결과중  ${s_no} ~ ${e_no}개 표시중">
 <c:forEach var="result" items="${list}" varStatus="status" >
-<!-- 상품리스트 시작///////////////////// -->
+
 	<div class="col-xl-4 col-md-6 col-lg-4 col-sm-6">
 		<div class="product-wrap mb-25 scroll-zoom">
 			<!-- 이미지 -->
@@ -60,5 +75,30 @@
 			</div>
 		</div>
 	</div>
-<!-- 상품리스트 끝 -->
+	
 </c:forEach>
+
+<!-- 페이징 버튼 -->
+<div class="pro-pagination-style text-center mt-30">
+	<ul>
+		<li><a class="prev" onclick="javascript:page(1);"><i class="fa fa-angle-double-left"></i></a></li>
+			<c:forEach var="i" begin="1" end="${total_page }">
+			
+				<li>
+					<a  onclick="javascript:page(${i });" 
+					<% 
+					String pageno = "" + pageContext.getAttribute("pageno"); 
+					String val	  = "" + pageContext.getAttribute("i");
+					 System.out.println(pageno);
+					 System.out.println(val);
+					if ( pageno.equals(val) ) { %> class="active"<% } 
+					%> > ${i } 
+					</a>
+				</li>
+			</c:forEach>
+		<li><a class="next" onclick="javascript:page(${total_page });"><i class="fa fa-angle-double-right"></i></a></li>
+	</ul>
+</div>
+
+</body>
+</html>

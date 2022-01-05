@@ -117,18 +117,7 @@ function filterRe() {
 	
 
     
-    $(function(){ 
-    	
-    	
-    	
-       	//필터 버튼
-		$("#filter").click(function(){
-	    	//필터정보 함수 
-			var data = filterRe();
-	          
-			window.location.href = "/goodsList.do?" + data;
-		});
-       	
+ 
        	
 		//더보기버튼
 		var page = 1;
