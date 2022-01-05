@@ -144,7 +144,7 @@ function DaumPostcode() {
 	                            </div>
 	                        </div>
 	                        <div class="col-lg-6 col-md-6">	                        
-		                        <div class="test">
+		                        <div class="btnstyle">
 		                                <a class="btn-hover" onclick="DaumPostcode()">주소검색</a>
 		                        </div>	
 	                        </div>
