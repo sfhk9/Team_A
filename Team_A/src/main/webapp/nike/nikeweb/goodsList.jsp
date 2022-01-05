@@ -38,8 +38,8 @@ function filterRe() {
 		
 	//네임 데이터 
 	
-	var name = "";
-	name = document.getElementById("name").value;
+	var goodsname = "";
+	goodsname = document.getElementById("goodsname").value;
 	
 
 	//타입 데이터 
@@ -88,7 +88,7 @@ function filterRe() {
 	//최종 보낼 데이터
 	var data = "";
 	
-	if ( name != "" 	  ) {   data += "name=" + name + "&";		 	}
+	if ( goodsname != "" 	  ) {   data += "search=" + goodsname + "&";		 	}
 	if ( ctgtype != ""    ) {   data += "ctgtype=" + ctgtype + "&";		 	}    
 	if ( ctggender != ""  ) {   data += "ctggender=" + ctggender + "&"; 	}    
 	if ( color != ""      ) {   data += "color=" + color + "&"; 			}    

@@ -230,7 +230,7 @@ $(function(){
                         <a class="search-active" href="#"><i class="pe-7s-search"></i></a>
                         <div class="search-content">
                             <form action="javascript:search()">
-                                <input type="text" id="name" placeholder="검색" value=""/>
+                                <input type="text" id="goodsname" placeholder="검색" value=""/>
                                 <button class="button-search"><i class="pe-7s-search"></i></button>
                             </form>
                         </div> 
