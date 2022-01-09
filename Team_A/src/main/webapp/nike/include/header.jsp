@@ -51,6 +51,15 @@ $(function(){
 	});
 });
 
+
+//검색용 함수
+function search(){
+
+   	var goodsname = document.getElementById("goodsname").value;
+   	location.href="/goodsList.do?goodsname=" + goodsname;
+
+}
+
 </script>
 	
 <div class="header-bottom sticky-bar header-res-padding">

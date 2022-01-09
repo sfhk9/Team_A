@@ -36,6 +36,8 @@ public class NikeVO {
 	
 	
 	private String search;
+	private String goodsname;
+
 
 
 	//장바구니 CART
@@ -364,6 +366,13 @@ public class NikeVO {
 	}
 	public void setGoodsimg(String goodsimg) {
 		this.goodsimg = goodsimg;
+	}
+	
+	public String getGoodsname() {
+		return goodsname;
+	}
+	public void setGoodsname(String goodsname) {
+		this.goodsname = goodsname;
 	}
 	
 	

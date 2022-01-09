@@ -4,8 +4,12 @@ import java.util.List;
 
 public interface NikeService {
 
+	//신상품 리스트 서비스
+	List<?> selectNewGoodsList() throws Exception;
 	//인기 상품 리스트 서비스
-	List<?> selectHitGoodsList();
+	List<?> selectHitGoodsList() throws Exception;
+	//세일 상품 리스트서비스
+	List<?> selectSalGoodsList() throws Exception;
 	
 	//상품 리스트 서비스
 	List<?> selectGoodsList(NikeVO vo) throws Exception;
@@ -64,4 +68,5 @@ public interface NikeService {
 
 	// 주문 접수
 	String insertOrderList(NikeVO vo) throws Exception;
+
 }

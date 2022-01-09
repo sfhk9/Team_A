@@ -37,10 +37,7 @@
 function filterRe() {
 		
 	//네임 데이터 
-	
-	var goodsname = "";
-	goodsname = document.getElementById("goodsname").value;
-	
+	var goodsname2 = "${goodsname}";
 
 	//타입 데이터 
 	var ctgtype_len = $("input[name='ctgtype']").length;
@@ -88,12 +85,15 @@ function filterRe() {
 	//최종 보낼 데이터
 	var data = "";
 	
-	if ( goodsname != "" 	  ) {   data += "search=" + goodsname + "&";		 	}
+	if ( goodsname2 != "" ) {   data += "goodsname=" + goodsname2 + "&";	}
 	if ( ctgtype != ""    ) {   data += "ctgtype=" + ctgtype + "&";		 	}    
 	if ( ctggender != ""  ) {   data += "ctggender=" + ctggender + "&"; 	}    
 	if ( color != ""      ) {   data += "color=" + color + "&"; 			}    
 	if ( pricemin != ""   ) {   data += "pricemin=" + pricemin + "&";		}
 	if ( pricemax != ""   ) { 	data += "pricemax=" + pricemax + "&";		}
+	
+	//디버그용
+   	/* alert(data+"입니다 최종"); */
 	
 	return data;
 
@@ -101,13 +101,16 @@ function filterRe() {
 
 
 function search(){
+	
 	//필터정보 함수 
 	var data = filterRe();
+	
+	alert(data+"입니다 최종");
 	
 	var addurl = "/addList.do?" + data;
    	
    	//디버그용
-   	alert(data+"입니다");
+   	/* alert(data+"입니다"); */
    	
    	$('#list').load(addurl, function() {//콜백함수
    		
@@ -122,8 +125,8 @@ function page(pgno){
 	
    	//필터정보 함수
 	var data = filterRe();
-   	
-   	data += "&page_no=" + pgno
+
+   	data += "page_no=" + pgno
    	
    	var addurl = "/addList.do?" + data;
    	
@@ -136,14 +139,11 @@ function page(pgno){
    	   	totaltex.innerHTML = totaltexhi;
    	   	
    	});
-   	
-
 
 };
 
-
 /* 페이지 로드시 첫실행 */
-window.onload = function(){ page(1) }
+window.onload = function(){ page(1); }
 	
 </script>
 
