@@ -46,10 +46,6 @@ public class NikeImpl implements NikeService {
 
 	}
 
-	@Override
-	public NikeVO selectTab1(NikeVO vo) throws Exception {
-		return nikeDAO.selectTab1(vo);
-	}
 
 	@Override
 	public int selectIdCheck(String userid) throws Exception {
@@ -112,6 +108,21 @@ public class NikeImpl implements NikeService {
 	@Override
 	public String insertOrderList(NikeVO vo) throws Exception {
 		return nikeDAO.insertOrderList(vo);
+	}
+
+	@Override
+	public String insertReview(NikeVO vo) throws Exception {
+		return nikeDAO.insertReview(vo);
+	}
+
+	@Override
+	public int selectReviewTotal(NikeVO vo) throws Exception {
+		return nikeDAO.selectReviewTotal(vo);
+	}
+
+	@Override
+	public String insertCart(NikeVO vo) throws Exception {
+		return nikeDAO.insertCart(vo);
 	}
 
 

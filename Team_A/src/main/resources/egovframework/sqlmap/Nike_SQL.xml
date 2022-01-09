@@ -100,16 +100,6 @@
 		WHERE
 				unq=#unq#
 	</select>
-
-	<select id="nikeDAO.selectTab1" resultClass="nikeVO">
-		SELECT
-				unq,
-				goodsimg
-		FROM
-				goodsinfo
-		WHERE
-				unq=#unq#
-	</select>
 	
 	
    <select id="nikeDAO.selectIdCheck" resultClass="java.lang.Integer">
@@ -161,6 +151,15 @@
 		WHERE 
 				r.goodsunq=g.unq and g.unq=#unq# 
 
+	</select>
+	
+	<select id="nikeDAO.selectReviewTotal" resultClass="java.lang.Integer">
+		SELECT 
+				SUM(mark) 
+		FROM 
+				review r, goodsinfo g 
+		WHERE 
+				r.goodsunq=g.unq and g.unq=#unq#
 	</select>
 	
 	<select id="nikeDAO.selectCartList" resultClass="egovMap">
@@ -265,6 +264,49 @@
 								#email#,
 								#message#
 						     )
+	</insert>
+	
+	<insert id="nikeDAO.insertReview">
+		INSERT INTO review (
+								unq,
+								goodsunq,
+								title,
+								userid,
+								content,
+								rdate,
+								udate,
+								hits,
+								img,
+								mark
+					) VALUES (
+								review_seq.nextval,
+								#goodsunq#,
+								'test000',
+								'java1',
+								#content#,
+								sysdate,
+								sysdate,
+								'0',
+								#img#,
+								#mark#	)
+	</insert>
+	
+	<insert id="nikeDAO.insertCart">
+		INSERT INTO cart (
+							unq,
+							userid,
+							goodsunq,
+							csize,
+							color,
+							qty
+				) VALUES (
+							cart_seq.nextval,
+							#userid#,
+							#goodsunq#,
+							#csize#,
+							#color#,
+							#qty#		)
+		
 	</insert>
 	
 	<update id="nikeDAO.updateMember">

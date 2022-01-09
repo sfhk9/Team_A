@@ -32,6 +32,111 @@
     <link rel="stylesheet" href="/nike/nikeweb/assets/css/plugins.css">
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="/nike/nikeweb/assets/css/style.css">
+
+<style>
+	.star_rating {font-size:0; letter-spacing:-4px;}
+	.star_rating a {
+	    font-size:22px;
+	    letter-spacing:0;
+	    display:inline-block;
+	    margin-left:5px;
+	    color:#ccc;
+	    text-decoration:none;
+	}
+	.star_rating a:first-child {margin-left:0;}
+	.star_rating a.on {color:orange;}
+</style>    
+    
+<script>
+  	$(function() {
+		
+  		$("#submit").click(function(){  
+  			
+  			if( $.trim($("#content").val()) == "" ) {
+  				alert("내용을 입력해주세요.");
+  				$("#content").focus();
+  				return false;
+  			}
+  
+  			var formdata = $("#frm").serialize();
+  			
+  			$.ajax({
+  				type : "POST",
+  				url  : "detailReviewSave.do",
+  				data : formdata,
+  				
+  				datatype : "text",
+  				success : function(data) {  // ok
+  					if(data == "ok") {
+  						alert("저장완료");
+  					} else {
+  						alert("저장실패");
+  					}
+  				},
+  			    error : function() {
+  			    	alert("오류발생");
+  			    }
+  			});
+  		});
+  	});
+</script>
+
+<script>
+  	$(function() {
+		
+  		$("#sendCart").click(function(){  
+  			
+  			if( $.trim($("#color").val()) == "" ) {
+  				alert("색상을 선택해주세요.");
+  				$("#color").focus();
+  				return false;
+  			}
+  			if( $.trim($("#csize").val()) == "" ) {
+  				alert("크기를 선택해주세요.");
+  				$("#csize").focus();
+  				return false;
+  			}
+  
+  			var formdata = $("#cartData").serialize();
+  			var result = confirm("장바구니로 이동 하시겠습니까?");
+  			
+  			$.ajax({
+  				type : "POST",
+  				url  : "sendCart.do",
+  				data : formdata,
+  				
+  				datatype : "text",
+  				success : function(data) {  // ok
+  					if(data == "ok") {
+  						if(result) {
+  							location="goodsDetail.do?unq=${vo.unq}";
+  						} else {
+  							location.reload();
+  						}
+  					} else {
+  						alert("전송 실패");
+  					}
+  				},
+  			    error : function() {
+  			    	alert("오류발생");
+  			    }
+  			});
+  		});
+  	});
+</script>
+
+<script>
+	$( document ).ready(function() {
+  	
+	  	$( ".star_rating a" ).click(function() {
+	  	     $(this).parent().children("a").removeClass("on");
+	  	     $(this).addClass("on").prevAll("a").addClass("on");
+	  	     return false;
+	  	});
+  	
+  	});
+</script>
+    
 </head>
 
 <body>
@@ -109,11 +214,8 @@
                     </div>
                     <div class="pro-details-rating-wrap">
                         <div class="pro-details-rating">
-                            <i class="fa fa-star-o yellow"></i>
-                            <i class="fa fa-star-o yellow"></i>
-                            <i class="fa fa-star-o yellow"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
+                            <c:forEach var="i" begin="1" end="${review_total }"><i class="fa fa-star-o yellow"></i></c:forEach>
+                            <c:forEach var="j" begin="${review_total }" end="4"><i class="fa fa-star-o"></i></c:forEach>
                         </div>
                         <span><a href="#">리뷰  ${review_cnt }</a></span>
                     </div>
@@ -125,6 +227,12 @@
                             <li>- 설명3</li>
                         </ul>
                     </div>
+                    
+                    <form id="cartData">
+                    	<c:forEach var="result" items="${comm_list }" varStatus="status">
+                    		<input type="hidden" name="userid" value="${result.userid }">
+                    	</c:forEach>
+                    
                     <div class="pro-details-size-color">
                         <div class="pro-details-color-wrap">
                             <span>Color</span>
@@ -137,9 +245,19 @@
 								if(color != null && !color.equals("")) {
 									String[] array = color.split("/");
 									for( int i=0; i<array.length; i++ ) {
-										if(i < array.length ) {
+										if(i < array.length && array[i].equals("white") || array[i].equals("yellow") || array[i].equals("beige") ) {
 								%>
-											
+											<li style="margin-left:8px;">
+		            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+													<label for="chk<%=i %>" class="chkbox">										
+														<input id="chk<%=i %>" type="checkbox" value="<%=array[i] %>">
+														<span class="checkmark2" style="background-color: <%=array[i] %>;"></span>
+													</label><br>
+												</div>
+											</li> 
+								<%
+										} else {
+								%>
 											<li style="margin-left:8px;">
 		            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 													<label for="chk<%=i %>" class="chkbox">										
@@ -147,8 +265,8 @@
 														<span class="checkmark" style="background-color: <%=array[i] %>;"></span>
 													</label><br>
 												</div>
-											</li> 
-								<%
+											</li> 							
+								<%		
 										}
 									}
 								}
@@ -171,9 +289,7 @@
 										for(int i=0; i<array.length; i++) {
 											if(i < array.length ) {	
 									%>	
-												
-												<li><a href="#"><%=array[i] %></a></li>
-												
+												<li class="csizeA" id="csize"><%=array[i] %></li>
 									<%
 											}
 										}
@@ -187,7 +303,7 @@
                         <div class="cart-plus-minus">
                             <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
                         </div>
-                        <div class="pro-details-cart btn-hover">
+                        <div class="pro-details-cart btn-hover" id="sendCart">
                             <a href="#">장바구니</a>
                         </div>
                         <div class="pro-details-wishlist">
@@ -197,6 +313,7 @@
                             <a href="#"><i class="pe-7s-shuffle"></i></a>
                         </div>
                     </div>
+                    </form>
                     <div class="pro-details-meta">
                         <span>카테고리 :</span>
                         <ul>
@@ -274,9 +391,8 @@
                 <div id="des-details3" class="tab-pane">
                     <div class="row">
                         <div class="col-lg-7">
-                            <div class="review-wrapper">
-                                <div class="single-review">
-                                    
+                            <!-- <div class="review-wrapper">  -->
+                                <div class="single-review" style="flex-direction: column;">
                                     <c:forEach var="result" items="${comm_list }" varStatus="status">
                                     	<c:set var="userid" value="${result.userid }"/>
                                     	<c:set var="content" value="${result.content }"/>
@@ -286,17 +402,12 @@
                                         String content = pageContext.getAttribute("content")+"";
                                         String mark = pageContext.getAttribute("mark")+"";
                                         %>
-                                    
-                                    <div class="review-img">
+                                    <div class="review-img" style="display: flex; margin-top: 5px; margin-bottom: 8px;">
                                         <img src="/nike/nikeweb/assets/img/testimonial/1.jpg" alt="">
-                                    </div>
-                                    <div class="review-content">
-                                    	
-                                    	
-                                        
+                                        <div class="review-content">
                                         <div class="review-top-wrap">
                                             <div class="review-left">
-                                                <div class="review-name">
+                                                <div class="review-name" style="margin-left: 10px;">
                                                     <h4>${userid }</h4>
                                                 </div>
                                                 <div class="review-rating">
@@ -311,13 +422,12 @@
                                             </div>
                                          -->
                                         </div>
-                                        <div class="review-bottom">
+                                        <div class="review-bottom" style="flex-direction: column; margin-left: 20px;">
                                             <p>${content }</p>
                                         </div>
-                                    
-                                    
-                                    
                                     </div>
+                                    </div>
+                                    
                                 
                                 </c:forEach>
                                 
@@ -351,22 +461,25 @@
                                     </div>
                                 </div>
                              -->
-                            </div>
+                            <!-- </div>  -->
                         </div>
                         <!-- 리뷰작성 -->
                         <div class="col-lg-5">
                             <div class="ratting-form-wrapper pl-50">
                                 <h3>리뷰 작성</h3>
                                 <div class="ratting-form">
-                                    <form action="#">
-                                        <div class="star-box">
+                                    <form id="frm">
+                                    	<input type="hidden" name="goodsunq" value="${vo.unq}">
+                                        <div class="star-box" id="star">
                                             <span>만족도 선택:</span>
                                             <div class="ratting-star">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
+                                                <p class="star_rating" id="mark">
+												    <a href="#" class="on"><i class="fa fa-star"></i></a>
+												    <a href="#" class="on"><i class="fa fa-star"></i></a>
+												    <a href="#" class="on"><i class="fa fa-star"></i></a>
+												    <a href="#"><i class="fa fa-star"></i></a>
+												    <a href="#"><i class="fa fa-star"></i></a>
+												</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -384,8 +497,8 @@
                                         -->    
                                             <div class="col-md-12">
                                                 <div class="rating-form-style form-submit">
-                                                    <textarea name="Your Review" placeholder="최소 10자 이상 입력해주세요"></textarea>
-                                                    <input type="submit" value="Submit">
+                                                    <textarea name="content" id="content" placeholder="최소 10자 이상 입력해주세요"></textarea>
+                                                    <input type="submit" id="submit" value="Submit">
                                                 </div>
                                             </div>
                                         </div>
@@ -414,12 +527,20 @@
         <div class="related-product-active owl-carousel owl-dot-none">
             
             
-            
+            <c:forEach var="result" items="${list}"  varStatus="status"  >
             <div class="product-wrap">
+                
+                <c:set var="thumbnail" value="${result.thumbnail }" />
+                <%
+				String thumbnail1 = (String) pageContext.getAttribute("thumbnail") ;
+				
+				if(thumbnail1 != null && !thumbnail1.equals("")) {
+					String[] array = thumbnail1.split("/");
+				%>
                 <div class="product-img">
                     <a href="product-details-2.html">
-                        <img class="default-img" src="/nike/nikeweb/assets/img/product/pro-1.jpg" alt="">
-                        <img class="hover-img" src="/nike/nikeweb/assets/img/product/pro-1-1.jpg" alt="">
+                        <img class="default-img" src="/nike/goods/${result.unq}/<%=array[0] %>" alt="">
+                        <img class="hover-img" src="/nike/goods/${result.unq}/<%=array[0] %>" alt="">
                     </a>
                     <span class="pink">-10%</span>
                     <div class="product-action">
@@ -434,24 +555,34 @@
                         </div>
                     </div>
                 </div>
+               <%
+				}
+				%>
+                
                 <div class="product-content text-center">
-                    <h3><a href="product-details-2.html">T- Shirt And Jeans</a></h3>
+                    <h3><a href="goodsDetail.do?unq=${result.unq }">${result.name }</a></h3>
                     <div class="product-rating">
                         <i class="fa fa-star-o yellow"></i>
                         <i class="fa fa-star-o yellow"></i>
                         <i class="fa fa-star-o yellow"></i>
                         <i class="fa fa-star-o"></i>
                         <i class="fa fa-star-o"></i>
+                        
+                        <br>
+						
+						<c:forEach var="i" begin="1" end="${review_total }"><i class="fa fa-star-o yellow"></i></c:forEach>
+						<c:forEach var="j" begin="${review_total }" end="4"><i class="fa fa-star-o"></i></c:forEach>
+                        
                     </div>
                     <div class="product-price">
-                        <span>$ 60.00</span>
-                        <span class="old">$ 60.00</span>
+                        <span>${result.price }원</span>
+                        <span class="old">${result.price }(할인가격)</span>
                     </div>
                 </div>
             </div>
+            </c:forEach>
             
-            
-            
+            <!-- 
             <div class="product-wrap">
                 <div class="product-img">
                     <a href="product-details-2.html">
@@ -596,7 +727,7 @@
                 </div>
             </div>
         
-        
+         -->
         
         </div>
     </div>
