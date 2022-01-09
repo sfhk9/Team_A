@@ -2,21 +2,30 @@ package egov.web;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import egov.service.NikeService;
 import egov.service.NikeVO;
@@ -277,6 +286,7 @@ public class NikeController {
 		return "nike/member/join_agree_r";
 	}
 
+
 	@RequestMapping("joinWrite.do")
 	public String joinWrite() {
 		
@@ -362,13 +372,38 @@ public class NikeController {
 	}
 	
 	
+	@RequestMapping("adminLogin.do")
+	public String adminLogoin() {
+		
+		return "nike/nikeweb/admin/adminLogin";
+	}
+	@RequestMapping("adminCertify.do")
+	@ResponseBody
+	public String selectAdminCertify(NikeVO vo, HttpSession session) throws Exception {
+		
+		String msg = "ok";
+		
+		int cnt = nikeService.selectAdminCertify(vo);
+		
+		if(cnt == 0) {
+			msg = "er1";
+		} else if( cnt == 1 ) {
+			session.setAttribute("AdminSessionId", vo.getAdminid());			
+		}
+		
+		return msg;
+	}
+	@RequestMapping("adminout.do")
+	@ResponseBody
+	public String adminout(HttpSession session) {	
+		session.removeAttribute("AdminSessionId");	
+		return "ok";
+	}
 	@RequestMapping("loginWrite.do")
 	public String loginWrite() {
 		
 		return "nike/nikeweb/login-register";
 	}
-	
-	
 
 	@RequestMapping("logout.do")
 	@ResponseBody
@@ -388,21 +423,77 @@ public class NikeController {
 		if(cnt == 0) {
 			msg = "er1";
 		} else if( cnt == 1 ) {
-			session.setAttribute("MemberSessionId", vo.getUserid());			
+			session.setAttribute("MemberSessionId", vo.getUserid());	
+			session.setMaxInactiveInterval(20);
 		}
 		
 		return msg;
 	}
-	@RequestMapping("findInfo.do")
-	public String findInfo() throws Exception{
-		
-		return "nike/member/find_info_r";
+	
+	@RequestMapping("adminList.do")
+	public String selectAdminList(  NikeVO vo , Model model )  
+														throws Exception {
+				// 출력페이비 번호 가져오기
+				int page_no = vo.getPage_no();
+				
+				// 출력페이지 번호를 이용하여 SQL의 출력 범위 설정
+				int s_no = (page_no-1)*10 + 1 ;
+				int e_no = s_no + (10-1);
+				
+				// s_no 변수와 e_no 변수의 vo 셋팅
+				vo.setS_no(s_no);
+				vo.setE_no(e_no);
+								
+				// 목록 출력 서비스 실행		
+				List<?> list = nikeService.selectGoodsList(vo);
+				
+				// 총 데이터 값 출력 서비스 실행
+				int total = nikeService.selectGoodsTotal(vo);
+				
+				// 총 페이지 값을 얻는 설정(세팅)
+				int total_page = (int) Math.ceil((double)total/10);
+				
+				// 출력 페이지의 시작 행 번호
+				int rownum = total - (page_no-1)*10;
+				
+				vo.setTotal(total);
+				vo.setTotal_page(total_page);
+				vo.setRownum(rownum);
+				
+				model.addAttribute("vo",vo);
+				model.addAttribute("list",list);
+						
+		return "nike/nikeweb/admin/adminGoodsList";
 	}
 	
-	@RequestMapping("myPage.do")
-	public String myPage() throws Exception{
+	@RequestMapping("adminListDelete.do")
+	@ResponseBody
+	public String deleteAdminList( NikeVO vo ) throws Exception {
 		
-		return "nike/mypage";
+		String msg = "ok";
+		
+		// 암호 확인 서비스 실행
+		// pass_cnt -> 1
+		int pass_cnt = nikeService.selectAdminPass(vo);
+		
+		if( pass_cnt == 1) {
+			// 삭제 서비스 실행
+			// result - > 1
+			int result = nikeService.deleteAdminList(vo);
+			
+			if( result != 1) { // 삭제 실패
+				msg = "delete_fail"; 
+			} else if( result == 1) { // 삭제 성공
+			
+			}else {
+				msg = "pass_fail"; // 암호 일치하지 않음
+			}
+			
+			return msg;
+			
+		}
+		return msg;
+	
 	}
 	
 	@RequestMapping("cart.do")
@@ -547,8 +638,8 @@ public class NikeController {
 
 		return "nike/nikeweb/contact";
 	}
-}
 
+}
 class Item {
 	private int id;
 	private String value;

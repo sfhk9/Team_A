@@ -107,12 +107,21 @@
 	
 	
 	</select>
-	
+	<select id="nikeDAO.selectAdminPass" resultClass="java.lang.Integer">
+			SELECT COUNT(*) FROM goodsinfo WHERE unq=#unq# 
+	</select>
   <select id="nikeDAO.selectMemberCertify" resultClass="java.lang.Integer">
 		SELECT COUNT(*) 
 				FROM userinfo 
 				WHERE 
 					userid=#userid# AND pass=#pass#
+	</select>
+	
+  <select id="nikeDAO.selectAdminCertify" resultClass="java.lang.Integer">
+		SELECT COUNT(*) 
+				FROM admininfo 
+				WHERE 
+					adminid=#adminid# AND adminpass=#adminpass#
 	</select>
 	
   <select id="nikeDAO.selectMemberDetail" resultClass="nikeVO">
@@ -349,6 +358,9 @@
 	<delete id="nikeDAO.deleteAllCartList">
 		DELETE FROM cart WHERE userid=#userid#
 	</delete>
+	<delete id="nikeDAO.deleteAdminList">
+		DELETE FROM goodsinfo WHERE unq=#unq#
 	
+	</delete>
 	
 </sqlMap>

@@ -103,4 +103,25 @@ public class NikeDAO extends EgovAbstractDAO {
 	public String insertCart(NikeVO vo) {
 		return (String) insert("nikeDAO.insertCart",vo);
 	}
+		
+	public int selectAdminCertify(NikeVO vo) {
+		return (int) select("nikeDAO.selectAdminCertify",vo);
+	}
+
+	public int selectAdminTotal(NikeVO vo) {
+		return (int) select("nikeDAO.selectAdminTotal",vo);
+	}
+
+	public List<?> selectAdminList(NikeVO vo) {		
+		return list("nikeDAO.selectAdminList",vo);
+	}
+
+	public int selectAdminPass(NikeVO vo) {
+		return (int) select("nikeDAO.selectAdminPass",vo);
+	}
+
+	public int deleteAdminList(NikeVO vo) {
+		return delete("nikeDAO.deleteAdminList",vo);
+
+	}
 }

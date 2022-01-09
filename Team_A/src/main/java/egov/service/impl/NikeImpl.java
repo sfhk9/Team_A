@@ -111,6 +111,7 @@ public class NikeImpl implements NikeService {
 	}
 
 	@Override
+
 	public String insertReview(NikeVO vo) throws Exception {
 		return nikeDAO.insertReview(vo);
 	}
@@ -124,6 +125,22 @@ public class NikeImpl implements NikeService {
 	public String insertCart(NikeVO vo) throws Exception {
 		return nikeDAO.insertCart(vo);
 	}
+
+	public int selectAdminCertify(NikeVO vo) throws Exception {
+		return nikeDAO.selectAdminCertify(vo);
+	}
+
+	@Override
+	public int selectAdminPass(NikeVO vo) throws Exception {		
+		return nikeDAO.selectAdminPass(vo);
+	}
+
+	@Override
+	public int deleteAdminList(NikeVO vo) throws Exception {
+		return nikeDAO.deleteAdminList(vo);
+	}
+
+	
 
 
 

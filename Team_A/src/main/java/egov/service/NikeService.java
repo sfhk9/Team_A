@@ -70,7 +70,12 @@ public interface NikeService {
 	//리뷰 총 점수
 	int selectReviewTotal(NikeVO vo) throws Exception;
 
+	// 관리자 로그인 검증
+	int selectAdminCertify(NikeVO vo) throws Exception;
 	
-
+	// 관리자 암호 체크
+	int selectAdminPass(NikeVO vo) throws Exception;
 	
+	// 관리자 상품리스트 삭제
+	int deleteAdminList(NikeVO vo) throws Exception;
 }
