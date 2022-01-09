@@ -36,10 +36,16 @@ public class NikeVO {
 	
 	
 	private String search;
+
 	private String goodsname;
 
 
+	// 관리자 ADMININFO
+	private String adminid;
+	private String adminpass;
 
+
+	
 	//장바구니 CART
 	private int qty;
 	
@@ -94,6 +100,8 @@ public class NikeVO {
 	
 	private String s_field;
 	private String s_text;
+	
+	
 	
 	
 	public String getUserid() {
@@ -367,6 +375,7 @@ public class NikeVO {
 	public void setGoodsimg(String goodsimg) {
 		this.goodsimg = goodsimg;
 	}
+<<<<<<< HEAD
 	
 	public String getGoodsname() {
 		return goodsname;
@@ -375,5 +384,19 @@ public class NikeVO {
 		this.goodsname = goodsname;
 	}
 	
+=======
+	public String getAdminid() {
+		return adminid;
+	}
+	public void setAdminid(String adminid) {
+		this.adminid = adminid;
+	}
+	public String getAdminpass() {
+		return adminpass;
+	}
+	public void setAdminpass(String adminpass) {
+		this.adminpass = adminpass;
+	}
+>>>>>>> branch 'master' of https://github.com/sfhk9/Team_A.git
 	
 }
