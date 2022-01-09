@@ -114,6 +114,23 @@ public class NikeImpl implements NikeService {
 		return nikeDAO.insertOrderList(vo);
 	}
 
+	@Override
+	public int selectAdminCertify(NikeVO vo) throws Exception {
+		return nikeDAO.selectAdminCertify(vo);
+	}
+
+	@Override
+	public int selectAdminPass(NikeVO vo) throws Exception {		
+		return nikeDAO.selectAdminPass(vo);
+	}
+
+	@Override
+	public int deleteAdminList(NikeVO vo) throws Exception {
+		return nikeDAO.deleteAdminList(vo);
+	}
+
+	
+
 
 
 

@@ -64,4 +64,13 @@ public interface NikeService {
 
 	// 주문 접수
 	String insertOrderList(NikeVO vo) throws Exception;
+	
+	// 관리자 로그인 검증
+	int selectAdminCertify(NikeVO vo) throws Exception;
+	
+	// 관리자 암호 체크
+	int selectAdminPass(NikeVO vo) throws Exception;
+	
+	// 관리자 상품리스트 삭제
+	int deleteAdminList(NikeVO vo) throws Exception;
 }
