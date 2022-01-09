@@ -26,9 +26,11 @@ public interface NikeService {
 	// 조회수 증가 서비스
 	void updateGoodsInfoHits(NikeVO vo) throws Exception;
 	
-	// detail Tab부분
-	NikeVO selectTab1(NikeVO vo) throws Exception;
+	// detail 댓글 저장 처리
+	String insertReview(NikeVO vo) throws Exception;
 	
+	// detail -> 장바구니
+	String insertCart(NikeVO vo) throws Exception;
 
 	// Id 중복체크
 	int selectIdCheck(String userid) throws Exception;
@@ -70,6 +72,9 @@ public interface NikeService {
 	String insertOrderList(NikeVO vo) throws Exception;
 
 	
+	//리뷰 총 점수
+	int selectReviewTotal(NikeVO vo) throws Exception;
+
 	// 관리자 로그인 검증
 	int selectAdminCertify(NikeVO vo) throws Exception;
 	

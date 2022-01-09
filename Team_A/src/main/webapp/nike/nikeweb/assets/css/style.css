@@ -7758,6 +7758,22 @@ a.default-btn {
   padding: 6px 9px 7px;
   text-transform: uppercase;
 }
+
+
+.product-details-content .pro-details-size-color .pro-details-size .pro-details-size-content .csizeA { /* 사이즈 버튼 css */
+	background-color: #f1f2f6;
+	color: #000;
+	display: inline-block;
+	font-size: 12px;
+	line-height: 1;
+	padding: 6px 9px 7px;
+	text-transform: uppercase;
+}
+.product-details-content .pro-details-size-color .pro-details-size .pro-details-size-content .csizeA:hover {
+  background-color: #a749ff;
+  color: #fff;
+}
+
 .product-details-content .pro-details-size-color .pro-details-size .pro-details-size-content ul li a:hover {
   background-color: #a749ff;
   color: #fff;

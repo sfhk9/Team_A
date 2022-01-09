@@ -224,20 +224,78 @@ public class NikeController {
 		//리뷰 갯수
 		int review_cnt = nikeService.selectReviewCnt(vo);
 		
+		//상품 추천 리스트
+		List<?> list = nikeService.selectHitGoodsList();
+		
+		//리뷰 총 점수
+		int review_total = nikeService.selectReviewTotal(vo);
+		
+		review_total = review_total/review_cnt;
+		
 		model.addAttribute("vo",vo);
 		model.addAttribute("comm_list",comm_list);
 		model.addAttribute("review_cnt",review_cnt);
+		model.addAttribute("list",list);
+		model.addAttribute("review_total",review_total);
 		
 		return "nike/nikeweb/goodsDetail";
 	}
-	@RequestMapping("detailTab1.do")
-	public String detailTab1(NikeVO vo, Model model) throws Exception {
+	
+	@RequestMapping("detailReviewSave.do")
+	@ResponseBody
+	public String insertReview( NikeVO vo ) throws Exception {
 		
-		vo = nikeService.selectTab1(vo);
-		model.addAttribute("vo",vo);
+		String msg = "ok";
+	
+		// 저장 서비스 실행
+		String result = nikeService.insertReview(vo);
+		if( result != null ) msg = "save_fail"; 
 		
-		return "nike/detailTab1";
+		return msg;
 	}
+	
+	@RequestMapping("sendCart.do")
+	@ResponseBody
+	public String insertCart( NikeVO vo ) throws Exception {
+		
+		String msg = "ok";
+	
+		// 저장 서비스 실행
+		String result = nikeService.insertCart(vo);
+		if( result != null ) msg = "save_fail"; 
+		
+		return msg;
+	}
+	
+	
+	
+	@RequestMapping("mainPage.do")
+	public String mainList( NikeVO vo, Model model ) throws Exception {
+		
+		//sql 확인
+		String sql = getSetSql(vo);
+		System.out.println( sql + "  sql!!!" );
+		///
+		
+		List<?> list = nikeService.selectGoodsList(vo);
+		int total = nikeService.selectGoodsTotal(vo);
+		
+		int total_page = (int) Math.ceil( (double)total/12 );
+		
+		System.out.println("리스트"+list);
+  
+		model.addAttribute("list",list);
+		model.addAttribute("total",total);
+		model.addAttribute("total_page",total_page);
+		
+		return "nike/nikeweb/index-2";
+	}
+	
+	@RequestMapping("joinAgree.do")
+	public String joinAgree() throws Exception{
+		return "nike/member/join_agree_r";
+	}
+
 
 	@RequestMapping("joinWrite.do")
 	public String joinWrite() {
