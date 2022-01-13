@@ -101,17 +101,10 @@
 	
 	<select id="nikeDAO.selectGoodsDetail" resultClass="nikeVO">
 		SELECT
-				unq,
-				category,
-				ctgtype,
-				ctggender,
-				price,
-				csize,
-				color,
-				thumbnail,
-				goodsimg,
-				hits,
-				name
+				unq, category, ctgtype, ctggender, price, csize, color, thumbnail, goodsimg, hits, name,
+				NVL( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ),0) mark,
+				( (price/100)*(select off from sale where unq=goodsinfo.sale) ) saleprice,
+				(select off from sale where unq=sale) off
 		FROM
 				goodsinfo
 		WHERE
