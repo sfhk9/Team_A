@@ -87,16 +87,18 @@
 	<%
 	        if(session_id2 == null){
 	%>
-	        if(confirm("로그인 하시겠습니까?")) {
-	            location.href="joinWrite.do";
-	        } else {
-	    alert("로그인 후 이용 바랍니다.");
-
-	        }
-	    return false;
+		        if(confirm("로그인 하시겠습니까?")) {
+		            location.href="joinWrite.do";
+		            
+		        } else {
+		    	alert("로그인 후 이용 바랍니다.");
+				
+		        }
 	<%
-	        } 
+	        }
 	%>
+
+	return false;
 	}
 </script>
 
@@ -105,7 +107,7 @@
 		
   		$("#submit").click(function(){  
   			
-  			fn_click();
+  			if(!fn_click()) return false;
   			
   			if( $.trim($("#content").val()) == "" ) {
   				alert("내용을 입력해주세요.");
@@ -141,7 +143,7 @@
 		
   		$("#sendCart").click(function(){  
   			
-  			fn_click();
+  			if(!fn_click()) return false;
   			
   			if( $.trim($("input[name='color']").val()) == "" ) {
   				alert("색상을 선택해주세요.");

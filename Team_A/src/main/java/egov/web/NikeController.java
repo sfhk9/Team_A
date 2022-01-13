@@ -258,7 +258,7 @@ public class NikeController {
 	@ResponseBody
 	public String insertCart( NikeVO vo ) throws Exception {
 		
-		String msg = "ok";
+		String msg = "ok"	;
 		
 		System.out.println(vo.getColor());
 		
