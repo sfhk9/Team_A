@@ -82,21 +82,20 @@
 <script>
 	function fn_click(){
 	<%
-	        String session_id2 = (String) session.getAttribute("MemberSessionId");
+		String session_id2 = (String) session.getAttribute("MemberSessionId");
 	%> 
 	<%
-	        if(session_id2 == null){
+		if(session_id2 == null){
 	%>
-	        if(confirm("로그인 하시겠습니까?")) {
-	            location.href="joinWrite.do";
-	        } else {
-	    alert("로그인 후 이용 바랍니다.");
-
-	        }
-	    return false;
+			if(confirm("로그인 하시겠습니까?")) {
+				location.href="joinWrite.do";
+			} else {
+				alert("로그인 후 이용 바랍니다.");
+			}
 	<%
-	        } 
+		}
 	%>
+		return false; 
 	}
 </script>
 
@@ -105,7 +104,7 @@
 		
   		$("#submit").click(function(){  
   			
-  			fn_click();
+  			if(!fn_click()) return false;
   			
   			if( $.trim($("#content").val()) == "" ) {
   				alert("내용을 입력해주세요.");
@@ -141,7 +140,7 @@
 		
   		$("#sendCart").click(function(){  
   			
-  			fn_click();
+  			if(!fn_click()) return false;
   			
   			if( $.trim($("input[name='color']").val()) == "" ) {
   				alert("색상을 선택해주세요.");
@@ -272,8 +271,7 @@
                     </div>
                     <div class="pro-details-rating-wrap">
                         <div class="pro-details-rating">
-                            <c:forEach var="i" begin="1" end="${review_total }"><i class="fa fa-star-o yellow"></i></c:forEach>
-                            <c:forEach var="j" begin="${review_total }" end="4"><i class="fa fa-star-o"></i></c:forEach>
+                            <img src="/nike/images/star/${result.mark}.png" class="width: 135px, height: 22px;">
                         </div>
                         <span><a href="#">리뷰  ${review_cnt }</a></span>
                     </div>
@@ -287,9 +285,6 @@
                     </div>
                     
                     <form id="cartData">
-                    	<c:forEach var="result" items="${comm_list }" varStatus="status">
-                    		<input type="hidden" name="userid" value="${result.userid }">
-                    	</c:forEach>
                     
                     <div class="pro-details-size-color">
                         <div class="pro-details-color-wrap">
@@ -633,8 +628,8 @@
                         
                         <br>
 						
-						<c:forEach var="i" begin="1" end="${review_total }"><i class="fa fa-star-o yellow"></i></c:forEach>
-						<c:forEach var="j" begin="${review_total }" end="4"><i class="fa fa-star-o"></i></c:forEach>
+						<c:forEach var="i" begin="1" end="1"><i class="fa fa-star-o yellow"></i></c:forEach>
+						<c:forEach var="j" begin="1" end="4"><i class="fa fa-star-o"></i></c:forEach>
                         
                     </div>
                     <div class="product-price">
