@@ -262,7 +262,9 @@ public class NikeController {
 	public String insertCart( NikeVO vo ) throws Exception {
 		
 		String msg = "ok";
-	
+		
+		System.out.println(vo.getColor());
+		
 		// 저장 서비스 실행
 		String result = nikeService.insertCart(vo);
 		if( result != null ) msg = "save_fail"; 
