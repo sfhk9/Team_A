@@ -99,6 +99,7 @@
 			) a	) b	WHERE rn >= #s_no#  AND rn <![CDATA[<=]]> #e_no#
 	</select>
 	
+	
 	<select id="nikeDAO.selectGoodsDetail" resultClass="nikeVO">
 		SELECT
 				unq, category, ctgtype, ctggender, price, csize, color, thumbnail, goodsimg, hits, name,
