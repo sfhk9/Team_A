@@ -39,17 +39,25 @@ public class NikeController {
 	
 	@RequestMapping("index.do")
 	public String mainpage( Model model ) throws Exception {
+
+		List<?> listNew = nikeService.selectNewGoodsList();
+		List<?> listHit = nikeService.selectHitGoodsList();
+		List<?> listSal = nikeService.selectSalGoodsList();
+
+		//디버그용
+		System.out.println("리스트");
+
+		model.addAttribute("listNew",listNew);
+		model.addAttribute("listHit",listHit);
+		model.addAttribute("listSal",listSal);
 		
-		List<?> list = nikeService.selectHitGoodsList();
-		
-		System.out.println("리스트"+list);
-  
-		model.addAttribute("list",list);
 		return "nike/nikeweb/index";
 	}
 	
 	@RequestMapping("goodsList.do")
 	public String goodsList( NikeVO vo, Model model ) throws Exception {
+		
+		model.addAttribute("goodsname",vo.getGoodsname() );
 
 		return "nike/nikeweb/goodsList";
 	}
@@ -67,7 +75,7 @@ public class NikeController {
 		vo.setE_no(e_no);
 		/////
 		
-		//sql 확인
+		// 디버그용
 		String sql = getSetSql(vo);
 		System.out.println( sql + "  sql!!!" );
 		///
@@ -99,12 +107,12 @@ public class NikeController {
 		//ctgtype=LIF,SPT,&ctggender=M,&color=white,red,
 		
 		// 이름 ////////////////////////////////////////
-		String name;
-		String name_sql = "( ";
-			if ( vo.getName() != null ) {
-				name = vo.getName();
+		String goodsname;
+		String goodsname_sql = "( ";
+			if ( vo.getGoodsname() != null ) {
+				goodsname = vo.getGoodsname();
 				
-				name_sql += " name LIKE'%" + name + "%' )";
+				goodsname_sql += " name LIKE'%" + goodsname + "%' )";
 			}
 		// 타입 ////////////////////////////////////////
 		String[] ctgtype;
@@ -169,8 +177,8 @@ public class NikeController {
 			
 		String sql = "";
 			
-			if ( !name_sql.equals("( ") ) {
-				sql += " and " + name_sql;
+			if ( !goodsname_sql.equals("( ") ) {
+				sql += " and " + goodsname_sql;
 			}
 			
 			if ( !ctgtype_sql.equals("( ") ) {
@@ -193,6 +201,8 @@ public class NikeController {
 				vo.setSql(sql);
 			}
 
+		//디버그용
+		System.out.println(vo.getSql());
 		
 		return vo.getSql();
 		

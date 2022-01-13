@@ -11,8 +11,14 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 @Repository("nikeDAO")
 public class NikeDAO extends EgovAbstractDAO {
 
+	public List<?> selectNewGoodsList() {
+		return list("nikeDAO.selectNewGoodsList");
+	}
 	public List<?> selectHitGoodsList() {
 		return list("nikeDAO.selectHitGoodsList");
+	}
+	public List<?> selectSalGoodsList() {
+		return list("nikeDAO.selectSalGoodsList");
 	}
 	
 	public List<?> selectGoodsList(NikeVO vo) {
@@ -124,4 +130,5 @@ public class NikeDAO extends EgovAbstractDAO {
 		return delete("nikeDAO.deleteAdminList",vo);
 
 	}
+
 }

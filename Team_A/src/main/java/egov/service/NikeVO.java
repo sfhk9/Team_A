@@ -36,10 +36,14 @@ public class NikeVO {
 	
 	
 	private String search;
-	
+
+	private String goodsname;
+
+
 	// 관리자 ADMININFO
 	private String adminid;
 	private String adminpass;
+
 
 	
 	//장바구니 CART
@@ -371,6 +375,16 @@ public class NikeVO {
 	public void setGoodsimg(String goodsimg) {
 		this.goodsimg = goodsimg;
 	}
+
+	
+	public String getGoodsname() {
+		return goodsname;
+	}
+	public void setGoodsname(String goodsname) {
+		this.goodsname = goodsname;
+	}
+	
+
 	public String getAdminid() {
 		return adminid;
 	}
@@ -383,5 +397,6 @@ public class NikeVO {
 	public void setAdminpass(String adminpass) {
 		this.adminpass = adminpass;
 	}
+
 	
 }

@@ -4,43 +4,59 @@
 	<typeAlias  alias="egovMap"  type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="nikeVO" type="egov.service.NikeVO"/>
 	
-	<select id="nikeDAO.selectHitGoodsList" resultClass="egovMap">
-	
+	<select id="nikeDAO.selectNewGoodsList" resultClass="egovMap">
 		SELECT b.* FROM  (	
 			SELECT 
 				rownum rn, a.* 
 			FROM  (
 			
 				SELECT 
-					unq,
-					category,
-					ctgtype,
-					ctggender,
-					price,
-					csize,
-					color,
-					thumbnail,
-                    hits,
+					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits,
+					substr(name,0,20) name
+				FROM 
+					goodsinfo	
+								
+			) a	) b	WHERE rn >= 1  AND rn <![CDATA[<=]]> 8
+	</select>
+	<select id="nikeDAO.selectHitGoodsList" resultClass="egovMap">
+		SELECT b.* FROM  (	
+			SELECT 
+				rownum rn, a.* 
+			FROM  (
+			
+				SELECT 
+					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits,
+					substr(name,0,20) name
+				FROM 
+					goodsinfo
+				ORDER BY 
+					hits DESC	
+								
+			) a	) b	WHERE rn >= 1  AND rn <![CDATA[<=]]> 8
+	</select>
+	<select id="nikeDAO.selectSalGoodsList" resultClass="egovMap">
+		SELECT b.* FROM  (	
+			SELECT 
+				rownum rn, a.* 
+			FROM  (
+			
+				SELECT 
+					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits,
 					substr(name,0,20) name
 				FROM 
 					goodsinfo	
 				ORDER BY 
 					hits DESC	
 								
-			) a
-		) b
-		
-		
-		WHERE rn >= 1  AND rn <![CDATA[<=]]> 6
-
+			) a	) b	WHERE rn >= 1  AND rn <![CDATA[<=]]> 8
 	</select>
+	
 	
 	<select id="nikeDAO.selectGoodsTotal" resultClass="java.lang.Integer">
 		SELECT 
 			COUNT(*)
 		FROM 
 			goodsinfo
-			
 		<isNotNull property="sql">
 			<isNotEmpty property="sql">
 				WHERE ( 1=1 ) $sql$
@@ -56,14 +72,7 @@
 			FROM  (
 			
 				SELECT 
-					unq,
-					category,
-					ctgtype,
-					ctggender,
-					price,
-					csize,
-					color,
-					thumbnail,
+					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits,
 					substr(name,0,20) name
 				FROM 
 					goodsinfo
@@ -75,11 +84,7 @@
 				ORDER BY 
 					unq DESC	
 								
-			) a
-		) b
-		
-		WHERE rn >= #s_no#  AND rn <![CDATA[<=]]> #e_no#
-
+			) a	) b	WHERE rn >= #s_no#  AND rn <![CDATA[<=]]> #e_no#
 	</select>
 	
 	<select id="nikeDAO.selectGoodsDetail" resultClass="nikeVO">

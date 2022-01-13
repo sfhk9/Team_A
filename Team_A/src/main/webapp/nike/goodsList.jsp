@@ -119,31 +119,27 @@ function filterRe() {
     
  
        	
-		//더보기버튼
-		var page = 1;
-		$("#add").click(function(){
-	    	//필터정보 함수
-			var data = filterRe();
-	    	
-	    	page++;
-	    	
-	    	data += "&page_no=" + page
-	    	
-	    	var addurl = "/addList.do?" + data;
-	    	
-	    	$(".wrap").css('height', 1360*page);
-	    	$(".add").css('margin-top', 1360*page-130);
-	    	
-	    	$('#list').load(addurl);
-	    	
+//더보기버튼
+var page = 1;
+$("#add").click(function(){
+   	//필터정보 함수
+	var data = filterRe();
+   	
+   	page++;
+   	
+   	data += "&page_no=" + page
+   	
+   	var addurl = "/addList.do?" + data;
+   	
+   	$(".wrap").css('height', 1360*page);
+   	$(".add").css('margin-top', 1360*page-130);
+   	
+   	$('#list').load(addurl);
+   	
 
-		});
-		
+});
 
-    });  
 
-    
-	  
 	
 
     
