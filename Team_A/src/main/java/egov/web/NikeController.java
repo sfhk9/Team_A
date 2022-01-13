@@ -40,6 +40,7 @@ public class NikeController {
 	@RequestMapping("index.do")
 	public String mainpage( Model model ) throws Exception {
 
+		
 		List<?> listNew = nikeService.selectNewGoodsList();
 		List<?> listHit = nikeService.selectHitGoodsList();
 		List<?> listSal = nikeService.selectSalGoodsList();
