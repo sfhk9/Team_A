@@ -71,10 +71,6 @@ public interface NikeService {
 	// 주문 접수
 	String insertOrderList(NikeVO vo) throws Exception;
 
-	
-	//리뷰 총 점수
-	int selectReviewTotal(NikeVO vo) throws Exception;
-
 	// 관리자 로그인 검증
 	int selectAdminCertify(NikeVO vo) throws Exception;
 	
