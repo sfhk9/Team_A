@@ -229,17 +229,12 @@ public class NikeController {
 		
 		//상품 추천 리스트
 		List<?> list = nikeService.selectHitGoodsList();
-		
-		//리뷰 총 점수
-		int review_total = nikeService.selectReviewTotal(vo);
-		
-		review_total = review_total/review_cnt;
+
 		
 		model.addAttribute("vo",vo);
 		model.addAttribute("comm_list",comm_list);
 		model.addAttribute("review_cnt",review_cnt);
 		model.addAttribute("list",list);
-		model.addAttribute("review_total",review_total);
 		
 		return "nike/nikeweb/goodsDetail";
 	}
@@ -259,11 +254,12 @@ public class NikeController {
 	
 	@RequestMapping("sendCart.do")
 	@ResponseBody
-	public String insertCart( NikeVO vo ) throws Exception {
+	public String insertCart( NikeVO vo, HttpSession session ) throws Exception {
 		
-		String msg = "ok";
+		String userid = (String)session.getAttribute("MemberSessionId");
+		vo.setUserid(userid);
 		
-		System.out.println(vo.getColor());
+		String msg = "ok"	;
 		
 		// 저장 서비스 실행
 		String result = nikeService.insertCart(vo);

@@ -20,9 +20,6 @@ public class NBoardController {
 
 	@Resource(name="nboardService")
 	NBoardService nboardService;
-
-
-	
 	
 	@RequestMapping("/admin_nboardList.do")
 	public String admin_selectNBoardList( NBoardVO vo, Model model ) throws Exception {

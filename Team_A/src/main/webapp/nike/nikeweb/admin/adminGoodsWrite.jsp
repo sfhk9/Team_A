@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 등록화면</title>
+<title>상품 등록화면</title>
 	<link rel="stylesheet" href="/css/admin_main.css">
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -32,7 +32,6 @@
 	
 
 </head>
-
 <body>
 	<div class="div1">
 		<div class="div_top">
@@ -227,11 +226,10 @@
 					<tr>
 						<th>상품 설명</th>
 						<td>
-							<textarea name="content" 
-									  id="content"
+							<textarea name="info" 
+									  id="info"
 									  style="width:98%; 
-									  		 height:150px;">아직 상품 DB column 없음
-							</textarea>
+									  		 height:150px;"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -240,19 +238,28 @@
 							<input type="file" 
 								   accept="image/*" 
 								   multiple="multiple" 
-								   name="thumbnail[]" 
-								   id="thumbnail" 
-								   style="width:50%;" 
-								   onchange="fn_thumbnail()">
-							<div id="tetest">
+								   name="thumbnails[]" 
+								   id="thumbnails" 
+								   style="width:50%;">
+							<h4>썸네일 리스트</h4><h5>이미지 클릭시 확대됨</h5>
+							<div id="imgList1">
+							비어있습니다
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<th>상품 이미지</th>
 						<td>
-							<input type="file" name="file1" id="file1" style="width:50%;">
-							<input type="file" name="file2" id="file2" style="width:50%;">
+							<input type="file" 
+								   accept="image/*" 
+								   multiple="multiple" 
+								   name="goodsImgs[]" 
+								   id="goodsImgs" 
+								   style="width:50%;">
+							<h4>상품 이미지 리스트</h4><h5>이미지 클릭시 확대됨</h5>
+							<div id="imgList2">
+							비어있습니다
+							</div>
 						</td>
 					</tr>
 				</table>

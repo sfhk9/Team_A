@@ -101,12 +101,8 @@ public class NikeVO {
 	private int e_no = 12;
 	
 	//검색변수
-	
 	private String s_field;
 	private String s_text;
-	
-	
-	
 	
 	public String getUserid() {
 		return userid;
@@ -401,6 +397,7 @@ public class NikeVO {
 	public void setAdminpass(String adminpass) {
 		this.adminpass = adminpass;
 	}
+
 	public int getOff() {
 		return off;
 	}
@@ -414,6 +411,7 @@ public class NikeVO {
 	public void setPricesale(int pricesale) {
 		this.pricesale = pricesale;
 	}
+
 
 	
 }

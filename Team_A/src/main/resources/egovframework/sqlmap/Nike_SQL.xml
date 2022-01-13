@@ -172,15 +172,6 @@
 
 	</select>
 	
-	<select id="nikeDAO.selectReviewTotal" resultClass="java.lang.Integer">
-		SELECT 
-				SUM(mark) 
-		FROM 
-				review r, goodsinfo g 
-		WHERE 
-				r.goodsunq=g.unq and g.unq=#unq#
-	</select>
-	
 	<select id="nikeDAO.selectCartList" resultClass="egovMap">
 		SELECT 	c.unq,
 				c.userid userid,
