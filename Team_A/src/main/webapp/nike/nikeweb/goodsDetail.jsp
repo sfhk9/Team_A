@@ -45,12 +45,67 @@
 	}
 	.star_rating a:first-child {margin-left:0;}
 	.star_rating a.on {color:orange;}
-</style>    
+</style>   
+
+<style>
+	/*
+		사이즈 버튼 
+	*/
+	
+	.size_btn input[type="radio"] {
+        display: none;
+    }
+ 
+    .size_btn input[type="radio"] + span {
+        background-color: #f1f2f6;
+		color: #000;
+		display: inline-block;
+		font-size: 12px;
+		line-height: 1;
+		padding: 6px 9px 7px;
+		text-transform: uppercase;
+    }
     
+    .product-details-content .pro-details-size-color .pro-details-size .pro-details-size-content ul li span:hover {
+	  	background-color: #a749ff;
+	  	color: #fff;
+	}
+ 
+    .size_btn input[type="radio"]:checked + span {
+        background-color: #a749ff;
+	  	color: #fff;
+    }
+
+</style> 
+
+
+<script>
+	function fn_click(){
+	<%
+	        String session_id2 = (String) session.getAttribute("MemberSessionId");
+	%> 
+	<%
+	        if(session_id2 == null){
+	%>
+	        if(confirm("로그인 하시겠습니까?")) {
+	            location.href="joinWrite.do";
+	        } else {
+	    alert("로그인 후 이용 바랍니다.");
+
+	        }
+	    return false;
+	<%
+	        } 
+	%>
+	}
+</script>
+
 <script>
   	$(function() {
 		
   		$("#submit").click(function(){  
+  			
+  			fn_click();
   			
   			if( $.trim($("#content").val()) == "" ) {
   				alert("내용을 입력해주세요.");
@@ -86,7 +141,9 @@
 		
   		$("#sendCart").click(function(){  
   			
-  			if( $.trim($("#color").val()) == "" ) {
+  			fn_click();
+  			
+  			if( $.trim($("input[name='color']").val()) == "" ) {
   				alert("색상을 선택해주세요.");
   				$("#color").focus();
   				return false;
@@ -115,6 +172,7 @@
   						}
   					} else {
   						alert("전송 실패");
+  						
   					}
   				},
   			    error : function() {
@@ -250,7 +308,7 @@
 											<li style="margin-left:8px;">
 		            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 													<label for="chk<%=i %>" class="chkbox">										
-														<input id="chk<%=i %>" type="checkbox" value="<%=array[i] %>">
+														<input type="radio" name="color" id="chk<%=i %>" value="<%=array[i] %>">
 														<span class="checkmark2" style="background-color: <%=array[i] %>;"></span>
 													</label><br>
 												</div>
@@ -261,7 +319,7 @@
 											<li style="margin-left:8px;">
 		            							<div style="text-align: center; width: 50px; float:left; margin: 5px;">
 													<label for="chk<%=i %>" class="chkbox">										
-														<input id="chk<%=i %>" type="checkbox" value="<%=array[i] %>">
+														<input type="radio" name="color" id="chk<%=i %>" value="<%=array[i] %>">
 														<span class="checkmark" style="background-color: <%=array[i] %>;"></span>
 													</label><br>
 												</div>
@@ -289,7 +347,12 @@
 										for(int i=0; i<array.length; i++) {
 											if(i < array.length ) {	
 									%>	
-												<li class="csizeA" id="csize"><%=array[i] %></li>
+												<li>
+													<label class="size_btn">
+													    <input type="radio" name="csize" id="csize" value="<%=array[i] %>">
+													    <span><%=array[i] %></span>
+													</label>
+												</li>
 									<%
 											}
 										}
@@ -301,7 +364,7 @@
                     </div>
                     <div class="pro-details-quality">
                         <div class="cart-plus-minus">
-                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
+                            <input class="cart-plus-minus-box" type="text" name="qty" id="qty" value="1">
                         </div>
                         <div class="pro-details-cart btn-hover" id="sendCart">
                             <a href="#">장바구니</a>
@@ -403,7 +466,7 @@
                                         String mark = pageContext.getAttribute("mark")+"";
                                         %>
                                     <div class="review-img" style="display: flex; margin-top: 5px; margin-bottom: 8px;">
-                                        <img src="/nike/nikeweb/assets/img/testimonial/1.jpg" alt="">
+                                        <!-- <img src="/nike/nikeweb/assets/img/testimonial/1.jpg" alt="">  -->
                                         <div class="review-content">
                                         <div class="review-top-wrap">
                                             <div class="review-left">

@@ -279,24 +279,18 @@
 		INSERT INTO review (
 								unq,
 								goodsunq,
-								title,
 								userid,
 								content,
 								rdate,
 								udate,
-								hits,
-								img,
 								mark
 					) VALUES (
 								review_seq.nextval,
-								#goodsunq#,
-								'test000',
-								'java1',
+								#unq#,
+								#userid#,
 								#content#,
 								sysdate,
 								sysdate,
-								'0',
-								#img#,
 								#mark#	)
 	</insert>
 	
@@ -309,9 +303,9 @@
 							color,
 							qty
 				) VALUES (
-							cart_seq.nextval,
+							'10000',
 							#userid#,
-							#goodsunq#,
+							#unq#,
 							#csize#,
 							#color#,
 							#qty#		)
