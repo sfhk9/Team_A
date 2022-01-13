@@ -29,7 +29,9 @@ public class NikeVO {
 	private int price = 0;
 	private int pricemin = 0;
 	private int pricemax = 0;
+	private int pricesale = 0;
 	
+
 	private int hits;
 	
 	private String sql;
@@ -38,6 +40,8 @@ public class NikeVO {
 	private String search;
 
 	private String goodsname;
+
+	private int off;
 
 
 	// 관리자 ADMININFO
@@ -396,6 +400,19 @@ public class NikeVO {
 	}
 	public void setAdminpass(String adminpass) {
 		this.adminpass = adminpass;
+	}
+	public int getOff() {
+		return off;
+	}
+	public void setOff(int off) {
+		this.off = off;
+	}
+
+	public int getPricesale() {
+		return pricesale;
+	}
+	public void setPricesale(int pricesale) {
+		this.pricesale = pricesale;
 	}
 
 	

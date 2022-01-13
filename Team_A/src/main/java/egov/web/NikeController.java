@@ -78,6 +78,7 @@ public class NikeController {
 		// 디버그용
 		String sql = getSetSql(vo);
 		System.out.println( sql + "  sql!!!" );
+		System.out.println( vo.getGoodsname() );
 		///
 		
 		List<?> list = nikeService.selectGoodsList(vo);
@@ -95,6 +96,8 @@ public class NikeController {
 		model.addAttribute("total_page",total_page);
 		model.addAttribute("list",list);
 		model.addAttribute("pageno",pageno);
+		
+		model.addAttribute("goodsname",vo.getGoodsname());
 		
 		return "nike/nikeweb/subList";
 	}

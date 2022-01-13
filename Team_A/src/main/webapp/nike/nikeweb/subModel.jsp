@@ -13,26 +13,26 @@
                     <div class="col-md-5 col-sm-12 col-xs-12">
                         <div class="tab-content quickview-big-img">
                             <div id="pro-1" class="tab-pane fade show active">
-                                <img src="assets/img/product/quickview-l1.jpg" alt="">
+                                <img src="/nike/nikeweb/assets/img/product/quickview-l1.jpg" alt="">
                             </div>
                             <div id="pro-2" class="tab-pane fade">
-                                <img src="assets/img/product/quickview-l2.jpg" alt="">
+                                <img src="/nike/nikeweb/assets/img/product/quickview-l2.jpg" alt="">
                             </div>
                             <div id="pro-3" class="tab-pane fade">
-                                <img src="assets/img/product/quickview-l3.jpg" alt="">
+                                <img src="/nike/nikeweb/assets/img/product/quickview-l3.jpg" alt="">
                             </div>
                             <div id="pro-4" class="tab-pane fade">
-                                <img src="assets/img/product/quickview-l2.jpg" alt="">
+                                <img src="/nike/nikeweb/assets/img/product/quickview-l2.jpg" alt="">
                             </div>
                         </div>
                         <!-- Thumbnail Large Image End -->
                         <!-- Thumbnail Image End -->
                         <div class="quickview-wrap mt-15">
                             <div class="quickview-slide-active owl-carousel nav nav-style-1" role="tablist">
-                                <a class="active" data-bs-toggle="tab" href="#pro-1"><img src="assets/img/product/quickview-s1.jpg" alt=""></a>
-                                <a data-bs-toggle="tab" href="#pro-2"><img src="assets/img/product/quickview-s2.jpg" alt=""></a>
-                                <a data-bs-toggle="tab" href="#pro-3"><img src="assets/img/product/quickview-s3.jpg" alt=""></a>
-                                <a data-bs-toggle="tab" href="#pro-4"><img src="assets/img/product/quickview-s2.jpg" alt=""></a>
+                                <a data-bs-toggle="tab" href="#pro-1"><img src="/nike/nikeweb/assets/img/product/quickview-s1.jpg" alt="" class="active" ></a>
+                                <a data-bs-toggle="tab" href="#pro-2"><img src="/nike/nikeweb/assets/img/product/quickview-s2.jpg" alt=""></a>
+                                <a data-bs-toggle="tab" href="#pro-3"><img src="/nike/nikeweb/assets/img/product/quickview-s3.jpg" alt=""></a>
+                                <a data-bs-toggle="tab" href="#pro-4"><img src="/nike/nikeweb/assets/img/product/quickview-s2.jpg" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -98,9 +98,7 @@
                                 <div class="pro-details-wishlist">
                                     <a href="#"><i class="fa fa-heart-o"></i></a>
                                 </div>
-                                <div class="pro-details-compare">
-                                    <a href="#"><i class="pe-7s-shuffle"></i></a>
-                                </div>
+                      
                             </div>
                             <div class="pro-details-meta">
                                 <span>Categories :</span>

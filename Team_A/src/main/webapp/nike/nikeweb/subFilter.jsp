@@ -186,7 +186,7 @@
 			</div>
 		</div>
 		               
-		<input type="button" class="button" onclick="javascript:search();" value="필터적용">
+		<input type="button" class="button" onclick="javascript:filter();" value="필터적용">
                
 	</div>
 </div>

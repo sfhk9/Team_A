@@ -37,7 +37,7 @@
 function filterRe() {
 		
 	//네임 데이터 
-	var goodsname2 = "${goodsname}";
+	var goodsname2 = "${goodsname}";	
 
 	//타입 데이터 
 	var ctgtype_len = $("input[name='ctgtype']").length;
@@ -99,8 +99,7 @@ function filterRe() {
 
 } 
 
-
-function search(){
+function filter(){
 	
 	//필터정보 함수 
 	var data = filterRe();
@@ -111,15 +110,16 @@ function search(){
    	
    	//디버그용
    	/* alert(data+"입니다"); */
-   	
+    	
    	$('#list').load(addurl, function() {//콜백함수
    		
    		var totaltexhi = $('#totaltex1').val();
    	   	totaltex.innerHTML = totaltexhi;
    	   	
-   	});
+   	}); 
 
-}
+} 
+
 //페이징 로드 함수
 function page(pgno){
 	

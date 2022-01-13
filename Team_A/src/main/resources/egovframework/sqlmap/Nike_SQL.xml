@@ -12,6 +12,9 @@
 			
 				SELECT 
 					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits,
+					NVL( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ),0) mark,
+					( (price/100)*(select off from sale where unq=goodsinfo.sale) ) saleprice,
+					(select off from sale where unq=sale) off,
 					substr(name,0,20) name
 				FROM 
 					goodsinfo	
@@ -26,6 +29,9 @@
 			
 				SELECT 
 					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits,
+					NVL( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ),0) mark,
+					( (price/100)*(select off from sale where unq=goodsinfo.sale) ) saleprice,
+					(select off from sale where unq=sale) off,
 					substr(name,0,20) name
 				FROM 
 					goodsinfo
@@ -41,7 +47,10 @@
 			FROM  (
 			
 				SELECT 
-					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits,
+					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits, sale,
+					NVL( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ),0) mark,
+					( (price/100)*(select off from sale where unq=goodsinfo.sale) ) saleprice,
+					(select off from sale where unq=sale) off,
 					substr(name,0,20) name
 				FROM 
 					goodsinfo	
@@ -72,7 +81,10 @@
 			FROM  (
 			
 				SELECT 
-					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits,
+					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits, 
+					NVL( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ),0) mark,
+					( (price/100)*(select off from sale where unq=goodsinfo.sale) ) saleprice,
+					(select off from sale where unq=sale) off,
 					substr(name,0,20) name
 				FROM 
 					goodsinfo
