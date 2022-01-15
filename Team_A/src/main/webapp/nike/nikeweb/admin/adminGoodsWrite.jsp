@@ -99,6 +99,10 @@
 						<td><input type="number" name="price" id="price" style="width:50%;"></td>
 					</tr>
 					<tr>
+						<th>세일 코드</th>
+						<td><input type="number" name="sale" id="sale" style="width:50%;"></td>
+					</tr>
+					<tr>
 						<!-- 체크박스로 전달하기 -->
 						<!-- category 값에 따라 변경되도록 -->
 						<th>사이즈</th>
@@ -223,7 +227,7 @@
 							</ul>
 						</td>
 					</tr>
-					<tr>
+					<tr>	
 						<th>상품 설명</th>
 						<td>
 							<textarea name="info" 
@@ -235,14 +239,11 @@
 					<tr>
 						<th>썸네일</th>
 						<td>
-							<input type="file" 
-								   accept="image/*" 
-								   multiple="multiple" 
-								   name="thumbnails[]" 
-								   id="thumbnails" 
-								   style="width:50%;">
-							<h4>썸네일 리스트</h4><h5>이미지 클릭시 확대됨</h5>
-							<div id="imgList1">
+							<label for="thumbnails" class="imgLabel">
+							파일 추가
+							</label>
+							<h4>썸네일 리스트</h4>
+							<div id="thumbnailsList">
 							비어있습니다
 							</div>
 						</td>
@@ -250,14 +251,11 @@
 					<tr>
 						<th>상품 이미지</th>
 						<td>
-							<input type="file" 
-								   accept="image/*" 
-								   multiple="multiple" 
-								   name="goodsImgs[]" 
-								   id="goodsImgs" 
-								   style="width:50%;">
-							<h4>상품 이미지 리스트</h4><h5>이미지 클릭시 확대됨</h5>
-							<div id="imgList2">
+							<label for="goodsImgs" class="imgLabel">
+							파일 추가
+							</label>
+							<h4>상품 이미지 리스트</h4>
+							<div id="goodsImgsList">
 							비어있습니다
 							</div>
 						</td>
@@ -268,6 +266,22 @@
 					<button type="reset">취소</button>
 				</div>
 			</form>
+			
+			<!-- input -->
+			<div id="thumbnailsInput">
+				<input type="file" 
+					   accept="image/*" 
+					   multiple="multiple"
+					   id="thumbnails" 
+					   style="display:none">
+			</div>
+			<div id="goodsImgsInput">
+				<input type="file" 
+				   accept="image/*" 
+				   multiple="multiple"
+				   id="goodsImgs" 
+				   style="display:none">
+			</div>
 			</div>
 		</div>
 	</div>

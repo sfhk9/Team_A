@@ -9,13 +9,11 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 public class AdminDAO extends EgovAbstractDAO{
 
 	public String insertGoodsInfo(NikeVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return (String) insert("adminDAO.insertGoodsInfo",vo);
 	}
 
 	public int selectLastGoodsUnq(NikeVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return (int) select("adminDAO.selectLastGoodsUnq");
 	}
 
 }

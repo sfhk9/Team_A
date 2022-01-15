@@ -34,9 +34,13 @@ public class AdminController {
 								   MultipartHttpServletRequest multiRequest,
 								   NikeVO vo) throws Exception{
 		
-
-		// 옷인지 신발인지 판단할 필요 있음
 		int unq=adminService.selectLastGoodsUnq(vo);
+		try {
+			// 여기서 예외발생 == unq.nextval이 실행된적이 없다는 것
+			//unq=
+		} catch(Exception e) {
+			System.out.println(e.getMessage() + "에서 예외를 받았습니다.");
+		}
 		
 		Map<String,String> map = uploadProcess(request, multiRequest, unq);
 		
@@ -47,14 +51,31 @@ public class AdminController {
 		} else if(map.get("isEmpty")!=null) {
 			msg="er2";
 		} else {
-			// sql문 실행	
-			String result = adminService.insertGoodsInfo(vo);
-			if(result==null) msg="er3"; 
-			
+
 			vo.setThumbnail(map.get("thumbnail"));
 			vo.setGoodsimg(map.get("goodsImg"));
+			if(vo.getSale()==null) {
+				vo.setSale("null");
+			}
+			
+			// sql문 실행	
+			String result = adminService.insertGoodsInfo(vo);
+			if(result!=null) msg="er3";
 		}
 		
+		return msg;
+	}
+	
+	@RequestMapping("adminGoodsModify.do")
+	@ResponseBody
+	public String adminGoodsModify() throws Exception{
+		return "nike/nikeweb/admin/adminGoodsModify";
+	}
+	
+	@RequestMapping("adminGoodsModifySave.do")
+	@ResponseBody
+	public String updateGoodsInfo() throws Exception{
+		String msg="ok";
 		return msg;
 	}
 	
@@ -63,12 +84,13 @@ public class AdminController {
 												   MultipartHttpServletRequest multiRequest, 
 												   int unq_int) throws Exception {
 		
-		List<MultipartFile> fileList1=multiRequest.getFiles("thumbnails[]");
-		List<MultipartFile> fileList2=multiRequest.getFiles("goodsImgs[]");
+		List<MultipartFile> fileList1=multiRequest.getFiles("thumbnails");
+		List<MultipartFile> fileList2=multiRequest.getFiles("goodsImgs");
+		
 		Map<String,String> map = new HashMap<String,String>();
 		
-		Set pathSet = request.getSession().getServletContext().getResourcePaths("/");	// wepapp 경로
-		String uploadDir = pathSet+"nike/goods"; // 파일 저장 경로
+		String uploadDir="D:/project_ezen/eGovFrameDev-3.10.0-64bit/workspace/Team_A/Team_A/src/main/webapp/nike/goods";
+		
 		String fileName="";			// 파일명
 		String ext="";				// 확장자
 		String fulldir = "";		// 파일명 포함한 저장 경로
@@ -77,13 +99,10 @@ public class AdminController {
 		String thumbnail = "";
 		String goodsImg = "";
 		
-		// 이미지 파일 폴더 생성
-		// 현재 unq 넘겨받아야함
-		// 현재 unq+1 해야 함
-		// 이후에 sql에서 nextval 해야하고
+		// 현재 unq+1 폴더 생성
 		
-		//String unq = Integer.toString(unq_int+1);
-		//uploadDir+="/"+unq;
+		String unq = Integer.toString(unq_int);
+		uploadDir+="/"+unq;
 
 		// 디렉토리 여부 확인 및 생성
 		File dirname = new File(uploadDir);  // 물리적인 위치로 인식
@@ -100,43 +119,44 @@ public class AdminController {
 		} else {
 
 			// 경로 생성
-			//dirname.mkdirs();	
+			dirname.mkdirs();	
 
 			// thumbnail 파일 전송 / 문자열 준비
+			int index=1;
 			for(MultipartFile file : fileList1) {
 				// 파일의 확장자 가져오기
 				fileName=file.getOriginalFilename();
 				ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 				
 				// 확장자 붙여서 파일 전송하기
-				fileName="."+ext;
+				fileName="th_"+unq+"_"+index+"."+ext;
 				fulldir = uploadDir + "/"+fileName;
-	            //file.transferTo(new File(fulldir));
-	            
+	            file.transferTo(new File(fulldir));
 				thumbnail += file.getOriginalFilename() + "/";
+				index++;
 			}
 			
 			// goodsImg 파일 전송 / 문자열 준비
+			index=1;
 			for(MultipartFile file : fileList2) {
 				// 파일의 확장자 가져오기
 				fileName=file.getOriginalFilename();
 				ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 				
 				// 확장자 붙여서 파일 전송하기
-				fileName="."+ext;
+				fileName="in_"+unq+"_"+index+"."+ext;
 				fulldir = uploadDir + "/"+fileName;
-	            //file.transferTo(new File(fulldir));
+	            file.transferTo(new File(fulldir));
 	            
 				goodsImg += file.getOriginalFilename() + "/";
+				index++;
 			}
 			
 			// 마지막의 "/" 자르기
 			thumbnail = thumbnail.substring(0, thumbnail.length() - 1);
 			goodsImg = goodsImg.substring(0, goodsImg.length() - 1);
 		}
-		
-		System.out.println(thumbnail);
-		System.out.println(goodsImg);
+
 		// 문자열 전달
 		map.put("thumbnail",thumbnail);
 		map.put("goodsImg",goodsImg);
