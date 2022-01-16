@@ -33,7 +33,6 @@
 
 
 <script>
-
 $(function(){ 
 	
 	$("#allchk").click(function(){
@@ -106,7 +105,12 @@ function fn_delete(unq) {
 	}
 }
 </script>
+<style>
+.scroll{
+	overflow:scroll;
+}
 
+</style>
 
 <body>
 
@@ -130,24 +134,19 @@ function fn_delete(unq) {
 
 
 <!-- 여기 메인 리스트 -->
-<div >
+<div class="scroll">
 		<div style="position:relative; left:20px; top:30px; margin-bottom:5px;">
 			<span style="font-size:20px;font-weight:blod;">상품 목록</span>
-		</div>
-		
-		<div style="position:relative; width:800px; left:20px; top:30px; margin-bottom:10px;">
-	
-			<div style="position:relative; float:left; width:400px;" >
-			총 출력 개수 : ${vo.total }
-			</div>
-			
+		</div>		
+		<div style="position:relative; width:1000px; left:20px; top:30px; margin-bottom:10px;">
+
 			<form name="frm" method="post" action="adminList.do">
 			<div style="position:relative; text-align:right;" >
-				<select name="s_field"  >
+				  <select name="s_field"  >
 					<option value="name"   <c:if test="${s_field == 'name' }">selected</c:if>>이름</option>
-					<option value="content" <c:if test="${s_field == 'content' }">selected</c:if>>가격</option>
-					<option value="rdate"   <c:if test="${s_field == 'rdate' }">selected</c:if>>색상</option>
-				</select>
+					<option value="price"  <c:if test="${s_field == 'price' }">selected</c:if>>가격</option>
+					<option value="color"  <c:if test="${s_field == 'color' }">selected</c:if>>색상</option>
+				</select>  
 				<input type="text" name="s_text" style="width:120px;" value="${s_text }">
 				<button type="submit" id="btn_search">검색</button>
 			</div>
@@ -158,22 +157,22 @@ function fn_delete(unq) {
 	
 	<table style="width:1000px;"  >
 		<colgroup>
-			<col width="2%"/>
+			<col width="1%"/>
 			<col width="5%"/>
-			<col width="*"/>
-			<col width="10%"/>
+			<col width="30%"/>
 			<col width="7%"/>
-			<col width="15%"/>
-			
+			<col width="15%"/>			
+			<%-- <col width="7%"/> --%>
+			<col width="7%"/>
 		</colgroup>
 		<tr>
 			<th> <input type="checkbox" id="allchk">  </th>
-			<th>&nbsp&nbsp&nbsp번호</th>
+			<th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp번호</th>
 			<th>상품이름</th>
 			<th>가격</th>
-			<th>색상</th>
-			<th>등록일</th>
-			<th>사진</th>
+			<th>색상</th>			
+			<!-- <th>사진</th> -->
+			<th>삭제</th>
 		</tr>
 	
 		<c:set var="rownum" value="${vo.rownum }"/>
@@ -187,9 +186,9 @@ function fn_delete(unq) {
 			<a href="*.do?unq=${result.unq }&s_field=${s_field}&s_text=${s_text}">${result.name}</a>
 			</td>
 			<td align="left">${result.price }원</td>
-			<td align="left">${result.color }</td>
-			<td align="left">${result.rdate  }</td>
-			<td align="left">${result.thumbnail}</td>			
+			<td align="left">${result.color }</td>		
+			<%-- <td align="left">${result.thumbnail}</td> --%>	
+			<td align="left"><a href="javascript:fn_delete('${result.unq }')">Del</a></td>		
 		</tr>
 		
 		<c:set var="rownum" value="${rownum-1}"/>
@@ -201,12 +200,10 @@ function fn_delete(unq) {
 		<button type="button" id="btn_all_delete">일괄삭제</button>
 	</div>
 	
-	<div style="width:800px; text-align:center; margin-top:10px;">
-			
-			<span>페이징</span>
-			<%-- <c:forEach var="i" begin="1" end="${vo.total_page }">
-				<a href="goodsList.do?page_no=${i }&s_field=${s_field}&s_text=${s_text}">${i }</a>
-			</c:forEach> --%>
+	<div style="width:1000px; text-align:center; margin-top:10px;">		
+			<c:forEach var="i" begin="1" end="${total_page }">
+				<a href="adminList.do?page_no=${i }&s_field=${s_field}&s_text=${s_text}">${i }</a>
+			</c:forEach>
 	</div>
 	
 		</div>

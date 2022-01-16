@@ -27,6 +27,7 @@ public class NikeController {
 	@Resource(name = "nikeService")
 	NikeService nikeService;
 	
+	//메인페이지
 	@RequestMapping("index.do")
 	public String mainpage( Model model ) throws Exception {
 
@@ -45,6 +46,7 @@ public class NikeController {
 		return "nike/nikeweb/index";
 	}
 	
+	//상품 리스트
 	@RequestMapping("goodsList.do")
 	public String goodsList( NikeVO vo, Model model ) throws Exception {
 		
@@ -53,6 +55,7 @@ public class NikeController {
 		return "nike/nikeweb/goodsList";
 	}
 	
+	//상품 리스트 호출
 	@RequestMapping("addList.do")
 	public String addList( NikeVO vo, Model model ) throws Exception {
 		
@@ -95,7 +98,7 @@ public class NikeController {
 	
 
 	
-	// sql 작성 함수
+	//상품  리스트 호출 sql 작성 함수
 	public String getSetSql( NikeVO vo ) {
 
 		//ctgtype=LIF,SPT,&ctggender=M,&color=white,red,
@@ -210,7 +213,7 @@ public class NikeController {
 		nikeService.updateGoodsInfoHits(vo);
 		
 		//상세보기 서비스 실행
-		vo = nikeService.selectGoodsDetail(vo);
+		NikeVO goods = nikeService.selectGoodsDetail(vo);
 		
 		//리뷰관련 서비스 실행
 		List<?> comm_list = nikeService.selectCommList(vo);
@@ -220,12 +223,15 @@ public class NikeController {
 		
 		//상품 추천 리스트
 		List<?> list = nikeService.selectHitGoodsList();
-
 		
-		model.addAttribute("vo",vo);
+		// 상품 세일 관련
+		List<?> saleOff = nikeService.selectGoodsList(vo);
+		
+		model.addAttribute("goods",goods);
 		model.addAttribute("comm_list",comm_list);
 		model.addAttribute("review_cnt",review_cnt);
 		model.addAttribute("list",list);
+		model.addAttribute("saleOff",saleOff);
 		
 		return "nike/nikeweb/goodsDetail";
 	}
@@ -426,7 +432,7 @@ public class NikeController {
 			msg = "er1";
 		} else if( cnt == 1 ) {
 			session.setAttribute("MemberSessionId", vo.getUserid());	
-			session.setMaxInactiveInterval(20);
+			session.setMaxInactiveInterval(3600);
 		}
 		
 		return msg;
@@ -464,6 +470,15 @@ public class NikeController {
 				
 				model.addAttribute("vo",vo);
 				model.addAttribute("list",list);
+				model.addAttribute("total_page",total_page);
+				
+				model.addAttribute("s_field",vo.getS_field());
+				model.addAttribute("s_text",vo.getS_text());
+				
+			
+			    model.addAttribute("total",total); 
+				model.addAttribute("rownum",rownum);
+				 
 						
 		return "nike/nikeweb/admin/adminGoodsList";
 	}
@@ -496,6 +511,31 @@ public class NikeController {
 		}
 		return msg;
 	
+	}
+	@RequestMapping("adminListAllDelete.do")
+	@ResponseBody
+	public String admin_nboardAllDelete( String values ) throws Exception {
+		
+		// 11,8,5,
+		// delete from nboard where unq='11' or unq='8' or unq='5'; 
+		// delete from nboard where unq in(11,8,5);
+		
+		// 11,5,
+		// delete from nboard where unq='11' or unq='5'; 
+		// delete from nboard where unq in('11','5');
+		
+		// delete from nboard where unq='11';
+		// delete from nboard where unq='5';
+		
+		// 11,8,5,  -->  11,8,5
+		values = values.substring(0,values.length()-1); 
+		
+		int result = nikeService.deleteAdminALL(values);
+		System.out.println("result : " + result);
+		
+		String message = "ok";
+		if( result == 0 ) message = "fail";
+		return message;
 	}
 	
 	@RequestMapping("cart.do")
@@ -640,6 +680,29 @@ public class NikeController {
 
 		return "nike/nikeweb/contact";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	///////////////////////////////////
+	//주문 목록
+	@RequestMapping("orderList.do")
+	public String orderList(NikeVO vo, Model model,HttpSession session) throws Exception{
+		String userid = (String) session.getAttribute("MemberSessionId");
+		vo.setUserid(userid);
+		
+		List<?> list = nikeService.selectCartList(vo);
+		model.addAttribute("list",list);
+		  
+		return "nike/nikeweb/orderList";
+	}
+	
+	
 
 }
 class Item {

@@ -1,6 +1,7 @@
 package egov.service;
 
 public class NikeVO {
+	
 
 	//유저 데이터 USERINFO
 	private String userid;

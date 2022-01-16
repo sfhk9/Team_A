@@ -62,6 +62,21 @@ function search(){
 
 </script>
 	
+<style>
+.header-right-wrap .same-style .account-dropdown {
+  background: #fff none repeat scroll 0 0;
+  -webkit-box-shadow: 0 1px 7px -2px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 1px 7px -2px rgba(0, 0, 0, 0.3);
+  left: 0;
+  padding: 8px 12px 10px;
+  position: absolute;
+  text-align: left;
+  top: 190%;
+  width: 135px;
+  z-index: 220;
+  display: none;
+}
+</style>
 <div class="header-bottom sticky-bar header-res-padding">
     <div class="container">
         <div class="row">
@@ -259,7 +274,7 @@ function search(){
 				            <%
 				            } else {
 				            %>                              	
-                                <li><a href="#">주문 목록  </a></li>
+                                <li><a href="orderList.do">주문 목록  </a></li>
                                 <li><a href="wishlist.html">위시리스트  </a></li>
                                 <li><a href="memberModify.do">내정보</a></li>
                                 <li style="font-weight:bold"><a href="javascript:fn_logout()">로그아웃</a></li>

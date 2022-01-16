@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>문의하기<title>
+    <title>문의하기</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -39,11 +40,12 @@
                 <li>
                     <a href="index.html">홈</a>
                 </li>
-                <li class="active">문의하기</li>
+                <li class="active">문의</li>
             </ul>
         </div>
     </div>
 </div>
+
 <div class="contact-area pt-100 pb-100">
     <div class="container">
         <div class="contact-map mb-10">
@@ -57,8 +59,8 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="contact-info-dec">
-                            <p>+012 345 678 102</p>
-                            <p>+012 345 678 102</p>
+                            <p>010 1234 1234</p>
+                            <p>02 1234 1234</p>
                         </div>
                     </div>
                     <div class="single-contact-info">
@@ -66,8 +68,8 @@
                             <i class="fa fa-globe"></i>
                         </div>
                         <div class="contact-info-dec">
-                            <p><a href="#">urname@email.com</a></p>
-                            <p><a href="#">urwebsitenaem.com</a></p>
+                            <p><a href="#">이메일@email.com</a></p>
+                            <p><a href="#">홈페이지.com</a></p>
                         </div>
                     </div>
                     <div class="single-contact-info">
@@ -75,8 +77,8 @@
                             <i class="fa fa-map-marker"></i>
                         </div>
                         <div class="contact-info-dec">
-                            <p>Address goes here, </p>
-                            <p>street, Crossroad 123.</p>
+                            <p>주소주소주소주소 </p>
+                            <p>주소주소 123호</p>
                         </div>
                     </div>
                     <div class="contact-social text-center">
@@ -94,22 +96,22 @@
             <div class="col-lg-8 col-md-7">
                 <div class="contact-form">
                     <div class="contact-title mb-30">
-                        <h2>Get In Touch</h2>
+                        <h2>연락하기</h2>
                     </div>
-                    <form class="contact-form-style" id="contact-form" action="assets/php/mail.php" method="post">
+                    <form class="contact-form-style" id="contact-form" action="/nike/nikeweb/assets/php/mail.php" method="post">
                         <div class="row">
                             <div class="col-lg-6">
-                                <input name="name" placeholder="Name*" type="text">
+                                <input name="name" placeholder="이름*" type="text">
                             </div>
                             <div class="col-lg-6">
-                                <input name="email" placeholder="Email*" type="email">
+                                <input name="email" placeholder="이메일*" type="email">
                             </div>
                             <div class="col-lg-12">
-                                <input name="subject" placeholder="Subject*" type="text">
+                                <input name="subject" placeholder="제목*" type="text">
                             </div>
                             <div class="col-lg-12">
-                                <textarea name="message" placeholder="Your Message*"></textarea>
-                                <button class="submit" type="submit">SEND</button>
+                                <textarea name="message" placeholder="내용*"></textarea>
+                                <button class="submit" type="submit">보내기</button>
                             </div>
                         </div>
                     </form>
@@ -126,7 +128,7 @@
                 <div class="copyright mb-30">
                     <div class="footer-logo">
                         <a href="index.html">
-                            <img alt="" src="assets/img/logo/logo.png">
+                            <img alt="" src="/nike/nikeweb/assets/img/logo/logo.png">
                         </a>
                     </div>
                     <p>© 2021 <a href="#">Flone</a>.<br> All Rights Reserved</p>
@@ -215,14 +217,14 @@
 <!-- All JS is here
 ============================================ -->
 
-<script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
-<script src="assets/js/vendor/jquery-v3.6.0.min.js"></script>
-<script src="assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
-<script src="assets/js/vendor/popper.min.js"></script>
-<script src="assets/js/vendor/bootstrap.min.js"></script>
-<script src="assets/js/plugins.js"></script>
+<script src="/nike/nikeweb/assets/js/vendor/modernizr-3.11.7.min.js"></script>
+<script src="/nike/nikeweb/assets/js/vendor/jquery-v3.6.0.min.js"></script>
+<script src="/nike/nikeweb/assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>
+<script src="/nike/nikeweb/assets/js/vendor/popper.min.js"></script>
+<script src="/nike/nikeweb/assets/js/vendor/bootstrap.min.js"></script>
+<script src="/nike/nikeweb/assets/js/plugins.js"></script>
 <!-- Ajax Mail -->
-<script src="assets/js/ajax-mail.js"></script>
+<script src="/nike/nikeweb/assets/js/ajax-mail.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGM-62ap9R-huo50hJDn05j3x-mU9151Y"></script>
 <script>
     function init() {
@@ -413,7 +415,7 @@
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(40.709896, -73.995481),
             map: map,
-            icon: 'assets/img/icon-img/2.png',
+            icon: '/nike/nikeweb/assets/img/icon-img/2.png',
             animation:google.maps.Animation.BOUNCE,
             title: 'Snazzy!'
         });
