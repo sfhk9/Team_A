@@ -157,21 +157,21 @@ function fn_delete(unq) {
 	
 	<table style="width:1000px;"  >
 		<colgroup>
-			<col width="2%"/>
+			<col width="1%"/>
 			<col width="5%"/>
-			<col width="20%"/>
+			<col width="30%"/>
 			<col width="7%"/>
-			<col width="7%"/>			
-			<col width="7%"/>
+			<col width="15%"/>			
+			<%-- <col width="7%"/> --%>
 			<col width="7%"/>
 		</colgroup>
 		<tr>
 			<th> <input type="checkbox" id="allchk">  </th>
-			<th>&nbsp&nbsp&nbsp번호</th>
+			<th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp번호</th>
 			<th>상품이름</th>
 			<th>가격</th>
 			<th>색상</th>			
-			<th>사진</th>
+			<!-- <th>사진</th> -->
 			<th>삭제</th>
 		</tr>
 	
@@ -187,7 +187,7 @@ function fn_delete(unq) {
 			</td>
 			<td align="left">${result.price }원</td>
 			<td align="left">${result.color }</td>		
-			<td align="left">${result.thumbnail}</td>	
+			<%-- <td align="left">${result.thumbnail}</td> --%>	
 			<td align="left"><a href="javascript:fn_delete('${result.unq }')">Del</a></td>		
 		</tr>
 		
