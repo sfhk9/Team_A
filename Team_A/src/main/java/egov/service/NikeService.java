@@ -79,5 +79,11 @@ public interface NikeService {
 	
 	// 관리자 상품리스트 삭제
 	int deleteAdminList(NikeVO vo) throws Exception;
+	
+	// 관리자 상품리스트 올삭제
+	int deleteAdminALL(String values) throws Exception;
+	
+	// 관리자 상품리스트
+	List<?> adminGoodsList(NikeVO vo) throws Exception;
 
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="admin_space">
+	<typeAlias  alias="egovMap"  type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="nikeVO" type="egov.service.NikeVO"/>
+	
+	<insert id="adminDAO.insertGoodsInfo">
+		INSERT INTO goodsinfo(unq,
+							  category,
+							  ctgtype,
+							  ctggender,
+							  price,
+							  csize,
+							  color,
+							  thumbnail,
+							  goodsimg,
+							  hits,
+							  name,
+							  sale,
+							  info
+							 )
+					   VALUES(goodsinfo_seq.nextval,
+					   		  #category#,
+					   		  #ctgtype#,
+					   		  #ctggender#,
+					   		  #price#,
+					   		  #csize#,
+					   		  #color#,
+					   		  #thumbnail#,
+					   		  #goodsimg#,
+					   		  0,
+					   		  #name#,
+					   		  #sale#,
+					   		  #info#
+					   		 )
+	</insert>
+	
+	<select id="adminDAO.selectLastGoodsUnq" resultClass="java.lang.Integer">
+		SELECT
+            last_number
+		FROM
+		    user_sequences
+		WHERE
+		    sequence_name = 'GOODSINFO_SEQ'
+	</select>
+</sqlMap>

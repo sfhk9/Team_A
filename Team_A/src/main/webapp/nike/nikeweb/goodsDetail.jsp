@@ -3,7 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<c:set var="nikeweb" value="${pageContext.request.contextPath}/nike/nikeweb" />
 
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -17,6 +17,9 @@
     
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+	
+	<!-- cart & checkout 공통 function -->
+	<script type ="text/javascript" src="${nikeweb}/assets/js/CartAndCheckout.js"></script>
     
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/nike/nikeweb/assets/img/favicon.png">
@@ -138,9 +141,7 @@
 
 <script>
   	$(function() {
-		
   		$("#sendCart").click(function(){  
-  			
   			if(!fn_click()) return false;
   			
   			if( $.trim($("input[name='color']").val()) == "" ) {
@@ -164,9 +165,9 @@
   				
   				datatype : "text",
   				success : function(data) {  // ok
-  					if(data == "ok") {
+  					if(msg == "ok") {
   						if(result) {
-  							location="goodsDetail.do?unq=${vo.unq}";
+  							location = "cart.do";
   						} else {
   							location.reload();
   						}
@@ -201,6 +202,7 @@
 <header class="header-area header-in-container clearfix">
     <%@include file="../include/header.jsp" %>
 </header>
+
 <div class="breadcrumb-area pt-35 pb-35 bg-gray-3">
     <div class="container">
         <div class="breadcrumb-content text-center">
@@ -219,7 +221,7 @@
             <div class="col-xl-7 col-lg-7 col-md-12">
                 <div class="product-details-img mr-20 product-details-tab">
                     <div id="gallery" class="product-dec-slider-2">
-                        <c:set var="thumbnail" value="${vo.thumbnail }" />
+                        <c:set var="thumbnail" value="${goods.thumbnail }" />
                         <%
 			      		String thumbnail = (String) pageContext.getAttribute("thumbnail") ;
 						
@@ -228,8 +230,8 @@
 							for( int i=0; i<array.length; i++ ) {
 								if(i < array.length ) {
 						%>
-                        <a data-image="/nike/goods/${vo.unq}/<%=array[i] %>" data-zoom-image="/nike/goods/${vo.unq}/<%=array[i] %>">
-                            <img src="/nike/goods/${vo.unq}/<%=array[i] %>" alt="">
+                        <a data-image="/nike/goods/${goods.unq}/<%=array[i] %>" data-zoom-image="/nike/goods/${goods.unq}/<%=array[i] %>">
+                            <img src="/nike/goods/${goods.unq}/<%=array[i] %>" alt="">
                         </a>
                         <%
 								}
@@ -245,34 +247,64 @@
 							if(thumbnail != null && !thumbnail.equals("")) {
 								String[] array = thumbnail.split("/");
 							%>
-                            	<img class="zoompro" src="/nike/goods/${vo.unq}/<%=array[0] %>" data-zoom-image="/nike/goods/${vo.unq}/<%=array[0] %>" alt=""/>          
+                            	<img class="zoompro" src="/nike/goods/${goods.unq}/<%=array[0] %>" data-zoom-image="/nike/goods/${goods.unq}/<%=array[0] %>" alt=""/>          
                             <%
 							}
 							%>
-                            <span>-10%</span>
-                            <div class="product-video">
-                                <!-- <a class="video-popup" href="https://www.youtube.com/watch?v=tce_Ap96b0c">
+							<c:forEach var="saleOff" items="${saleOff}" varStatus="status" begin="1" end="1">
+	                            <c:set var="off" value="${saleOff.off }" />
+					 			<%
+								String off = "" + pageContext.getAttribute("off");
+								if( off.equals("null") ){
+								%>
+									<!-- 신제품시 추가 -->
+									<span class="purple">New</span>
+								<% } else { %>
+									<!-- 할인시 추가 -->
+									<span class="pink">-${saleOff.off }%</span>
+								<%
+								}
+								%> 
+                           	<!-- <div class="product-video">
+                                 <a class="video-popup" href="https://www.youtube.com/watch?v=tce_Ap96b0c">
                                     <i class="fa fa-video-camera"></i>
                                     View Video
                                 </a> 
-                                /nike/goods/77701/th_77701_1.jpg
-                                /nike/nikeweb/assets/img/product-details/
-                                -->
-                            </div>
+                            </div> -->
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-5 col-lg-5 col-md-12">
                 <div class="product-details-content">
-                    <h2>${vo.name}</h2>
+                    <h2>${goods.name}</h2>
                     <div class="product-details-price">
-                        <span>${vo.price}원 </span>
-                        <span class="old"><fmt:parseNumber var="percent" value="${vo.price*1.1}" integerOnly="true"/>${percent}원 </span>
+                        <c:forEach var="saleOff" items="${saleOff}" varStatus="status" begin="1" end="1">
+	                        <c:set var="off" value="${saleOff.off }" />
+	                        <%
+	                        String off = "" + pageContext.getAttribute("off");
+							if( off.equals("null") ){
+							%>
+								<!-- 신제품시 추가 -->
+								<span>
+									${goods.price}원
+									<!-- <script>
+                               			document.write(fn_comma(${goods.price}원));
+                               		</script>  -->
+								</span>
+							<% } else { %>
+								<!-- 할인시 추가 -->
+								<span>${saleOff.price} 원</span>
+								<span class="old">${goods.price}원</span>
+							<%
+							}
+							%>
+						</c:forEach>
                     </div>
                     <div class="pro-details-rating-wrap">
                         <div class="pro-details-rating">
-                            <img src="/nike/images/star/${result.mark}.png" class="width: 135px, height: 22px;">
+                            <img src="/nike/images/star/${goods.mark}.png" class="width: 135px, height: 22px;">
                         </div>
                         <span><a href="#">리뷰  ${review_cnt }</a></span>
                     </div>
@@ -292,7 +324,7 @@
                             <span>Color</span>
                             <div class="pro-details-color-content" style="width: 215px; height:50px;">
                                 <ul>
-                                <c:set var="color" value="${vo.color }" />
+                                <c:set var="color" value="${goods.color }" />
                                 <%
 					      		String color = (String) pageContext.getAttribute("color") ;
                                 
@@ -334,7 +366,7 @@
                             <span>Size</span>
                             <div class="pro-details-size-content">
                                 <ul>
-	                                <c:set var="csize" value="${vo.csize}" />
+	                                <c:set var="csize" value="${goods.csize}" />
 	                                <%
 									String csize = (String)pageContext.getAttribute("csize");
 									
@@ -376,9 +408,9 @@
                     <div class="pro-details-meta">
                         <span>카테고리 :</span>
                         <ul>
-                            <li><a href="#">${vo.category eq 'CLS'?'의류':'신발'},</a></li>
-                            <li><a href="#">${vo.ctgtype eq 'SPT'?'스포츠':'LES'?'레저':'일상'},</a></li>
-                            <li><a href="#">${vo.ctggender eq 'M'?'남성':'F'?'여성':'성별 무관'}</a></li>
+                            <li><a href="#">${goods.category eq 'CLS'?'의류':'신발'},</a></li>
+                            <li><a href="#">${goods.ctgtype eq 'SPT'?'스포츠':'LES'?'레저':'일상'},</a></li>
+                            <li><a href="#">${goods.ctggender eq 'M'?'남성':'F'?'여성':'성별 무관'}</a></li>
                         </ul>
                     </div>
                 <!-- 
@@ -419,7 +451,7 @@
                 <div id="des-details2" class="tab-pane active">
                     <div id="des-details1" class="tab-pane ">
 	                    <div class="product-anotherinfo-wrapper">
-	                        <c:set var="goodsimg" value="${vo.goodsimg }" />
+	                        <c:set var="goodsimg" value="${goods.goodsimg }" />
 							<%
 					      		String goodsimg = (String)pageContext.getAttribute("goodsimg") ;
 								if(goodsimg != null && !goodsimg.equals("")) {
@@ -427,7 +459,7 @@
 									for( int i=0; i<array.length; i++ ) {
 										if(i < array.length ) {
 							%>
-											<span><img src="/nike/goods/${vo.unq}/<%=array[i] %>"/></span><br>
+											<span><img src="/nike/goods/${goods.unq}/<%=array[i] %>"/></span><br>
 							<%
 										}
 									}
@@ -488,7 +520,7 @@
                                     </div>
                                     
                                 
-                                </c:forEach>
+                                	</c:forEach>
                                 
                                 </div>
                             <!-- 답글
@@ -528,7 +560,7 @@
                                 <h3>리뷰 작성</h3>
                                 <div class="ratting-form">
                                     <form id="frm">
-                                    	<input type="hidden" name="goodsunq" value="${vo.unq}">
+                                    	<input type="hidden" name="goodsunq" value="${goods.unq}">
                                         <div class="star-box" id="star">
                                             <span>만족도 선택:</span>
                                             <div class="ratting-star">
@@ -597,11 +629,25 @@
 					String[] array = thumbnail1.split("/");
 				%>
                 <div class="product-img">
-                    <a href="product-details-2.html">
+                    <a href="goodsDetail.do?unq=${result.unq }">
                         <img class="default-img" src="/nike/goods/${result.unq}/<%=array[0] %>" alt="">
                         <img class="hover-img" src="/nike/goods/${result.unq}/<%=array[0] %>" alt="">
                     </a>
-                    <span class="pink">-10%</span>
+                    <c:forEach var="saleOff" items="${saleOff}" varStatus="status" begin="1" end="1">
+						<c:set var="off" value="${saleOff.off }" />
+					<%  
+						String off = "" + pageContext.getAttribute("off");
+						if( off.equals("null") ){
+					%>  
+							<!-- 신제품시 추가 -->
+							<span class="purple">New</span>
+					<%  } else { %>
+							<!-- 할인시 추가 -->
+							<span class="pink">-${saleOff.off }%</span>
+					<%  
+						}
+					%>  
+					</c:forEach>
                     <div class="product-action">
                         <div class="pro-same-action pro-wishlist">
                             <a title="Wishlist" href="#"><i class="pe-7s-like"></i></a>
@@ -614,33 +660,37 @@
                         </div>
                     </div>
                 </div>
-               <%
+                <%
 				}
 				%>
                 
                 <div class="product-content text-center">
                     <h3><a href="goodsDetail.do?unq=${result.unq }">${result.name }</a></h3>
-                    <div class="product-rating">
-                        <i class="fa fa-star-o yellow"></i>
-                        <i class="fa fa-star-o yellow"></i>
-                        <i class="fa fa-star-o yellow"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
-                        
-                        <br>
-						
-						<c:forEach var="i" begin="1" end="1"><i class="fa fa-star-o yellow"></i></c:forEach>
-						<c:forEach var="j" begin="1" end="4"><i class="fa fa-star-o"></i></c:forEach>
-                        
+                    <div class="product-rating" style="position:absolute; left:30%;">
+                        <img src="/nike/images/star/${result.mark}.png" style="width:120px; heigth:120px;">
                     </div>
+                    <br>
                     <div class="product-price">
-                        <span>${result.price }원</span>
-                        <span class="old">${result.price }(할인가격)</span>
+						<c:forEach var="saleOff" items="${saleOff}" varStatus="status" begin="1" end="1">
+							<c:set var="off" value="${saleOff.off }" />
+						<%
+							String off = "" + pageContext.getAttribute("off");
+							if( off.equals("null") ){
+						%>
+								<!-- 신제품시 추가 -->
+								<span><a href="goodsDetail.do?unq=${result.unq }">${result.price}원</a></span>
+						<%  } else { %>
+								<!-- 할인시 추가 -->
+								<span>${goods.pricesale} 원</span>
+								<span class="old">${goods.price}원</span>
+						<%
+							}
+						%>
+						</c:forEach>
                     </div>
                 </div>
             </div>
             </c:forEach>
-            
             <!-- 
             <div class="product-wrap">
                 <div class="product-img">
