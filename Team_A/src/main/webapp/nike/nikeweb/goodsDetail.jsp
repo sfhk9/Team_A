@@ -458,7 +458,7 @@
             <div class="tab-content description-review-bottom">
                 <div id="des-details2" class="tab-pane active">
                     <div id="des-details1" class="tab-pane ">
-	                    <div class="product-anotherinfo-wrapper" style="margin: 0 auto;">
+	                    <div class="product-anotherinfo-wrapper" style="width:80%;margin:0px auto">
 	                        <c:set var="goodsimg" value="${goods.goodsimg }" />
 							<%
 					      		String goodsimg = (String)pageContext.getAttribute("goodsimg") ;
@@ -467,7 +467,7 @@
 									for( int i=0; i<array.length; i++ ) {
 										if(i < array.length ) {
 							%>
-											<span><img src="/nike/goods/${goods.unq}/<%=array[i] %>"/></span><br>
+											<span><img style="width:100%;" src="/nike/goods/${goods.unq}/<%=array[i] %>"/></span><br>
 							<%
 										}
 									}

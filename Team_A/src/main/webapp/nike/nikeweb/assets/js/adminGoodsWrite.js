@@ -95,6 +95,9 @@ function fn_list(id,fileList){
 			 +"</p>";
 	});
 	
+	if(divList.length==0) html="비어있습니다";
+	
+	
 	// divList 화면에 띄우기
 	$("#"+id+"List").html(html);
 }
