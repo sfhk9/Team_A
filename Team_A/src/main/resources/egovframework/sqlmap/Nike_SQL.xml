@@ -102,14 +102,14 @@
 	
 	<select id="nikeDAO.selectGoodsDetail" resultClass="nikeVO">
 		SELECT
-				unq, category, ctgtype, ctggender, price, csize, color, thumbnail, goodsimg, hits, name,
-				NVL( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ),0) mark,
-				( (price/100)*(select off from sale where unq=goodsinfo.sale) ) saleprice,
-				(select off from sale where unq=sale) off
-		FROM
-				goodsinfo
-		WHERE
-				unq=#unq#
+                unq, category, ctgtype, ctggender, price, csize, color, thumbnail, goodsimg, hits, name,
+                NVL( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ),0) mark,
+                NVL( ( (price/100)*(select off from sale where unq=goodsinfo.sale) ),0) pricesale,
+                NVL( (select off from sale where unq=sale),0) off
+        FROM
+                goodsinfo
+        WHERE
+                unq=#unq#
 	</select>
 	
 	
@@ -158,18 +158,18 @@
 		SELECT
 				*
 		FROM
-				review r, goodsinfo g
+				review
 		WHERE
-				r.goodsunq=g.unq and g.unq=#unq# 
+				goodsunq=#unq# 
 	</select>
 	
 	<select id="nikeDAO.selectReviewCnt" resultClass="java.lang.Integer">
 		SELECT 
 				COUNT(*) 
 		FROM 
-				review r, goodsinfo g 
+				review 
 		WHERE 
-				r.goodsunq=g.unq and g.unq=#unq# 
+				goodsunq=#unq# 
 
 	</select>
 	

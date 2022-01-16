@@ -220,7 +220,7 @@ public class NikeController {
 		nikeService.updateGoodsInfoHits(vo);
 		
 		//상세보기 서비스 실행
-		vo = nikeService.selectGoodsDetail(vo);
+		NikeVO goods = nikeService.selectGoodsDetail(vo);
 		
 		//리뷰관련 서비스 실행
 		List<?> comm_list = nikeService.selectCommList(vo);
@@ -230,12 +230,15 @@ public class NikeController {
 		
 		//상품 추천 리스트
 		List<?> list = nikeService.selectHitGoodsList();
-
 		
-		model.addAttribute("vo",vo);
+		// 상품 세일 관련
+		List<?> saleOff = nikeService.selectGoodsList(vo);
+		
+		model.addAttribute("goods",goods);
 		model.addAttribute("comm_list",comm_list);
 		model.addAttribute("review_cnt",review_cnt);
 		model.addAttribute("list",list);
+		model.addAttribute("saleOff",saleOff);
 		
 		return "nike/nikeweb/goodsDetail";
 	}
