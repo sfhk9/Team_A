@@ -227,6 +227,8 @@ public class NikeController {
 		// 상품 세일 관련
 		List<?> saleOff = nikeService.selectGoodsList(vo);
 		
+		System.out.println(goods.getOff() + "3452346245634564");
+		model.addAttribute("off",goods.getOff() );
 		model.addAttribute("goods",goods);
 		model.addAttribute("comm_list",comm_list);
 		model.addAttribute("review_cnt",review_cnt);
