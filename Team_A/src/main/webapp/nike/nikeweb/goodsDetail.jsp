@@ -260,10 +260,7 @@
 								
 							<c:set var="off" value="${off}" />
 				 			<%
-				 		
-				 			int off2 = (int) pageContext.getAttribute("off");
-				 			System.out.println(off2 + "44444444444");
-				 			int off = 50;
+				 			int off = (int) pageContext.getAttribute("off");
 							
 							if( off == 0 ){
 							%>
@@ -458,7 +455,7 @@
             <div class="tab-content description-review-bottom">
                 <div id="des-details2" class="tab-pane active">
                     <div id="des-details1" class="tab-pane ">
-	                    <div class="product-anotherinfo-wrapper" style="margin: 0 auto;">
+	                    <div class="product-anotherinfo-wrapper">
 	                        <c:set var="goodsimg" value="${goods.goodsimg }" />
 							<%
 					      		String goodsimg = (String)pageContext.getAttribute("goodsimg") ;
@@ -467,7 +464,7 @@
 									for( int i=0; i<array.length; i++ ) {
 										if(i < array.length ) {
 							%>
-											<span><img src="/nike/goods/${goods.unq}/<%=array[i] %>"/></span><br>
+											<span style="margin: 0 auto;"><img src="/nike/goods/${goods.unq}/<%=array[i] %>"/></span><br>
 							<%
 										}
 									}
