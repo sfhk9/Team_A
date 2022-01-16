@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,9 +31,8 @@ public class AdminController {
 	
 	@RequestMapping("adminGoodsWriteSave.do")
 	@ResponseBody
-	public String insertGoodsInfo(HttpServletRequest request,
-								   MultipartHttpServletRequest multiRequest,
-								   NikeVO vo) throws Exception{
+	public String insertGoodsInfo(MultipartHttpServletRequest multiRequest,
+								  NikeVO vo) throws Exception{
 		
 		int unq=adminService.selectLastGoodsUnq(vo);
 		try {
@@ -42,7 +42,7 @@ public class AdminController {
 			System.out.println(e.getMessage() + "에서 예외를 받았습니다.");
 		}
 		
-		Map<String,String> map = uploadProcess(request, multiRequest, unq);
+		Map<String,String> map = uploadProcess(multiRequest, unq);
 		
 		String msg="ok";
 		
@@ -67,8 +67,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping("adminGoodsModify.do")
-	@ResponseBody
-	public String adminGoodsModify() throws Exception{
+	public String adminGoodsModify(NikeVO vo,Model model) throws Exception{
+		
+		int unq=vo.getUnq();
+		//NikeVO te=adminService.selectGoodsInfo(unq);
+		
+		//model.addAttribute("",te);
 		return "nike/nikeweb/admin/adminGoodsModify";
 	}
 	
@@ -80,8 +84,7 @@ public class AdminController {
 	}
 	
 	// 파일 업로드 함수
-	public static Map<String,String> uploadProcess(HttpServletRequest request, 
-												   MultipartHttpServletRequest multiRequest, 
+	public static Map<String,String> uploadProcess(MultipartHttpServletRequest multiRequest, 
 												   int unq_int) throws Exception {
 		
 		List<MultipartFile> fileList1=multiRequest.getFiles("thumbnails");
