@@ -83,9 +83,10 @@
 
 
 <script>
-    function fn_click(){
+	function fn_click(){
     <%
         String session_id2 = (String) session.getAttribute("MemberSessionId");
+    	boolean nowlogin=false;
     %> 
     <%
         if(session_id2 == null){
@@ -96,9 +97,11 @@
                 alert("로그인 후 이용 바랍니다.");
             }
     <%
+        } else {
+        	nowlogin=true;
         }
     %>
-        return false; 
+        return <%=nowlogin%>;
     }
 </script>
 
