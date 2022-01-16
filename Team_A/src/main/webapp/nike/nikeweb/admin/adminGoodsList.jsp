@@ -33,6 +33,134 @@
 
 
 <script>
+//데이터 수집 함수
+function filterRe() {
+		
+	//네임 데이터 
+	var goodsname2 = "${goodsname}";	
+
+	//타입 데이터 
+	var ctgtype_len = $("input[name='ctgtype']").length;
+	var ctgtype = "";
+	
+	for( var i=0; i<ctgtype_len; i++ ) {
+	   var ctgtype_val = document.getElementsByName('ctgtype')[i].checked;
+	   if( ctgtype_val == true ) {
+	      ctgtype += document.getElementsByName('ctgtype')[i].value;
+	      ctgtype += ",";
+	   }
+	}
+	
+	//성별 데이터 
+	var ctggender_len = $("input[name='ctggender']").length;
+	var ctggender = "";
+	
+	for( var i=0; i<ctggender_len; i++ ) {
+	     var ctggender_val = document.getElementsByName('ctggender')[i].checked;
+	     if( ctggender_val == true ) {
+	        ctggender += document.getElementsByName('ctggender')[i].value;
+	     }
+	  }
+	
+	//색상 데이터 
+	var color_len = $("input[name='color']").length;
+	var color = "";
+	
+	for( var i=0; i<color_len; i++ ) {
+	     var color_val = document.getElementsByName('color')[i].checked;
+	     if( color_val == true ) {
+	        color += document.getElementsByName('color')[i].value;
+	        color += ",";       
+	     }
+	  }
+	
+	//가격 데이터
+	var pricemin = "";
+	   pricemin = document.getElementById("price_min").value;
+	
+	var pricemax = "";
+	   pricemax = document.getElementById("price_max").value;
+	
+	
+	//최종 보낼 데이터
+	var data = "";
+	
+	if ( goodsname2 != "" ) {   data += "goodsname=" + goodsname2 + "&";	}
+	if ( ctgtype != ""    ) {   data += "ctgtype=" + ctgtype + "&";		 	}    
+	if ( ctggender != ""  ) {   data += "ctggender=" + ctggender + "&"; 	}    
+	if ( color != ""      ) {   data += "color=" + color + "&"; 			}    
+	if ( pricemin != ""   ) {   data += "pricemin=" + pricemin + "&";		}
+	if ( pricemax != ""   ) { 	data += "pricemax=" + pricemax + "&";		}
+	
+	//디버그용
+   	/* alert(data+"입니다 최종"); */
+	
+	return data;
+
+} 
+
+function filter(){
+	
+	//필터정보 함수 
+	var data = filterRe();
+	
+	alert(data+"입니다 최종");
+	
+	var addurl = "/addList.do?" + data;
+   	
+   	//디버그용
+   	/* alert(data+"입니다"); */
+    	
+   	$('#list').load(addurl, function() {//콜백함수
+   		
+   		var totaltexhi = $('#totaltex1').val();
+   	   	totaltex.innerHTML = totaltexhi;
+   	   	
+   	}); 
+
+} 
+
+//페이징 로드 함수
+function page(pgno){
+	
+   	//필터정보 함수
+	var data = filterRe();
+
+   	data += "page_no=" + pgno
+   	
+   	var addurl = "/addList.do?" + data;
+   	
+   	//디버그용
+   	/* alert(data+"입니다"); */
+   	
+   	$('#list').load(addurl, function() {//콜백함수
+   		
+   		var totaltexhi = $('#totaltex1').val();
+   	   	totaltex.innerHTML = totaltexhi;
+   	   	
+   	});
+
+};
+
+function fn_comma(money){
+	var str = String(money).split("").reverse();
+	
+	var tmp="";
+	var cnt=0;
+	for(var i=0;i<str.length;i++){
+		cnt++;
+		tmp=str[i]+tmp;
+		if(cnt%3==0&&cnt!=str.length){
+			tmp=","+tmp;
+		}
+	}
+	
+	return tmp;
+}
+
+
+/* 페이지 로드시 첫실행 */
+window.onload = function(){ page(1); }
 $(function(){ 
 	
 	$("#allchk").click(function(){
@@ -132,26 +260,15 @@ function fn_delete(unq) {
     </div>
 </div>
 
-
+<!-- 필터시작///////////////////// -->
+<%@include file="../subFilter.jsp" %>
+<!-- 필터끝////////////////////// -->
 <!-- 여기 메인 리스트 -->
 <div class="scroll">
 		<div style="position:relative; left:20px; top:30px; margin-bottom:5px;">
 			<span style="font-size:20px;font-weight:blod;">상품 목록</span>
 		</div>		
 		<div style="position:relative; width:1000px; left:20px; top:30px; margin-bottom:10px;">
-
-			<form name="frm" method="post" action="adminList.do">
-			<div style="position:relative; text-align:right;" >
-				  <select name="s_field"  >
-					<option value="name"   <c:if test="${s_field == 'name' }">selected</c:if>>이름</option>
-					<option value="price"  <c:if test="${s_field == 'price' }">selected</c:if>>가격</option>
-					<option value="color"  <c:if test="${s_field == 'color' }">selected</c:if>>색상</option>
-				</select>  
-				<input type="text" name="s_text" style="width:120px;" value="${s_text }">
-				<button type="submit" id="btn_search">검색</button>
-			</div>
-			</form>
-		
 		</div>
 		<div style="position:relative; left:20px; top:30px;" overflow: scroll;>
 	
