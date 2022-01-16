@@ -260,10 +260,7 @@
 								
 							<c:set var="off" value="${off}" />
 				 			<%
-				 		
-				 			int off2 = (int) pageContext.getAttribute("off");
-				 			System.out.println(off2 + "44444444444");
-				 			int off = 50;
+				 			int off = (int) pageContext.getAttribute("off");
 							
 							if( off == 0 ){
 							%>
@@ -468,6 +465,7 @@
 										if(i < array.length ) {
 							%>
 											<span><img style="width:100%;" src="/nike/goods/${goods.unq}/<%=array[i] %>"/></span><br>
+
 							<%
 										}
 									}
