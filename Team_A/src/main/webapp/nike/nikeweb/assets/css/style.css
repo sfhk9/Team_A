@@ -15963,3 +15963,24 @@ h3.cart-page-title {
 .btnstyle > a:hover {
   background-color: #333;
 }
+
+/* admin-이미지 확대용*/
+.listIMG{
+	width:30px;
+	height:30px;
+	cursor:pointer;
+}
+
+.imgLabel{
+	width:80px;
+	height:30px;
+	border:1px solid black;
+	font-weight:bold;
+	cursor:pointer;
+	text-align:center;
+	line-height:2.0;
+	margin-top:10px;
+	margin-bottom:10px;
+	
+	backgorund-color:#A8F552;
+}

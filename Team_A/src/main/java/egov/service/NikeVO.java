@@ -24,13 +24,16 @@ public class NikeVO {
 	private String ctggender; 		// N : 무관, M : 남성용, F : 여성용
 	private String csize;			// 옷사이즈
 	private String color;
-	private String thumbnail;
-	private String goodsimg;
+	private String thumbnail;		// 썸네일
+	private String goodsimg;		// 상품 정보 (이미지)
+	private String info;			// 상품 정보 (텍스트)
 	
 	private int price = 0;
 	private int pricemin = 0;
 	private int pricemax = 0;
-	
+	private int pricesale = 0;		// 할인된 가격
+	private String sale; 				// 세일용 코드 (할인 코드)
+
 	private int hits;
 	
 	private String sql;
@@ -39,6 +42,8 @@ public class NikeVO {
 	private String search;
 
 	private String goodsname;
+
+	private int off;
 
 
 	// 관리자 ADMININFO
@@ -98,12 +103,8 @@ public class NikeVO {
 	private int e_no = 12;
 	
 	//검색변수
-	
 	private String s_field;
 	private String s_text;
-	
-	
-	
 	
 	public String getUserid() {
 		return userid;
@@ -399,5 +400,30 @@ public class NikeVO {
 		this.adminpass = adminpass;
 	}
 
+	public int getOff() {
+		return off;
+	}
+	public void setOff(int off) {
+		this.off = off;
+	}
+
+	public int getPricesale() {
+		return pricesale;
+	}
+	public void setPricesale(int pricesale) {
+		this.pricesale = pricesale;
+	}
+	public String getSale() {
+		return sale;
+	}
+	public void setSale(String sale) {
+		this.sale = sale;
+	}
+	public String getInfo() {
+		return info;
+	}
+	public void setInfo(String info) {
+		this.info = info;
+	}
 	
 }

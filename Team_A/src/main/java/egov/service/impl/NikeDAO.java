@@ -102,10 +102,6 @@ public class NikeDAO extends EgovAbstractDAO {
 		return (String) insert("nikeDAO.insertReview,vo");
 	}
 
-	public int selectReviewTotal(NikeVO vo) {
-		return (int) select("nikeDAO.selectReviewTotal",vo);
-	}
-
 	public String insertCart(NikeVO vo) {
 		return (String) insert("nikeDAO.insertCart",vo);
 	}

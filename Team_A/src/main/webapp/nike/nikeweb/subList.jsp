@@ -6,17 +6,21 @@
 <html>
 
 <body>
-<input type="hidden" id="nameval" value="${name}">
+<input type="hidden" id="nameval" value="${goodsname}">
+
+<c:set var="goodsname" value="${goodsname}" />
+
 <input type="hidden" id="totaltex1" value="
-		<% 
-		String name = (String) pageContext.getAttribute("name");
-		if ( name != null ) { 
-		%>
-		<strong>'${name}'</strong> &nbsp;
-		<% 
-		}  
-		%> 
-		총 ${total}개 결과중  ${s_no} ~ ${e_no}개 표시중">
+<% 
+String goodsname = (String) pageContext.getAttribute("goodsname");
+if ( goodsname != null ) { 
+%>
+<strong>'${goodsname}'</strong>&nbsp;
+<% 
+}  
+%> 
+총 ${total}개 결과중  ${s_no} ~ ${e_no}개 표시중">
+		
 <c:forEach var="result" items="${list}" varStatus="status" >
 
 	<div class="col-xl-4 col-md-6 col-lg-4 col-sm-6">
@@ -29,17 +33,31 @@
 					<c:set var="thumbnail" value="${result.thumbnail }" />
 					<%
 					String thumbnail = (String) pageContext.getAttribute("thumbnail");
+					
 					String[] th = thumbnail.split("/");
 					%>
 					<img class="default-img" src="../nike/goods/${result.unq}/<%=th[0]%>" alt="">
 					<img class="hover-img" src="../nike/goods/${result.unq}/<%=th[0]%>" alt="">
 					
 				</a>
+			
+				<c:set var="off" value="${result.off }" />
+	 			<%
+				String off = "" + pageContext.getAttribute("off");
+				if( off.equals("null") ){
+				%>
 				
-				<!-- 할인시 추가 -->
-				<span class="pink">-50%</span>
 				<!-- 신제품시 추가 -->
-				<!-- <span class="purple">New</span> -->
+				<span class="purple">New</span>
+				
+				<% } else { %>
+					
+				<!-- 할인시 추가 -->
+				<span class="pink">-${result.off }%</span>
+				
+				<%
+				}
+				%> 
 				
 				<div class="product-action">
 					<div class="pro-same-action pro-wishlist">
@@ -60,16 +78,26 @@
 				<h3><a href="goodsDetail.do?unq=${result.unq}">${result.name}</a></h3>
 				
 				<div class="product-rating">
-					<i class="fa fa-star-o yellow"></i>
-					<i class="fa fa-star-o yellow"></i>
-					<i class="fa fa-star-o yellow"></i>
-					<i class="fa fa-star-o"></i>
-					<i class="fa fa-star-o"></i>
+					<img src="/nike/images/star/${result.mark}.png" class="width: 135px, height: 22px;">
 				</div>
 				
 				<div class="product-price">
-				    <span>${result.price/2}원</span>
-					<span class="old">${result.price}원</span>
+				<%
+				if( off.equals("null") ){
+				%>
+				
+				<!-- 신제품시 추가 -->
+				<span>${result.price}원</span>
+				
+				<% } else { %>
+					
+				<!-- 할인시 추가 -->
+				<span>${result.saleprice} 원</span>
+				<span class="old">${result.price}원</span>
+				
+				<%
+				}
+				%>  
 				</div>
 				
 			</div>
@@ -85,13 +113,13 @@
 			<c:forEach var="i" begin="1" end="${total_page }">
 			
 				<li>
+					<c:set var="pageno" value="${pageno}" />
 					<a  onclick="javascript:page(${i });" 
 					<% 
 					String pageno = "" + pageContext.getAttribute("pageno"); 
 					String val	  = "" + pageContext.getAttribute("i");
-					 System.out.println(pageno);
-					 System.out.println(val);
-					if ( pageno.equals(val) ) { %> class="active"<% } 
+
+					if ( pageno.equals(val) ) { %> class="active" <% } 
 					%> > ${i } 
 					</a>
 				</li>

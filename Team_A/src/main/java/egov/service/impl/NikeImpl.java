@@ -125,11 +125,6 @@ public class NikeImpl implements NikeService {
 	}
 
 	@Override
-	public int selectReviewTotal(NikeVO vo) throws Exception {
-		return nikeDAO.selectReviewTotal(vo);
-	}
-
-	@Override
 	public String insertCart(NikeVO vo) throws Exception {
 		return nikeDAO.insertCart(vo);
 	}

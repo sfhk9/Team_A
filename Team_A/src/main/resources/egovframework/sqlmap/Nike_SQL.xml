@@ -12,6 +12,9 @@
 			
 				SELECT 
 					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits,
+					NVL( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ),0) mark,
+					( (price/100)*(select off from sale where unq=goodsinfo.sale) ) saleprice,
+					(select off from sale where unq=sale) off,
 					substr(name,0,20) name
 				FROM 
 					goodsinfo	
@@ -26,6 +29,9 @@
 			
 				SELECT 
 					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits,
+					NVL( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ),0) mark,
+					( (price/100)*(select off from sale where unq=goodsinfo.sale) ) saleprice,
+					(select off from sale where unq=sale) off,
 					substr(name,0,20) name
 				FROM 
 					goodsinfo
@@ -41,7 +47,10 @@
 			FROM  (
 			
 				SELECT 
-					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits,
+					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits, sale,
+					NVL( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ),0) mark,
+					( (price/100)*(select off from sale where unq=goodsinfo.sale) ) pricesale,
+					(select off from sale where unq=sale) off,
 					substr(name,0,20) name
 				FROM 
 					goodsinfo	
@@ -72,7 +81,10 @@
 			FROM  (
 			
 				SELECT 
-					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits,
+					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits, 
+					NVL( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ),0) mark,
+					( (price/100)*(select off from sale where unq=goodsinfo.sale) ) saleprice,
+					(select off from sale where unq=sale) off,
 					substr(name,0,20) name
 				FROM 
 					goodsinfo
@@ -87,19 +99,23 @@
 			) a	) b	WHERE rn >= #s_no#  AND rn <![CDATA[<=]]> #e_no#
 	</select>
 	
+	
 	<select id="nikeDAO.selectGoodsDetail" resultClass="nikeVO">
 		SELECT
-				unq,
-				category,
-				ctgtype,
-				ctggender,
-				price,
-				csize,
-				color,
-				thumbnail,
-				goodsimg,
-				hits,
-				name
+				unq, 
+				category, 
+				ctgtype, 
+				ctggender, 
+				price, 
+				csize, 
+				color, 
+				thumbnail, 
+				goodsimg, 
+				hits, 
+				name,
+				NVL( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ),0) mark,
+				NVL(( (price/100)*(select off from sale where unq=goodsinfo.sale) ),0) pricesale,
+				NVL((select off from sale where unq=sale),0) off
 		FROM
 				goodsinfo
 		WHERE
@@ -197,15 +213,6 @@
 		WHERE 
 				r.goodsunq=g.unq and g.unq=#unq# 
 
-	</select>
-	
-	<select id="nikeDAO.selectReviewTotal" resultClass="java.lang.Integer">
-		SELECT 
-				SUM(mark) 
-		FROM 
-				review r, goodsinfo g 
-		WHERE 
-				r.goodsunq=g.unq and g.unq=#unq#
 	</select>
 	
 	<select id="nikeDAO.selectCartList" resultClass="egovMap">
@@ -316,24 +323,18 @@
 		INSERT INTO review (
 								unq,
 								goodsunq,
-								title,
 								userid,
 								content,
 								rdate,
 								udate,
-								hits,
-								img,
 								mark
 					) VALUES (
 								review_seq.nextval,
-								#goodsunq#,
-								'test000',
-								'java1',
+								#unq#,
+								#userid#,
 								#content#,
 								sysdate,
 								sysdate,
-								'0',
-								#img#,
 								#mark#	)
 	</insert>
 	
@@ -346,9 +347,9 @@
 							color,
 							qty
 				) VALUES (
-							cart_seq.nextval,
+							'10000',
 							#userid#,
-							#goodsunq#,
+							#unq#,
 							#csize#,
 							#color#,
 							#qty#		)

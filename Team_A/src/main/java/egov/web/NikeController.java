@@ -40,6 +40,7 @@ public class NikeController {
 	@RequestMapping("index.do")
 	public String mainpage( Model model ) throws Exception {
 
+		
 		List<?> listNew = nikeService.selectNewGoodsList();
 		List<?> listHit = nikeService.selectHitGoodsList();
 		List<?> listSal = nikeService.selectSalGoodsList();
@@ -78,6 +79,7 @@ public class NikeController {
 		// 디버그용
 		String sql = getSetSql(vo);
 		System.out.println( sql + "  sql!!!" );
+		System.out.println( vo.getGoodsname() );
 		///
 		
 		List<?> list = nikeService.selectGoodsList(vo);
@@ -95,6 +97,8 @@ public class NikeController {
 		model.addAttribute("total_page",total_page);
 		model.addAttribute("list",list);
 		model.addAttribute("pageno",pageno);
+		
+		model.addAttribute("goodsname",vo.getGoodsname());
 		
 		return "nike/nikeweb/subList";
 	}
@@ -226,17 +230,12 @@ public class NikeController {
 		
 		//상품 추천 리스트
 		List<?> list = nikeService.selectHitGoodsList();
-		
-		//리뷰 총 점수
-		int review_total = nikeService.selectReviewTotal(vo);
-		
-		review_total = review_total/review_cnt;
+
 		
 		model.addAttribute("vo",vo);
 		model.addAttribute("comm_list",comm_list);
 		model.addAttribute("review_cnt",review_cnt);
 		model.addAttribute("list",list);
-		model.addAttribute("review_total",review_total);
 		
 		return "nike/nikeweb/goodsDetail";
 	}
@@ -256,10 +255,13 @@ public class NikeController {
 	
 	@RequestMapping("sendCart.do")
 	@ResponseBody
-	public String insertCart( NikeVO vo ) throws Exception {
+	public String insertCart( NikeVO vo, HttpSession session ) throws Exception {
 		
-		String msg = "ok";
-	
+		String userid = (String)session.getAttribute("MemberSessionId");
+		vo.setUserid(userid);
+		
+		String msg = "ok"	;
+		
 		// 저장 서비스 실행
 		String result = nikeService.insertCart(vo);
 		if( result != null ) msg = "save_fail"; 
