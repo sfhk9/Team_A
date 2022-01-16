@@ -472,6 +472,15 @@ public class NikeController {
 				
 				model.addAttribute("vo",vo);
 				model.addAttribute("list",list);
+				model.addAttribute("total_page",total_page);
+				
+				model.addAttribute("s_field",vo.getS_field());
+				model.addAttribute("s_text",vo.getS_text());
+				
+			
+			    model.addAttribute("total",total); 
+				model.addAttribute("rownum",rownum);
+				 
 						
 		return "nike/nikeweb/admin/adminGoodsList";
 	}
@@ -504,6 +513,31 @@ public class NikeController {
 		}
 		return msg;
 	
+	}
+	@RequestMapping("adminListAllDelete.do")
+	@ResponseBody
+	public String admin_nboardAllDelete( String values ) throws Exception {
+		
+		// 11,8,5,
+		// delete from nboard where unq='11' or unq='8' or unq='5'; 
+		// delete from nboard where unq in(11,8,5);
+		
+		// 11,5,
+		// delete from nboard where unq='11' or unq='5'; 
+		// delete from nboard where unq in('11','5');
+		
+		// delete from nboard where unq='11';
+		// delete from nboard where unq='5';
+		
+		// 11,8,5,  -->  11,8,5
+		values = values.substring(0,values.length()-1); 
+		
+		int result = nikeService.deleteAdminALL(values);
+		System.out.println("result : " + result);
+		
+		String message = "ok";
+		if( result == 0 ) message = "fail";
+		return message;
 	}
 	
 	@RequestMapping("cart.do")

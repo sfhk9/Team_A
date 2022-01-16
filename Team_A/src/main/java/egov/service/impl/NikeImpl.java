@@ -147,6 +147,14 @@ public class NikeImpl implements NikeService {
 	public int deleteAdminList(NikeVO vo) throws Exception {
 		return nikeDAO.deleteAdminList(vo);
 	}
+	@Override
+	public int deleteAdminALL(String values) throws Exception {
+		return nikeDAO.deleteAdminALL(values);
+	}
+	@Override
+	public List<?> adminGoodsList(NikeVO vo) throws Exception {
+		return nikeDAO.adminGoodsList(vo);
+	}
 
 	
 
