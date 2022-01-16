@@ -278,17 +278,19 @@ function fn_delete(unq) {
 			<col width="5%"/>
 			<col width="30%"/>
 			<col width="7%"/>
+			<col width="5%"/>
+			<col width="7%"/>
 			<col width="15%"/>			
-			<%-- <col width="7%"/> --%>
 			<col width="7%"/>
 		</colgroup>
 		<tr>
 			<th> <input type="checkbox" id="allchk">  </th>
 			<th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp번호</th>
 			<th>상품이름</th>
+			<th>카테고리</th>
+			<th>성별</th>
 			<th>가격</th>
 			<th>색상</th>			
-			<!-- <th>사진</th> -->
 			<th>삭제</th>
 		</tr>
 	
@@ -300,11 +302,12 @@ function fn_delete(unq) {
 			<td > <input type="checkbox" name="chk" value="${result.unq }" ></td>
 			<td >${rownum } </td>
 			<td align="left">
-			<a href="*.do?unq=${result.unq }&s_field=${s_field}&s_text=${s_text}">${result.name}</a>
+			${result.name}
 			</td>
+			<td align="left">${result.ctgtype }</td>
+			<td align="left">${result.ctggender }</td>
 			<td align="left">${result.price }원</td>
 			<td align="left">${result.color }</td>		
-			<%-- <td align="left">${result.thumbnail}</td> --%>	
 			<td align="left"><a href="javascript:fn_delete('${result.unq }')">Del</a></td>		
 		</tr>
 		
