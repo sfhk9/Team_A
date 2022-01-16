@@ -49,7 +49,7 @@
 				SELECT 
 					unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits, sale,
 					NVL( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ),0) mark,
-					( (price/100)*(select off from sale where unq=goodsinfo.sale) ) saleprice,
+					( (price/100)*(select off from sale where unq=goodsinfo.sale) ) pricesale,
 					(select off from sale where unq=sale) off,
 					substr(name,0,20) name
 				FROM 
@@ -110,6 +110,7 @@
                 goodsinfo
         WHERE
                 unq=#unq#
+
 	</select>
 	
 	
@@ -134,6 +135,38 @@
 				WHERE 
 					adminid=#adminid# AND adminpass=#adminpass#
 	</select>
+	<!-- <select id="nikeDAO.adminGoodsList" resultClass="egovMap">
+		SELECT b.* FROM  (	
+			SELECT rownum rn, a.* FROM  (
+			     SELECT   	unq, category, ctgtype, ctggender, price, csize, color,	thumbnail, hits,
+					substr(name,0,20) name
+			     FROM goodsinfo 
+			     
+			     <isNotNull property="s_text">
+			     	<isNotEmpty property="s_text">
+			    		<isNotEqual property="s_field" compareValue="rdate">
+			     			WHERE $s_field$ LIKE '%$s_text$%'
+			     		</isNotEqual>
+			     		<isEqual property="s_field" compareValue="rdate">
+			     			WHERE to_char(rdate,'yyyy-mm-dd') LIKE '%$s_text$%'
+			     		</isEqual>
+			     	</isNotEmpty>
+			     </isNotNull>
+			     
+			     ORDER BY unq DESC ) a  ) b
+		
+		WHERE   <isNotNull property="unq1">
+					unq > $unq1$
+		        </isNotNull>
+		        
+		        <isNotNull property="unq2">
+					unq <![CDATA[<]]> $unq2$ AND rownum <![CDATA[<]]> 2
+		        </isNotNull>
+				
+				<isNotNull property="unq3">
+					rn >= #s_no#  AND rn <![CDATA[<=]]> #e_no#
+				</isNotNull>
+	</select> -->
 	
   <select id="nikeDAO.selectMemberDetail" resultClass="nikeVO">
 		SELECT  userid,
@@ -358,5 +391,7 @@
 		DELETE FROM goodsinfo WHERE unq=#unq#
 	
 	</delete>
-	
+	<delete id="nikeDAO.deleteAdminALL">
+		DELETE FROM goodsinfo WHERE unq in ($values$)
+	</delete>
 </sqlMap>

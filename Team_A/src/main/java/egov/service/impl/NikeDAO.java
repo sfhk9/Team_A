@@ -126,5 +126,11 @@ public class NikeDAO extends EgovAbstractDAO {
 		return delete("nikeDAO.deleteAdminList",vo);
 
 	}
+	public int deleteAdminALL(String values) {
+		return delete("nikeDAO.deleteAdminALL",values);
+	}
+	public List<?> adminGoodsList(NikeVO vo) {
+		return list("nikeDAO.adminGoodsList",vo);
+	}
 
 }
