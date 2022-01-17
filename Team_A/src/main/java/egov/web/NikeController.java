@@ -1,6 +1,7 @@
 package egov.web;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -630,6 +631,8 @@ public class NikeController {
 		String msg="ok";
 		String result="";
 		int resultCnt=0;
+		int deleteResult=0;
+		int deleteCnt=0;
 
 		String userid = (String) session.getAttribute("MemberSessionId");
 		vo.setUserid(userid);
@@ -643,21 +646,35 @@ public class NikeController {
 		// 반복문 돌리기
 		for(Object object:list) {
 			EgovMap item = (EgovMap) object;
-			String name = (String) item.get("name");
-			String goodsunq = (String) item.get("goodsunq");
+			BigDecimal bigDecimalNumber = (BigDecimal) item.get("unq");
+			int cartunq=bigDecimalNumber.intValue();
+			bigDecimalNumber = (BigDecimal) item.get("goodsunq");
+			int goodsunq = bigDecimalNumber.intValue();
+			System.out.println("goodsunq");
 			String csize = (String) item.get("csize");
 			String color = (String) item.get("color");
-			vo.setName(name);
-			vo.setName(goodsunq);
+			vo.setGoodsunq(goodsunq);
 			vo.setCsize(csize);
-			vo.setName(color);
+			vo.setColor(color);
 			
-			//result=nikeService.insertOrderList(vo);
-
-			if(result!=null) resultCnt+=1;
+			
+			result=nikeService.insertOrderList(vo);
+			vo.setUnq(cartunq);
+			if(result==null) {
+				if(result==null) resultCnt+=1;
+				deleteResult = nikeService.deleteCartList(vo);
+				if(deleteResult==1) deleteCnt+=1;
+			}
 		}
 		
-		if(cnt!=resultCnt) msg="er1";
+		// 장바구니 목록 삭제에 문제가 생긴 경우
+		if(resultCnt!=deleteCnt) msg="er1";
+		
+		// 주문 접수에만 문제가 생긴 경우 (접수된 상품은 장바구니에서 삭제되고, 안된 상품은 장바구니에서 삭제 X인 경우)
+		if((cnt!=resultCnt) && (resultCnt==deleteCnt)) msg="er2";
+		
+		// 주문 접수와 장바구니 목록 모두에 문제가 생긴 경우
+		if((cnt!=resultCnt) && (resultCnt!=deleteCnt)) msg="er3";
 		
 		return msg;
 	}

@@ -231,7 +231,7 @@
 	</select>
 	
 	<select id="nikeDAO.selectCheckout" resultClass="egovMap">
-		SELECT 	c.unq,
+		SELECT 	c.unq unq,
 				c.userid userid,
 		        c.goodsunq goodsunq,
 		        c.qty qty,

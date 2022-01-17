@@ -177,7 +177,7 @@ function DaumPostcode() {
 	                        <div class="col-lg-6 col-md-6">
 	                            <div class="billing-info mb-20">
 	                                <label>이메일 *</label>
-	                                <input type="email" name="email" id="eamil">
+	                                <input type="email" name="email" id="email">
 	                            </div>
 	                        </div>
 	                    </div>

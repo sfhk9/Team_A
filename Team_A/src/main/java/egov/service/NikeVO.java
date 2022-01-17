@@ -60,7 +60,9 @@ public class NikeVO {
 	//나머진 상품정보에서 받아옴
 	
 	//주문배송 ORDERLIST
-	private int stmt;	
+	private int goodsunq;
+	private int stmt;
+	private String message;
 	/*
 	-- 0 : 결제 대기 
 	-- 1 : 결제 취소
@@ -424,6 +426,18 @@ public class NikeVO {
 	}
 	public void setInfo(String info) {
 		this.info = info;
+	}
+	public int getGoodsunq() {
+		return goodsunq;
+	}
+	public void setGoodsunq(int goodsunq) {
+		this.goodsunq = goodsunq;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	
 }

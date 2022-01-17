@@ -70,9 +70,10 @@ $(function(){
 			return false;
 		}
 		
-		pattern=RegExp(/^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/);
-		if(!pattern.test($("#phone").val())){
-			alert("올바른 휴대폰 번호를 입력해주세요");
+		pattern=RegExp(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/);
+		if(!pattern.test($("#email").val())){
+			alert($("#email").val());
+			alert("올바른 이메일 주소를 입력해주세요");
 			return false;
 		}
 		
@@ -97,9 +98,15 @@ $(function(){
 			success : function(data){
 				if(data=="ok"){
 					alert("주문이 접수되었습니다.\n 결제가 확인되면 배송이 진행됩니다.");
-					location.href="/main.do";
-				} else{
-					alert("저장 실패");
+					location.href="/index.do";
+				} else if(data=="er1"){
+					alert("오류 : 장바구니 목록 삭제 오류");
+				} else if(data=="er2"){
+					alert("오류 : 주문 접수 오류");
+				} else if(data=="er3"){
+					alert("오류 : 주문 접수 및 장바구니 목록 삭제 오류");
+				} else {
+					alert("저장 오류");
 				}
 			},
 			error:function(){
