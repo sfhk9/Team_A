@@ -57,6 +57,7 @@
   color: white;
 }
 </style>
+
 <body>
 <header class="header-area header-in-container clearfix">
   <%@include file="../include/header.jsp" %>
@@ -80,6 +81,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="table-content table-responsive cart-table-content">
                     <table id="cartTable">
+                    
                         <thead>
                             <tr>
                                 <th>이미지</th>
@@ -91,7 +93,9 @@
                                 <th>확인/취소/교환</th>
                             </tr>
                         </thead>
+                        
                         <tbody>
+                        
                        		<c:forEach var="result" items="${list}">
                              <tr>
                                  <td class="product-thumbnail">
@@ -135,6 +139,7 @@
                                 </td>
                              </tr>
                            	</c:forEach>
+                           	
                         </tbody>
                     </table>
                 </div>
