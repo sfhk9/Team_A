@@ -99,7 +99,7 @@ public class NikeDAO extends EgovAbstractDAO {
 	}
 
 	public String insertReview(NikeVO vo) {
-		return (String) insert("nikeDAO.insertReview,vo");
+		return (String) insert("nikeDAO.insertReview",vo);
 	}
 
 	public String insertCart(NikeVO vo) {

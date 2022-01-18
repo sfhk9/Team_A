@@ -19,7 +19,7 @@
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	
 	<!-- cart & checkout 공통 function -->
-	<script type ="text/javascript" src="${nikeweb}/assets/js/CartAndCheckout.js"></script>
+	<script type ="text/javascript" src="${nikeweb}/assets/js/comm_price.js"></script>
     
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/nike/nikeweb/assets/img/favicon.png">
@@ -48,6 +48,7 @@
 	}
 	.star_rating a:first-child {margin-left:0;}
 	.star_rating a.on {color:orange;}
+	.star_rating a.off {color:gray;}
 </style>   
 
 <style>
@@ -106,6 +107,14 @@
 </script>
 
 <script>
+	function fn_star(num){
+		
+		$("#mark").val(num);
+		alert($("#mark").val());
+	}
+</script>
+
+<script>
   	$(function() {
 		
   		$("#submit").click(function(){  
@@ -129,6 +138,7 @@
   				success : function(data) {  // ok
   					if(data == "ok") {
   						alert("저장완료");
+  						location.reload();
   					} else {
   						alert("저장실패");
   					}
@@ -158,6 +168,7 @@
 		}
 	}
 </script>
+ onClick="test_sample();"
  -->
 
 <script>
@@ -167,14 +178,12 @@
   			
   			
   			
-  			if( $.trim($("input[name='color']").val()) == "" ) {
+  			if( $.trim($("input[name='color']:checked").val()) == "" ) {
   				alert("색상을 선택해주세요.");
-  				$("#color").focus();
   				return false;
   			}
-  			if( $.trim($("#csize").val()) == "" ) {
+  			if( $.trim($("input[name='csize']:checked").val()) == "") {
   				alert("크기를 선택해주세요.");
-  				$("#csize").focus();
   				return false;
   			}
   
@@ -314,9 +323,9 @@
 							<!-- 신제품시 추가 -->
 							<span>
 								${goods.price}원
-								<!-- <script>
-                              			document.write(fn_comma(${goods.price}원));
-                              		</script>  -->
+								<script>
+                             		document.write(fn_comma(${goods.price}));
+                              	</script>원
 							</span>
 						<% } else { %>
 							<!-- 할인시 추가 -->
@@ -419,7 +428,7 @@
                         <div class="cart-plus-minus">
                             <input class="cart-plus-minus-box" type="text" name="qty" id="qty" value="1">
                         </div>
-                        <div class="pro-details-cart btn-hover" id="sendCart" onClick="test_sample();">
+                        <div class="pro-details-cart btn-hover" id="sendCart">
                             <a href="#">장바구니</a>
                         </div>
                         <div class="pro-details-wishlist">
@@ -590,12 +599,13 @@
                                         <div class="star-box" id="star">
                                             <span>만족도 선택:</span>
                                             <div class="ratting-star">
-                                                <p class="star_rating" id="mark">
-												    <a href="#" class="on"><i class="fa fa-star"></i></a>
-												    <a href="#" class="on"><i class="fa fa-star"></i></a>
-												    <a href="#" class="on"><i class="fa fa-star"></i></a>
-												    <a href="#"><i class="fa fa-star"></i></a>
-												    <a href="#"><i class="fa fa-star"></i></a>
+                                                <input type="hidden" id="mark" name="mark" value="3">
+                                                <p class="star_rating">
+												    <a onclick="fn_star(1)" class="on"><i class="fa fa-star"></i></a>
+												    <a onclick="fn_star(2)" class="on"><i class="fa fa-star"></i></a>
+												    <a onclick="fn_star(3)" class="on"><i class="fa fa-star"></i></a>
+												    <a onclick="fn_star(4)" class="on"><i class="fa fa-star"></i></a>
+												    <a onclick="fn_star(5)" class="on"><i class="fa fa-star"></i></a>
 												</p>
                                             </div>
                                         </div>

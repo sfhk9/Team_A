@@ -246,7 +246,12 @@ public class NikeController {
 		vo.setUserid(userid);
 		
 		String msg = "ok";
-	
+		
+		System.out.println(vo.getUserid());
+		System.out.println(vo.getGoodsunq());
+		System.out.println(vo.getContent());
+		System.out.println(vo.getMark());
+		
 		// 저장 서비스 실행
 		String result = nikeService.insertReview(vo);
 		if( result != null ) msg = "save_fail"; 

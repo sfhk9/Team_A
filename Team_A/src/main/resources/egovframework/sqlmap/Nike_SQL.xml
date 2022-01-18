@@ -321,7 +321,7 @@
 								mark
 					) VALUES (
 								review_seq.nextval,
-								#unq#,
+								#goodsunq#,
 								#userid#,
 								#content#,
 								sysdate,
@@ -340,7 +340,7 @@
 				) VALUES (
 							cart_seq.nextval,
 							#userid#,
-							#unq#,
+							#goodsunq#,
 							#csize#,
 							#color#,
 							#qty#		)
