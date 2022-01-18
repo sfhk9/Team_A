@@ -232,6 +232,11 @@ function fn_delete(unq) {
 		});
 	}
 }
+
+function fn_unqSubmit(unq){
+	$("#unqHidden").val(unq);
+	$("#unqFrm").submit();
+}
 </script>
 <style>
 .scroll{
@@ -302,7 +307,7 @@ function fn_delete(unq) {
 			<td > <input type="checkbox" name="chk" value="${result.unq }" ></td>
 			<td >${rownum } </td>
 			<td align="left">
-			${result.name}
+			<a href="javascript:fn_unqSubmit('${result.unq }')">${result.name}</a>
 			</td>
 			<td align="left">${result.ctgtype }</td>
 			<td align="left">${result.ctggender }</td>
@@ -328,6 +333,9 @@ function fn_delete(unq) {
 	
 		</div>
 	</div>
+	<form id="unqFrm" action="adminGoodsDetail.do" method="post">
+		<input type="hidden" name="unq" id="unqHidden" value="0">
+	</form>
 <!-- 여기 메인 리스트 -->
 
 

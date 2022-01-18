@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <c:set var="nike" value="${pageContext.request.contextPath}/nike" />
 <c:set var="nikeweb" value="${pageContext.request.contextPath}/nike/nikeweb" />
 
@@ -15,6 +17,7 @@
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	
 	<!-- adminGoodsWrite.js -->
+	<script type ="text/javascript" src="${nikeweb}/assets/js/adminGoodsComm.js"></script>
 	<script type ="text/javascript" src="${nikeweb}/assets/js/adminGoodsWrite.js"></script>
 
 	<!-- CSS
@@ -113,117 +116,47 @@
 					<tr>
 						<th>색상</th>
 						<td>
-							<ul class="color-filter">	 
-								<li>
-									<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-										<label for="chk1" class="chkbox" >										
-											<input id="chk1" type="checkbox" name="color" value="black">
-											<span class="checkmark" style="background-color: black;"></span>
-										</label><br>
-										<a>검은색</a>
-									</div>
-								</li> 
-					
-								<li>
-									<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-										<label for="chk2" class="chkbox" >										
-											<input id="chk2" type="checkbox" name="color" value="gray">
-											<span class="checkmark" style="background-color: gray;"></span>
-										</label><br>
-										<a>회색</a>
-									</div>
-								</li> 
-					
-								<li>
-									<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-										<label for="chk3" class="chkbox" >										
-											<input id="chk3" type="checkbox" name="color" value="white">
-											<span class="checkmark2" style="background-color: white;"></span>
-										</label><br>
-										<a>흰색</a>
-									</div>
-								</li> 
-					
-								<li>
-									<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-										<label for="chk4" class="chkbox" >										
-											<input id="chk4" type="checkbox" name="color" value="red">
-											<span class="checkmark" style="background-color: red;"></span>
-										</label><br>
-										<a>빨간색</a>
-									</div>
-								</li> 
-					
-								<li>
-									<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-										<label for="chk5" class="chkbox" >										
-											<input id="chk5" type="checkbox" name="color" value="yellow">
-											<span class="checkmark2" style="background-color: yellow;"></span>
-										</label><br>
-										<a>노랑색</a>
-									</div>
-								</li> 
-					
-								<li>
-									<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-										<label for="chk6" class="chkbox" >										
-											<input id="chk6" type="checkbox" name="color" value="beige">
-											<span class="checkmark2" style="background-color: beige;"></span>
-										</label><br>
-										<a>베이지</a>
-									</div>
-								</li> 
-					
-								<li>
-									<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-										<label for="chk7" class="chkbox" >										
-											<input id="chk7" type="checkbox" name="color" value="brown">
-											<span class="checkmark" style="background-color: brown;"></span>
-										</label><br>
-										<a>갈색</a>
-									</div>
-								</li> 
-					
-								<li>
-									<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-										<label for="chk8" class="chkbox" >										
-											<input id="chk8" type="checkbox" name="color" value="navy">
-											<span class="checkmark" style="background-color: navy;"></span>
-										</label><br>
-										<a>나이비</a>
-									</div>
-								</li> 
-					
-								<li>
-									<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-										<label for="chk9" class="chkbox" >										
-											<input id="chk9" type="checkbox" name="color" value="pink">
-											<span class="checkmark" style="background-color: pink;"></span>
-										</label><br>
-										<a>분홍색</a>
-									</div>
-								</li> 
-					
-								<li>
-									<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-										<label for="chk10" class="chkbox" >										
-											<input id="chk10" type="checkbox" name="color" value="blue">
-											<span class="checkmark" style="background-color: blue;"></span>
-										</label><br>
-										<a>파랑색</a>
-									</div>
-								</li> 
+							<ul class="color-filter">
+								<c:set var="colorMap">
+									black:검은색,
+									gray:회색,
+									white:흰색,
+									red:빨강색,
+									yellow:노랑색,
+									beige:베이지,
+									brown:갈색,
+									navy:네이비,
+									pink:분홍색,
+									blue:파랑색,
+									skyblue:스카이
+								</c:set>
+								<c:set var="checkmark2List">
+									white,
+									yellow,
+									beige
+								</c:set>
 								
-								<li>
-									<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-										<label for="chk11" class="chkbox" >										
-											<input id="chk11" type="checkbox" name="color" value="skyblue">
-											<span class="checkmark" style="background-color: skyblue;"></span>
-										</label><br>
-										<a>스카이</a>
-									</div>
-								</li> 
-					
+								<c:forEach var="item" items="${colorMap}" varStatus="status">
+									<c:set var="color" value="${fn:substringBefore(fn:trim(item),':')}"/>
+									<c:set var="color_kr" value="${fn:substringAfter(fn:trim(item),':')}"/>
+									<c:choose>
+										<c:when test="${fn:contains(fn:trim(checkmark2List),color)}">
+											<c:set var="checkmark" value="checkmark2"/>
+										</c:when>
+										<c:otherwise>
+											<c:set var="checkmark" value="checkmark"/>
+										</c:otherwise>
+									</c:choose>
+									<li>
+										<div style="text-align: center; width: 50px; float:left; margin: 5px;">
+											<label for="chk${status.count}" class="chkbox" >										
+												<input id="chk${status.count}" type="checkbox" name="color" value="${color}">
+												<span class="${checkmark}" style="background-color: ${color};"></span>
+											</label><br>
+											<a>${color_kr}</a>
+										</div>
+									</li>
+								</c:forEach> 
 							</ul>
 						</td>
 					</tr>
@@ -263,7 +196,7 @@
 				</table>
 				<div style="width:600px; text-align:center; margin-top:10px;">
 					<button type="button" id="btn_save">저장</button>
-					<button type="reset">취소</button>
+					<button type="button" onclick="javascript:location.href='adminList.do'">취소</button>
 				</div>
 			</form>
 			

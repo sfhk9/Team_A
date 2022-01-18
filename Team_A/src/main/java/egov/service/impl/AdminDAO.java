@@ -16,4 +16,12 @@ public class AdminDAO extends EgovAbstractDAO{
 		return (int) select("adminDAO.selectLastGoodsUnq");
 	}
 
+	public NikeVO selectGoodsInfo(int unq) {
+		return (NikeVO) select("adminDAO.selectGoodsInfo",unq);
+	}
+
+	public NikeVO selectGoodsInfo2(int unq) {
+		return (NikeVO) select("adminDAO.selectGoodsInfo2",unq);
+	}
+
 }

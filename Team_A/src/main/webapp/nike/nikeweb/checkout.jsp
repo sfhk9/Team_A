@@ -23,8 +23,8 @@
 	<!-- checkout 스크립트 -->
 	<script type ="text/javascript" src="${nikeweb}/assets/js/checkout.js"></script>
 	
-	<!-- cart & checkout 공통 function -->
-	<script type ="text/javascript" src="${nikeweb}/assets/js/CartAndCheckout.js"></script>
+	<!-- 공통 function -->
+	<script type ="text/javascript" src="${nikeweb}/assets/js/comm_price.js"></script>
 	
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">

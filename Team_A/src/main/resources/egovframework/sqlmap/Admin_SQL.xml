@@ -37,10 +37,50 @@
 	
 	<select id="adminDAO.selectLastGoodsUnq" resultClass="java.lang.Integer">
 		SELECT
-            last_number
+            	last_number
 		FROM
-		    user_sequences
+		   		user_sequences
 		WHERE
-		    sequence_name = 'GOODSINFO_SEQ'
+		    	sequence_name = 'GOODSINFO_SEQ'
+	</select>
+	
+	<select id="adminDAO.selectGoodsInfo" resultClass="nikeVO">
+		SELECT
+				unq,
+			  	name,
+			  	decode(upper(category),'CLS','옷','SHO','신발','오류') category,
+			  	decode(upper(ctgtype),'SPT','스포츠','LES','레저','LIF','일상','오류') ctgtype,
+			  	decode(upper(ctggender),'N','성별 무관','M','남성','F','여성','오류') ctggender,
+			  	price,
+			  	decode(sale,null,'할인코드없음',sale) sale,
+			  	csize,
+			  	color,
+			  	thumbnail,
+			  	goodsimg,
+			  	info
+		FROM
+				goodsinfo
+		WHERE 
+				unq=#unq#
+	</select>
+	
+	<select id="adminDAO.selectGoodsInfo2" resultClass="nikeVO">
+		SELECT
+				unq,
+			  	name,
+			  	category,
+			  	ctgtype,
+			  	ctggender,
+			  	price,
+			  	sale,
+			  	csize,
+			  	color,
+			  	thumbnail,
+			  	goodsimg,
+			  	info
+		FROM
+				goodsinfo
+		WHERE 
+				unq=#unq#
 	</select>
 </sqlMap>

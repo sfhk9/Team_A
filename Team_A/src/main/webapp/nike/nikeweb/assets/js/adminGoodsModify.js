@@ -96,17 +96,6 @@ $( function() {
 	    }
 		
 		var formData = new FormData(document.getElementById('frm'));
-
-
-		/*
-			jsp 파일에서 만약, form 안에 input이 들어있다면
-			<input type="file" name="thumbnails[]">
-			이렇게 배열 형식의 name 값을 주고나서 javascript에서 아래의 중복 전송 방지를 해야한다
-		 */
-			
-		// 중복 전송 방지
-		//formData.delete("thumbnailes[]");
-		//formData.delete("goodsImg[]");
 	
 		// 실질적인 thumbnails, goodsImag 파일 목록을 formData에 추가
 		for(var i=0; i<tList.length;i++){
@@ -120,21 +109,21 @@ $( function() {
 		$.ajax({
 			type: "POST", 
 			enctype: 'multipart/form-data', // 필수
-			url: "adminGoodsWriteSave.do" ,
+			url: "adminGoodsModifySave.do" ,
 			data: formData, // 필수 
 			processData: false, // 필수 
 			contentType: false, // 필수
 			datatype : "text",
 			success: function(data) { 
 				if(data=="ok"){
-					alert("전송 성공");	
+					alert("변경 완료");	
 					location.href="adminList.do"
 				} else if(data=="er1"){
-					alert("동일한 unq를 이름으로 사용하는 경로가 존재합니다");
+					alert("파일 저장 경로에 이상이 있습니다");
 				} else if(data=="er2"){
 					alert("이미지 파일이 비어있습니다");
 				} else {
-					alert("전송 실패");
+					alert("변경 실패");
 				}
 			}, 
 			error: function() {
