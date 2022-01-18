@@ -141,11 +141,31 @@
   	});
 </script>
 
+<!-- 
+<script> // 사이즈,색상 값 alert으로 표시
+	function test_sample() {
+		var sample =document.getElementsByName('csize');
+		for(var i=0; i<sample.length; i++) {
+			if(sample[i].checked == true) {
+				alert(sample[i].value);
+			}
+		}
+		var sample =document.getElementsByName('color');
+		for(var i=0; i<sample.length; i++) {
+			if(sample[i].checked == true) {
+				alert(sample[i].value);
+			}
+		}
+	}
+</script>
+ -->
 
 <script>
   	$(function() {
   		$("#sendCart").click(function(){  
   			if(!fn_click()) return false;
+  			
+  			
   			
   			if( $.trim($("input[name='color']").val()) == "" ) {
   				alert("색상을 선택해주세요.");
@@ -168,8 +188,8 @@
   				
   				datatype : "text",
   				success : function(data) {  // ok
-  					if(msg == "ok") {
-  						if(result) {
+  					if(data == "ok") {
+  						if(result == true) {
   							location = "cart.do";
   						} else {
   							location.reload();
@@ -323,7 +343,7 @@
                     </div>
                     
                     <form id="cartData">
-                    
+                    <input type="hidden" name="goodsunq" id="goodsunq" value="${goods.unq}">
                     <div class="pro-details-size-color">
                         <div class="pro-details-color-wrap">
                             <span>Color</span>
@@ -381,7 +401,7 @@
 											if(i < array.length ) {	
 									%>	
 												<li>
-													<label class="size_btn">
+													<label class="size_btn" style="cursor:pointer;">
 													    <input type="radio" name="csize" id="csize" value="<%=array[i] %>">
 													    <span><%=array[i] %></span>
 													</label>
@@ -399,7 +419,7 @@
                         <div class="cart-plus-minus">
                             <input class="cart-plus-minus-box" type="text" name="qty" id="qty" value="1">
                         </div>
-                        <div class="pro-details-cart btn-hover" id="sendCart">
+                        <div class="pro-details-cart btn-hover" id="sendCart" onClick="test_sample();">
                             <a href="#">장바구니</a>
                         </div>
                         <div class="pro-details-wishlist">

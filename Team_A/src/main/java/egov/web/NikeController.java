@@ -228,7 +228,6 @@ public class NikeController {
 		// 상품 세일 관련
 		List<?> saleOff = nikeService.selectGoodsList(vo);
 		
-		System.out.println(goods.getOff() + "3452346245634564");
 		model.addAttribute("off",goods.getOff() );
 		model.addAttribute("goods",goods);
 		model.addAttribute("comm_list",comm_list);
@@ -241,7 +240,10 @@ public class NikeController {
 	
 	@RequestMapping("detailReviewSave.do")
 	@ResponseBody
-	public String insertReview( NikeVO vo ) throws Exception {
+	public String insertReview( NikeVO vo, HttpSession session ) throws Exception {
+		
+		String userid = (String)session.getAttribute("MemberSessionId");
+		vo.setUserid(userid);
 		
 		String msg = "ok";
 	
