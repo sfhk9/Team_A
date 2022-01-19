@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <c:set var="nike" value="${pageContext.request.contextPath}/nike" />
 <c:set var="nikeweb" value="${pageContext.request.contextPath}/nike/nikeweb" />
+<c:set var="goods" value="${pageContext.request.contextPath}/nike/goods" />
 
 <!DOCTYPE html>
 <html>
@@ -17,6 +17,8 @@
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	
 	<script type ="text/javascript" src="${nikeweb}/assets/js/comm_price.js"></script>
+	<script type ="text/javascript" src="${nikeweb}/assets/js/adminGoodsComm.js"></script>
+	<script type ="text/javascript" src="${nikeweb}/assets/js/adminGoodsDetail.js"></script>
 
 	<!-- CSS
 	============================================ -->
@@ -138,7 +140,19 @@
 					<td>
 						<h4>썸네일 리스트</h4>
 						<div id="thumbnailsList">
-						비어있습니다
+						<c:choose>
+							<c:when test="${empty thumbnails}">비어있습니다.</c:when>
+							<c:otherwise>
+								<c:forEach var="img" items="${thumbnails}">
+									<c:set var="imgPath" value="${goods}/${goodsinfo.unq}/${img}"/>
+									<p>
+										<img src="${imgPath}" 
+											 class="listIMG" 
+											 onclick="fn_preview('${imgPath}')"> ${img}
+									</p>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 						</div>
 					</td>
 				</tr>
@@ -147,15 +161,28 @@
 					<td>
 						<h4>상품 이미지 리스트</h4>
 						<div id="goodsImgsList">
-						비어있습니다
+						<c:choose>
+							<c:when test="${empty goodsImgs}">비어있습니다.</c:when>
+							<c:otherwise>
+								<c:forEach var="img" items="${goodsImgs}">
+									<c:set var="imgPath" value="${goods}/${goodsinfo.unq}/${img}"/>
+									<p>
+										<img src="${imgPath}" 
+											 class="listIMG" 
+											 onclick="fn_preview('${imgPath}')"> ${img}
+									</p>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 						</div>
 					</td>
 				</tr>
 			</table>
-			<form name="unq" action="adminGoodsModify.do" method="post">
+			<form name="frm" id="frm" action="adminGoodsModify.do" method="post">
 				<input type="hidden" name="unq" value="${goodsinfo.unq}">
 				<div style="width:600px; text-align:center; margin-top:10px;">
 					<button type="submit" id="btn_save">수정</button>
+					<button type="button" id="btn_delete">삭제</button>
 					<button type="button" onclick="javascript:location.href='adminList.do'">목록으로</button>
 				</div>
 			</form>

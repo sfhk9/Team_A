@@ -1,5 +1,7 @@
 package egov.service;
 
+import java.util.List;
+
 public class NikeVO {
 	
 
@@ -50,7 +52,9 @@ public class NikeVO {
 	private String adminid;
 	private String adminpass;
 
-
+	// 이미지 파일 리스트
+	private List<String> tList;
+	private List<String> gList;
 	
 	//장바구니 CART
 	private int qty;
@@ -401,7 +405,18 @@ public class NikeVO {
 	public void setAdminpass(String adminpass) {
 		this.adminpass = adminpass;
 	}
-
+	public List<String> gettList() {
+		return tList;
+	}
+	public void settList(List<String> tList) {
+		this.tList = tList;
+	}
+	public List<String> getgList() {
+		return gList;
+	}
+	public void setgList(List<String> gList) {
+		this.gList = gList;
+	}
 	public int getOff() {
 		return off;
 	}

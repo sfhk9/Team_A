@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <!-- cart & checkout 공통 function -->
-<script type ="text/javascript" src="${nikeweb}/assets/js/CartAndCheckout.js"></script>
+<script type ="text/javascript" src="${nikeweb}/assets/js/comm_price.js"></script>
 
 <script>
 

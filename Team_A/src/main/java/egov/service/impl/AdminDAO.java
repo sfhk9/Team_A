@@ -24,4 +24,8 @@ public class AdminDAO extends EgovAbstractDAO{
 		return (NikeVO) select("adminDAO.selectGoodsInfo2",unq);
 	}
 
+	public int deleteGoodsInfo(int unq) {
+		return (int) delete("adminDAO.deleteGoodsInfo",unq);
+	}
+
 }

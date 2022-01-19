@@ -46,8 +46,11 @@ function fn_list(id,fileList){
 
 	// 파일 이름 담기
 	$.each(divList,function(i,file){
+		var filename="";
 		if(file!=null){
-			divNames.push(file.name);		
+			if(typeof(file)=="string") filename=file;
+			else filename=file.name;
+			divNames.push(filename);		
 		}
 	});
 	
@@ -82,17 +85,31 @@ function fn_list(id,fileList){
 			+"<h5>------이미지 클릭시 확대됨------</h5>";
 	$.each(divList,function(i){
 		var file=divList[i];
-		var img=URL.createObjectURL(file);
+		var img="";
+		var filename="";
+		var del="";
 		//var img="nike/images/sho.png";
-		// 파일 존재 여부를 업로드하기 전에 체크하는 함수 필요할듯
+		
+		if(typeof(file)=="string"){
+			img=$("#goodsPath").val()+"/"+file;
+			filename=file;
+
+			// 삭제 버튼 색깔 다르게 만들기
+			del="fileDel";
+		} else {
+			img=URL.createObjectURL(file);
+			filename=file.name;
+			del="del";
+		}
 	
 		html+="<p>"
 			 +"<img src='"+img+"' class='listIMG' onclick='fn_preview(\""+img+"\")'> "
-			 +file.name
+			 +filename
 			 +" <button type='button' onclick='fn_new(\"up\",\""+id+"\",\""+i+"\")'>up</button>"
 			 +" <button type='button' onclick='fn_new(\"down\",\""+id+"\",\""+i+"\")'>down</button>"
-			 +" <button type='button' onclick='fn_new(\"del\",\""+id+"\",\""+i+"\")'>X</button>"
+			 +" <button type='button' onclick='fn_new("+del+",\""+id+"\",\""+i+"\")'>X</button>"
 			 +"</p>";
+		URL.revokeObjectURL(file);
 	});
 	
 	if(divList.length==0) html="비어있습니다";
@@ -129,6 +146,9 @@ function fn_new(str,id,i){
 		fn_listDown(arr,i);
 	} else if(str=="del"){
 		fn_listDel(arr,i);
+	} else if(str=="fileDel"){
+		if(!confirm("정말 삭제하시겠습니까?(취소 불가)")) return false;
+		fn_fileDel(id,arr,i);
 	}
 
 	fn_list(id,fileList);
@@ -172,3 +192,39 @@ $( function() {
 		fn_list("goodsImgs",fileList);
 	});
 } );
+
+function fn_addList(imgName,id){
+	// 저장되는 배열 결정
+	var divList="";
+	if(id=="thumbnails") divList=tList;
+	if(id=="goodsImgs") divList=gList;
+	
+	divList.push(imgName);
+}
+
+function fn_fileDel(id,arr,i){
+	var target="";
+	if(id=="thumbnails") target="thumbnail";
+	else target="goodsImg";
+	
+	$.ajax({
+			type: "POST",
+			url: "adminDeleteFile.do" ,
+			data: {
+				"unq":$("#unq").val(),
+				"filename" : arr[i]
+			}, 
+			datatype : "text",
+			success: function(data) {
+				if(data=="ok"){
+					fn_new("del",id,i);
+				} else {
+					alert("삭제 실패");
+				}
+
+			}, 
+			error: function() {
+				alert("오류 발생");
+			}
+	});
+}

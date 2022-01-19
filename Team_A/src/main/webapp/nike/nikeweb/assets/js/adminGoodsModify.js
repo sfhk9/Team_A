@@ -99,11 +99,20 @@ $( function() {
 	
 		// 실질적인 thumbnails, goodsImag 파일 목록을 formData에 추가
 		for(var i=0; i<tList.length;i++){
-			formData.append("thumbnails",tList[i]);
+			if(typeof(tList[i])!="string") {
+				formData.append("thumbnails",tList[i]);
+				tList[i]="(#n#e#w#)indexNum"+i;
+			}
+			formData.append("tList",tList[i]);
 		}
 		
 		for(var i=0; i<gList.length;i++){
-			formData.append("goodsImgs",gList[i]);
+			if(typeof(gList[i])!="string"){
+				formData.append("goodsImgs",gList[i]);
+				gList[i]="(#n#e#w#)indexNum"+i;
+			} 
+			
+			formData.append("gList",gList[i]);
 		}
 		
 		$.ajax({
