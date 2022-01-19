@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,7 +44,6 @@ public class AdminController {
 		
 		
 		String msg="ok";
-		String target = "Write";
 		int unq=adminService.selectLastGoodsUnq(vo);
 		
 		try {
@@ -79,6 +79,9 @@ public class AdminController {
 	public String selectGoodsDetail(NikeVO vo,Model model) throws Exception{
 		// admin 세션 검사 하기
 		
+		// 조회수 증가
+		int Hits=adminService.updateGoodsInfoHits(vo.getUnq());
+		
 		// 게시판 정보 가져오기
 		NikeVO goodsinfo=adminService.selectGoodsInfo(vo.getUnq());
 		goodsinfo.setColor(goodsinfo.getColor().replaceAll("/", ","));
@@ -104,11 +107,14 @@ public class AdminController {
 		String msg="ok";
 		
 		// 경로 및 파일 삭제
+		int err=deleteDirProcess(vo);
 		
 		// db 삭제
 		int result=adminService.deleteGoodsInfo(vo.getUnq());
 		
-		if(result!=1) msg="er1";
+		if(result!=1&&err!=0) msg="er1";
+		else if(result!=1) msg="er2";
+		else if(err!=0) msg="er3";
 	
 		return msg;
 	}
@@ -141,7 +147,17 @@ public class AdminController {
 		
 		String msg="ok";
 		NikeVO target=vo;
-		updateProcess(req,multiRequest,target);
+		Map<String, String> map=updateProcess(req,multiRequest,target);
+		
+		vo.setThumbnail(map.get("thumbnail"));
+		vo.setGoodsimg(map.get("goodsImg"));
+		if(vo.getSale()==null) {
+			vo.setSale("null");
+		}
+		
+		// sql문 실행	
+		int result = adminService.updateGoodsInfo(vo);
+		if(result!=1) msg="er1";
 	
 		return msg;
 	}
@@ -152,21 +168,42 @@ public class AdminController {
 	public String deleteImgFile(NikeVO vo) throws Exception{
 		// admin 세션 검사 하기
 		
-		String msg="no";
+		String msg="ok";
+		int result=0;
 		
-		// 경로 및 파일 삭제
+		// 파일 삭제
 		NikeVO target=vo;
 		String fileDelete = deleteFile(target);
 		
-		// db 삭제
-		
-		//if(result!=1) msg="er1";
+		String filename=target.getFilename();
+		System.out.println(filename);
+		if(fileDelete.equals("delOk") && filename.trim().length()>0) {
+			if(filename.contains("th")) {
+				target.setImageList("thumbnail");
+			} else {
+				target.setImageList("goodsImg");
+			} 
+			String imageList=adminService.selectImageList(target);
+			
+			String[] arr=imageList.split("/");
+			List<String> list=new ArrayList<>(Arrays.asList(arr));
+			int idx=list.indexOf(filename);
+			System.out.println(list);
+			System.out.println(idx);			
+			list.remove(idx);
+			filename=String.join("/", list);
+			target.setFilename(filename);
+			result=adminService.updateImageList(target);
+			if(result!=1) msg="er1";
+		} else if(!fileDelete.equals("delOk")) {
+			msg="er2";
+		}
 	
 		return msg;
 	}
 
 	
-	// 파일 업로드 함수
+	// 파일 업로드
 	public static Map<String,String> uploadProcess(MultipartHttpServletRequest multiRequest, 
 													   int unq_int) throws Exception {
 			
@@ -218,7 +255,7 @@ public class AdminController {
 				fileName="th_"+unq+"_"+index+"."+ext;
 				fulldir = uploadDir + "/"+fileName;
 	            file.transferTo(new File(fulldir));
-				thumbnail += file.getOriginalFilename() + "/";
+				thumbnail += fileName + "/";
 				index++;
 			}
 			
@@ -234,7 +271,7 @@ public class AdminController {
 				fulldir = uploadDir + "/"+fileName;
 	            file.transferTo(new File(fulldir));
 	            
-				goodsImg += file.getOriginalFilename() + "/";
+				goodsImg += fileName + "/";
 				index++;
 			}
 			
@@ -290,7 +327,7 @@ public class AdminController {
 	}
 	
 	//update
-	public static void updateProcess(HttpServletRequest req,
+	public static Map<String,String> updateProcess(HttpServletRequest req,
 									 MultipartHttpServletRequest multiRequest,
 									 NikeVO vo) throws Exception {
 		
@@ -328,20 +365,20 @@ public class AdminController {
 				ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 				
 				// 확장자 붙여서 파일 전송하기
-				newName="th_"+unq+"_"+i+"."+ext;
+				newName="th_"+unq+"_"+(i+1)+"."+ext;
 				fulldir = tmpDir + "/"+newName;
 				file.transferTo(new File(fulldir));
-				thumbnail += fileName + "/";
+				thumbnail += newName + "/";
 				index++;
 			} else {
 				fileName=tList.get(i);
 				File file=new File(uploadDir+"/"+fileName);
 				ext = fileName.substring(fileName.lastIndexOf(".") + 1);
-				newName="th_"+unq+"_"+i+"."+ext;
+				newName="th_"+unq+"_"+(i+1)+"."+ext;
 				
 				fulldir = tmpDir + "/"+newName;
 				file.renameTo(new File(fulldir));
-				thumbnail += fileName+ "/";
+				thumbnail += newName+ "/";
 			}
 
 
@@ -355,34 +392,70 @@ public class AdminController {
 				ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 				
 				// 확장자 붙여서 파일 전송하기
-				newName="in_"+unq+"_"+i+"."+ext;
+				newName="in_"+unq+"_"+(i+1)+"."+ext;
 				fulldir = tmpDir + "/"+newName;
 				file.transferTo(new File(fulldir));
-				goodsImg += fileName + "/";
+				goodsImg += newName + "/";
 				index++;
 			} else {
 				fileName=gList.get(i);
 				File file=new File(uploadDir+"/"+fileName);
 				ext = fileName.substring(fileName.lastIndexOf(".") + 1);
-				newName="in_"+unq+"_"+i+"."+ext;
+				newName="in_"+unq+"_"+(i+1)+"."+ext;
 				
 				fulldir = tmpDir + "/"+newName;
 				file.renameTo(new File(fulldir));
-				goodsImg += fileName+ "/";
+				goodsImg += newName+ "/";
 			}
 		}
 		
+		thumbnail = thumbnail.substring(0, thumbnail.length() - 1);
+		goodsImg = goodsImg.substring(0, goodsImg.length() - 1);
+		
 		// 임시폴더 -> 본래 폴더
+		File tmpFiles = new File(tmpDir);
+		File tmpList[] = tmpFiles.listFiles();
+		
+		for(int i=0;i<tmpList.length;i++) {
+			String filename=tmpList[i].getName();
+			tmpList[i].renameTo(new File(uploadDir+"/"+filename));
+		}
 		
 		// 문자열 전달
-		//map.put("thumbnail",thumbnail);
-		//map.put("goodsImg",goodsImg);
+		map.put("thumbnail",thumbnail);
+		map.put("goodsImg",goodsImg);
 		
-		//return map;
+		return map;
 	}
 	
-	public String deleteDirProcess() {
-		return "dd";
+	public int deleteDirProcess(NikeVO vo) {
+		String uploadDir="D:/project_ezen/eGovFrameDev-3.10.0-64bit/workspace/Team_A/Team_A/src/main/webapp/nike/goods";
+		String dir=uploadDir+"/"+vo.getUnq();
+		File upload=new File(dir);
+		File fileList[]=upload.listFiles();
+		
+		String filename="";
+		String fullDir="";
+		
+		int errCount=0;
+		
+		for(int i=0;i<fileList.length;i++) {
+			filename=fileList[i].getName();
+			fullDir=dir+"/"+filename;
+			
+			System.out.println(fullDir);
+			File delFile=new File(fullDir);
+
+			// 오류가 생긴 경우는?
+			if(delFile.exists()) delFile.delete();
+			else errCount+=1;
+		}
+		
+		File delDir= new File(dir);
+		if(delDir.exists()) delDir.delete();
+		else errCount+=1;
+		
+		return errCount;
 	}
 	
 	public String deleteFile(NikeVO vo) {

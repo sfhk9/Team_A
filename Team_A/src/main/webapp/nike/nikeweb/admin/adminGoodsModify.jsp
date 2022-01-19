@@ -180,10 +180,8 @@
 									
 									<li>
 										<div style="text-align: center; width: 50px; float:left; margin: 5px;">
-											<label for="chk${status.count}" class="chkbox" >
-												<c:forEach var="checked" items="${goodsColor}">									
-													<input id="chk${status.count}" type="checkbox" name="color" value="${color}" <c:if test="${color eq checked}">checked</c:if>>
-												</c:forEach> 
+											<label for="chk${status.count}" class="chkbox" >								
+												<input id="chk${status.count}" type="checkbox" name="color" value="${color}" <c:if test="${fn:contains(goodsColor,color)}">checked</c:if>>
 												<span class="${checkmark}" style="background-color: ${color};"></span>
 											</label><br>
 											<a>${color_kr}</a>

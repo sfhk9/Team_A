@@ -98,7 +98,7 @@ $(function(){
 			success : function(data){
 				if(data=="ok"){
 					alert("주문이 접수되었습니다.\n 결제가 확인되면 배송이 진행됩니다.");
-					location.href="/goodsList.do";
+					location.href="/orderList.do";
 				} else if(data=="er1"){
 					alert("오류 : 장바구니 목록 삭제 오류");
 				} else if(data=="er2"){

@@ -84,6 +84,48 @@
 				unq=#unq#
 	</select>
 	
+	<select id="adminDAO.selectImageList" resultClass="java.lang.String">
+		SELECT $imageList$ FROM goodsinfo WHERE unq=#unq#
+	</select>
+	
+	<update id="adminDAO.updateGoodsInfoHits">
+		UPDATE
+				goodsinfo
+		SET
+				hits=hits+1
+		WHERE
+				unq=#unq#
+	</update>
+	
+	<update id="adminDAO.updateImageList">
+		UPDATE 
+				goodsinfo 
+		SET 
+				$imageList$=#filename# 
+		WHERE 
+				unq=#unq# 
+	</update>
+	
+	<update id="adminDAO.updateGoodsInfo">
+		UPDATE 
+				goodsinfo 
+		
+		SET 
+				name=#name#,
+				category=#category#,
+				ctgtype=#ctgtype#,
+				ctggender=#ctggender#,
+				price=#price#,
+				sale=#sale#,
+				csize=#csize#,
+				color=#color#,
+				thumbnail=#thumbnail#,
+				goodsImg=#goodsimg#,
+				info=#info#
+		WHERE
+				unq=#unq#
+	</update>
+	
 	<delete id="adminDAO.deleteGoodsInfo">
 		DELETE FROM goodsinfo WHERE unq=#unq#
 	</delete>

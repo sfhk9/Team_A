@@ -53,6 +53,7 @@ public class NikeVO {
 	private String adminpass;
 
 	// 이미지 파일 리스트
+	private String imageList;
 	private List<String> tList;
 	private List<String> gList;
 	
@@ -404,6 +405,12 @@ public class NikeVO {
 	}
 	public void setAdminpass(String adminpass) {
 		this.adminpass = adminpass;
+	}
+	public String getImageList() {
+		return imageList;
+	}
+	public void setImageList(String imageList) {
+		this.imageList = imageList;
 	}
 	public List<String> gettList() {
 		return tList;

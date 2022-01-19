@@ -12,7 +12,13 @@ $(function(){
 				if(data=="ok"){
 					alert("삭제 완료");
 					location.href="adminList.do";
-				} else {
+				} else if(data=="er1"){
+					alert("(오류) 파일 삭제 오류 및 DB 삭제 오류");
+				} else if(data=="er2"){
+					alert("(오류) DB 삭제 오류");
+				} else if(data=="er3"){
+					alert("(오류) 파일 삭제 오류");
+				} else{
 					alert("삭제 실패");
 				}	
 			}, 

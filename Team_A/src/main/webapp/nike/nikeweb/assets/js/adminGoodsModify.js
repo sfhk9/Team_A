@@ -128,11 +128,9 @@ $( function() {
 					alert("변경 완료");	
 					location.href="adminList.do"
 				} else if(data=="er1"){
-					alert("파일 저장 경로에 이상이 있습니다");
-				} else if(data=="er2"){
-					alert("이미지 파일이 비어있습니다");
+					alert("(오류) DB 저장 오류");
 				} else {
-					alert("변경 실패");
+					alert("(오류) 변경 실패");
 				}
 			}, 
 			error: function() {

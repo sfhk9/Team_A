@@ -107,7 +107,7 @@ function fn_list(id,fileList){
 			 +filename
 			 +" <button type='button' onclick='fn_new(\"up\",\""+id+"\",\""+i+"\")'>up</button>"
 			 +" <button type='button' onclick='fn_new(\"down\",\""+id+"\",\""+i+"\")'>down</button>"
-			 +" <button type='button' onclick='fn_new("+del+",\""+id+"\",\""+i+"\")'>X</button>"
+			 +" <button type='button' onclick='fn_new(\""+del+"\",\""+id+"\",\""+i+"\")'>X</button>"
 			 +"</p>";
 		URL.revokeObjectURL(file);
 	});
@@ -147,8 +147,7 @@ function fn_new(str,id,i){
 	} else if(str=="del"){
 		fn_listDel(arr,i);
 	} else if(str=="fileDel"){
-		if(!confirm("정말 삭제하시겠습니까?(취소 불가)")) return false;
-		fn_fileDel(id,arr,i);
+		if(confirm("정말 삭제하시겠습니까?(취소 불가)")) fn_fileDel(id,arr,i);
 	}
 
 	fn_list(id,fileList);
@@ -203,9 +202,10 @@ function fn_addList(imgName,id){
 }
 
 function fn_fileDel(id,arr,i){
-	var target="";
-	if(id=="thumbnails") target="thumbnail";
-	else target="goodsImg";
+	if(arr.length<=1){
+		alert("삭제불가 : 최소 한장은 존재해야합니다.");
+		return false;
+	}
 	
 	$.ajax({
 			type: "POST",
@@ -217,11 +217,15 @@ function fn_fileDel(id,arr,i){
 			datatype : "text",
 			success: function(data) {
 				if(data=="ok"){
+					alert("삭제 성공");
 					fn_new("del",id,i);
-				} else {
+				} else if(data=="er1"){
+					alert("(오류) DB 삭제 실패 / 파일 삭제 성공 ");
+				} else if(data=="er2"){
+					alert("(오류) 파일 삭제 실패");
+				} else if(data=="er3"){
 					alert("삭제 실패");
 				}
-
 			}, 
 			error: function() {
 				alert("오류 발생");

@@ -24,6 +24,11 @@ public class AdminImpl implements AdminService {
 	}
 
 	@Override
+	public int updateGoodsInfoHits(int unq) throws Exception {
+		return adminDAO.updateGoodsInfoHits(unq);
+	}
+	
+	@Override
 	public NikeVO selectGoodsInfo(int unq) throws Exception {
 		return adminDAO.selectGoodsInfo(unq);
 	}
@@ -37,6 +42,20 @@ public class AdminImpl implements AdminService {
 	public int deleteGoodsInfo(int unq) throws Exception {
 		return adminDAO.deleteGoodsInfo(unq);
 	}
-	
-	
+
+	@Override
+	public String selectImageList(NikeVO vo) throws Exception {
+		return adminDAO.selectImageList(vo);
+	}
+
+	@Override
+	public int updateImageList(NikeVO vo) throws Exception {
+		return adminDAO.updateImageList(vo);
+	}
+
+	@Override
+	public int updateGoodsInfo(NikeVO vo) throws Exception {
+		return adminDAO.updateGOodsInfo(vo);
+	}
+
 }

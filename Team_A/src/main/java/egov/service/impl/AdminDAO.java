@@ -13,9 +13,13 @@ public class AdminDAO extends EgovAbstractDAO{
 	}
 
 	public int selectLastGoodsUnq(NikeVO vo) {
-		return (int) select("adminDAO.selectLastGoodsUnq");
+		return (int) select("adminDAO.selectLastGoodsUnq",vo);
 	}
-
+	
+	public int updateGoodsInfoHits(int unq) {
+		return (int) update("adminDAO.updateGoodsInfoHits",unq);
+	}
+	
 	public NikeVO selectGoodsInfo(int unq) {
 		return (NikeVO) select("adminDAO.selectGoodsInfo",unq);
 	}
@@ -27,5 +31,18 @@ public class AdminDAO extends EgovAbstractDAO{
 	public int deleteGoodsInfo(int unq) {
 		return (int) delete("adminDAO.deleteGoodsInfo",unq);
 	}
+
+	public String selectImageList(NikeVO vo) {
+		return (String) select("adminDAO.selectImageList",vo);
+	}
+
+	public int updateImageList(NikeVO vo) {
+		return (int) update("adminDAO.updateImageList",vo);
+	}
+
+	public int updateGOodsInfo(NikeVO vo) {
+		return (int) update("adminDAO.updateGoodsInfo",vo);
+	}
+
 
 }
