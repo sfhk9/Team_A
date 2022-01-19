@@ -363,7 +363,7 @@
 							color,
 							qty
 				) VALUES (
-							'10000',
+							cart_seq.nextval,
 							#userid#,
 							#unq#,
 							#csize#,

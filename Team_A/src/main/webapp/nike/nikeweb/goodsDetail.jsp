@@ -19,7 +19,7 @@
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	
 	<!-- cart & checkout 공통 function -->
-	<script type ="text/javascript" src="${nikeweb}/assets/js/CartAndCheckout.js"></script>
+	<script type ="text/javascript" src="${nikeweb}/assets/js/comm_price.js"></script>
     
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/nike/nikeweb/assets/img/favicon.png">
@@ -106,6 +106,12 @@
 </script>
 
 <script>
+	function fn_star(num){
+		$("#mark").val(num);
+	}
+</script>
+
+<script>
   	$(function() {
 		
   		$("#submit").click(function(){  
@@ -129,6 +135,7 @@
   				success : function(data) {  // ok
   					if(data == "ok") {
   						alert("저장완료");
+  						location.reload();
   					} else {
   						alert("저장실패");
   					}
@@ -141,20 +148,39 @@
   	});
 </script>
 
+<!-- 
+<script> // 사이즈,색상 값 alert으로 표시
+	function test_sample() {
+		var sample =document.getElementsByName('csize');
+		for(var i=0; i<sample.length; i++) {
+			if(sample[i].checked == true) {
+				alert(sample[i].value);
+			}
+		}
+		var sample =document.getElementsByName('color');
+		for(var i=0; i<sample.length; i++) {
+			if(sample[i].checked == true) {
+				alert(sample[i].value);
+			}
+		}
+	}
+</script>
+ onClick="test_sample();"
+ -->
 
 <script>
   	$(function() {
   		$("#sendCart").click(function(){  
   			if(!fn_click()) return false;
   			
-  			if( $.trim($("input[name='color']").val()) == "" ) {
+  			
+  			
+  			if( $.trim($("input[name='color']:checked").val()) == "" ) {
   				alert("색상을 선택해주세요.");
-  				$("#color").focus();
   				return false;
   			}
-  			if( $.trim($("#csize").val()) == "" ) {
+  			if( $.trim($("input[name='csize']:checked").val()) == "") {
   				alert("크기를 선택해주세요.");
-  				$("#csize").focus();
   				return false;
   			}
   
@@ -168,8 +194,8 @@
   				
   				datatype : "text",
   				success : function(data) {  // ok
-  					if(msg == "ok") {
-  						if(result) {
+  					if(data == "ok") {
+  						if(result == true) {
   							location = "cart.do";
   						} else {
   							location.reload();
@@ -293,15 +319,22 @@
 						%>
 							<!-- 신제품시 추가 -->
 							<span>
-								${goods.price}원
-								<!-- <script>
-                              			document.write(fn_comma(${goods.price}원));
-                              		</script>  -->
+                              	<script>
+       								document.write(fn_comma(${goods.price})+"원");
+								</script>
 							</span>
 						<% } else { %>
 							<!-- 할인시 추가 -->
-							<span>${goods.pricesale} 원</span>
-							<span class="old">${goods.price}원</span>
+							<span>
+								<script>
+       								document.write(fn_comma(${goods.pricesale})+"원");
+								</script>
+							</span>
+							<span class="old">
+								<script>
+       								document.write(fn_comma(${goods.price})+"원");
+								</script>
+							</span>
 						<%
 						}
 						%>
@@ -323,7 +356,7 @@
                     </div>
                     
                     <form id="cartData">
-                    
+                    <input type="hidden" name="unq" id="unq" value="${goods.unq}">
                     <div class="pro-details-size-color">
                         <div class="pro-details-color-wrap">
                             <span>Color</span>
@@ -381,7 +414,7 @@
 											if(i < array.length ) {	
 									%>	
 												<li>
-													<label class="size_btn">
+													<label class="size_btn" style="cursor:pointer;">
 													    <input type="radio" name="csize" id="csize" value="<%=array[i] %>">
 													    <span><%=array[i] %></span>
 													</label>
@@ -566,16 +599,17 @@
                                 <h3>리뷰 작성</h3>
                                 <div class="ratting-form">
                                     <form id="frm">
-                                    	<input type="hidden" name="goodsunq" value="${goods.unq}">
+                                    	<input type="hidden" name="unq" value="${goods.unq}">
                                         <div class="star-box" id="star">
                                             <span>만족도 선택:</span>
                                             <div class="ratting-star">
-                                                <p class="star_rating" id="mark">
-												    <a href="#" class="on"><i class="fa fa-star"></i></a>
-												    <a href="#" class="on"><i class="fa fa-star"></i></a>
-												    <a href="#" class="on"><i class="fa fa-star"></i></a>
-												    <a href="#"><i class="fa fa-star"></i></a>
-												    <a href="#"><i class="fa fa-star"></i></a>
+                                                <input type="hidden" id="mark" name="mark" value="3">
+                                                <p class="star_rating">
+												    <a onclick="fn_star(1)" class="on"><i class="fa fa-star"></i></a>
+												    <a onclick="fn_star(2)" class="on"><i class="fa fa-star"></i></a>
+												    <a onclick="fn_star(3)" class="on"><i class="fa fa-star"></i></a>
+												    <a href="#" onclick="fn_star(4)"><i class="fa fa-star"></i></a>
+												    <a href="#" onclick="fn_star(5)"><i class="fa fa-star"></i></a>
 												</p>
                                             </div>
                                         </div>
@@ -634,23 +668,25 @@
 				if(thumbnail1 != null && !thumbnail1.equals("")) {
 					String[] array = thumbnail1.split("/");
 				%>
-                <div class="product-img">
-                    <a href="goodsDetail.do?unq=${result.unq }">
-                        <img class="default-img" src="/nike/goods/${result.unq}/<%=array[0] %>" alt="">
+				<div class="product-img">
+					<a href="goodsDetail.do?unq=${result.unq }">
+                    	<img class="default-img" src="/nike/goods/${result.unq}/<%=array[0] %>" alt="">
                         <img class="hover-img" src="/nike/goods/${result.unq}/<%=array[0] %>" alt="">
                     </a>
 	                   
-						<%  
-							if( off == 0 ){
-						%>  
-								<!-- 신제품시 추가 -->
-								<span class="purple">New</span>
-						<%  } else { %>
-								<!-- 할인시 추가 -->
-								<span class="pink">-${goods.off}%</span>
-						<%  
-							}
-						%>  
+	            <c:set var="off" value="${result.off }" />
+	 			<%
+				String offA = "" + pageContext.getAttribute("off");
+				if( offA.equals("null") ){
+				%>  
+						<!-- 신제품시 추가 -->
+						<span class="purple">New</span>
+				<%  } else { %>
+						<!-- 할인시 추가 -->
+						<span class="pink">-${result.off}%</span>
+				<%  
+					}
+				%>  
 				
                     <div class="product-action">
                         <div class="pro-same-action pro-wishlist">
@@ -676,19 +712,34 @@
                     <br>
                     <div class="product-price">
 						
-						<%
-							
-							if( off == 0 ){
-						%>
-								<!-- 신제품시 추가 -->
-								<span><a href="goodsDetail.do?unq=${result.unq }">${result.price}원</a></span>
-						<%  } else { %>
-								<!-- 할인시 추가 -->
-								<span>${goods.pricesale} 원</span>
-								<span class="old">${goods.price}원</span>
-						<%
-							}
-						%>
+						<c:set var="off" value="${result.off }" />
+		 			<%
+						String offB = "" + pageContext.getAttribute("off");
+						if( offB.equals("null") ){
+					%>
+							<!-- 신제품시 추가 -->
+							<span>
+								<a href="goodsDetail.do?unq=${result.unq }">
+									<script>
+       									document.write(fn_comma(${result.price})+"원");
+									</script>
+								</a>
+							</span>
+					<%  } else { %>
+							<!-- 할인시 추가 -->
+							<span>
+								<script>
+      								document.write(fn_comma(${result.saleprice})+"원");
+								</script>
+							</span>
+							<span class="old">
+								<script>
+       								document.write(fn_comma(${result.price})+"원");
+								</script>
+							</span>
+					<%
+						}
+					%>
 						
                     </div>
                 </div>
