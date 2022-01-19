@@ -5,6 +5,7 @@
 
 <c:set var="nike" value="${pageContext.request.contextPath}/nike" />
 <c:set var="nikeweb" value="${pageContext.request.contextPath}/nike/nikeweb" />
+<c:set var="goods" value="${pageContext.request.contextPath}/nike/goods" />
 
 <!DOCTYPE html>
 <html>
@@ -15,8 +16,7 @@
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-	
-	<!-- adminGoodsWrite.js -->
+
 	<script type ="text/javascript" src="${nikeweb}/assets/js/adminGoodsComm.js"></script>
 	<script type ="text/javascript" src="${nikeweb}/assets/js/adminGoodsModify.js"></script>
 
@@ -36,6 +36,7 @@
 
 </head>
 <body>
+	<input type="hidden" name="goodsPath" id="goodsPath" value="${goods}/${goodsinfo.unq}">
 	<div class="div1">
 		<div class="div_top">
 			<h2>상품 정보 수정</h2>
@@ -58,8 +59,9 @@
 			</div>
 	
 			<div style="position:relative; left:20px; top:30px;">
-	
+			
 			<form id="frm" enctype="multipart/form-date">
+				<input type="hidden" name="unq" id="unq" value="${goodsinfo.unq}">
 				<table style="width:600px; border:1px solid black;">
 					<tr>
 						<th>상품명</th>
@@ -187,7 +189,7 @@
 											<a>${color_kr}</a>
 										</div>
 									</li>
-								</c:forEach> 
+								</c:forEach>
 							</ul>
 						</td>
 					</tr>
@@ -208,7 +210,23 @@
 							</label>
 							<h4>썸네일 리스트</h4>
 							<div id="thumbnailsList">
-							비어있습니다
+								<c:choose>
+									<c:when test="${empty thumbnails}">비어있습니다.</c:when>
+									<c:otherwise>
+										<c:forEach var="img" items="${thumbnails}" varStatus="status">
+											<c:set var="imgPath" value="${goods}/${goodsinfo.unq}/${img}"/>
+											<script>fn_addList('${img}','thumbnails');</script>
+											<p>
+												<img src="${imgPath}" 
+													 class="listIMG" 
+													 onclick="fn_preview('${imgPath}')"> ${img}
+												<button type="button" onclick="fn_new('up','thumbnails','${status.index}')">up</button>
+												<button type="button" onclick="fn_new('down','thumbnails','${status.index}')">down</button>
+												<button type="button" onclick="fn_new('fileDel','thumbnails','${status.index}')">X</button>
+											</p>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</td>
 					</tr>
@@ -220,7 +238,23 @@
 							</label>
 							<h4>상품 이미지 리스트</h4>
 							<div id="goodsImgsList">
-							비어있습니다
+								<c:choose>
+									<c:when test="${empty goodsImgs}">비어있습니다.</c:when>
+									<c:otherwise>
+										<c:forEach var="img" items="${goodsImgs}" varStatus="status">
+											<c:set var="imgPath" value="${goods}/${goodsinfo.unq}/${img}"/>
+											<script>fn_addList('${img}','goodsImgs');</script>
+											<p>
+												<img src="${imgPath}" 
+													 class="listIMG" 
+													 onclick="fn_preview('${imgPath}')"> ${img}
+												<button type="button" onclick="fn_new('up','goodsImgs','${status.index}')">up</button>
+												<button type="button" onclick="fn_new('down','goodsImgs','${status.index}')">down</button>
+												<button type="button" onclick="fn_new('fileDel','goodsImgs','${status.index}')">X</button>
+											</p>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</td>
 					</tr>

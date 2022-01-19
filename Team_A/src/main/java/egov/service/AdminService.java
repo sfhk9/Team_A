@@ -13,4 +13,7 @@ public interface AdminService {
 	
 	// GoodsInfo 정보 가져오기 (decode 없는 순수 DB 데이터)
 	NikeVO selectGoodsInfo2(int unq) throws Exception;
+
+	// GoodsInfo 삭제하기
+	int deleteGoodsInfo(int unq) throws Exception;
 }

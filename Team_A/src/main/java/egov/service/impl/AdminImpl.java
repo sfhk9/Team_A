@@ -32,6 +32,11 @@ public class AdminImpl implements AdminService {
 	public NikeVO selectGoodsInfo2(int unq) throws Exception {
 		return adminDAO.selectGoodsInfo2(unq);
 	}
+
+	@Override
+	public int deleteGoodsInfo(int unq) throws Exception {
+		return adminDAO.deleteGoodsInfo(unq);
+	}
 	
 	
 }

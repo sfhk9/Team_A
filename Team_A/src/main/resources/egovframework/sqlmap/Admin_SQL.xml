@@ -83,4 +83,8 @@
 		WHERE 
 				unq=#unq#
 	</select>
+	
+	<delete id="adminDAO.deleteGoodsInfo">
+		DELETE FROM goodsinfo WHERE unq=#unq#
+	</delete>
 </sqlMap>
