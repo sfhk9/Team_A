@@ -19,6 +19,9 @@
 	<!-- cart -->
 	<script type ="text/javascript" src="${nikeweb}/assets/js/cart.js"></script>
 	
+	<!-- 공통 function -->
+	<script type ="text/javascript" src="${nikeweb}/assets/js/comm_price.js"></script>
+	
 	<!-- cart & checkout 공통 function -->
 	<script type ="text/javascript" src="${nikeweb}/assets/js/CartAndCheckout.js"></script>
     
@@ -39,24 +42,59 @@
 </head>
 <style>
 .cart-table-content table tbody > tr td.product-price-cart2 {
-  width: 150px;
+  width: 180px;
 }
  .cart-table-content table tbody > tr td.product-quantity2 {
   width: 30px;
 }
 .cart-table-content table tbody > tr td.product-remove2 {
-  width: 230px;
+  height: 220px;
+  width: 200px;
 }
 .button {
-  height: 35px;
+  height: 38px;
   width: 50%;
-  margin: 2px;
+  margin: 3px;
 }
 .buttoncon {
   background-color: #111111;
   color: white;
 }
+.cart-table-content table tbody > tr td.product-price-cart2 span {
+  font-weight: 500;
+  color: #333;
+}
 </style>
+
+<script>
+
+function fn_complete(unq){
+	
+	if( confirm("거래를 완료 하시겠습니까?") ){
+		
+		$.ajax({			
+			type : "post",
+			url  : "complete.do",
+			data : "unq="+unq,
+			datatype : "text",
+			success  : function( tex ){
+				if(tex == "ok") {
+					alert("거래완료 되었습니다.");
+					document.location.reload();
+				} else {
+					alert("처리 실패");
+				}
+			},
+			error    : function(){
+				alert("시스템 오류");
+			}			
+		});	
+		
+	}
+}
+
+
+</script>
 
 <body>
 <header class="header-area header-in-container clearfix">
@@ -122,20 +160,137 @@
                                  </td>
                                  <td id="total" class="product-subtotal">
                                  	<script>
-                                 		 document.write(fn_comma(${result.price*result.qty}));
+                                 		 document.write( fn_comma(${result.price*result.qty}) );
                                  	</script>
                                  </td>
                                  <td class="product-remove2">
-                                     <a>배송시작</a><br>
-                                     <a>11/11(토)</a><br>
-                                     <a>도착예정</a><br>
-                                     <input type="button" class="button" onclick="" value="배송조회"><br>
-                                     <input type="button" class="button" onclick="location.href='/goodsDetail.do?unq=${result.goodsunq}';" value="리뷰작성">
+									<!-- 변수 세팅 -->
+									<c:set var = "stmt" value = "${result.stmt}"/>
+																			
+									<c:choose>
+										
+										<c:when test = "${stmt == 1}">
+											결제대기<br>
+										</c:when>
+										
+										<c:when test = "${stmt == 2}">
+											결제취소<br>
+										</c:when>
+										
+										<c:when test = "${stmt == 3}">
+											결제완료<br>
+										</c:when>
+										
+										<c:when test = "${stmt == 4}">
+											배송준비<br>
+											<input type="button" class="button" onclick="" value="배송조회"><br>
+										</c:when>
+										
+										<c:when test = "${stmt == 5}">
+											배송중<br>
+											11/11(토)<br>
+											도착예정<br>
+											<input type="button" class="button" onclick="" value="배송조회"><br>
+										</c:when>
+										
+										<c:when test = "${stmt == 6}">
+											배송완료<br>
+											11/11(토)<br>
+											<input type="button" class="button" onclick="" value="배송조회"><br>
+										</c:when>
+										
+										<c:when test = "${stmt == 7}">
+											거래완료<br>
+											11/11(토)<br>
+											<input type="button" class="button" onclick="" value="배송조회"><br>
+											<input type="button" class="button" onclick="location.href='/goodsDetail.do?unq=${result.goodsunq}';" value="리뷰작성">
+										</c:when>
+										
+										<c:when test = "${stmt == 8}">
+											교환신청<br>
+										</c:when>
+										
+										<c:when test = "${stmt == 9}">
+											교환완료<br>
+										</c:when>
+										
+										<c:when test = "${stmt == 10}">
+											반품신청<br>
+										</c:when>
+										
+										<c:when test = "${stmt == 11}">
+											반품완료<br>
+										</c:when>
+										
+										<c:otherwise>
+											오류<br>
+										</c:otherwise>
+											
+									</c:choose>
+                                     
                                 </td>
+                                
                                 <td class="product-remove2">
-                                     <input type="button" class="button buttoncon" onclick="" value="구매확정"><br>
-                                     <input type="button" class="button" onclick="" value="반품신청"><br>
-                                     <input type="button" class="button" onclick="" value="교환신청">
+                                
+									<c:choose>
+									
+										<c:when test = "${stmt == 1}">
+											결제대기<br>
+											<input type="button" class="button" onclick="" value="거래취소">
+										</c:when>
+										
+										<c:when test = "${stmt == 2}">
+											결제취소<br>
+										</c:when>
+										
+										<c:when test = "${stmt == 3}">
+											결제완료<br>
+											<input type="button" class="button" onclick="" value="거래취소"><br>
+											<input type="button" class="button" onclick="" value="교환신청">
+										</c:when>
+										
+										<c:when test = "${stmt == 4}">
+											배송준비<br>
+											<input type="button" class="button" onclick="" value="거래취소"><br>
+											<input type="button" class="button" onclick="" value="교환신청">
+										</c:when>
+										
+										<c:when test = "${stmt == 5}">
+											<input type="button" class="button" onclick="" value="거래취소"><br>
+											<input type="button" class="button" onclick="" value="교환신청">										
+										</c:when>
+										
+										<c:when test = "${stmt == 6}">
+											<input type="button" class="button buttoncon" onclick="fn_complete( ${result.unq} );" value="구매확정"><br>
+											<input type="button" class="button" onclick="" value="반품신청"><br>
+											<input type="button" class="button" onclick="" value="교환신청">											
+										</c:when>
+										
+										<c:when test = "${stmt == 7}">
+											
+										</c:when>
+										
+										<c:when test = "${stmt == 8}">
+											<input type="button" class="button" onclick="" value="교환신청취소"><br>
+										</c:when>
+										
+										<c:when test = "${stmt == 9}">
+											
+										</c:when>
+										
+										<c:when test = "${stmt == 10}">
+											<input type="button" class="button" onclick="" value="반품신청취소"><br>
+										</c:when>
+										
+										<c:when test = "${stmt == 11}">
+										
+										</c:when>
+										
+										<c:otherwise>
+											오류<br>
+										</c:otherwise>
+										
+									</c:choose>
                                 </td>
                              </tr>
                            	</c:forEach>

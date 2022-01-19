@@ -150,6 +150,14 @@ public class NikeImpl implements NikeService {
 	public List<?> adminGoodsList(NikeVO vo) throws Exception {
 		return nikeDAO.adminGoodsList(vo);
 	}
+	@Override
+	public List<?> selectOrderList(NikeVO vo) throws Exception {
+		return nikeDAO.selectOrderList(vo);
+	}
+	@Override
+	public int updateOrderList(NikeVO vo) throws Exception {
+		return nikeDAO.updateOrderList(vo);
+	}
 
 	
 

@@ -711,16 +711,35 @@ public class NikeController {
 	///////////////////////////////////
 	//주문 목록
 	@RequestMapping("orderList.do")
-	public String orderList(NikeVO vo, Model model,HttpSession session) throws Exception{
+	public String selectOrderList(NikeVO vo, Model model,HttpSession session) throws Exception{
+		
 		String userid = (String) session.getAttribute("MemberSessionId");
 		vo.setUserid(userid);
 		
-		List<?> list = nikeService.selectCartList(vo);
+		List<?> list = nikeService.selectOrderList(vo);
+		System.out.println(list);
 		model.addAttribute("list",list);
 		  
 		return "nike/nikeweb/orderList";
 	}
 	
+	@RequestMapping("complete.do")
+	@ResponseBody
+	public String UpdateOrderList(HttpSession session, NikeVO vo, HttpServletRequest request) throws Exception{
+		
+		String userid = (String) session.getAttribute("MemberSessionId");
+		vo.setUserid(userid);
+		
+		String msg = "err";
+		
+	    int result = nikeService.updateOrderList(vo);
+		if( result == 1 ) {
+			msg = "ok";
+		}
+	
+		
+		return msg;
+	}
 	
 
 }

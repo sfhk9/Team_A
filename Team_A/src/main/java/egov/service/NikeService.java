@@ -85,5 +85,12 @@ public interface NikeService {
 	
 	// 관리자 상품리스트
 	List<?> adminGoodsList(NikeVO vo) throws Exception;
+	
+	// 주문목록 리스트
+	List<?> selectOrderList(NikeVO vo) throws Exception;
+	
+	// 주문목록 거래완료 갱신 서비스
+	int updateOrderList(NikeVO vo) throws Exception;
+	 
 
 }

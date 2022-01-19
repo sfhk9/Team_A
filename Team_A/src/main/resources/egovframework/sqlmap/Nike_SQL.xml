@@ -40,6 +40,7 @@
 								
 			) a	) b	WHERE rn >= 1  AND rn <![CDATA[<=]]> 8
 	</select>
+	
 	<select id="nikeDAO.selectSalGoodsList" resultClass="egovMap">
 		SELECT b.* FROM  (	
 			SELECT 
@@ -103,7 +104,7 @@
 	<select id="nikeDAO.selectGoodsDetail" resultClass="nikeVO">
 		SELECT
                 unq, category, ctgtype, ctggender, price, csize, color, thumbnail, goodsimg, hits, name,
-                NVL( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ),0) mark,
+                NVL( ROUND( ( select AVG(mark) from review where goodsunq = goodsinfo.unq ) ,0) ,0) mark,
                 NVL( ( (price/100)* ( 100-(select off from sale where unq=goodsinfo.sale) ) ),0) pricesale,
                 NVL( (select off from sale where unq=sale),0) off
         FROM
@@ -122,14 +123,14 @@
 	<select id="nikeDAO.selectAdminPass" resultClass="java.lang.Integer">
 			SELECT COUNT(*) FROM goodsinfo WHERE unq=#unq# 
 	</select>
-  <select id="nikeDAO.selectMemberCertify" resultClass="java.lang.Integer">
+	<select id="nikeDAO.selectMemberCertify" resultClass="java.lang.Integer">
 		SELECT COUNT(*) 
 				FROM userinfo 
 				WHERE 
 					userid=#userid# AND pass=#pass#
 	</select>
 	
-  <select id="nikeDAO.selectAdminCertify" resultClass="java.lang.Integer">
+	<select id="nikeDAO.selectAdminCertify" resultClass="java.lang.Integer">
 		SELECT COUNT(*) 
 				FROM admininfo 
 				WHERE 
@@ -168,7 +169,7 @@
 				</isNotNull>
 	</select> -->
 	
-  <select id="nikeDAO.selectMemberDetail" resultClass="nikeVO">
+	<select id="nikeDAO.selectMemberDetail" resultClass="nikeVO">
 		SELECT  userid,
 			    pass,
 			    name,
@@ -249,6 +250,30 @@
 		    	and userid=#userid#
 	</select>
 
+	
+	<select id="nikeDAO.selectOrderList" resultClass="egovMap">
+			SELECT 
+			    o.unq unq,
+			    o.userid userid,
+			    o.goodsunq goodsunq,
+			    nvl(substr(g.thumbnail,0,instr(g.thumbnail,'/')-1),g.thumbnail) thumbnail,
+			    o.qty qty,
+			    o.stmt stmt,
+			    CASE
+			    WHEN LENGTH(g.name) > 50 THEN SubStr(g.name, 0, 50) || '...'
+			    ELSE g.name
+			    END as name,
+			    o.color color,
+			    o.csize csize,
+			    g.price price
+			FROM
+			    orderlist o, goodsinfo g
+			WHERE
+			    o.goodsunq = g.unq and userid = #userid#
+	</select>
+	
+
+
 	<insert id="nikeDAO.insertJoin">
 		INSERT INTO userinfo(
 				    userid,
@@ -299,7 +324,7 @@
 								#goodsunq#,
 								#csize#,
 								#color#,
-								0,
+								6,
 								#name#,
 								#zipcode#,
 								#address1#,
@@ -378,6 +403,16 @@
 				qty=#qty#
 		WHERE
 			 	unq=#unq#
+	</update>
+	
+	<update id="nikeDAO.updateOrderList">
+		UPDATE
+    		orderlist
+		SET
+    		stmt = 7
+		WHERE
+    		unq = #unq# and userid = #userid#
+	
 	</update>
 	
 	<delete id="nikeDAO.deleteCartList">
