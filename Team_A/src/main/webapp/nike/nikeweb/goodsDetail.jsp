@@ -319,21 +319,15 @@
 						%>
 							<!-- 신제품시 추가 -->
 							<span>
-                              	<script>
-       								document.write(fn_comma(${goods.price})+"원");
-								</script>
+								<fmt:formatNumber value="${goods.price}" pattern="#,###"/>원
 							</span>
 						<% } else { %>
 							<!-- 할인시 추가 -->
 							<span>
-								<script>
-       								document.write(fn_comma(${goods.pricesale})+"원");
-								</script>
+    							<fmt:formatNumber value="${goods.pricesale}" pattern="#,###"/>원
 							</span>
 							<span class="old">
-								<script>
-       								document.write(fn_comma(${goods.price})+"원");
-								</script>
+								<fmt:formatNumber value="${goods.price}" pattern="#,###"/>원
 							</span>
 						<%
 						}
@@ -720,22 +714,16 @@
 							<!-- 신제품시 추가 -->
 							<span>
 								<a href="goodsDetail.do?unq=${result.unq }">
-									<script>
-       									document.write(fn_comma(${result.price})+"원");
-									</script>
+									<fmt:formatNumber value="${result.price}" pattern="#,###"/>원
 								</a>
 							</span>
 					<%  } else { %>
 							<!-- 할인시 추가 -->
 							<span>
-								<script>
-      								document.write(fn_comma(${result.saleprice})+"원");
-								</script>
+								<fmt:formatNumber value="${result.saleprice}" pattern="#,###"/>원
 							</span>
 							<span class="old">
-								<script>
-       								document.write(fn_comma(${result.price})+"원");
-								</script>
+								<fmt:formatNumber value="${result.price}" pattern="#,###"/>원
 							</span>
 					<%
 						}
