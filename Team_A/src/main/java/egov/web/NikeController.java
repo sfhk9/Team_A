@@ -652,14 +652,15 @@ public class NikeController {
 			int cartunq=bigDecimalNumber.intValue();
 			bigDecimalNumber = (BigDecimal) item.get("goodsunq");
 			int goodsunq = bigDecimalNumber.intValue();
-			System.out.println("goodsunq");
 			String csize = (String) item.get("csize");
 			String color = (String) item.get("color");
+			bigDecimalNumber = (BigDecimal) item.get("qty");
+			int qty= bigDecimalNumber.intValue();
 			vo.setGoodsunq(goodsunq);
 			vo.setCsize(csize);
 			vo.setColor(color);
-			
-			
+			vo.setQty(qty);
+
 			result=nikeService.insertOrderList(vo);
 			vo.setUnq(cartunq);
 			if(result==null) {
