@@ -87,13 +87,19 @@ if ( goodsname != null ) {
 				%>
 				
 				<!-- 신제품시 추가 -->
-				<span>${result.price}원</span>
+				<span>
+					<fmt:formatNumber value="${result.price}" pattern="#,###"/>원
+				</span>
 				
 				<% } else { %>
 					
 				<!-- 할인시 추가 -->
-				<span>${result.saleprice} 원</span>
-				<span class="old">${result.price}원</span>
+				<span>
+					<fmt:formatNumber value="${result.saleprice}" pattern="#,###"/>원
+				</span>
+				<span class="old">
+					<fmt:formatNumber value="${result.price}" pattern="#,###"/>원
+				</span>
 				
 				<%
 				}
