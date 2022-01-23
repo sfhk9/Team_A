@@ -682,19 +682,16 @@ public class NikeController {
 		return msg;
 	}
 	
-	@RequestMapping("wishList.do")
+	@RequestMapping("cartCnt.do")
 	@ResponseBody
-	public String selectWishList(HttpSession session, NikeVO vo, HttpServletRequest request) throws Exception{
+	public String selectWishList(Model model, HttpSession session, NikeVO vo) throws Exception{
 		String userid = (String) session.getAttribute("MemberSessionId");
 		vo.setUserid(userid);
 		
 		int wishCnt = nikeService.selectCartListCnt(vo);
-		//List<?> wishList = nikeService.selectCartList(vo);
+		String wishCnt_str=Integer.toString(wishCnt);
 		
-		request.setAttribute("wishCnt",wishCnt);
-		//model.addAttribute("wishList",wishList);
-		
-		return "ok";
+		return wishCnt_str;
 	}
 	
 	@RequestMapping("contact.do")

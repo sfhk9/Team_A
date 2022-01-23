@@ -68,7 +68,7 @@
                                 <th>가격</th>
                                 <th>수량</th>
                                 <th>합계</th>
-                                <th>메모/삭제</th>
+                                <th>삭제</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -113,7 +113,7 @@
                                  	</script>
                                  </td>
                                  <td class="product-remove">
-                                     <a href="#"><i class="fa fa-pencil"></i></a>
+                                     <!-- <a href="#"><i class="fa fa-pencil"></i></a> -->
                                      <a><i class="fa fa-times" onclick="fn_delete($(this))"></i></a>
                                 </td>
                              </tr>

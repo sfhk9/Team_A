@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	String wishCnt = (String) request.getAttribute("wishCnt");
-%>
 <c:set var="nike" value="${pageContext.request.contextPath}/nike" />
 
 <!-- jquery -->
@@ -39,11 +36,11 @@ $(function(){
 	$.ajax({
 		type : "post",
 		data : "ok",
-		url  : "wishList.do",
+		url  : "cartCnt.do",
 		
 		datatype : "text",
 		success  : function(data){
-			
+			$("#wishCnt").html(data);
 		},
 		error    : function(){
 			
@@ -290,7 +287,7 @@ function search(){
                     <div class="same-style cart-wrap">
                         <button class="icon-cart" onclick="location.href='cart.do';">
                             <i class="pe-7s-shopbag"></i>
-                            <span class="count-style"><%=wishCnt %></span>
+                            <span class="count-style" id="wishCnt">${wishCnt}</span>
                         </button>
                         <div class="shopping-cart-content">
                             <ul>
